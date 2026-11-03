@@ -395,11 +395,16 @@ They do not allow:
 
 The ten sorbents are not ten independent draws.
 
-- ROS-037, ROS-039 and ROS-040 are one family from one group.
+- ROS-039, [Zn(1,2,4-triazolate)F]n, and ROS-040, its 3-amino analogue, are one family.
+- ROS-037, [Cu2(glutarate)2(4,4'-bipyridine)]n, is a different framework on its own.
 - MOF-303, MIL-160, CAU-10-H and Al-fumarate are all aluminium carboxylate rod MOFs.
-- The two composites contain ROS-037 and ROS-039.
+- The two composites contain ROS-037 and ROS-039 and go with their parents.
 - bnn-1-Co and bnn-1-Ni are isostructural.
 - Syloid is the only non-MOF.
+
+That gives four families in the Bezrukov archive (aluminium rods; zinc triazolate fluorides;
+ROS-037; silica) and a fifth in Gao 2026 (bnn). Formulas from the Bezrukov text, re-read
+2026-11-03.
 
 Plain leave-one-sorbent-out therefore overstates transfer. The test has to be reported at two
 levels:
@@ -480,3 +485,10 @@ That paper needs no model.
 
 All computation in this audit was single-threaded file parsing under 200 MB of memory, and
 nothing competed with Paper 2's grid.
+
+## 6. Corrections
+
+- 2026-11-03. Section 5.3 first said that ROS-037, ROS-039 and ROS-040 are one family. They are
+  not: ROS-037 is a copper glutarate–bipyridine framework, while ROS-039 and ROS-040 are zinc
+  triazolate fluorides. The family list and the count (four in Bezrukov, five with Gao) were
+  corrected. The verdict does not change.
