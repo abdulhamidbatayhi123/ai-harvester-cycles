@@ -335,6 +335,30 @@ and compared head to head with Bezrukov's isotherm-only model on the same held-o
 outcome is publishable only if the comparison is fair; "learning adds nothing beyond the
 isotherm" is a real possibility and would itself be the result.
 
+### 4.1 Update, 2026-11-03
+
+Searched again for anything posted or published 2026-10-01 to 2026-11-03: arXiv API, Crossref
+(including ChemRxiv, Research Square and SSRN posted content), Zenodo and OpenAlex, plus the
+three groups to watch. Nothing new overlaps with "a learned dynamic model of water uptake and
+release, tested on held-out MOFs against an isotherm-driven baseline".
+
+- Las Palmas group: their three MOF records still have one version each, and none of the three
+  manuscripts has appeared as a preprint or article. Their October outputs are on other topics.
+- Limerick group: nothing in the window. The latest item is Kong et al., Angew. Chem. 2026
+  (doi:10.1002/anie.6095254, 21 Sep), a water-sorption study of SIFSIX-3-Ni and related hybrid
+  networks; abstract only, no sign of kinetics data or models.
+- Amin (UAE): no new output.
+- Closest new items, all low overlap:
+  - arXiv 2608.08967 (10 Aug 2026; abstract read): automated physics-based digital twins of an
+    HVAC desiccant-wheel system, one commercial sorbent calibrated as an effective isotherm.
+  - Kuznik et al., SSRN 2026: physics fits to 73 uptake curves of one coated zeolite.
+  - Tao Wang, ChemRxiv 2026: shows that hold-out by MOF topology is confounded with chemistry
+    (CO2, simulated). It supports the family-level hold-out of section 5.3.
+- Han & Chakraborty 2025 and Hong et al. 2026 are still unread in full. Both are closed access.
+  Every open route was tried (OpenAlex, Semantic Scholar, Europe PMC, CORE, the NTU and Korea
+  University repositories); ScienceDirect refuses automated access and Claude in Chrome was
+  not connected. They need the author's library access.
+
 ## 5. Go/no-go
 
 ### 5.1 Verdict: GO at the sorbent level, NO-GO at the device level
