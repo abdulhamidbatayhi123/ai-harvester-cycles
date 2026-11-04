@@ -307,4 +307,14 @@ Not frozen. Pre-freeze measurements so far (2026-11-04; `results/prefreeze/summa
 - **Step end-points minus the isotherm at the same measured RH**: medians between −1.8 and
   +2.8 wt%, worst single point 9.8 wt% (Al-fumarate, 60 °C). Every isotherm-driven model
   inherits this error.
+- **In-sample reproduction of B0** (`results/prefreeze/reproduce_b0.log`; per-material and
+  pooled fits, no held-out evaluation):
+  - At 27 °C the per-material k″ agree closely across the eight sorbents (coefficient of
+    variation 0.08 for uptake, 0.10 for release; 0.28 to 0.35 and 0.21 to 0.29). This
+    reproduces Bezrukov's "independent of the material" at that temperature.
+  - At 60 °C they do not (coefficient of variation 0.42 and 0.29; CAU-10-H uptake 3.26 against
+    1.51 pooled).
+  - Even with its own k″, B0's in-sample median E is 0.02 to 0.21: 10 to 50 times the noise
+    floor. The remaining error is in the form of the model, not in the noise, which is what H4a
+    tests.
 - Commit hash, date and compute budget: to be filled at the freeze.
