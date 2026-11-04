@@ -75,6 +75,12 @@ Isotherm choices fixed now:
   cycling file the reference is 21.11 mg while the mass falls to 18.89 mg.
   - Step runs begin with an activation stage under gas preheated to 100 °C. m_dry is the median
     mass over the last minute of that stage.
+  - Exception, measured 2026-11-04: the two composites' 27 °C step runs were dried only at
+    27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour
+    when the 0 % stage ended. Their dry mass is not established, so these runs are excluded from
+    P and used only in a sensitivity check. The isotherm runs dried without a heated stage (the
+    MIL-160 and ROS-039 isotherms and Syloid at 25 °C) had stopped changing (drift at most
+    0.17 % per hour) and are kept.
   - Cycling runs have no drying stage. Bezrukov's own code back-calculates m_dry by assuming
     that the highest mass in the run equals the isotherm's uptake at 30 % RH. That makes the
     measured uptake depend on the isotherm, which is also the baseline's input, so it is not
@@ -116,11 +122,13 @@ be made and recorded before any model is evaluated on them.
 
 ## 4. Folds
 
-- **Paired samples.** The step runs were measured two samples at a time on a two-pan
-  instrument; the files come in pairs with the same timestamp. A pair shares its forcing, so it
-  counts as one experiment in every bootstrap. The logged total gas flow is 400 sccm, against
-  200 mL/min in the paper; plausibly 200 per pan, which is to be confirmed from the data before
-  the freeze.
+- **Paired samples.** 37 groups of runs share a start timestamp: two samples measured together
+  on a two-pan instrument. A pair shares its forcing, so it counts as one experiment in every
+  bootstrap.
+- **Gas flow (checked 2026-11-04).** Every step and cycling plateau in P ran at a logged total
+  flow of 400 sccm, so the kinetic data are consistent with each other. The isotherm runs used
+  50 sccm, which does not matter at equilibrium. The paper states 200 mL/min, plausibly per pan;
+  this matters only for pooling with Gao 2026.
 - **LOSO (leave one sorbent out).** Eight folds, one per Bezrukov sorbent. A composite is
   always held out together with its parent, so ROS-037 with the ROS-037 composite, and ROS-039
   with the ROS-039 composite.
@@ -199,12 +207,18 @@ Implementation and training rules:
 
 ## 7. Decision rules and falsifiers
 
-**Beating the baseline in a fold.** A learned model "beats B0" on a held-out sorbent if both
-of these hold:
+**Beating the baseline in a fold.** A learned model "beats B0" on a held-out sorbent if all
+three of these hold:
 
 - its median E is lower than B0's by more than that sorbent's F;
-- the 95 % bootstrap interval of the paired difference, resampling that sorbent's segments,
-  excludes zero.
+- its median E is lower than B0's by at least 10 % of B0's median E (practical significance);
+- the 95 % bootstrap interval of the paired difference, resampling that sorbent's experiments
+  (two-pan pairs count as one), excludes zero.
+
+The second condition was added after the noise floor was measured (section 12). Repeats agree
+so closely, with F medians between 0.001 and 0.013, that F alone would count almost any
+improvement as real. The 10 % is a proposal for the author to confirm or change before the
+freeze.
 
 **H4a.** H4a is decided on LOSO for each learned model separately (L1, L2):
 
@@ -273,4 +287,24 @@ section 9 and written here before the freeze.
 
 ## 12. Freeze record
 
-(empty until frozen: commit hash, date, noise floor values per sorbent, compute budget)
+Not frozen. Pre-freeze measurements so far (2026-11-04; `results/prefreeze/summary.md`):
+
+- **Noise floor F**, median normalised RMS between consecutive repeats, per sorbent at 27 / 60 °C:
+
+| Sorbent | 27 °C | 60 °C |
+|---|---|---|
+| Al-fumarate | 0.0014 | 0.0126 |
+| CAU-10-H | 0.0009 | 0.0028 |
+| MIL-160 | 0.0026 | 0.0044 |
+| MOF-303 | 0.0019 | 0.0050 |
+| ROS-037 | 0.0020 | 0.0050 |
+| ROS-039 | 0.0018 | 0.0029 |
+| ROS-040 | 0.0035 | 0.0066 |
+| Syloid | 0.0011 | 0.0058 |
+| ROS-037 composite | excluded | 0.0062 |
+| ROS-039 composite | excluded | 0.0062 |
+
+- **Step end-points minus the isotherm at the same measured RH**: medians between −1.8 and
+  +2.8 wt%, worst single point 9.8 wt% (Al-fumarate, 60 °C). Every isotherm-driven model
+  inherits this error.
+- Commit hash, date and compute budget: to be filled at the freeze.
