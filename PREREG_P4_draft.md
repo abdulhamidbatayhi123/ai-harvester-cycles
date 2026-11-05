@@ -178,8 +178,15 @@ In every fold, everything that is fitted is fitted on the training sorbents only
 
 Implementation and training rules:
 
-- L1 and L2 are small multilayer perceptrons, trained by simulating whole segments with an
-  adaptive solver and minimising squared trajectory error.
+- L1 and L2 are small multilayer perceptrons, trained in two stages (changed after harness
+  round 1, section 10):
+  - stage A fits the rate law to the measured dw/dt, a centred difference over ±18 s, with each
+    point's error divided by its segment's change;
+  - stage B fine-tunes on open-loop rollouts over random 10-minute windows, started from the
+    measured uptake.
+  Validation on whole segments, open loop, picks the best state. Backpropagating through whole
+  segments, the first design, took about 2.5 hours per 300 steps on this machine. It left L1
+  unable to learn a correction that was present and L2 badly undertrained.
 - Each learned model is an ensemble of 5 seeds, and its prediction is the ensemble mean.
 - Hyperparameters are chosen within each outer fold by inner leave-one-sorbent-out on the
   training sorbents only, from a grid fixed here: width {16, 32}, depth {2}, weight decay
@@ -278,6 +285,17 @@ a known k″ and a known material-dependent multiplicative correction. The harne
   the injected correction's effect;
 - on correction-free synthetic data, neither L1 nor L2 "beats" B0 by the section 7 rule. This
   is the false-positive check.
+
+**Round 1 (2026-11-04/05; `results/harness_round1/`)**, with whole-segment training. Seven of
+the eight runs finished before it was stopped:
+
+- no false positive for L1;
+- L1 missed the injected correction (E 0.034 against B0's 0.036);
+- L2 failed even on correction-free data (E 0.27 to 0.58);
+- the decision rule compared a difference of medians with a bootstrap of paired medians. It
+  now uses the median paired difference throughout.
+
+Round 2 uses the two-stage training of section 5.
 
 ## 11. Compute
 
