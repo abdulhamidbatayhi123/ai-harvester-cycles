@@ -25,7 +25,7 @@ from p4.dataset import build_groups  # noqa: E402
 from p4.learned import TorchBranch, integrate  # noqa: E402
 from p4.physics import fit_scale, simulate_b0  # noqa: E402
 from p4.segments import DT_MIN, normalised_rms  # noqa: E402
-from p4.train import evaluate, isotherms_by_material, train  # noqa: E402
+from p4.train import beats, evaluate, isotherms_by_material, train_two_stage  # noqa: E402
 
 sys.stdout.reconfigure(encoding="utf-8")
 torch.set_num_threads(2)
@@ -91,17 +91,6 @@ def fit_k2(groups):
     return k2
 
 
-def beats(E_model, E_b0, F=F_SYN, n_boot=2000, seed=0):
-    rng = np.random.default_rng(seed)
-    d = E_b0 - E_model
-    med_gain = np.nanmedian(E_b0) - np.nanmedian(E_model)
-    boots = [np.nanmedian(d[rng.integers(0, len(d), len(d))]) for _ in range(n_boot)]
-    lo = float(np.quantile(boots, 0.025))
-    ok = bool(med_gain > F and med_gain >= 0.10 * np.nanmedian(E_b0) and lo > 0)
-    return ok, {"median_gain": float(med_gain), "ci_low": lo, "E_b0": float(np.nanmedian(E_b0)),
-                "E_model": float(np.nanmedian(E_model))}
-
-
 def main():
     root, out = sys.argv[1], sys.argv[2]
     os.makedirs(out, exist_ok=True)
@@ -123,9 +112,10 @@ def main():
             E_b0 = b0_E(te, k_fit)
             for kind in ("L1", "L2"):
                 t0 = time.time()
-                model, best = train(kind, tr, va, k_fit, iso, steps=300, log=lambda s: log(f"{case} {held} {kind} {s}"))
+                model, best = train_two_stage(kind, tr, va, k_fit, iso,
+                                              log=lambda s: log(f"{case} {held} {kind} {s}"))
                 E_m = evaluate(model, kind, te, k_fit, iso)["E"]
-                ok, info = beats(E_m, E_b0)
+                ok, info = beats(E_m, E_b0, F_SYN)
                 rec[kind] = {"beats_B0": ok, **info, "train_s": time.time() - t0}
                 log(f"case {case} held {held} {kind}: beats={ok} {info} ({time.time() - t0:.0f}s)")
             res["cases"][f"{case}|{held}"] = rec

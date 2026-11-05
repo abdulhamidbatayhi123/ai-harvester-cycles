@@ -91,6 +91,104 @@ def train(kind, train_groups, val_groups, k2, iso_by_mat, *, width=16, depth=2, 
     return model, best
 
 
+def measured_rates(w, dt=DT_MIN, half=3):
+    """dw/dt from the measured uptake by a centred difference over +-`half` grid points
+    (+-18 s), NaN where the window leaves the segment."""
+    r = np.full_like(w, np.nan)
+    r[:, half:-half] = (w[:, 2 * half:] - w[:, :-2 * half]) / (2 * half * dt)
+    return r
+
+
+def train_two_stage(kind, train_groups, val_groups, k2, iso_by_mat, *, width=16, depth=2, wd=1e-4,
+                    lr=1e-3, steps_rate=2000, steps_roll=300, window=100, batch_size=64, seed=0,
+                    eval_every=100, log=None):
+    """Stage A: fit the rate law to measured dw/dt (no integration; fast). Stage B: fine-tune on
+    open-loop rollouts over random windows of `window` grid steps (10 min), started from the
+    measured uptake. Validation (full segments, open loop) selects the best state of stage B,
+    or of stage A if B never improves on it."""
+    torch.manual_seed(seed)
+    rng = np.random.default_rng(seed)
+    model = (L1 if kind == "L1" else L2)(width=width, depth=depth)
+    limit = kind == "L1"
+    opt = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=wd)
+    t0 = time.time()
+    # stage A: pooled points (w, rh, rate) per group, normalised by the segment's |dw|
+    pts = []
+    for gi, g in enumerate(train_groups):
+        r = measured_rates(g["w"])
+        dw = np.abs(np.nanmax(g["w"], 1) - np.nanmin(g["w"], 1))[:, None] * np.ones_like(g["w"])
+        ok = np.isfinite(r) & np.isfinite(g["rh"])
+        seg = np.repeat(np.arange(len(g["m"]))[:, None], g["w"].shape[1], 1)
+        pts.append((gi, seg[ok], g["w"][ok], g["rh"][ok], r[ok], dw[ok]))
+    for step in range(1, steps_rate + 1):
+        gi, seg, w, rh, r, dw = pts[rng.integers(len(pts))]
+        j = rng.integers(0, len(w), size=min(4096, len(w)))
+        g = train_groups[gi]
+        ctx = make_ctx(g, k2, iso_by_mat, seg[j])
+        pred = model.rate(torch.as_tensor(w[j]), torch.as_tensor(rh[j]), ctx)
+        loss = ((pred - torch.as_tensor(r[j])) / torch.as_tensor(dw[j]).clamp_min(1e-3)).pow(2).mean()
+        opt.zero_grad()
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        opt.step()
+        if log and step % 500 == 0:
+            log(f"A step {step} loss {loss.item():.5f} ({time.time() - t0:.0f}s)")
+    best = evaluate(model, kind, val_groups, k2, iso_by_mat)["median_E"] if val_groups else float("inf")
+    best_state = {k: x.clone() for k, x in model.state_dict().items()}
+    if log:
+        log(f"after stage A val_medE {best:.4f} ({time.time() - t0:.0f}s)")
+    # stage B: short open-loop windows
+    opt = torch.optim.Adam(model.parameters(), lr=lr * 0.3, weight_decay=wd)
+    for step in range(1, steps_roll + 1):
+        g = train_groups[rng.integers(len(train_groups))]
+        n, L = g["w"].shape
+        idx = rng.choice(n, size=min(batch_size, n), replace=False)
+        lens = np.isfinite(g["w"][idx]).sum(1)
+        starts = np.array([rng.integers(0, max(1, l - window)) for l in lens])
+        rh = np.full((len(idx), window), np.nan)
+        w = np.full((len(idx), window), np.nan)
+        for i, (s0, l) in enumerate(zip(starts, lens)):
+            e = min(s0 + window, l)
+            rh[i, : e - s0] = g["rh"][idx[i], s0:e]
+            w[i, : e - s0] = g["w"][idx[i], s0:e]
+        dw = np.abs(np.nanmax(g["w"][idx], 1) - np.nanmin(g["w"][idx], 1))
+        ctx = make_ctx(g, k2, iso_by_mat, idx)
+        rh_t, w_t = torch.as_tensor(rh), torch.as_tensor(w)
+        pred = integrate(model, rh_t, w_t[:, 0], ctx, dt=DT_MIN, limit=limit)
+        mask = torch.isfinite(w_t)
+        err = torch.where(mask, pred - torch.nan_to_num(w_t), torch.zeros_like(pred)).pow(2).sum(1) / mask.sum(1)
+        loss = (err / torch.as_tensor(dw).clamp_min(1e-3).pow(2)).mean()
+        opt.zero_grad()
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+        opt.step()
+        if val_groups and (step % eval_every == 0 or step == steps_roll):
+            v = evaluate(model, kind, val_groups, k2, iso_by_mat)["median_E"]
+            if log:
+                log(f"B step {step} loss {loss.item():.5f} val_medE {v:.4f} ({time.time() - t0:.0f}s)")
+            if v < best:
+                best, best_state = v, {k: x.clone() for k, x in model.state_dict().items()}
+    model.load_state_dict(best_state)
+    return model, best
+
+
+def beats(E_model, E_b0, F, rel=0.10, n_boot=2000, seed=0):
+    """Pre-registered decision rule (section 7), one statistic throughout: the median over
+    segments of the paired difference d = E_B0 - E_model. A model beats B0 if median(d) > F,
+    median(d) >= rel * median(E_B0), and the 2.5 % bootstrap quantile of median(d) > 0.
+    (Resampling by experiment, with two-pan pairs as one, is applied by the caller through
+    `E_model`/`E_b0` aggregated per experiment where required.)"""
+    rng = np.random.default_rng(seed)
+    d = np.asarray(E_b0) - np.asarray(E_model)
+    d = d[np.isfinite(d)]
+    gain = float(np.median(d))
+    boots = np.array([np.median(d[rng.integers(0, len(d), len(d))]) for _ in range(n_boot)])
+    lo = float(np.quantile(boots, 0.025))
+    ok = bool(gain > F and gain >= rel * float(np.nanmedian(E_b0)) and lo > 0)
+    return ok, {"median_paired_gain": gain, "ci_low": lo, "E_b0": float(np.nanmedian(E_b0)),
+                "E_model": float(np.nanmedian(E_model))}
+
+
 @torch.no_grad()
 def predict(model, kind, g, k2, iso_by_mat, max_len=None):
     idx = np.arange(len(g["m"]))
