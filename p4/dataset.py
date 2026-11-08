@@ -12,7 +12,7 @@ import numpy as np
 
 from p4.data import SORBENTS, load_run, plateaus, end_value
 from p4.physics import Branch
-from p4.segments import DT_MIN, dry_mass_step_run, step_segments
+from p4.segments import DT_MIN, dry_mass_post_activation, dry_mass_step_run, step_segments
 
 # Pre-registered isotherm choices (section 3.2): substring that identifies the file to use.
 ISOTHERM_CHOICE = {
@@ -24,8 +24,16 @@ ISOTHERM_CHOICE = {
 EXCLUDE_UNDRIED = ("ROS-037_composite/27C/", "ROS-039_composite/27C/")
 
 
-def _dry_mass(run):
-    m, info = dry_mass_step_run(run)
+# Pre-registered dry-mass rule (section 3.3): "R2" = end of the first 0 % plateau after the
+# heated activation (same gas and temperature as the rest of the run); "R1" = end of the heated
+# activation, kept as the sensitivity analysis. Chosen 2026-11-08 by a data-only criterion
+# (agreement of equilibrated step end-points with the isotherm; results/prefreeze/dry_rules.json).
+DRY_RULE = "R2"
+
+
+def _dry_mass(run, rule=None):
+    rule = rule or DRY_RULE
+    m, info = (dry_mass_post_activation if rule == "R2" else dry_mass_step_run)(run)
     if m is not None:
         return m, info
     for a, b in plateaus(run.rh_target):
@@ -34,7 +42,7 @@ def _dry_mass(run):
     return None, {}
 
 
-def isotherm_for(runs, sorbent, temp_dir):
+def isotherm_for(runs, sorbent, temp_dir, rule=None):
     cands = [r for r in runs if r.kind == "isotherm" and r.sorbent == sorbent and r.temp_dir == temp_dir]
     choice = ISOTHERM_CHOICE.get((sorbent, temp_dir))
     if choice == "LATEST":
@@ -44,7 +52,7 @@ def isotherm_for(runs, sorbent, temp_dir):
     if len(cands) != 1:
         raise ValueError(f"isotherm choice for {sorbent} {temp_dir} is ambiguous: {[r.source for r in cands]}")
     run = cands[0]
-    m_dry, _ = _dry_mass(run)
+    m_dry, _ = _dry_mass(run, rule)
     pls = plateaus(run.rh_target)
     rh = np.array([end_value(run.rh, run.t, a, b) for a, b in pls])
     w = np.array([100 * (end_value(run.mass, run.t, a, b) - m_dry) / m_dry for a, b in pls])
@@ -66,7 +74,7 @@ def pad(arrs):
     return out
 
 
-def build_groups(root, min_dw=0.05):
+def build_groups(root, min_dw=0.05, rule=None):
     runs = [load_run(os.path.join(root, f)) for f in sorted(os.listdir(root)) if f.endswith(".npz")]
     groups = []
     for s in SORBENTS:
@@ -75,10 +83,10 @@ def build_groups(root, min_dw=0.05):
                      and not r.source.startswith(EXCLUDE_UNDRIED)]
             if not steps:
                 continue
-            ads, des, iso_src = isotherm_for(runs, s, T)
+            ads, des, iso_src = isotherm_for(runs, s, T, rule)
             segs = []
             for r in steps:
-                m_dry, info = _dry_mass(r)
+                m_dry, info = _dry_mass(r, rule)
                 for g in step_segments(r, m_dry, DT_MIN, start_after_min=info.get("end_time_min")):
                     if abs(g.w[-1] - g.w[0]) >= min_dw:
                         segs.append(g)

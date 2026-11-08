@@ -35,6 +35,24 @@ def resample(run: Run, dt: float = DT_MIN) -> dict:
     }
 
 
+def dry_mass_post_activation(run: Run, min_preheat: float = 50.0, window_min: float = 1.0):
+    """Alternative dry-mass rule: the end of the first 0 % plateau AFTER the activation stage,
+    with the preheater off, i.e. at the sorption temperature and the same gas conditions as the
+    rest of the run. Returns (m_dry, info) or (None, reason)."""
+    m_act, info = dry_mass_step_run(run, min_preheat, window_min)
+    if m_act is None:
+        return None, info
+    t_end = info["end_time_min"]
+    pre = run.preheater_target
+    for a, b in plateaus(run.rh_target):
+        hot = np.isfinite(pre[a]) and pre[a] >= min_preheat
+        if run.t[a] >= t_end - 1e-6 and run.rh_target[a] <= 0.5 and not hot:
+            sel = run.t[a:b] >= run.t[b - 1] - window_min
+            return float(np.median(run.mass[a:b][sel])), {"end_time_min": float(run.t[b - 1]),
+                                                          "activation_end_min": t_end}
+    return None, "no 0 % plateau after activation"
+
+
 def dry_mass_step_run(run: Run, min_preheat: float = 50.0, window_min: float = 1.0):
     """Dry mass of a step run: median mass over the last `window_min` minutes of the initial
     activation stage (preheater set-point >= `min_preheat` deg C at 0 % RH). Returns

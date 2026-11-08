@@ -73,8 +73,20 @@ Isotherm choices fixed now:
   The instrument's own "reference mass" (mass at the end of the first 0 % stage) is not used,
   because in the cycling runs that stage lasts minutes and the sample is not dry: in one Syloid
   cycling file the reference is 21.11 mg while the mass falls to 18.89 mg.
-  - Step runs begin with an activation stage under gas preheated to 100 °C. m_dry is the median
-    mass over the last minute of that stage.
+  - Step runs and most isotherm runs begin with an activation stage under gas preheated to
+    100 °C, followed by a 0 % RH plateau at the sorption temperature.
+    - **Primary rule R2:** m_dry is the median mass over the last minute of that 0 % plateau,
+      measured under the same gas and temperature as the rest of the run.
+    - **Sensitivity rule R1:** the last minute of the heated activation itself.
+    - Why R2 (2026-11-08, data only, `results/prefreeze/dry_rules.json`): the two masses differ
+      by −3.5 % to +6.2 % (median −0.35 %). The activation mass reads high in most runs, which
+      fits buoyancy and thermal effects of the hot gas. In MOF-303 and Syloid the plateau mass
+      is higher, from re-adsorption at the instrument's real "0 %", 0.1 to 1.2 % RH.
+    - Criterion: which rule makes equilibrated step end-points agree with the isotherm at the
+      same measured RH. R2 gives a median over sorbent–temperature groups of 0.61 wt% against
+      0.78, and is better in 12 of 18 groups.
+    - It is worse for some, notably MOF-303 at 60 °C (3.76 against 0.84 wt%), so every
+      confirmatory result is also reported under R1.
   - Exception, measured 2026-11-04: the two composites' 27 °C step runs were dried only at
     27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour
     when the 0 % stage ended. Their dry mass is not established, so these runs are excluded from
