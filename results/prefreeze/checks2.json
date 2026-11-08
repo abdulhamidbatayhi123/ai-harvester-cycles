@@ -1,0 +1,1928 @@
+{
+ "flow": {
+  "plateaus_by_kind_and_flow": {
+   "cycling|[400.0]": 1612,
+   "step|[400.0]": 1212
+  },
+  "not_400_or_missing": []
+ },
+ "clusters": {
+  "Al-fumarate|27C": {
+   "step_files": 3,
+   "two_pan_sessions": 2,
+   "experiments": 24,
+   "segments_up": 18,
+   "segments_down": 18,
+   "files": [
+    "Al-fumarate/27C/AL-fumarate_NK-1-1091_kinetics_27C_5mg_50-100um-2021-06-16 19-38-13.xls",
+    "Al-fumarate/27C/AL-fumarate_NK-1-1091_kinetics_27C_8mg_50-100um-2021-06-16 19-38-13.xls",
+    "Al-fumarate/27C/Al-fum_NK-1091_50-100um_kinetics_10mg-2022-04-19 16-39-52.xls"
+   ]
+  },
+  "Al-fumarate|60C": {
+   "step_files": 2,
+   "two_pan_sessions": 1,
+   "experiments": 24,
+   "segments_up": 24,
+   "segments_down": 24,
+   "files": [
+    "Al-fumarate/60C/Al-fumarate_NK-1-1091_kinetics_60C_5mg_50-100um-2021-06-11 09-09-57.xls",
+    "Al-fumarate/60C/Al-fumarate_NK-1-1091_kinetics_60C_8mg_50-100um-2021-06-11 09-09-57.xls"
+   ]
+  },
+  "CAU-10|27C": {
+   "step_files": 4,
+   "two_pan_sessions": 2,
+   "experiments": 24,
+   "segments_up": 24,
+   "segments_down": 24,
+   "files": [
+    "CAU-10/27C/CAU-10-H_NK-1-153_kinetics_12mg_27C_50-100um-2021-06-24 13-11-08_1.xls",
+    "CAU-10/27C/CAU-10-H_NK-1-153_kinetics_20mg_27C_50-100-2021-06-24 13-11-08_1.xls",
+    "CAU-10/27C/CAU-10_NK-1-1531_kinetics_27C_5mg_50-100um-2021-06-18 19-52-42.xls",
+    "CAU-10/27C/CAU-10_NK-1-1531_kinetics_27C_8mg_50-100um-2021-06-18 19-52-42.xls"
+   ]
+  },
+  "CAU-10|60C": {
+   "step_files": 3,
+   "two_pan_sessions": 3,
+   "experiments": 72,
+   "segments_up": 36,
+   "segments_down": 36,
+   "files": [
+    "CAU-10/60C/CAU-10-H_NK-1-153_kinetics_15mg_60C_50-100um-2021-08-27 20-08-03.xls",
+    "CAU-10/60C/CAU-10-H_NK-1-153_kinetics_20mg_60C_50-100um-2021-06-26 12-15-55_1.xls",
+    "CAU-10/60C/CAU-10-H_NK-1-153_kinetics_20mg_60C_50-100um-2021-06-27 10-23-31_1.xls"
+   ]
+  },
+  "MIL-160|27C": {
+   "step_files": 4,
+   "two_pan_sessions": 2,
+   "experiments": 24,
+   "segments_up": 24,
+   "segments_down": 24,
+   "files": [
+    "MIL-160/27C/MIL-160_DJ2500_kinetics_27C_12mg_50-100um-2021-06-15 17-03-17_1.xls",
+    "MIL-160/27C/MIL-160_DJ2500_kinetics_27C_16mg_50-100um-2021-06-15 17-03-17_1.xls",
+    "MIL-160/27C/MIL-160_DJO-02-500_kinetics_27C_14mg_50-100um-2021-06-17 14-20-40_1.xls",
+    "MIL-160/27C/MIL-160_DJO-02-500_kinetics_27C_5mg_50-100um-2021-06-17 14-20-40_1.xls"
+   ]
+  },
+  "MIL-160|60C": {
+   "step_files": 3,
+   "two_pan_sessions": 3,
+   "experiments": 72,
+   "segments_up": 36,
+   "segments_down": 36,
+   "files": [
+    "MIL-160/60C/MIL-160_DJ2500_kinetics_60C_8mg_50-100um-2021-06-10 12-41-51.xls",
+    "MIL-160/60C/MIL-160_DJO-02-500_kinetics_60C_12mg_50-100um-2021-08-27 20-08-03.xls",
+    "MIL-160/60C/MIL-160_DJO-02-500_kinetics_60C_13mg_50-100um-2021-06-21 12-00-49_1.xls"
+   ]
+  },
+  "MOF-303|27C": {
+   "step_files": 2,
+   "two_pan_sessions": 1,
+   "experiments": 12,
+   "segments_up": 12,
+   "segments_down": 12,
+   "files": [
+    "MOF-303/27C/MOF-303-SS1131_kinetics_27C_12mg_50-100um-2021-06-03 09-37-23.xls",
+    "MOF-303/27C/MOF-303-SS1131_kinetics_27C_20mg_50-100um-2021-06-03 09-37-23.xls"
+   ]
+  },
+  "MOF-303|60C": {
+   "step_files": 3,
+   "two_pan_sessions": 1,
+   "experiments": 24,
+   "segments_up": 36,
+   "segments_down": 36,
+   "files": [
+    "MOF-303/60C/MOF-303-SS1131_kinetics_5mg_50-100um-2021-06-08 10-08-23.xls",
+    "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls",
+    "MOF-303/60C/MOF-303-SS1131_kinetics_60C_8mg_50-100um-2021-06-08 10-08-23.xls"
+   ]
+  },
+  "ROS-037|27C": {
+   "step_files": 4,
+   "two_pan_sessions": 2,
+   "experiments": 24,
+   "segments_up": 24,
+   "segments_down": 24,
+   "files": [
+    "ROS-037/27C/400flow-ROS-037_pureBatch_50-100um_10mg_flowRateVariation-2021-05-25 14-51-36.xls",
+    "ROS-037/27C/400flow-ROS-037_pureBatch_50-100um_5mg_flowRateVariation-2021-05-25 14-51-36.xls",
+    "ROS-037/27C/ROS-037_pureBatch_50-100um_5mg_27C_12mg-2021-08-21 16-34-05.xls",
+    "ROS-037/27C/ROS-037_pureBatch_50-100um_5mg_27C_15mg-2021-08-21 16-34-05.xls"
+   ]
+  },
+  "ROS-037|60C": {
+   "step_files": 4,
+   "two_pan_sessions": 2,
+   "experiments": 48,
+   "segments_up": 48,
+   "segments_down": 48,
+   "files": [
+    "ROS-037/60C/ROS-037_pureBatch_50-100um_5mg_60C_11mg-2021-08-24 06-11-27.xls",
+    "ROS-037/60C/ROS-037_pureBatch_50-100um_5mg_60C_12mg-2021-08-24 06-11-27.xls",
+    "ROS-037/60C/ROS-037_pureBatch_50-100um_60C_20mg-2021-08-24 23-34-12.xls",
+    "ROS-037/60C/ROS-037_pureBatch_50-100um_60C_5mg-2021-08-24 23-34-12.xls"
+   ]
+  },
+  "ROS-037_composite|60C": {
+   "step_files": 6,
+   "two_pan_sessions": 6,
+   "experiments": 144,
+   "segments_up": 72,
+   "segments_down": 72,
+   "files": [
+    "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire1_60C-2022-04-28 17-09-42.xls",
+    "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire2_60C-2022-04-29 10-06-14_1.xls",
+    "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire3_60C-2022-04-30 16-40-18_1.xls",
+    "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire4_60C-2022-05-02 10-36-27_1.xls",
+    "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire5_60C-2022-05-03 10-56-06.xls",
+    "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire6_60C-2022-05-03 22-56-16.xls"
+   ]
+  },
+  "ROS-039|27C": {
+   "step_files": 4,
+   "two_pan_sessions": 2,
+   "experiments": 24,
+   "segments_up": 24,
+   "segments_down": 24,
+   "files": [
+    "ROS-039/27C/ROS039-SD-1-183_kinetics_12mg_50-100um-2021-06-05 12-06-31.xls",
+    "ROS-039/27C/ROS039-SD-1-183_kinetics_20mg_50-100um-2021-06-05 12-06-31.xls",
+    "ROS-039/27C/ROS039-SD-1-183_kinetics_5mg_50-100um-2021-06-04 18-28-36.xls",
+    "ROS-039/27C/ROS039-SD-1-183_kinetics_8mg_50-100um-2021-06-04 18-28-36.xls"
+   ]
+  },
+  "ROS-039|60C": {
+   "step_files": 2,
+   "two_pan_sessions": 2,
+   "experiments": 47,
+   "segments_up": 24,
+   "segments_down": 23,
+   "files": [
+    "ROS-039/60C/ROS039-SD-1-183_kinetics_60C_12mg_50-100um-2021-06-07 02-16-59.xls",
+    "ROS-039/60C/ROS039-SD-1-183_kinetics_60C_8mg_50-100um-2021-06-07 19-55-24.xls"
+   ]
+  },
+  "ROS-039_composite|60C": {
+   "step_files": 6,
+   "two_pan_sessions": 6,
+   "experiments": 144,
+   "segments_up": 72,
+   "segments_down": 72,
+   "files": [
+    "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire1_60C-2022-04-28 17-09-42.xls",
+    "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire2_60C-2022-04-29 10-06-14.xls",
+    "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire3_60C-2022-04-30 16-40-18.xls",
+    "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire4_60C-2022-05-02 10-36-27.xls",
+    "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire5_60C-2022-05-03 10-56-06.xls",
+    "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire6_60C-2022-05-03 22-56-16.xls"
+   ]
+  },
+  "ROS-040|27C": {
+   "step_files": 4,
+   "two_pan_sessions": 2,
+   "experiments": 24,
+   "segments_up": 24,
+   "segments_down": 24,
+   "files": [
+    "ROS-040/27C/ROS-040_SD-1-82_kinetics_12mg_27C_50-100um-2021-06-30 09-53-50.xls",
+    "ROS-040/27C/ROS-040_SD-1-82_kinetics_16mg_27C_50-100um-2021-06-30 09-53-50.xls",
+    "ROS-040/27C/ROS-040_SD-1-82_kinetics_5mg_27C_50-100um-2021-07-02 16-54-13.xls",
+    "ROS-040/27C/ROS-040_SD-1-82_kinetics_9mg_27C_50-100um-2021-07-02 16-54-13.xls"
+   ]
+  },
+  "ROS-040|60C": {
+   "step_files": 3,
+   "two_pan_sessions": 3,
+   "experiments": 72,
+   "segments_up": 36,
+   "segments_down": 36,
+   "files": [
+    "ROS-040/60C/ROS-040_SD-1-82_kinetics_16mg_60C_50-100um-2021-06-29 09-48-37.xls",
+    "ROS-040/60C/ROS-040_SD-1-82_kinetics_17mg_60C_50-100um-2021-08-28 16-11-45.xls",
+    "ROS-040/60C/ROS-040_SD-1-82_kinetics_5mg_60C_50-100um-2021-06-28 12-33-12.xls"
+   ]
+  },
+  "Syloid|27C": {
+   "step_files": 4,
+   "two_pan_sessions": 2,
+   "experiments": 24,
+   "segments_up": 24,
+   "segments_down": 24,
+   "files": [
+    "Syloid/27C/Syloid_kinetics_50-100um_27C_12mg-2021-07-15 13-38-52.xls",
+    "Syloid/27C/Syloid_kinetics_50-100um_27C_5mg-2021-07-15 13-38-52.xls",
+    "Syloid/27C/syloid_kinetics_50-100um_12mg_27C-2021-07-08 14-48-29.xls",
+    "Syloid/27C/syloid_kinetics_50-100um_20mg_27C-2021-07-08 14-48-29.xls"
+   ]
+  },
+  "Syloid|60C": {
+   "step_files": 4,
+   "two_pan_sessions": 3,
+   "experiments": 72,
+   "segments_up": 48,
+   "segments_down": 48,
+   "files": [
+    "Syloid/60C/Syloid_kinetics_60C_17mg_50-100um-2021-08-28 16-11-45.xls",
+    "Syloid/60C/syloid_kinetics_50-100um_12mg_60C-2021-07-13 17-43-44.xls",
+    "Syloid/60C/syloid_kinetics_50-100um_20mg_60C-2021-07-12 19-42-17.xls",
+    "Syloid/60C/syloid_kinetics_50-100um_5mg_60C-2021-07-13 17-43-44.xls"
+   ]
+  }
+ },
+ "two_pan_mixed_sorbents": {
+  "2021-08-27 20-08-03": [
+   "CAU-10",
+   "MIL-160"
+  ],
+  "2022-04-28 17-09-42": [
+   "ROS-037_composite",
+   "ROS-039_composite"
+  ],
+  "2022-04-29 10-06-14": [
+   "ROS-037_composite",
+   "ROS-039_composite"
+  ],
+  "2022-04-30 16-40-18": [
+   "ROS-037_composite",
+   "ROS-039_composite"
+  ],
+  "2022-05-02 10-36-27": [
+   "ROS-037_composite",
+   "ROS-039_composite"
+  ],
+  "2022-05-03 10-56-06": [
+   "ROS-037_composite",
+   "ROS-039_composite"
+  ],
+  "2022-05-03 22-56-16": [
+   "ROS-037_composite",
+   "ROS-039_composite"
+  ],
+  "2021-08-28 16-11-45": [
+   "ROS-040",
+   "Syloid"
+  ]
+ },
+ "F_between": {
+  "Al-fumarate|27C": {
+   "F_within": 0.0014021215037838246,
+   "n_within": 12,
+   "F_between_pan": 0.12527663059764269,
+   "n_pan": 8,
+   "F_between_session": 0.31346953411106004,
+   "n_session": 16
+  },
+  "Al-fumarate|60C": {
+   "F_within": 0.01260397503330555,
+   "n_within": 14,
+   "F_between_pan": 0.07535123050649803,
+   "n_pan": 15,
+   "F_between_session": null,
+   "n_session": 0
+  },
+  "CAU-10|27C": {
+   "F_within": 0.000938587250974969,
+   "n_within": 16,
+   "F_between_pan": 0.19907558716411855,
+   "n_pan": 16,
+   "F_between_session": 0.3739504795237132,
+   "n_session": 32
+  },
+  "CAU-10|60C": {
+   "F_within": 0.002805431052829214,
+   "n_within": 21,
+   "F_between_pan": null,
+   "n_pan": 0,
+   "F_between_session": 0.09741784422098772,
+   "n_session": 45
+  },
+  "MIL-160|27C": {
+   "F_within": 0.002624868157063819,
+   "n_within": 16,
+   "F_between_pan": 0.21571333275540888,
+   "n_pan": 16,
+   "F_between_session": 0.20209715891861957,
+   "n_session": 32
+  },
+  "MIL-160|60C": {
+   "F_within": 0.00442779660961015,
+   "n_within": 21,
+   "F_between_pan": null,
+   "n_pan": 0,
+   "F_between_session": 0.08573873248014534,
+   "n_session": 45
+  },
+  "MOF-303|27C": {
+   "F_within": 0.0018690682431706952,
+   "n_within": 8,
+   "F_between_pan": 0.16440118346303395,
+   "n_pan": 8,
+   "F_between_session": null,
+   "n_session": 0
+  },
+  "MOF-303|60C": {
+   "F_within": 0.005002189126503025,
+   "n_within": 21,
+   "F_between_pan": 0.0667971555525367,
+   "n_pan": 45,
+   "F_between_session": null,
+   "n_session": 0
+  },
+  "ROS-037|27C": {
+   "F_within": 0.002001564417037008,
+   "n_within": 16,
+   "F_between_pan": 0.10227123688870576,
+   "n_pan": 16,
+   "F_between_session": 0.15526809616111908,
+   "n_session": 32
+  },
+  "ROS-037|60C": {
+   "F_within": 0.004957781731889798,
+   "n_within": 28,
+   "F_between_pan": 0.0660153955088073,
+   "n_pan": 30,
+   "F_between_session": 0.08854770864234918,
+   "n_session": 60
+  },
+  "ROS-037_composite|60C": {
+   "F_within": 0.006151471913883388,
+   "n_within": 42,
+   "F_between_pan": null,
+   "n_pan": 0,
+   "F_between_session": 0.03429959313686034,
+   "n_session": 225
+  },
+  "ROS-039|27C": {
+   "F_within": 0.0018206312633415986,
+   "n_within": 16,
+   "F_between_pan": 0.15014574287015095,
+   "n_pan": 16,
+   "F_between_session": 0.3059367028760478,
+   "n_session": 32
+  },
+  "ROS-039|60C": {
+   "F_within": 0.0028556950137609994,
+   "n_within": 13,
+   "F_between_pan": null,
+   "n_pan": 0,
+   "F_between_session": 0.08100927441277203,
+   "n_session": 14
+  },
+  "ROS-039_composite|60C": {
+   "F_within": 0.006187836934634464,
+   "n_within": 42,
+   "F_between_pan": null,
+   "n_pan": 0,
+   "F_between_session": 0.09652838892875572,
+   "n_session": 225
+  },
+  "ROS-040|27C": {
+   "F_within": 0.0034600516642809874,
+   "n_within": 16,
+   "F_between_pan": 0.09948240965159795,
+   "n_pan": 16,
+   "F_between_session": 0.17153772778297616,
+   "n_session": 32
+  },
+  "ROS-040|60C": {
+   "F_within": 0.006644711233223848,
+   "n_within": 21,
+   "F_between_pan": null,
+   "n_pan": 0,
+   "F_between_session": 0.16375877333379157,
+   "n_session": 45
+  },
+  "Syloid|27C": {
+   "F_within": 0.0011097692407648005,
+   "n_within": 16,
+   "F_between_pan": 0.1746929697929616,
+   "n_pan": 16,
+   "F_between_session": 0.15142255525671894,
+   "n_session": 32
+  },
+  "Syloid|60C": {
+   "F_within": 0.005759186383127883,
+   "n_within": 28,
+   "F_between_pan": 0.125971019564453,
+   "n_pan": 15,
+   "F_between_session": 0.07433018631615901,
+   "n_session": 75
+  }
+ },
+ "drift": {
+  "runs": [
+   {
+    "run": "Al-fumarate/27C/AL-fumarate_NK-1-1091_kinetics_27C_5mg_50-100um-2021-06-16 19-38-13.xls",
+    "kind": "step",
+    "sorbent": "Al-fumarate",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.3527228519500753,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.08135638715926845,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "Al-fumarate/27C/AL-fumarate_NK-1-1091_kinetics_27C_8mg_50-100um-2021-06-16 19-38-13.xls",
+    "kind": "step",
+    "sorbent": "Al-fumarate",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.380566914368118,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.07897837832466355,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "Al-fumarate/27C/Al-fum_NK-1091_50-100um_kinetics_10mg-2022-04-19 16-39-52.xls",
+    "kind": "step",
+    "sorbent": "Al-fumarate",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.2253412202095473,
+    "R1_fit_min": 10.0,
+    "R1_temp_C": 27.0,
+    "R2_drift_pct_h": 0.08243927193966046,
+    "R2_fit_min": 9.969999999999999,
+    "R2_temp_C": 27.1,
+    "R2_stretch_min": 89.97
+   },
+   {
+    "run": "Al-fumarate/27C/NK1091_Al-fumarate_EtOH_50-100um_27C_isotherm-2022-01-07 09-05-27.xls",
+    "kind": "isotherm",
+    "sorbent": "Al-fumarate",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.12563681633746754,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.6,
+    "R2_drift_pct_h": 0.05230278726273339,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.2,
+    "R2_stretch_min": 100.01000000000002
+   },
+   {
+    "run": "Al-fumarate/60C/Al-fumarate_NK-1-1091_isotherm_60C_12mg_50-100um-2021-06-19 13-23-01_2.xlsx",
+    "kind": "isotherm",
+    "sorbent": "Al-fumarate",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.05774867171818748,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 61.1,
+    "R2_drift_pct_h": 0.12950451830397025,
+    "R2_fit_min": 9.98999999999998,
+    "R2_temp_C": 61.1,
+    "R2_stretch_min": 100.0
+   },
+   {
+    "run": "Al-fumarate/60C/Al-fumarate_NK-1-1091_kinetics_60C_5mg_50-100um-2021-06-11 09-09-57.xls",
+    "kind": "step",
+    "sorbent": "Al-fumarate",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.49404298737195795,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 0.02045432225856998,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "Al-fumarate/60C/Al-fumarate_NK-1-1091_kinetics_60C_8mg_50-100um-2021-06-11 09-09-57.xls",
+    "kind": "step",
+    "sorbent": "Al-fumarate",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.29154542875633405,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 0.006660970256162407,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "CAU-10/27C/CAU-10-H_NK-1-1531_isotherm_-2021-06-12 15-33-08.xlsx",
+    "kind": "isotherm",
+    "sorbent": "CAU-10",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.12217752279663391,
+    "R1_fit_min": 9.990000000000002,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.04003001084629659,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 99.97999999999999
+   },
+   {
+    "run": "CAU-10/27C/CAU-10-H_NK-1-153_kinetics_12mg_27C_50-100um-2021-06-24 13-11-08_1.xls",
+    "kind": "step",
+    "sorbent": "CAU-10",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.16602233255221627,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.04033028959306837,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.94999999999999
+   },
+   {
+    "run": "CAU-10/27C/CAU-10-H_NK-1-153_kinetics_20mg_27C_50-100-2021-06-24 13-11-08_1.xls",
+    "kind": "step",
+    "sorbent": "CAU-10",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.07223710575549673,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.04026912286490207,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.94999999999999
+   },
+   {
+    "run": "CAU-10/27C/CAU-10_NK-1-1531_kinetics_27C_5mg_50-100um-2021-06-18 19-52-42.xls",
+    "kind": "step",
+    "sorbent": "CAU-10",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.25159097171047745,
+    "R1_fit_min": 9.990000000000002,
+    "R1_temp_C": 27.5,
+    "R2_drift_pct_h": 0.051020765318816726,
+    "R2_fit_min": 10.0,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "CAU-10/27C/CAU-10_NK-1-1531_kinetics_27C_8mg_50-100um-2021-06-18 19-52-42.xls",
+    "kind": "step",
+    "sorbent": "CAU-10",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.14380332444457758,
+    "R1_fit_min": 9.990000000000002,
+    "R1_temp_C": 27.5,
+    "R2_drift_pct_h": 0.022493551998756432,
+    "R2_fit_min": 10.0,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "CAU-10/60C/CAU-10-H_NK-1-153_kinetics_15mg_60C_50-100um-2021-08-27 20-08-03.xls",
+    "kind": "step",
+    "sorbent": "CAU-10",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.01896067108614774,
+    "R1_fit_min": 9.98,
+    "R1_temp_C": 60.8,
+    "R2_drift_pct_h": 0.0006703990794909735,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 60.8,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "CAU-10/60C/CAU-10-H_NK-1-153_kinetics_20mg_60C_50-100um-2021-06-26 12-15-55_1.xls",
+    "kind": "step",
+    "sorbent": "CAU-10",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.1533292994589004,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 61.0,
+    "R2_drift_pct_h": -0.027245988340960446,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "CAU-10/60C/CAU-10-H_NK-1-153_kinetics_20mg_60C_50-100um-2021-06-27 10-23-31_1.xls",
+    "kind": "step",
+    "sorbent": "CAU-10",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.10174504526058757,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 61.0,
+    "R2_drift_pct_h": 0.005469886718070009,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "CAU-10/60C/CAU-10_NK-1-1531_isotherm_60C_12mg_50-100um-2021-06-19 13-23-01.xlsx",
+    "kind": "isotherm",
+    "sorbent": "CAU-10",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.11352073189753985,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 61.1,
+    "R2_drift_pct_h": -0.008467972997137616,
+    "R2_fit_min": 9.98999999999998,
+    "R2_temp_C": 61.1,
+    "R2_stretch_min": 100.0
+   },
+   {
+    "run": "MIL-160/27C/DJO-02-500_isotherm_27C-2021-05-18 18-59-58.xls",
+    "kind": "isotherm",
+    "sorbent": "MIL-160",
+    "temp": "27C"
+   },
+   {
+    "run": "MIL-160/27C/MIL-160_DJ2500_kinetics_27C_12mg_50-100um-2021-06-15 17-03-17_1.xls",
+    "kind": "step",
+    "sorbent": "MIL-160",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.1351885506797236,
+    "R1_fit_min": 9.990000000000002,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.19922116608728788,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "MIL-160/27C/MIL-160_DJ2500_kinetics_27C_16mg_50-100um-2021-06-15 17-03-17_1.xls",
+    "kind": "step",
+    "sorbent": "MIL-160",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.037917550102730735,
+    "R1_fit_min": 9.990000000000002,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.17966799173715187,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "MIL-160/27C/MIL-160_DJO-02-500_kinetics_27C_14mg_50-100um-2021-06-17 14-20-40_1.xls",
+    "kind": "step",
+    "sorbent": "MIL-160",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.10067815867016747,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 27.5,
+    "R2_drift_pct_h": 0.1773528515578851,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.97999999999999
+   },
+   {
+    "run": "MIL-160/27C/MIL-160_DJO-02-500_kinetics_27C_5mg_50-100um-2021-06-17 14-20-40_1.xls",
+    "kind": "step",
+    "sorbent": "MIL-160",
+    "temp": "27C",
+    "R1_drift_pct_h": 0.5996111722645078,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 27.5,
+    "R2_drift_pct_h": 0.1568509642226424,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.97999999999999
+   },
+   {
+    "run": "MIL-160/60C/DJO-02-500_isotherm_60C-2021-05-17 19-16-27.xls",
+    "kind": "isotherm",
+    "sorbent": "MIL-160",
+    "temp": "60C"
+   },
+   {
+    "run": "MIL-160/60C/MIL-160_DJ2500_kinetics_60C_8mg_50-100um-2021-06-10 12-41-51.xls",
+    "kind": "step",
+    "sorbent": "MIL-160",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.10015031358241325,
+    "R1_fit_min": 9.990000000000002,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 0.0022939690435140056,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.95999999999998
+   },
+   {
+    "run": "MIL-160/60C/MIL-160_DJO-02-500_kinetics_60C_12mg_50-100um-2021-08-27 20-08-03.xls",
+    "kind": "step",
+    "sorbent": "MIL-160",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.2906587223591723,
+    "R1_fit_min": 9.98,
+    "R1_temp_C": 60.8,
+    "R2_drift_pct_h": 0.03482179771277504,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 60.8,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "MIL-160/60C/MIL-160_DJO-02-500_kinetics_60C_13mg_50-100um-2021-06-21 12-00-49_1.xls",
+    "kind": "step",
+    "sorbent": "MIL-160",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.1747632724671549,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 0.024474205978072355,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 89.94
+   },
+   {
+    "run": "MOF-303/27C/MOF-303-SS1131_kinetics_27C_12mg_50-100um-2021-06-03 09-37-23.xls",
+    "kind": "step",
+    "sorbent": "MOF-303",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.10644423912811432,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 1.8450587261620914,
+    "R2_fit_min": 9.98999999999998,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.97
+   },
+   {
+    "run": "MOF-303/27C/MOF-303-SS1131_kinetics_27C_20mg_50-100um-2021-06-03 09-37-23.xls",
+    "kind": "step",
+    "sorbent": "MOF-303",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.022743941096910116,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 1.3297039014769934,
+    "R2_fit_min": 9.98999999999998,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.97
+   },
+   {
+    "run": "MOF-303/27C/MOF-303_SS-1131_isotherm_27C-2021-06-14 09-53-10.xls",
+    "kind": "isotherm",
+    "sorbent": "MOF-303",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.08993642585237374,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 1.1330738480026865,
+    "R2_fit_min": 10.0,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 100.01000000000002
+   },
+   {
+    "run": "MOF-303/60C/MOF-303-SS1131_kinetics_5mg_50-100um-2021-06-08 10-08-23.xls",
+    "kind": "step",
+    "sorbent": "MOF-303",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.34809759446550154,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 0.07043970853355111,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 89.95
+   },
+   {
+    "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls",
+    "kind": "step",
+    "sorbent": "MOF-303",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.34809759446550154,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 0.07043970853355111,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 89.95
+   },
+   {
+    "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_8mg_50-100um-2021-06-08 10-08-23.xls",
+    "kind": "step",
+    "sorbent": "MOF-303",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.1849825006446833,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 0.1698853958221957,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 89.95
+   },
+   {
+    "run": "MOF-303/60C/MOF-303_SS1131_50-100um_60C_isotherm-2021-08-25 21-34-39.xls",
+    "kind": "isotherm",
+    "sorbent": "MOF-303",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.08894038153443462,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 61.0,
+    "R2_drift_pct_h": 0.4818938258447404,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 99.98000000000002
+   },
+   {
+    "run": "MOF-303/60C/SS1131_isotherm_60C_50fr-2021-05-22 18-56-20.xls",
+    "kind": "isotherm",
+    "sorbent": "MOF-303",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.07502606528055882,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 61.1,
+    "R2_drift_pct_h": 0.6604423548787335,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 61.1,
+    "R2_stretch_min": 69.99000000000001
+   },
+   {
+    "run": "ROS-037/27C/400flow-ROS-037_pureBatch_50-100um_10mg_flowRateVariation-2021-05-25 14-51-36.xls",
+    "kind": "step",
+    "sorbent": "ROS-037",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.36695768824276687,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.010535482651659534,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-037/27C/400flow-ROS-037_pureBatch_50-100um_5mg_flowRateVariation-2021-05-25 14-51-36.xls",
+    "kind": "step",
+    "sorbent": "ROS-037",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.5437804743399941,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.04923910236209918,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-037/27C/ROS-037_pureBatch_50-100um_5mg_27C_12mg-2021-08-21 16-34-05.xls",
+    "kind": "step",
+    "sorbent": "ROS-037",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.013002956526379611,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": -0.002659614167087583,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-037/27C/ROS-037_pureBatch_50-100um_5mg_27C_15mg-2021-08-21 16-34-05.xls",
+    "kind": "step",
+    "sorbent": "ROS-037",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.06926094447833647,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.008338045350852329,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-037/27C/ROS037_-u50_isotherm-2021-05-07 18-07-06.xlsx",
+    "kind": "isotherm",
+    "sorbent": "ROS-037",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.03360136292014216,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 25.1,
+    "R2_drift_pct_h": -0.0032725188870300357,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 25.2,
+    "R2_stretch_min": 228.97000000000003
+   },
+   {
+    "run": "ROS-037/60C/ROS-037_pureBatch_100-150um_60C_isotherm-2021-08-25 21-34-39.xls",
+    "kind": "isotherm",
+    "sorbent": "ROS-037",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.008873051002296257,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 61.0,
+    "R2_drift_pct_h": -0.004138351442701986,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 99.98000000000002
+   },
+   {
+    "run": "ROS-037/60C/ROS-037_pureBatch_50-100um_5mg_60C_11mg-2021-08-24 06-11-27.xls",
+    "kind": "step",
+    "sorbent": "ROS-037",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.09066415231420612,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 2.7096057944730143e-05,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-037/60C/ROS-037_pureBatch_50-100um_5mg_60C_12mg-2021-08-24 06-11-27.xls",
+    "kind": "step",
+    "sorbent": "ROS-037",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.0013574538102067916,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": -2.3456411065483913e-14,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-037/60C/ROS-037_pureBatch_50-100um_60C_20mg-2021-08-24 23-34-12.xls",
+    "kind": "step",
+    "sorbent": "ROS-037",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.07604657205101006,
+    "R1_fit_min": 9.98,
+    "R1_temp_C": 60.8,
+    "R2_drift_pct_h": 0.001286779676369257,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-037/60C/ROS-037_pureBatch_50-100um_60C_5mg-2021-08-24 23-34-12.xls",
+    "kind": "step",
+    "sorbent": "ROS-037",
+    "temp": "60C",
+    "R1_drift_pct_h": -3.8503583957454464e-14,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.8,
+    "R2_drift_pct_h": -0.0028936263502580763,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-037_composite/27C/19-0182-4_isotherm_27C-2021-12-24 14-41-16.xlsx",
+    "kind": "isotherm",
+    "sorbent": "ROS-037_composite",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.16464076973816685,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.7,
+    "R2_drift_pct_h": 0.04893301600936414,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 100.01000000000002
+   },
+   {
+    "run": "ROS-037_composite/27C/hm/19-0182-4_isotherm_27C-2021-12-24 14-41-16.xlsx",
+    "kind": "isotherm",
+    "sorbent": "ROS-037_composite",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.16464076973816685,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.7,
+    "R2_drift_pct_h": 0.04893301600936414,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 100.01000000000002
+   },
+   {
+    "run": "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire1_60C-2022-04-28 17-09-42.xls",
+    "kind": "step",
+    "sorbent": "ROS-037_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.07795454842048663,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.009503910284939908,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.97000000000001
+   },
+   {
+    "run": "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire2_60C-2022-04-29 10-06-14_1.xls",
+    "kind": "step",
+    "sorbent": "ROS-037_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.01979304692834954,
+    "R1_fit_min": 9.980000000000004,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.01316061480359012,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire3_60C-2022-04-30 16-40-18_1.xls",
+    "kind": "step",
+    "sorbent": "ROS-037_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": 0.014891925480886517,
+    "R1_fit_min": 9.97999999999999,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.014574049184070277,
+    "R2_fit_min": 9.98999999999998,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.96
+   },
+   {
+    "run": "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire4_60C-2022-05-02 10-36-27_1.xls",
+    "kind": "step",
+    "sorbent": "ROS-037_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.15975161125458856,
+    "R1_fit_min": 9.980000000000004,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.012031203066263405,
+    "R2_fit_min": 9.98999999999998,
+    "R2_temp_C": 60.8,
+    "R2_stretch_min": 89.96
+   },
+   {
+    "run": "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire5_60C-2022-05-03 10-56-06.xls",
+    "kind": "step",
+    "sorbent": "ROS-037_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": 0.003100818811446198,
+    "R1_fit_min": 9.97999999999999,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 6.86154235171933e-14,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.96
+   },
+   {
+    "run": "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire6_60C-2022-05-03 22-56-16.xls",
+    "kind": "step",
+    "sorbent": "ROS-037_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": 0.0513202246339228,
+    "R1_fit_min": 9.97999999999999,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": -0.022668958351201866,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.96
+   },
+   {
+    "run": "ROS-037_composite/60C/ROS037_19-0182-4_isotherm_60C-2022-04-27 16-41-55.xls",
+    "kind": "isotherm",
+    "sorbent": "ROS-037_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.1015993116641812,
+    "R1_fit_min": 10.0,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.012883486773529886,
+    "R2_fit_min": 10.0,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 99.98999999999998
+   },
+   {
+    "run": "ROS-039/27C/ROS039-SD-1-183_kinetics_12mg_50-100um-2021-06-05 12-06-31.xls",
+    "kind": "step",
+    "sorbent": "ROS-039",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.20974917663511675,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 27.5,
+    "R2_drift_pct_h": 0.025602793805348932,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.93
+   },
+   {
+    "run": "ROS-039/27C/ROS039-SD-1-183_kinetics_20mg_50-100um-2021-06-05 12-06-31.xls",
+    "kind": "step",
+    "sorbent": "ROS-039",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.3493015629118366,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 27.5,
+    "R2_drift_pct_h": -0.002449713581240389,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.93
+   },
+   {
+    "run": "ROS-039/27C/ROS039-SD-1-183_kinetics_5mg_50-100um-2021-06-04 18-28-36.xls",
+    "kind": "step",
+    "sorbent": "ROS-039",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.7627155746008439,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 27.45,
+    "R2_drift_pct_h": 0.024477974119622853,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-039/27C/ROS039-SD-1-183_kinetics_8mg_50-100um-2021-06-04 18-28-36.xls",
+    "kind": "step",
+    "sorbent": "ROS-039",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.31592417578693793,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 27.45,
+    "R2_drift_pct_h": 0.00825802910282695,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-039/27C/SD-1-183_isotherm_27C-2021-05-18 18-59-58.xls",
+    "kind": "isotherm",
+    "sorbent": "ROS-039",
+    "temp": "27C"
+   },
+   {
+    "run": "ROS-039/60C/ROS039-SD-1-183_kinetics_60C_12mg_50-100um-2021-06-07 02-16-59.xls",
+    "kind": "step",
+    "sorbent": "ROS-039",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.05163754025534404,
+    "R1_fit_min": 9.98,
+    "R1_temp_C": 61.0,
+    "R2_drift_pct_h": 0.0012279054256800269,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-039/60C/ROS039-SD-1-183_kinetics_60C_8mg_50-100um-2021-06-07 19-55-24.xls",
+    "kind": "step",
+    "sorbent": "ROS-039",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.07858005416954664,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": -0.00046783411688114694,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-039/60C/SD-1-183_isotherm_60C-2021-05-17 19-16-27.xls",
+    "kind": "isotherm",
+    "sorbent": "ROS-039",
+    "temp": "60C"
+   },
+   {
+    "run": "ROS-039_composite/27C/21-0043-1_ROS-039_paper_isotherm_27C-2022-01-01 16-50-03.xls",
+    "kind": "isotherm",
+    "sorbent": "ROS-039_composite",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.11263758298204465,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.8,
+    "R2_drift_pct_h": 0.04814553389979015,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 27.3,
+    "R2_stretch_min": 99.97
+   },
+   {
+    "run": "ROS-039_composite/27C/hm/21-0043-1_ROS-039_paper_isotherm_27C-2022-01-01 16-50-03.xls",
+    "kind": "isotherm",
+    "sorbent": "ROS-039_composite",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.11263758298204465,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.8,
+    "R2_drift_pct_h": 0.04814553389979015,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 27.3,
+    "R2_stretch_min": 99.97
+   },
+   {
+    "run": "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire1_60C-2022-04-28 17-09-42.xls",
+    "kind": "step",
+    "sorbent": "ROS-039_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.017814250529561503,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.0026071979631739576,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.97000000000001
+   },
+   {
+    "run": "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire2_60C-2022-04-29 10-06-14.xls",
+    "kind": "step",
+    "sorbent": "ROS-039_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": 0.10824069681559775,
+    "R1_fit_min": 9.980000000000004,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.00011744028916552506,
+    "R2_fit_min": 9.980000000000018,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire3_60C-2022-04-30 16-40-18.xls",
+    "kind": "step",
+    "sorbent": "ROS-039_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": 0.03272639377654426,
+    "R1_fit_min": 9.989999999999995,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": -4.697922200594808e-14,
+    "R2_fit_min": 9.98999999999998,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.96
+   },
+   {
+    "run": "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire4_60C-2022-05-02 10-36-27.xls",
+    "kind": "step",
+    "sorbent": "ROS-039_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": 0.07578517273955844,
+    "R1_fit_min": 9.980000000000004,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.005168264418883267,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 60.8,
+    "R2_stretch_min": 89.95
+   },
+   {
+    "run": "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire5_60C-2022-05-03 10-56-06.xls",
+    "kind": "step",
+    "sorbent": "ROS-039_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": 0.04109053282146147,
+    "R1_fit_min": 9.97999999999999,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.0035127150650723442,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.96
+   },
+   {
+    "run": "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire6_60C-2022-05-03 22-56-16.xls",
+    "kind": "step",
+    "sorbent": "ROS-039_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": 0.11667725426222067,
+    "R1_fit_min": 9.97999999999999,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.0006381647612516724,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 89.96
+   },
+   {
+    "run": "ROS-039_composite/60C/ROS039_21-0043-1_isotherm_60C-2022-04-27 16-41-55.xls",
+    "kind": "isotherm",
+    "sorbent": "ROS-039_composite",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.07071552982726095,
+    "R1_fit_min": 10.0,
+    "R1_temp_C": 60.7,
+    "R2_drift_pct_h": 0.005704498999223801,
+    "R2_fit_min": 10.0,
+    "R2_temp_C": 60.7,
+    "R2_stretch_min": 99.98999999999998
+   },
+   {
+    "run": "ROS-040/27C/ROS-040_SD-01-082_isotherm_27C-2021-06-14 09-53-10.xls",
+    "kind": "isotherm",
+    "sorbent": "ROS-040",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.10615366221744985,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.060527756244221735,
+    "R2_fit_min": 10.0,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 100.02000000000001
+   },
+   {
+    "run": "ROS-040/27C/ROS-040_SD-1-82_kinetics_12mg_27C_50-100um-2021-06-30 09-53-50.xls",
+    "kind": "step",
+    "sorbent": "ROS-040",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.030683871514912003,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.5,
+    "R2_drift_pct_h": 0.032173675328195664,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "ROS-040/27C/ROS-040_SD-1-82_kinetics_16mg_27C_50-100um-2021-06-30 09-53-50.xls",
+    "kind": "step",
+    "sorbent": "ROS-040",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.16632816540476777,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.5,
+    "R2_drift_pct_h": 0.032856608826901695,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "ROS-040/27C/ROS-040_SD-1-82_kinetics_5mg_27C_50-100um-2021-07-02 16-54-13.xls",
+    "kind": "step",
+    "sorbent": "ROS-040",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.1812124203010715,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.05032704684495422,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-040/27C/ROS-040_SD-1-82_kinetics_9mg_27C_50-100um-2021-07-02 16-54-13.xls",
+    "kind": "step",
+    "sorbent": "ROS-040",
+    "temp": "27C",
+    "R1_drift_pct_h": 0.3816399435210903,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.03565616102162283,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-040/60C/ROS-040_SD-01-082_isotherm_60C-2021-07-10 17-05-44_1.xls",
+    "kind": "isotherm",
+    "sorbent": "ROS-040",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.05725166164409928,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 61.1,
+    "R2_drift_pct_h": 0.002360148855497283,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 61.1,
+    "R2_stretch_min": 103.87
+   },
+   {
+    "run": "ROS-040/60C/ROS-040_SD-1-82_kinetics_16mg_60C_50-100um-2021-06-29 09-48-37.xls",
+    "kind": "step",
+    "sorbent": "ROS-040",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.10147704634078718,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 61.0,
+    "R2_drift_pct_h": 0.012235358314112486,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-040/60C/ROS-040_SD-1-82_kinetics_17mg_60C_50-100um-2021-08-28 16-11-45.xls",
+    "kind": "step",
+    "sorbent": "ROS-040",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.3013413913754072,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.8,
+    "R2_drift_pct_h": -0.01669340796454567,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.8,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "ROS-040/60C/ROS-040_SD-1-82_kinetics_5mg_60C_50-100um-2021-06-28 12-33-12.xls",
+    "kind": "step",
+    "sorbent": "ROS-040",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.26150032257053957,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.8,
+    "R2_drift_pct_h": 0.03147691969664973,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "Syloid/27C/Syloid_kinetics_50-100um_27C_12mg-2021-07-15 13-38-52.xls",
+    "kind": "step",
+    "sorbent": "Syloid",
+    "temp": "27C",
+    "R1_drift_pct_h": -3.0122887190024596,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": -0.06729529765727021,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "Syloid/27C/Syloid_kinetics_50-100um_27C_5mg-2021-07-15 13-38-52.xls",
+    "kind": "step",
+    "sorbent": "Syloid",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.5576631835773251,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.033171352746472184,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 27.4,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "Syloid/27C/syloid_isotherm_25C-2021-03-19 23-03-21.xls",
+    "kind": "isotherm",
+    "sorbent": "Syloid",
+    "temp": "27C"
+   },
+   {
+    "run": "Syloid/27C/syloid_kinetics_50-100um_12mg_27C-2021-07-08 14-48-29.xls",
+    "kind": "step",
+    "sorbent": "Syloid",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.07900973001641204,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.6576156173603505,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "Syloid/27C/syloid_kinetics_50-100um_20mg_27C-2021-07-08 14-48-29.xls",
+    "kind": "step",
+    "sorbent": "Syloid",
+    "temp": "27C",
+    "R1_drift_pct_h": -0.016780362741496444,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 27.4,
+    "R2_drift_pct_h": 0.7346530711595842,
+    "R2_fit_min": 9.97999999999999,
+    "R2_temp_C": 27.5,
+    "R2_stretch_min": 89.99000000000001
+   },
+   {
+    "run": "Syloid/60C/Syloid_50-100um_isotherm_60C-2021-07-23 13-02-08_1.xls",
+    "kind": "isotherm",
+    "sorbent": "Syloid",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.07863594611949644,
+    "R1_fit_min": 9.979999999999997,
+    "R1_temp_C": 61.0,
+    "R2_drift_pct_h": -0.6921443117265881,
+    "R2_fit_min": 9.990000000000009,
+    "R2_temp_C": 61.0,
+    "R2_stretch_min": 99.99000000000001
+   },
+   {
+    "run": "Syloid/60C/Syloid_kinetics_60C_17mg_50-100um-2021-08-28 16-11-45.xls",
+    "kind": "step",
+    "sorbent": "Syloid",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.16381108652979776,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.8,
+    "R2_drift_pct_h": 0.015783093378658433,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.8,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "Syloid/60C/syloid_kinetics_50-100um_12mg_60C-2021-07-13 17-43-44.xls",
+    "kind": "step",
+    "sorbent": "Syloid",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.1713667347048542,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 0.008876463801633892,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "Syloid/60C/syloid_kinetics_50-100um_20mg_60C-2021-07-12 19-42-17.xls",
+    "kind": "step",
+    "sorbent": "Syloid",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.10596601594847008,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": 0.022826304197581956,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   },
+   {
+    "run": "Syloid/60C/syloid_kinetics_50-100um_5mg_60C-2021-07-13 17-43-44.xls",
+    "kind": "step",
+    "sorbent": "Syloid",
+    "temp": "60C",
+    "R1_drift_pct_h": -0.357492394951054,
+    "R1_fit_min": 9.989999999999998,
+    "R1_temp_C": 60.9,
+    "R2_drift_pct_h": -0.0015771191771573308,
+    "R2_fit_min": 9.980000000000004,
+    "R2_temp_C": 60.9,
+    "R2_stretch_min": 89.96000000000001
+   }
+  ],
+  "summary": {
+   "isotherm|Al-fumarate|27C": {
+    "n": 1,
+    "R1_drift_median": -0.12563681633746754,
+    "R2_drift_median": 0.05230278726273339,
+    "R1_temp_median": 27.6,
+    "R2_temp_median": 27.2,
+    "n_R2": 1
+   },
+   "isotherm|Al-fumarate|60C": {
+    "n": 1,
+    "R1_drift_median": -0.05774867171818748,
+    "R2_drift_median": 0.12950451830397025,
+    "R1_temp_median": 61.1,
+    "R2_temp_median": 61.1,
+    "n_R2": 1
+   },
+   "isotherm|CAU-10|27C": {
+    "n": 1,
+    "R1_drift_median": -0.12217752279663391,
+    "R2_drift_median": 0.04003001084629659,
+    "R1_temp_median": 27.4,
+    "R2_temp_median": 27.4,
+    "n_R2": 1
+   },
+   "isotherm|CAU-10|60C": {
+    "n": 1,
+    "R1_drift_median": -0.11352073189753985,
+    "R2_drift_median": -0.008467972997137616,
+    "R1_temp_median": 61.1,
+    "R2_temp_median": 61.1,
+    "n_R2": 1
+   },
+   "isotherm|MIL-160|27C": {
+    "n": 1,
+    "R1_drift_median": null,
+    "R2_drift_median": null,
+    "R1_temp_median": null,
+    "R2_temp_median": null,
+    "n_R2": 0
+   },
+   "isotherm|MIL-160|60C": {
+    "n": 1,
+    "R1_drift_median": null,
+    "R2_drift_median": null,
+    "R1_temp_median": null,
+    "R2_temp_median": null,
+    "n_R2": 0
+   },
+   "isotherm|MOF-303|27C": {
+    "n": 1,
+    "R1_drift_median": -0.08993642585237374,
+    "R2_drift_median": 1.1330738480026865,
+    "R1_temp_median": 27.4,
+    "R2_temp_median": 27.4,
+    "n_R2": 1
+   },
+   "isotherm|MOF-303|60C": {
+    "n": 2,
+    "R1_drift_median": -0.08198322340749672,
+    "R2_drift_median": 0.5711680903617369,
+    "R1_temp_median": 61.05,
+    "R2_temp_median": 61.05,
+    "n_R2": 2
+   },
+   "isotherm|ROS-037|27C": {
+    "n": 1,
+    "R1_drift_median": -0.03360136292014216,
+    "R2_drift_median": -0.0032725188870300357,
+    "R1_temp_median": 25.1,
+    "R2_temp_median": 25.2,
+    "n_R2": 1
+   },
+   "isotherm|ROS-037|60C": {
+    "n": 1,
+    "R1_drift_median": -0.008873051002296257,
+    "R2_drift_median": -0.004138351442701986,
+    "R1_temp_median": 61.0,
+    "R2_temp_median": 61.0,
+    "n_R2": 1
+   },
+   "isotherm|ROS-037_composite|27C": {
+    "n": 2,
+    "R1_drift_median": -0.16464076973816685,
+    "R2_drift_median": 0.04893301600936414,
+    "R1_temp_median": 27.7,
+    "R2_temp_median": 27.4,
+    "n_R2": 2
+   },
+   "isotherm|ROS-037_composite|60C": {
+    "n": 1,
+    "R1_drift_median": -0.1015993116641812,
+    "R2_drift_median": 0.012883486773529886,
+    "R1_temp_median": 60.7,
+    "R2_temp_median": 60.7,
+    "n_R2": 1
+   },
+   "isotherm|ROS-039|27C": {
+    "n": 1,
+    "R1_drift_median": null,
+    "R2_drift_median": null,
+    "R1_temp_median": null,
+    "R2_temp_median": null,
+    "n_R2": 0
+   },
+   "isotherm|ROS-039|60C": {
+    "n": 1,
+    "R1_drift_median": null,
+    "R2_drift_median": null,
+    "R1_temp_median": null,
+    "R2_temp_median": null,
+    "n_R2": 0
+   },
+   "isotherm|ROS-039_composite|27C": {
+    "n": 2,
+    "R1_drift_median": -0.11263758298204465,
+    "R2_drift_median": 0.04814553389979015,
+    "R1_temp_median": 27.8,
+    "R2_temp_median": 27.3,
+    "n_R2": 2
+   },
+   "isotherm|ROS-039_composite|60C": {
+    "n": 1,
+    "R1_drift_median": -0.07071552982726095,
+    "R2_drift_median": 0.005704498999223801,
+    "R1_temp_median": 60.7,
+    "R2_temp_median": 60.7,
+    "n_R2": 1
+   },
+   "isotherm|ROS-040|27C": {
+    "n": 1,
+    "R1_drift_median": -0.10615366221744985,
+    "R2_drift_median": 0.060527756244221735,
+    "R1_temp_median": 27.4,
+    "R2_temp_median": 27.4,
+    "n_R2": 1
+   },
+   "isotherm|ROS-040|60C": {
+    "n": 1,
+    "R1_drift_median": -0.05725166164409928,
+    "R2_drift_median": 0.002360148855497283,
+    "R1_temp_median": 61.1,
+    "R2_temp_median": 61.1,
+    "n_R2": 1
+   },
+   "isotherm|Syloid|27C": {
+    "n": 1,
+    "R1_drift_median": null,
+    "R2_drift_median": null,
+    "R1_temp_median": null,
+    "R2_temp_median": null,
+    "n_R2": 0
+   },
+   "isotherm|Syloid|60C": {
+    "n": 1,
+    "R1_drift_median": -0.07863594611949644,
+    "R2_drift_median": -0.6921443117265881,
+    "R1_temp_median": 61.0,
+    "R2_temp_median": 61.0,
+    "n_R2": 1
+   },
+   "step|Al-fumarate|27C": {
+    "n": 3,
+    "R1_drift_median": -0.3527228519500753,
+    "R2_drift_median": 0.08135638715926845,
+    "R1_temp_median": 27.4,
+    "R2_temp_median": 27.4,
+    "n_R2": 3
+   },
+   "step|Al-fumarate|60C": {
+    "n": 2,
+    "R1_drift_median": -0.392794208064146,
+    "R2_drift_median": 0.013557646257366192,
+    "R1_temp_median": 60.9,
+    "R2_temp_median": 60.9,
+    "n_R2": 2
+   },
+   "step|CAU-10|27C": {
+    "n": 4,
+    "R1_drift_median": -0.15491282849839694,
+    "R2_drift_median": 0.040299706228985224,
+    "R1_temp_median": 27.45,
+    "R2_temp_median": 27.5,
+    "n_R2": 4
+   },
+   "step|CAU-10|60C": {
+    "n": 3,
+    "R1_drift_median": -0.10174504526058757,
+    "R2_drift_median": 0.0006703990794909735,
+    "R1_temp_median": 61.0,
+    "R2_temp_median": 61.0,
+    "n_R2": 3
+   },
+   "step|MIL-160|27C": {
+    "n": 4,
+    "R1_drift_median": -0.0692978543864491,
+    "R2_drift_median": 0.17851042164751849,
+    "R1_temp_median": 27.45,
+    "R2_temp_median": 27.45,
+    "n_R2": 4
+   },
+   "step|MIL-160|60C": {
+    "n": 3,
+    "R1_drift_median": -0.1747632724671549,
+    "R2_drift_median": 0.024474205978072355,
+    "R1_temp_median": 60.9,
+    "R2_temp_median": 60.9,
+    "n_R2": 3
+   },
+   "step|MOF-303|27C": {
+    "n": 2,
+    "R1_drift_median": -0.06459409011251221,
+    "R2_drift_median": 1.5873813138195425,
+    "R1_temp_median": 27.4,
+    "R2_temp_median": 27.4,
+    "n_R2": 2
+   },
+   "step|MOF-303|60C": {
+    "n": 3,
+    "R1_drift_median": -0.34809759446550154,
+    "R2_drift_median": 0.07043970853355111,
+    "R1_temp_median": 60.9,
+    "R2_temp_median": 61.0,
+    "n_R2": 3
+   },
+   "step|ROS-037|27C": {
+    "n": 4,
+    "R1_drift_median": -0.21810931636055167,
+    "R2_drift_median": 0.009436764001255931,
+    "R1_temp_median": 27.4,
+    "R2_temp_median": 27.4,
+    "n_R2": 4
+   },
+   "step|ROS-037|60C": {
+    "n": 4,
+    "R1_drift_median": -0.038702012930608425,
+    "R2_drift_median": 1.3548028960636865e-05,
+    "R1_temp_median": 60.849999999999994,
+    "R2_temp_median": 60.9,
+    "n_R2": 4
+   },
+   "step|ROS-037_composite|60C": {
+    "n": 6,
+    "R1_drift_median": -0.008346114058451672,
+    "R2_drift_median": 0.010767556675601656,
+    "R1_temp_median": 60.7,
+    "R2_temp_median": 60.7,
+    "n_R2": 6
+   },
+   "step|ROS-039|27C": {
+    "n": 4,
+    "R1_drift_median": -0.3326128693493873,
+    "R2_drift_median": 0.0163680016112249,
+    "R1_temp_median": 27.475,
+    "R2_temp_median": 27.45,
+    "n_R2": 4
+   },
+   "step|ROS-039|60C": {
+    "n": 2,
+    "R1_drift_median": -0.06510879721244534,
+    "R2_drift_median": 0.00038003565439943994,
+    "R1_temp_median": 60.95,
+    "R2_temp_median": 61.0,
+    "n_R2": 2
+   },
+   "step|ROS-039_composite|60C": {
+    "n": 6,
+    "R1_drift_median": 0.058437852780509954,
+    "R2_drift_median": 0.001622681362212815,
+    "R1_temp_median": 60.7,
+    "R2_temp_median": 60.7,
+    "n_R2": 6
+   },
+   "step|ROS-040|27C": {
+    "n": 4,
+    "R1_drift_median": -0.09850601845983989,
+    "R2_drift_median": 0.034256384924262265,
+    "R1_temp_median": 27.45,
+    "R2_temp_median": 27.45,
+    "n_R2": 4
+   },
+   "step|ROS-040|60C": {
+    "n": 3,
+    "R1_drift_median": -0.26150032257053957,
+    "R2_drift_median": 0.012235358314112486,
+    "R1_temp_median": 60.8,
+    "R2_temp_median": 60.9,
+    "n_R2": 3
+   },
+   "step|Syloid|27C": {
+    "n": 4,
+    "R1_drift_median": -0.3183364567968686,
+    "R2_drift_median": 0.34539348505341133,
+    "R1_temp_median": 27.4,
+    "R2_temp_median": 27.45,
+    "n_R2": 4
+   },
+   "step|Syloid|60C": {
+    "n": 4,
+    "R1_drift_median": -0.16758891061732598,
+    "R2_drift_median": 0.012329778590146162,
+    "R1_temp_median": 60.9,
+    "R2_temp_median": 60.9,
+    "n_R2": 4
+   }
+  }
+ },
+ "E_own_over_F": {
+  "per_stratum": {
+   "ROS-037|27C|ads": 35.96721794253442,
+   "ROS-039|27C|ads": 26.92643322893665,
+   "ROS-040|27C|ads": 12.06461088182462,
+   "MOF-303|27C|ads": 22.460013372266715,
+   "MIL-160|27C|ads": 20.305904447480575,
+   "CAU-10|27C|ads": 56.22137951204871,
+   "Al-fumarate|27C|ads": 34.42947301934699,
+   "Syloid|27C|ads": 35.868292083527166,
+   "ROS-037|27C|des": 15.780804834012066,
+   "ROS-039|27C|des": 15.064686512281508,
+   "ROS-040|27C|des": 6.275035157634717,
+   "MOF-303|27C|des": 14.937305876126441,
+   "MIL-160|27C|des": 22.469006850678493,
+   "CAU-10|27C|des": 36.57529909131214,
+   "Al-fumarate|27C|des": 26.679546997333006,
+   "Syloid|27C|des": 28.136023564652174,
+   "ROS-037|60C|ads": 14.745554087818165,
+   "ROS-039|60C|ads": 22.519911440179648,
+   "ROS-040|60C|ads": 12.02163896127931,
+   "MOF-303|60C|ads": 14.795104110159182,
+   "MIL-160|60C|ads": 14.343197053776798,
+   "CAU-10|60C|ads": 66.6721506657946,
+   "Al-fumarate|60C|ads": 18.828545365986688,
+   "Syloid|60C|ads": 28.158228637909943,
+   "ROS-037|60C|des": 14.209577024855783,
+   "ROS-039|60C|des": 10.08715032607234,
+   "ROS-040|60C|des": 9.670936261197445,
+   "MOF-303|60C|des": 9.408770094678337,
+   "MIL-160|60C|des": 6.663420663735345,
+   "CAU-10|60C|des": 10.496793570948736,
+   "Al-fumarate|60C|des": 3.5273383027435115,
+   "Syloid|60C|des": 9.798636706790727
+  },
+  "min": [
+   "Al-fumarate|60C|des",
+   3.5273383027435115
+  ],
+  "max": [
+   "CAU-10|60C|ads",
+   66.6721506657946
+  ],
+  "median": 15.422745673146787
+ },
+ "k2_cv": {
+  "27C|ads": {
+   "n": 8,
+   "mean": 0.3138731224765168,
+   "min": 0.29804867171981553,
+   "max": 0.34930814796461596,
+   "cv_population": 0.0655940145023133,
+   "cv_sample": 0.07012295111163931
+  },
+  "27C|des": {
+   "n": 8,
+   "mean": 0.2557094575803685,
+   "min": 0.21485044032238157,
+   "max": 0.29087620531027175,
+   "cv_population": 0.09861931575559413,
+   "cv_sample": 0.10542848322157443
+  },
+  "60C|ads": {
+   "n": 8,
+   "mean": 1.5910423700775447,
+   "min": 1.1438385404912266,
+   "max": 3.157199384940187,
+   "cv_population": 0.38912270031764895,
+   "cv_sample": 0.4159896645728439
+  },
+  "60C|des": {
+   "n": 8,
+   "mean": 0.9714413182913154,
+   "min": 0.7187906159148861,
+   "max": 1.5047496562910347,
+   "cv_population": 0.2839262553962992,
+   "cv_sample": 0.3035299345150364
+  }
+ },
+ "F_within_segment_weighted": {
+  "ROS-037": 0.003972375960272201,
+  "ROS-039": 0.002332715434601723,
+  "ROS-040": 0.005370847405646704,
+  "MOF-303": 0.004218908905669943,
+  "MIL-160": 0.0037066252285916173,
+  "CAU-10": 0.002058693532087516,
+  "Al-fumarate": 0.007803180663510524,
+  "Syloid": 0.0042093806690068555,
+  "ROS-037_composite": 0.006151471913883388,
+  "ROS-039_composite": 0.006187836934634464
+ }
+}
