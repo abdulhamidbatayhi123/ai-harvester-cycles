@@ -32,6 +32,7 @@ torch.set_num_threads(2)
 PRIMARY8 = ["ROS-037", "ROS-039", "ROS-040", "MOF-303", "MIL-160", "CAU-10", "Al-fumarate", "Syloid"]
 HELD = ["MOF-303", "ROS-039"]
 VAL = "Syloid"
+KINDS = tuple(sys.argv[3].split(",")) if len(sys.argv) > 3 else ("L1", "L2")
 F_SYN = 0.003          # the synthetic noise floor stands in for F in the beat rule
 
 
@@ -110,7 +111,7 @@ def main():
             rec = {"k_fit": {f"{a}|{b}": v for (a, b), v in k_fit.items()},
                    "k_rel_err": {f"{a}|{b}": k_fit[(a, b)] / k_true[(a, b)] - 1 for (a, b) in k_true}}
             E_b0 = b0_E(te, k_fit)
-            for kind in ("L1", "L2"):
+            for kind in KINDS:
                 t0 = time.time()
                 model, best = train_two_stage(kind, tr, va, k_fit, iso,
                                               log=lambda s: log(f"{case} {held} {kind} {s}"))
@@ -121,8 +122,8 @@ def main():
             res["cases"][f"{case}|{held}"] = rec
             json.dump(res, open(os.path.join(out, "harness.json"), "w"), indent=1)
     c1 = all(abs(v) < 0.02 for h in HELD for v in res["cases"][f"N|{h}"]["k_rel_err"].values())
-    c2 = all(res["cases"][f"C|{h}"]["L1"]["beats_B0"] for h in HELD)
-    c3 = not any(res["cases"][f"N|{h}"][k]["beats_B0"] for h in HELD for k in ("L1", "L2"))
+    c2 = all(res["cases"][f"C|{h}"]["L1"]["beats_B0"] for h in HELD) if "L1" in KINDS else None
+    c3 = not any(res["cases"][f"N|{h}"][k]["beats_B0"] for h in HELD for k in KINDS)
     res["pass"] = {"1_k_recovered": c1, "2_L1_finds_correction": c2, "3_no_false_positive": c3}
     json.dump(res, open(os.path.join(out, "harness.json"), "w"), indent=1)
     log(f"PASS criteria: {res['pass']}")

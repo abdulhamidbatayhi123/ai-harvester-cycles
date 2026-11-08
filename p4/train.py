@@ -26,7 +26,7 @@ def make_ctx(g, k2, iso_by_mat, idx=None):
     w30 = torch.tensor(float(g["ads"].w_of_rh(30.0)), dtype=torch.float64)
     T = T_OF[g["temp"]]
     tb = {(TT, b): TorchBranch(br.rh, br.w) for (TT, b), br in iso_by_mat[g["sorbent"]].items()}
-    return {"ads": ads, "w30": w30, "m": m,
+    return {"ads": ads, "des": TorchBranch(g["des"].rh, g["des"].w), "w30": w30, "m": m,
             "k_ads": k2[(g["temp"], "ads")] / m, "k_des": k2[(g["temp"], "des")] / m,
             "temp": torch.full_like(m, T), "enc": isotherm_encoding(tb, float(w30))}
 

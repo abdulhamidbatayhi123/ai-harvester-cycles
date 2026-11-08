@@ -76,20 +76,27 @@ class L1(nn.Module):
 
 
 class L2(nn.Module):
-    """Black-box neural ODE: dw/dt = s * f(w/w30, RH, T, 1/m, e), with e the isotherm encoding
-    (uptake at RH_GRID on both branches at both temperatures, divided by w30) and s = w30 per
-    minute. No physics is imposed; the limiter is not applied (ctx["limit"] is False)."""
+    """Black-box neural ODE: dw/dt = s * f(z), s = w30 per minute.
+
+    z gives the network the same isotherm information as L1, as local features at the current
+    state, but none of L1's structure (no sign constraint, no zero rate at equilibrium, no
+    limiter): w/w30, RH, equilibrium uptake on both branches at the current RH (/w30), bed RH on
+    both branches at the current uptake, the adsorption-branch slope at w, T and 1/m.
+
+    Harness round 2 showed why the first design (a raw 44-number isotherm encoding) is not a fair
+    competitor: with six training sorbents the network memorised material identity, fitting the
+    training sorbents (loss <= 0.009) but not an unseen one (validation E 0.35 to 0.44)."""
 
     def __init__(self, width=32, depth=2):
         super().__init__()
-        self.f = mlp(4 + 4 * len(RH_GRID), width, depth)
+        self.f = mlp(9, width, depth)
 
     def rate(self, w, r, ctx):
-        n = w.shape[0]
-        e = ctx["enc"].expand(n, -1)
-        z = torch.cat([torch.stack([w / ctx["w30"], r / 100, (ctx["temp"] - 27.0) / 33.0,
-                                    10.0 / ctx["m"]], -1), e], -1)
-        return ctx["w30"] * self.f(z).squeeze(-1)
+        ads, des, w30 = ctx["ads"], ctx.get("des", ctx["ads"]), ctx["w30"]
+        z = torch.stack([w / w30, r / 100, ads.w_of_rh(r) / w30, des.w_of_rh(r) / w30,
+                         ads.rh_of_w(w) / 100, des.rh_of_w(w) / 100, ads.slope_at_w(w) * 10 / w30,
+                         (ctx["temp"] - 27.0) / 33.0, 10.0 / ctx["m"]], -1)
+        return w30 * self.f(z).squeeze(-1)
 
 
 def integrate(model, rh, w0, ctx, dt=0.1, limit=True):
