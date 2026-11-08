@@ -408,7 +408,11 @@ used only to say where the residual error lives, not to rescue the claim.
 - Reproducing Bezrukov's published fits, B0 fitted on all eight sorbents, as a check of the
   implementation against the paper. This is in-sample, involves no learned model, and is
   reported as a reproduction.
-- A synthetic test of the harness (section 10).
+- Further data-only checks asked for by the review: per-plateau gas flow, cluster counts,
+  between-file agreement, mass drift at the dry-mass windows, and the data's own rate of
+  physical violations (`audit/prefreeze_checks2.py`, `audit/violation_floor.py`).
+- A synthetic test of the harness (section 10), including the size calibration of the null
+  world (`audit/null_calibration.py`) and the null study through the confirmatory code.
 - Timing runs of L1 and L2 on synthetic data to fix the compute budget.
 
 Not allowed before the freeze: fitting L1 or L2 on real data, and any held-out evaluation.
@@ -444,8 +448,10 @@ The harness passes if:
    (`p4.run_study --synthetic null`, `p4.decide`) on all 8 LOSO folds, with one configuration
    and one seed per fit, the per-fold false-positive rate of each learned model is estimated
    from all its null fold-fits. H4a can be declared only if that rate's one-sided 95 % upper
-   bound implies P(≥ 7 of 8 beats) ≤ 5 % under independence. The number of replicates is set
-   by the compute available and stated; at least 2 (16 fold-fits per model).
+   bound implies P(≥ 7 of 8 beats) ≤ 5 % under independence (`audit/null_summary.py`). With
+   16 fold-fits this allows at most about 2 null beats. The folds share training sorbents, so
+   independence is optimistic; the beats per replicate are reported as well. The number of
+   replicates is set by the compute available and stated; at least 2 (16 fold-fits per model).
 
 **Round 1 (2026-11-04/05; `results/harness_round1/`)**, with whole-segment training. Seven of
 the eight runs finished before it was stopped:
