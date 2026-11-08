@@ -11,7 +11,8 @@ For each outer fold (8 LOSO, 4 LOFO):
 Rows go to <out>/rows.jsonl, one per (fold, model, config, seed) step; finished steps are skipped
 on restart. Seed predictions are cached in <out>/pred/.
 
-usage: python -I -m p4.run_study <data_derived/bezrukov2023> <out_dir> [--synthetic] [--fast]
+usage: python -I -m p4.run_study <data_derived/bezrukov2023> <out_dir> [--synthetic] [--fast] [--rule R1|R2]
+(--rule R1 runs the pre-registered dry-mass sensitivity analysis into a separate out_dir)
 """
 from __future__ import annotations
 
@@ -122,10 +123,12 @@ class Rows:
 def main():
     root, out = sys.argv[1], sys.argv[2]
     synthetic, fast = "--synthetic" in sys.argv, "--fast" in sys.argv
+    rule = sys.argv[sys.argv.index("--rule") + 1] if "--rule" in sys.argv else "R2"
     os.makedirs(os.path.join(out, "pred"), exist_ok=True)
     torch.set_num_threads(2)
     log = lambda s: print(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {s}", flush=True)
-    groups = [g for g in build_groups(root) if g["sorbent"] in PRIMARY8 + list(COMPOSITE_OF.values())]
+    groups = [g for g in build_groups(root, rule=rule) if g["sorbent"] in PRIMARY8 + list(COMPOSITE_OF.values())]
+    log(f"dry-mass rule {rule}; {sum(len(g['m']) for g in groups)} segments in {len(groups)} groups")
     if synthetic:
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "audit"))
         from synthetic_harness import fit_k2, synthesise
