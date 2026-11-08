@@ -118,3 +118,35 @@ def fit_scale(groups, simulate, direction, dt=0.1, bounds=(1e-4, 1e3)):
     r = minimize_scalar(loss, bounds=(np.log(bounds[0]), np.log(bounds[1])), method="bounded",
                         options={"xatol": 1e-4})
     return float(np.exp(r.x))
+
+
+def fit_scale_metric(groups, simulate, direction, dt=0.1, k_start=None, span=2.0, n_grid=41):
+    """Oracle fit (review finding F1): the k'' that minimises the SCORED metric, the median over
+    segments of E = RMS(pred - meas) / |measured change|, so that B0* is a true lower bound on
+    what tuning k'' alone can reach. The median is not smooth, so a log grid of `n_grid` points
+    over +-`span` decades around `k_start` (default: the least-squares fit) is searched first,
+    then a bounded scalar search refines inside the best grid cell."""
+    if k_start is None:
+        k_start = fit_scale(groups, simulate, direction, dt=dt)
+
+    def med_e(logk):
+        k = np.exp(logk)
+        E = []
+        for g in groups:
+            kk = k / np.asarray(g["m"], float)
+            ka, kd = (kk, 0.0) if direction == "ads" else (0.0, kk)
+            pred = simulate(g["rh"], g["w"][:, 0], ka, kd, g["ads"], g.get("des"), dt=dt)
+            for p_, w_ in zip(pred, g["w"]):
+                n = int(np.isfinite(w_).sum())
+                dw = abs(w_[n - 1] - w_[0])
+                if dw > 0:
+                    E.append(np.sqrt(np.mean((p_[:n] - w_[:n]) ** 2)) / dw)
+        return float(np.median(E)) if E else float("inf")
+    c = np.log(k_start)
+    grid = np.linspace(c - span * np.log(10), c + span * np.log(10), n_grid)
+    vals = [med_e(x) for x in grid]
+    i = int(np.argmin(vals))
+    lo, hi = grid[max(i - 1, 0)], grid[min(i + 1, n_grid - 1)]
+    r = minimize_scalar(med_e, bounds=(lo, hi), method="bounded", options={"xatol": 1e-4})
+    best = r.x if r.fun <= vals[i] else grid[i]
+    return float(np.exp(best))

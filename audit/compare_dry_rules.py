@@ -9,7 +9,7 @@ usage: python -I audit/compare_dry_rules.py data_derived/bezrukov2023 results/pr
 import json, os, sys
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from p4.data import load_run, plateaus, end_value  # noqa: E402
+from p4.data import data_files, load_run, plateaus, end_value  # noqa: E402
 from p4.physics import Branch  # noqa: E402
 from p4.segments import dry_mass_step_run, dry_mass_post_activation, dry_mass_first_desorption, step_segments  # noqa: E402
 from p4.dataset import ISOTHERM_CHOICE, EXCLUDE_UNDRIED  # noqa: E402
@@ -42,7 +42,7 @@ def iso_branches(run, m, t_act):
 
 def main():
     src, out = sys.argv[1], sys.argv[2]
-    runs = [load_run(os.path.join(src, f)) for f in sorted(os.listdir(src)) if f.endswith(".npz")]
+    runs = [load_run(os.path.join(src, f)) for f in data_files(src)]
     res = {}
     for rule in ("R1", "R2", "R3"):
         diffs = {}

@@ -10,7 +10,7 @@ import re
 
 import numpy as np
 
-from p4.data import SORBENTS, load_run, plateaus, end_value
+from p4.data import SORBENTS, data_files, load_run, plateaus, end_value
 from p4.physics import Branch
 from p4.segments import DT_MIN, dry_mass_post_activation, dry_mass_step_run, step_segments
 
@@ -92,7 +92,7 @@ def pad(arrs):
 
 
 def build_groups(root, min_dw=0.05, rule=None):
-    runs = [load_run(os.path.join(root, f)) for f in sorted(os.listdir(root)) if f.endswith(".npz")]
+    runs = [load_run(os.path.join(root, f)) for f in data_files(root)]
     groups = []
     for s in SORBENTS:
         for T in ("27C", "60C"):

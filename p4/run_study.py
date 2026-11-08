@@ -11,7 +11,8 @@ For each outer fold (8 LOSO, 4 LOFO):
 Rows go to <out>/rows.jsonl, one per (fold, model, config, seed) step; finished steps are skipped
 on restart. Seed predictions are cached in <out>/pred/.
 
-usage: python -I -m p4.run_study <data_derived/bezrukov2023> <out_dir> [--synthetic] [--fast] [--rule R1|R2]
+usage: python -I -m p4.run_study <data_derived/bezrukov2023> <out_dir> [--synthetic [N|null] [--rep k]]
+       [--fast] [--rule R1|R2] [--seeds n] [--grid n] [--loso-only]
 (--rule R1 runs the pre-registered dry-mass sensitivity analysis into a separate out_dir)
 """
 from __future__ import annotations
@@ -25,7 +26,7 @@ import numpy as np
 import torch
 
 from p4.dataset import build_groups
-from p4.physics import fit_scale, simulate_b0, simulate_b1
+from p4.physics import fit_scale, fit_scale_metric, simulate_b0, simulate_b1
 from p4.segments import DT_MIN, normalised_rms
 from p4.train import isotherms_by_material, predict, train_two_stage
 
@@ -68,14 +69,18 @@ def sub(groups, T, d):
     return out
 
 
-def fit_physics(groups, simulate, use_des):
+def fit_physics(groups, simulate, use_des, metric=False):
+    """k'' per temperature and direction. metric=True fits the oracle B0* by the scored metric
+    (median E) instead of least squares (review finding F1)."""
     k2 = {}
     for T in ("27C", "60C"):
         for d in ("ads", "des"):
             gs = sub(groups, T, d)
+            if not gs:
+                continue
             if not use_des:
                 gs = [{**g, "des": None} for g in gs]
-            k2[(T, d)] = fit_scale(gs, simulate, d, dt=DT_MIN)
+            k2[(T, d)] = (fit_scale_metric if metric else fit_scale)(gs, simulate, d, dt=DT_MIN)
     return k2
 
 
@@ -123,6 +128,10 @@ class Rows:
 def main():
     root, out = sys.argv[1], sys.argv[2]
     synthetic, fast = "--synthetic" in sys.argv, "--fast" in sys.argv
+    world = sys.argv[sys.argv.index("--synthetic") + 1] if synthetic and len(sys.argv) > sys.argv.index("--synthetic") + 1         and not sys.argv[sys.argv.index("--synthetic") + 1].startswith("--") else "N"
+    arg = lambda name, default: int(sys.argv[sys.argv.index(name) + 1]) if name in sys.argv else default
+    rep, n_seeds, n_grid = arg("--rep", 0), arg("--seeds", None), arg("--grid", None)
+    loso_only = "--loso-only" in sys.argv
     rule = sys.argv[sys.argv.index("--rule") + 1] if "--rule" in sys.argv else "R2"
     os.makedirs(os.path.join(out, "pred"), exist_ok=True)
     torch.set_num_threads(2)
@@ -131,14 +140,23 @@ def main():
     log(f"dry-mass rule {rule}; {sum(len(g['m']) for g in groups)} segments in {len(groups)} groups")
     if synthetic:
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "audit"))
-        from synthetic_harness import fit_k2, synthesise
-        groups = synthesise(groups, fit_k2([g for g in groups if g["sorbent"] in PRIMARY8]), corrected=False, seed=7)
+        from synthetic_harness import fit_k2, synthesise, synthesise_null
+        k_true = fit_k2([g for g in groups if g["sorbent"] in PRIMARY8])
+        if world == "null":
+            groups, draws = synthesise_null(groups, k_true, seed=rep)
+            with open(os.path.join(out, "null_world.json"), "w", encoding="utf-8") as fh:
+                json.dump({"rep": rep, "draws_a_b": draws, "k_true": {f"{a}|{b}": v for (a, b), v in k_true.items()}}, fh, indent=1)
+            log(f"null world, replicate {rep}")
+        else:
+            groups = synthesise(groups, k_true, corrected=False, seed=7)
     iso = isotherms_by_material(groups)
     rows = Rows(os.path.join(out, "rows.jsonl"))
     kw = {"steps_rate": 200, "steps_roll": 20, "eval_every": 10} if fast else {}
-    grid = GRID[:1] if fast else GRID
-    seeds = SEEDS[:2] if fast else SEEDS
+    grid = GRID[:1] if fast else GRID[:n_grid] if n_grid else GRID
+    seeds = SEEDS[:2] if fast else SEEDS[:n_seeds] if n_seeds else SEEDS
     flist = folds()[:2] if fast else folds()
+    if loso_only:
+        flist = [f for f in flist if f[0].startswith("LOSO")]
     for fold, held in flist:
         vs = val_sorbent(held)
         tr = [g for g in groups if g["sorbent"] not in held and g["sorbent"] != vs]
@@ -154,21 +172,26 @@ def main():
             k_b1 = fit_physics(fit_on, simulate_b1, False)
             v_b0 = np.nanmedian(physics_E(va, simulate_b0, k_b0, False))
             v_b0b = np.nanmedian(physics_E(va, simulate_b0, k_b0b, True))
+            v_b1 = np.nanmedian(physics_E(va, simulate_b1, k_b1, False))
             use_des = bool(v_b0b < v_b0)
             k_base = k_b0b if use_des else k_b0
+            # comparator for H4a (review finding M7): the best isotherm-only physics model on the
+            # validation sorbent, among B0, B0-b and B1
+            base = min((("B0", v_b0), ("B0-b", v_b0b), ("B1", v_b1)), key=lambda x: x[1])[0]
+            E_b0 = physics_E(te, simulate_b0, k_base, use_des)
+            E_b1 = physics_E(te, simulate_b1, k_b1, False)
             oracle = {}
             for s in held:
                 own = [g for g in te if g["sorbent"] == s]
                 if own:
-                    k_own = fit_physics(own, simulate_b0, use_des)
+                    k_own = fit_physics(own, simulate_b0, use_des, metric=True)
                     oracle[s] = physics_E(own, simulate_b0, k_own, use_des)
             rows.put({"key": key, "fold": fold, "held": held, "val": vs, "B0_variant": "B0-b" if use_des else "B0",
-                      "k2": {f"{a}|{b}": v for (a, b), v in k_base.items()},
-                      "val_E": {"B0": v_b0, "B0-b": v_b0b}, "seg": ids,
-                      "E": {"B0": physics_E(te, simulate_b0, k_base, use_des),
-                            "B1": physics_E(te, simulate_b1, k_b1, False),
+                      "comparator": base, "k2": {f"{a}|{b}": v for (a, b), v in k_base.items()},
+                      "val_E": {"B0": v_b0, "B0-b": v_b0b, "B1": v_b1}, "seg": ids,
+                      "E": {"B0": E_b0, "B1": E_b1, "base": E_b1 if base == "B1" else E_b0,
                             "B0star": sum((oracle[s] for s in held if s in oracle), [])}})
-            log(f"{fold}: physics done ({'B0-b' if use_des else 'B0'})")
+            log(f"{fold}: physics done ({'B0-b' if use_des else 'B0'}; comparator {base})")
         ph = rows.get(key)
         k2 = {tuple(k.split("|")): v for k, v in ph["k2"].items()}
         # 2. learned models

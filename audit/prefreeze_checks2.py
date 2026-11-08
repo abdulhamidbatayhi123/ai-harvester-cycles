@@ -25,7 +25,7 @@ from collections import Counter, defaultdict
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from p4.data import PARENT, SORBENTS, load_run, plateaus  # noqa: E402
+from p4.data import PARENT, SORBENTS, data_files, load_run, plateaus  # noqa: E402
 from p4.dataset import EXCLUDE_UNDRIED, _dry_mass  # noqa: E402
 from p4.segments import DT_MIN, dry_mass_post_activation, dry_mass_step_run, normalised_rms, step_segments  # noqa: E402
 
@@ -61,9 +61,7 @@ def drift_at(run, t_lo, t_end, span=10.0):
 
 def index(root):
     out = []
-    for f in sorted(os.listdir(root)):
-        if not f.endswith(".npz"):
-            continue
+    for f in data_files(root):
         r = load_run(os.path.join(root, f))
         out.append({"path": os.path.join(root, f), "source": r.source, "kind": r.kind,
                     "sorbent": r.sorbent, "temp": r.temp_dir})

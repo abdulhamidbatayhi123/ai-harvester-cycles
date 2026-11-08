@@ -67,6 +67,62 @@ def synthesise(groups, k2, corrected, seed):
     return out
 
 
+class NullTruth(torch.nn.Module):
+    """Realistic null world (review finding F2): every sorbent deviates from B0 by its own rate
+    factor exp(b_s + a_s (w / w30 - 1/2)), with (a_s, b_s) drawn independently of anything in the
+    isotherm. A model given only the isotherm cannot predict these deviations on a new sorbent,
+    so any 'beat' in this world is a false positive."""
+
+    def __init__(self, ab):
+        super().__init__()
+        self.ab = ab          # (a_s, b_s) of the group being simulated
+
+    def rate(self, w, r, ctx):
+        d = r - ctx["ads"].rh_of_w(w)
+        k = torch.where(d > 0, ctx["k_ads"], ctx["k_des"])
+        a, b = self.ab
+        return k * d * torch.exp(b + a * (w / ctx["w30"] - 0.5))
+
+    def equilibrium(self, r, ctx):
+        e = ctx["ads"].w_of_rh(r)
+        return e, e
+
+
+NULL_SD_B, NULL_SD_A = 0.30, 0.60      # sizes set so that B0's median E is near 0.05 (see PREREG section 10)
+NOISE_SD, NOISE_PHI = 0.01, 0.9        # AR(1) measurement noise, wt%
+
+
+def null_draws(sorbents, seed):
+    rng = np.random.default_rng(1000 + seed)
+    return {s: (float(rng.normal(0, NULL_SD_A)), float(rng.normal(0, NULL_SD_B))) for s in sorted(sorbents)}
+
+
+def ar1(rng, shape):
+    e = rng.normal(0, NOISE_SD * np.sqrt(1 - NOISE_PHI ** 2), shape)
+    x = np.empty(shape)
+    x[:, 0] = rng.normal(0, NOISE_SD, shape[0])
+    for i in range(1, shape[1]):
+        x[:, i] = NOISE_PHI * x[:, i - 1] + e[:, i]
+    return x
+
+
+def synthesise_null(groups, k2, seed):
+    """Synthetic uptake in the realistic null world, replicate `seed`. Returns (groups, draws)."""
+    rng = np.random.default_rng(seed)
+    draws = null_draws({g["sorbent"] for g in groups}, seed)
+    out = []
+    for g in groups:
+        m = torch.as_tensor(g["m"])
+        ctx = {"ads": TorchBranch(g["ads"].rh, g["ads"].w), "w30": torch.tensor(float(g["ads"].w_of_rh(30.0))),
+               "k_ads": k2[(g["temp"], "ads")] / m, "k_des": k2[(g["temp"], "des")] / m}
+        with torch.no_grad():
+            w = integrate(NullTruth(draws[g["sorbent"]]), torch.as_tensor(g["rh"]),
+                          torch.as_tensor(g["w"][:, 0]), ctx, dt=DT_MIN).numpy()
+        w = w + ar1(rng, w.shape) * np.isfinite(w)
+        out.append({**g, "w": w})
+    return out, draws
+
+
 def b0_E(groups, k2):
     E = []
     for g in groups:

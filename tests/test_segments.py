@@ -58,3 +58,12 @@ def test_noise_floor_zero_for_identical_repeats_and_positive_with_noise():
 def test_normalised_rms():
     meas = np.linspace(0, 10, 101)
     assert normalised_rms(meas + 1.0, meas) == 0.1
+
+
+def test_duplicate_exports_are_dropped(tmp_path):
+    import numpy as np
+    from p4.data import data_files
+    m = np.arange(10.0)
+    for name, mass in (("a.npz", m), ("b.npz", m), ("c.npz", m + 1)):
+        np.savez(tmp_path / name, mass_mg=mass)
+    assert data_files(str(tmp_path)) == ["a.npz", "c.npz"]

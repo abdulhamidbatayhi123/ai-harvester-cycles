@@ -68,8 +68,35 @@ def load_run(path: str) -> Run:
                pre.astype(float) if pre is not None else np.full(len(rh_t), np.nan), meta)
 
 
+_DUP_CACHE: dict = {}
+
+
+def duplicate_files(root: str) -> set:
+    """Extracted files whose mass trace is identical to an earlier file's (found 2026-11-08: the
+    Zenodo archive holds 8 such copies, among them the MOF-303 60 C 5 mg step run under two file
+    names and each composite's 27 C isotherm in two folders). The copy kept is the first in
+    sorted file-name order, the one in the sorbent's main folder; every other copy is listed."""
+    import hashlib
+    key = os.path.abspath(root)
+    if key not in _DUP_CACHE:
+        seen, dup = set(), set()
+        for f in sorted(os.listdir(root)):
+            if f.endswith(".npz"):
+                with np.load(os.path.join(root, f)) as z:
+                    h = hashlib.sha256(np.ascontiguousarray(z["mass_mg"]).tobytes()).hexdigest()
+                (dup.add(f) if h in seen else seen.add(h))
+        _DUP_CACHE[key] = dup
+    return _DUP_CACHE[key]
+
+
+def data_files(root: str) -> list[str]:
+    """Sorted .npz file names of the extracted archive, exact duplicates removed."""
+    dup = duplicate_files(root)
+    return [f for f in sorted(os.listdir(root)) if f.endswith(".npz") and f not in dup]
+
+
 def load_all(root: str) -> list[Run]:
-    return [load_run(os.path.join(root, f)) for f in sorted(os.listdir(root)) if f.endswith(".npz")]
+    return [load_run(os.path.join(root, f)) for f in data_files(root)]
 
 
 def plateaus(rh_target: np.ndarray, tol: float = 0.5) -> list[tuple[int, int]]:

@@ -16,7 +16,7 @@ from collections import defaultdict
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from p4.data import load_run, plateaus, end_value  # noqa: E402
+from p4.data import data_files, load_run, plateaus, end_value  # noqa: E402
 from p4.physics import Branch  # noqa: E402
 from p4.segments import dry_mass_step_run, noise_floor_pairs, step_segments  # noqa: E402
 
@@ -49,7 +49,7 @@ def run_stamp(source):
 def main():
     src, out = sys.argv[1], sys.argv[2]
     os.makedirs(out, exist_ok=True)
-    files = sorted(f for f in os.listdir(src) if f.endswith(".npz"))
+    files = data_files(src)
     rep = {"runs": [], "isotherms": {}, "noise_floor": {}, "endpoint_mismatch": {}, "pairs": []}
     iso_runs, step_runs = [], []
     for f in files:

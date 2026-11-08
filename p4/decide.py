@@ -1,13 +1,16 @@
 """Apply the pre-registered decision rules (PREREG_P4 section 7) to the runner's rows.
 
-Per fold and learned model, the paired difference d = E_B0 - E_model is averaged within each
+Per fold and learned model, the paired difference d = E_base - E_model is averaged within each
 experiment (the two pans of a pair are one experiment), and the rule is applied to the
-experiment-level d: median(d) > F of the held-out sorbent, median(d) >= 10 % of median E_B0,
-and the 2.5 % bootstrap quantile of median(d) over experiments > 0.
+experiment-level d: median(d) > F of the held-out sorbent, median(d) >= 10 % of median E_base,
+and the 2.5 % bootstrap quantile of median(d) over experiments > 0. E_base is the comparator
+chosen on the validation sorbent among B0, B0-b and B1 (rows written before that change: B0).
 
-H4a per model: supported if it beats B0 on >= 7 of 8 LOSO folds, falsified if <= 4, otherwise
-not established; transfer across families requires >= 3 of 4 LOFO folds.
-H4b: B0* reduces (E_B0 - F) by more than half for >= 6 of 8 sorbents.
+H4a, L1 primary and L2 secondary: supported if the model beats the comparator on >= 7 of 8 LOSO
+folds; falsified only if the 95 % bootstrap interval over the LOSO folds of the mean relative
+improvement lies wholly below 10 %; otherwise not established. Transfer across families requires
+both non-trivial LOFO folds (Al-rod, Zn-triazolate-F).
+H4b (descriptive): the fraction of (E_B0 - F) that B0*, fitted by median E, closes per sorbent.
 
 usage: python -I -m p4.decide <rows.jsonl> <results/prefreeze/summary.json> <out.json>
 """
@@ -20,6 +23,9 @@ from collections import defaultdict
 import numpy as np
 
 REL = 0.10
+# The silica and Cu-glutarate LOFO folds hold out the same sorbents as their LOSO folds (review
+# finding M6), so the family rule rests on the two folds that hold out a whole family.
+NONTRIVIAL_LOFO = ("LOFO:Al-rod", "LOFO:Zn-triazolate-F")
 N_BOOT = 5000
 
 
@@ -63,17 +69,27 @@ def main():
         assert p["seg"] == r["seg"], f"segment order differs in {fold}"
         held = p["held"]
         Fh = max(F.get(s, 0.0) for s in held)        # the larger floor when a fold holds several
-        b0, m = experiment_level(r["seg"], p["E"]["B0"], r["E"])
+        b0, m = experiment_level(r["seg"], p["E"].get("base", p["E"]["B0"]), r["E"])
         ok, info = rule(b0, m, Fh)
         out["folds"][f"{fold}|{kind}"] = {"beats_B0": ok, **info}
     for kind in ("L1", "L2"):
-        loso = [v["beats_B0"] for k, v in out["folds"].items() if k.startswith("LOSO") and k.endswith(kind)]
-        lofo = [v["beats_B0"] for k, v in out["folds"].items() if k.startswith("LOFO") and k.endswith(kind)]
+        loso_v = [v for k, v in out["folds"].items() if k.startswith("LOSO") and k.endswith(kind)]
+        loso = [v["beats_B0"] for v in loso_v]
+        lofo = [v["beats_B0"] for k, v in out["folds"].items() if k.startswith("LOFO") and k.endswith(kind)
+                and k.split("|")[0] in NONTRIVIAL_LOFO]
         n = sum(loso)
-        verdict = ("supported" if n >= 7 else "falsified" if n <= 4 else "not established") if len(loso) == 8 else "incomplete"
-        out["H4a"][kind] = {"LOSO_beats": n, "LOSO_folds": len(loso), "verdict": verdict,
-                            "LOFO_beats": sum(lofo), "LOFO_folds": len(lofo),
-                            "transfers_across_families": (sum(lofo) >= 3) if len(lofo) == 4 else None}
+        # falsification needs an interval (review finding M3): the 95 % bootstrap interval, over
+        # the 8 LOSO folds, of the mean relative improvement must lie wholly below REL
+        rel = np.array([v["median_gain"] / v["E_B0"] for v in loso_v]) if loso_v else np.array([])
+        rng = np.random.default_rng(1)
+        hi = float(np.quantile([rng.choice(rel, len(rel)).mean() for _ in range(N_BOOT)], 0.975)) if len(rel) else float("nan")
+        verdict = ("supported" if n >= 7 else "falsified" if hi < REL else "not established") if len(loso) == 8 else "incomplete"
+        out["H4a"][kind] = {"role": "primary" if kind == "L1" else "secondary", "LOSO_beats": n,
+                            "LOSO_folds": len(loso), "verdict": verdict,
+                            "rel_improvement_mean": float(rel.mean()) if len(rel) else None,
+                            "rel_improvement_upper95": hi,
+                            "LOFO_beats_nontrivial": sum(lofo), "LOFO_folds_nontrivial": len(lofo),
+                            "transfers_across_families": (sum(lofo) == 2) if len(lofo) == 2 else None}
     closes = 0
     for fold, p in phys.items():
         if not fold.startswith("LOSO"):
@@ -84,9 +100,10 @@ def main():
         frac = (e_b0 - e_star) / max(e_b0 - F.get(s, 0.0), 1e-12)
         out["H4b"][s] = {"E_B0": float(e_b0), "E_B0star": float(e_star), "fraction_of_gap_closed": float(frac)}
         closes += frac > 0.5
-    out["H4b"]["verdict"] = ("supported" if closes >= 6 else "not supported") if len(out["H4b"]) == 8 else "incomplete"
+    # H4b is descriptive (review finding F1): an in-sample version was seen before the freeze
+    out["H4b"]["n_closing_more_than_half"] = int(closes)
     json.dump(out, open(sys.argv[3], "w", encoding="utf-8"), indent=1)
-    print(json.dumps({"H4a": out["H4a"], "H4b_verdict": out["H4b"]["verdict"]}, indent=1))
+    print(json.dumps({"H4a": out["H4a"], "H4b_n_closing_more_than_half": out["H4b"]["n_closing_more_than_half"]}, indent=1))
 
 
 if __name__ == "__main__":

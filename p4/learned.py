@@ -75,8 +75,11 @@ class L1(nn.Module):
         return e, e
 
 
+L2_SCALE = 10.0  # typical k'' (0.2-0.4) times a 30 % RH driving force, so f is of order 1
+
+
 class L2(nn.Module):
-    """Black-box neural ODE: dw/dt = s * f(z), s = w30 per minute.
+    """Black-box neural ODE: dw/dt = (S / m) * f(z), S = L2_SCALE (fixed, wt% mg per minute).
 
     z gives the network the same isotherm information as L1, as local features at the current
     state, but none of L1's structure (no sign constraint, no zero rate at equilibrium, no
@@ -96,7 +99,10 @@ class L2(nn.Module):
         z = torch.stack([w / w30, r / 100, ads.w_of_rh(r) / w30, des.w_of_rh(r) / w30,
                          ads.rh_of_w(w) / 100, des.rh_of_w(w) / 100, ads.slope_at_w(w) * 10 / w30,
                          (ctx["temp"] - 27.0) / 33.0, 10.0 / ctx["m"]], -1)
-        return w30 * self.f(z).squeeze(-1)
+        # Output = water mass flux (S/m maps it to wt% per minute; an identity, since w is
+        # 100 * water mass / dry mass). Round 3 scaled the output by w30 instead, a per-sorbent
+        # number the network never sees, so it could not get the rate scale of a new sorbent.
+        return (L2_SCALE / ctx["m"]) * self.f(z).squeeze(-1)
 
 
 def integrate(model, rh, w0, ctx, dt=0.1, limit=True):
