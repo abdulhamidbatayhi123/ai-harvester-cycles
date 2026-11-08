@@ -188,10 +188,15 @@ Implementation and training rules:
   segments, the first design, took about 2.5 hours per 300 steps on this machine. It left L1
   unable to learn a correction that was present and L2 badly undertrained.
 - Each learned model is an ensemble of 5 seeds, and its prediction is the ensemble mean.
-- Hyperparameters are chosen within each outer fold by inner leave-one-sorbent-out on the
-  training sorbents only, from a grid fixed here: width {16, 32}, depth {2}, weight decay
-  {1e-4, 1e-3}, learning rate {1e-3}.
-- Early stopping uses the inner folds. The outer held-out sorbent is never used for any choice.
+- Hyperparameters are chosen within each outer fold on one validation sorbent taken from the
+  training sorbents, from a grid fixed here: width {16, 32}, depth {2}, weight decay
+  {1e-4, 1e-3}, learning rate {1e-3}. The B0/B0-b choice is made the same way.
+  - The validation sorbent is Syloid AL-1, except in folds that hold Syloid out, where it is
+    ROS-040. If ROS-040 is held out too, it is CAU-10-H.
+  - The same validation sorbent serves for early stopping.
+  - The outer held-out sorbent is never used for any choice.
+  - Full inner leave-one-sorbent-out would be cleaner but costs about seven times more (section
+    11). A single validation sorbent makes the choice noisier, not leaky.
 
 ## 6. Metrics
 
@@ -299,9 +304,19 @@ Round 2 uses the two-stage training of section 5.
 
 ## 11. Compute
 
-Everything runs on the author's laptop: CPU only, one training job at a time, launched as
-background chains when the machine is free. The budget is fixed after the timing runs of
-section 9 and written here before the freeze.
+Measured in harness round 2 (`results/harness_round2/harness.json`, six or seven training
+sorbents per fit, on the shared laptop): one L1 fit took 39 to 55 minutes (mean 45.5), one L2 fit
+13 to 36 minutes (mean 19.9). For 12 outer folds (8 LOSO, 4 LOFO) this gives:
+
+- hyperparameter choice on the validation sorbent, 4 configurations, 1 seed: about 52 h;
+- final fits, 5 seeds of the chosen configuration: about 65 h;
+- physics baselines: under 1 h;
+- total: about 118 h of single-job CPU time.
+
+Full inner leave-one-sorbent-out would add roughly 300 h and is not planned. The jobs are
+independent, so they can run as parallel CPU jobs elsewhere (for example the author's Kaggle
+account) without changing any result. Every job writes a resumable row; a fit counts only if it
+completed. The final run times are reported.
 
 ## 12. Freeze record
 
