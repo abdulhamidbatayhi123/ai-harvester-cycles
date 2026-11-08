@@ -171,7 +171,7 @@ be made and recorded before any model is evaluated on them.
 
 ## 4. Folds
 
-- **Paired samples and inference clusters.** 37 groups of runs share a start timestamp: two
+- **Paired samples and inference clusters.** 31 groups of runs share a start timestamp (`results/prefreeze/summary.md`, after the duplicates were dropped): two
   samples measured together on a two-pan instrument, sharing their forcing. Measuring sessions
   are few: MOF-303 has one session at each temperature and Al-fumarate one at 60 °C
   (`results/prefreeze/checks2.md`). Sessions alone therefore cannot carry a per-sorbent test.
