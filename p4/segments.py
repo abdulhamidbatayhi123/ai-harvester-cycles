@@ -35,10 +35,36 @@ def resample(run: Run, dt: float = DT_MIN) -> dict:
     }
 
 
-def dry_mass_post_activation(run: Run, min_preheat: float = 50.0, window_min: float = 1.0):
-    """Alternative dry-mass rule: the end of the first 0 % plateau AFTER the activation stage,
-    with the preheater off, i.e. at the sorption temperature and the same gas conditions as the
-    rest of the run. Returns (m_dry, info) or (None, reason)."""
+def dry_mass_post_activation(run: Run, min_preheat: float = 50.0, window_min: float = 1.0,
+                             min_len_min: float = 5.0):
+    """Rule R2: the 0 % RH stretch that follows the heated activation within the same 0 % set-point
+    (preheater off, so gas and temperature are those of the rest of the run). m_dry is the median
+    mass over its last `window_min` minutes. Applies only if that stretch lasts >= `min_len_min`.
+    Returns (m_dry, info) or (None, reason)."""
+    pre = run.preheater_target
+    if not np.isfinite(pre).any():
+        return None, "no preheater column"
+    hot = (pre >= min_preheat) & (run.rh_target <= 0.5)
+    if not hot.any():
+        return None, "no activation stage"
+    i1 = int(np.argmax(hot))
+    while i1 + 1 < len(hot) and hot[i1 + 1]:
+        i1 += 1
+    j = i1 + 1
+    while j < len(run.rh_target) and run.rh_target[j] <= 0.5 and not (np.isfinite(pre[j]) and pre[j] >= min_preheat):
+        j += 1
+    if j - (i1 + 1) < 2 or run.t[j - 1] - run.t[i1 + 1] < min_len_min:
+        return None, "no 0 % stretch after activation"
+    tt = run.t[i1 + 1:j]
+    sel = tt >= tt[-1] - window_min
+    return float(np.median(run.mass[i1 + 1:j][sel])), {"end_time_min": float(tt[-1]),
+                                                      "activation_end_min": float(run.t[i1]),
+                                                      "stretch_min": float(tt[-1] - tt[0])}
+
+
+def dry_mass_first_desorption(run: Run, min_preheat: float = 50.0, window_min: float = 1.0):
+    """Rule R3 (the rule the first R2 implementation actually measured, 2026-11-08): the end of
+    the first unheated 0 % plateau after activation, i.e. the end of the first desorption step."""
     m_act, info = dry_mass_step_run(run, min_preheat, window_min)
     if m_act is None:
         return None, info
@@ -50,7 +76,7 @@ def dry_mass_post_activation(run: Run, min_preheat: float = 50.0, window_min: fl
             sel = run.t[a:b] >= run.t[b - 1] - window_min
             return float(np.median(run.mass[a:b][sel])), {"end_time_min": float(run.t[b - 1]),
                                                           "activation_end_min": t_end}
-    return None, "no 0 % plateau after activation"
+    return None, "no unheated 0 % plateau after activation"
 
 
 def dry_mass_step_run(run: Run, min_preheat: float = 50.0, window_min: float = 1.0):

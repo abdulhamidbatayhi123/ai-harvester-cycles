@@ -75,18 +75,23 @@ Isotherm choices fixed now:
   cycling file the reference is 21.11 mg while the mass falls to 18.89 mg.
   - Step runs and most isotherm runs begin with an activation stage under gas preheated to
     100 °C, followed by a 0 % RH plateau at the sorption temperature.
-    - **Primary rule R2:** m_dry is the median mass over the last minute of that 0 % plateau,
-      measured under the same gas and temperature as the rest of the run.
+    - **Primary rule R2:** after the heated activation, the 0 % set-point continues with the
+      preheater off for 70 to 229 minutes (median 90). m_dry is the median mass over the last
+      minute of that stretch, measured under the same gas and temperature as the rest of the
+      run. It applies to all 65 activated step runs and all 18 activated isotherm runs. The
+      isotherm takes this reference as its first point, with uptake 0 at its measured RH.
     - **Sensitivity rule R1:** the last minute of the heated activation itself.
-    - Why R2 (2026-11-08, data only, `results/prefreeze/dry_rules.json`): the two masses differ
-      by −3.5 % to +6.2 % (median −0.35 %). The activation mass reads high in most runs, which
-      fits buoyancy and thermal effects of the hot gas. In MOF-303 and Syloid the plateau mass
-      is higher, from re-adsorption at the instrument's real "0 %", 0.1 to 1.2 % RH.
-    - Criterion: which rule makes equilibrated step end-points agree with the isotherm at the
-      same measured RH. R2 gives a median over sorbent–temperature groups of 0.61 wt% against
-      0.78, and is better in 12 of 18 groups.
-    - It is worse for some, notably MOF-303 at 60 °C (3.76 against 0.84 wt%), so every
+    - Why R2 (2026-11-08, data only, `results/prefreeze/dry_rules.json`): R1 and R2 differ by
+      −3.5 % to +6.2 % of the dry mass. The activation mass reads high in most runs, which
+      fits buoyancy and thermal effects of the hot gas. In MOF-303 and Syloid it reads low,
+      which fits re-adsorption at the instrument's real "0 %" (0.1 to 1.2 % RH).
+    - Criterion, which involves no model: how well equilibrated step end-points agree with the
+      isotherm at the same measured RH. Median over the 18 sorbent–temperature groups:
+      R2 0.505 wt%, R1 0.78 wt%; R2 is better in 15 of 18 groups.
+    - R2 is worse for Al-fumarate at 60 °C and for MOF-303 at both temperatures, so every
       confirmatory result is also reported under R1.
+    - A third rule, R3 (the end of the first desorption step), was measured by mistake (section
+      13): median 0.61 wt%. It is not used.
   - Exception, measured 2026-11-04: the two composites' 27 °C step runs were dried only at
     27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour
     when the 0 % stage ended. Their dry mass is not established, so these runs are excluded from
@@ -363,3 +368,14 @@ Not frozen. Pre-freeze measurements so far (2026-11-04; `results/prefreeze/summa
     floor. The remaining error is in the form of the model, not in the noise, which is what H4a
     tests.
 - Commit hash, date and compute budget: to be filled at the freeze.
+
+## 13. Corrections to this draft
+
+- 2026-11-08. The first implementation of rule R2 did not do what section 3.3 described.
+  Plateaus are split only on RH set-point changes, so the activation and the 0 % stretch after it
+  form one plateau, and the code picked the next unheated 0 % plateau instead: the end of the
+  first desorption step. Its comparison ("R2 better in 12 of 18 groups") therefore described
+  another rule, now named R3. Found because the isotherms of the data figure vanished when the
+  isotherm builder was changed to start at the reference. Corrected R2 is implemented in
+  `p4/segments.py`; the comparison was rerun for R1, R2 and R3. The first-run numbers stay
+  quoted here; the rule choice (R2) is unchanged, now with the correct numbers.

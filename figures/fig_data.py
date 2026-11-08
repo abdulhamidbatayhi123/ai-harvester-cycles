@@ -36,7 +36,8 @@ def main():
     groups = {(g["sorbent"], g["temp"]): g for g in build_groups(root)}
     summ = json.load(open(summary_path, encoding="utf-8"))
     fs.apply()
-    fig, axs = plt.subplots(1, 3, figsize=(fs.W2, 58 * fs.MM), gridspec_kw={"wspace": 0.42})
+    fig, axs = plt.subplots(1, 3, figsize=(fs.W2, 64 * fs.MM), gridspec_kw={"wspace": 0.45})
+    fig.subplots_adjust(left=0.07, right=0.99, top=0.93, bottom=0.30)
     a, b, c = axs
     for s, fam, ls in SORB:
         g = groups[(s, "27C")]
@@ -54,7 +55,8 @@ def main():
     a.set_xlabel("relative humidity (%)")
     a.set_ylabel("uptake at 27 °C (wt%)")
     a.set_xlim(0, 40)
-    a.legend(loc="upper left", ncol=1, handlelength=2.2)
+    fig.legend(*a.get_legend_handles_labels(), loc="lower left", ncol=4, handlelength=2.6,
+               bbox_to_anchor=(0.04, -0.01), columnspacing=1.4)
     b.set_xlabel("time after the 0 → 30 % RH step (min)")
     b.set_ylabel("fraction of the step change")
     b.set_xlim(0, 80)

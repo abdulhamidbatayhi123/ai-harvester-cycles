@@ -2,16 +2,16 @@
  "figure": "fig1_data",
  "size_mm": [
   183.0,
-  58.0
+  64.0
  ],
  "font_pt": [
   6.0,
   8.0
  ],
- "made": "2026-11-08 15:01:33",
+ "made": "2026-11-08 15:14:49",
  "style_sha256": "dbf5f9820d55cc2655e2292f46105549c2bbe059734791e3b08929487d1b97e9",
  "script": "fig_data.py",
- "script_sha256": "f6105cd9d223802db346c2d61c52da6d26f5568a6f70f7e0b3ad592b1a0904f0",
+ "script_sha256": "78d310becac0f5bf5c898753a5beec418af912d114241f2f89bd4f0d5ec69b5b",
  "inputs": {
   "results/prefreeze/summary.json": "88c99f4a482d45db24521ae90f77a6c6262ed1aef0910c02cce3c5c36ff5ed3c"
  }

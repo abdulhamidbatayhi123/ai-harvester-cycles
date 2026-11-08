@@ -32,10 +32,16 @@ DRY_RULE = "R2"
 
 
 def _dry_mass(run, rule=None):
+    """R2 where it applies (a 0 % plateau directly after activation), else R1, else the first
+    0 % plateau of runs without activation."""
     rule = rule or DRY_RULE
-    m, info = (dry_mass_post_activation if rule == "R2" else dry_mass_step_run)(run)
+    if rule == "R2":
+        m, info = dry_mass_post_activation(run)
+        if m is not None:
+            return m, {**info, "rule": "R2"}
+    m, info = dry_mass_step_run(run)
     if m is not None:
-        return m, info
+        return m, {**info, "rule": "R1", "activation_end_min": info["end_time_min"]}
     for a, b in plateaus(run.rh_target):
         if run.rh_target[a] <= 0.5:
             return end_value(run.mass, run.t, a, b), {"end_time_min": float(run.t[b - 1])}
@@ -52,11 +58,22 @@ def isotherm_for(runs, sorbent, temp_dir, rule=None):
     if len(cands) != 1:
         raise ValueError(f"isotherm choice for {sorbent} {temp_dir} is ambiguous: {[r.source for r in cands]}")
     run = cands[0]
-    m_dry, _ = _dry_mass(run, rule)
-    pls = plateaus(run.rh_target)
-    rh = np.array([end_value(run.rh, run.t, a, b) for a, b in pls])
-    w = np.array([100 * (end_value(run.mass, run.t, a, b) - m_dry) / m_dry for a, b in pls])
-    tgt = np.array([run.rh_target[a] for a, b in pls])
+    m_dry, info = _dry_mass(run, rule)
+    # the isotherm starts at the dry-reference plateau; the heated activation before it is not
+    # an equilibrium point at the sorption temperature
+    t_act = info.get("activation_end_min", -np.inf)
+    pls = [(a, b) for a, b in plateaus(run.rh_target) if run.t[a] >= t_act - 1e-6]
+    rh = [end_value(run.rh, run.t, a, b) for a, b in pls]
+    w = [100 * (end_value(run.mass, run.t, a, b) - m_dry) / m_dry for a, b in pls]
+    tgt = [float(run.rh_target[a]) for a, b in pls]
+    # the dry reference itself is the first adsorption point: uptake 0 at its measured RH
+    if info.get("rule") == "R2" and info.get("end_time_min") is not None:
+        i_end = int(np.searchsorted(run.t, info["end_time_min"], side="right"))
+        sel = (run.t[:i_end] >= info["end_time_min"] - 1.0)
+        rh = [float(np.median(run.rh[:i_end][sel]))] + rh
+        w = [0.0] + w
+        tgt = [0.0] + tgt
+    rh, w, tgt = np.array(rh), np.array(w), np.array(tgt)
     top = int(np.argmax(tgt))
     return Branch.from_points(rh[: top + 1], w[: top + 1]), Branch.from_points(rh[top:], w[top:]), run.source
 

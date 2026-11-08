@@ -11,24 +11,28 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from p4.data import load_run, plateaus, end_value  # noqa: E402
 from p4.physics import Branch  # noqa: E402
-from p4.segments import dry_mass_step_run, dry_mass_post_activation, step_segments  # noqa: E402
+from p4.segments import dry_mass_step_run, dry_mass_post_activation, dry_mass_first_desorption, step_segments  # noqa: E402
 from p4.dataset import ISOTHERM_CHOICE, EXCLUDE_UNDRIED  # noqa: E402
 sys.stdout.reconfigure(encoding="utf-8")
 
 
 def dry(run, rule):
-    f = dry_mass_step_run if rule == "R1" else dry_mass_post_activation
-    m, info = f(run)
+    if rule in ("R2", "R3"):
+        f = dry_mass_post_activation if rule == "R2" else dry_mass_first_desorption
+        m, info = f(run)
+        if m is not None:
+            return m, info
+    m, info = dry_mass_step_run(run)
     if m is not None:
-        return m, info
+        return m, {**info, "activation_end_min": info["end_time_min"]}
     for a, b in plateaus(run.rh_target):
         if run.rh_target[a] <= 0.5:
             return end_value(run.mass, run.t, a, b), {"end_time_min": float(run.t[b - 1])}
     return None, {}
 
 
-def iso_branches(run, m):
-    pls = plateaus(run.rh_target)
+def iso_branches(run, m, t_act):
+    pls = [(a, b) for a, b in plateaus(run.rh_target) if run.t[a] >= t_act - 1e-6]
     rh = [end_value(run.rh, run.t, a, b) for a, b in pls]
     w = [100 * (end_value(run.mass, run.t, a, b) - m) / m for a, b in pls]
     tgt = [run.rh_target[a] for a, b in pls]
@@ -40,7 +44,7 @@ def main():
     src, out = sys.argv[1], sys.argv[2]
     runs = [load_run(os.path.join(src, f)) for f in sorted(os.listdir(src)) if f.endswith(".npz")]
     res = {}
-    for rule in ("R1", "R2"):
+    for rule in ("R1", "R2", "R3"):
         diffs = {}
         for s in sorted({r.sorbent for r in runs if r.sorbent}):
             for T in ("27C", "60C"):
@@ -54,8 +58,8 @@ def main():
                          and not r.source.startswith(EXCLUDE_UNDRIED)]
                 if len(isos) != 1 or not steps:
                     continue
-                mi, _ = dry(isos[0], rule)
-                ads, des = iso_branches(isos[0], mi)
+                mi, info_i = dry(isos[0], rule)
+                ads, des = iso_branches(isos[0], mi, info_i.get("activation_end_min", -np.inf))
                 d = []
                 for r in steps:
                     m, info = dry(r, rule)
@@ -76,8 +80,11 @@ def main():
         print(rule, "median over groups of median |end-point - isotherm| =", round(res[rule]["median_of_group_median_abs"], 3),
               "wt%; worst group", round(res[rule]["max_group_median_abs"], 3))
     for k in res["R1"]["per_group"]:
-        a, b = res["R1"]["per_group"][k], res["R2"]["per_group"].get(k, {})
-        print(f"  {k:24s} R1 {a['median']:+6.2f} (|{a['median_abs']:.2f}|)   R2 {b.get('median', float('nan')):+6.2f} (|{b.get('median_abs', float('nan')):.2f}|)  n={a['n']}")
+        cells = []
+        for rule in ("R1", "R2", "R3"):
+            v = res[rule]["per_group"].get(k, {})
+            cells.append(f"{rule} |{v.get('median_abs', float('nan')):.2f}|")
+        print(f"  {k:24s} " + "  ".join(cells))
     json.dump(res, open(out, "w"), indent=1)
 
 
