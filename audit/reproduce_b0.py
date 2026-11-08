@@ -49,6 +49,8 @@ def main():
         for d in ("ads", "des"):
             gs = [g for g in groups if g["temp"] == T and g["sorbent"] in PRIMARY8]
             pooled = fit_scale([sub(g, d) for g in gs], simulate_b0, d, dt=DT_MIN)
+            # pooled k'' by the scored metric, as the confirmatory comparator is fitted (section 5)
+            pooled_m = fit_scale_metric([sub(g, d) for g in gs], simulate_b0, d, dt=DT_MIN, k_start=pooled)
             ks = []
             for g in groups:
                 if g["temp"] != T:
@@ -60,13 +62,14 @@ def main():
                 km = fit_scale_metric([s], simulate_b0, d, dt=DT_MIN, k_start=k)
                 rec = {"sorbent": g["sorbent"], "temp": T, "dir": d, "n_seg": int(len(s["m"])),
                        "k2_own": k, "E_own": median_E(g, d, k), "E_pooled": median_E(g, d, pooled),
-                       "k2_own_metric": km, "E_own_metric": median_E(g, d, km)}
+                       "k2_own_metric": km, "E_own_metric": median_E(g, d, km),
+                       "E_pooled_metric": median_E(g, d, pooled_m)}
                 out["per_material"].append(rec)
                 if g["sorbent"] in PRIMARY8:
                     ks.append(k)
                 print(f"{T} {d} {g['sorbent']:18s} n={rec['n_seg']:3d} k''={k:8.4f}  E_own={rec['E_own']:.3f}  E_pooled={rec['E_pooled']:.3f}  E_own_metric={rec['E_own_metric']:.3f}", flush=True)
             ks = np.array(ks)
-            out["pooled"][f"{T}|{d}"] = {"k2_pooled": pooled, "k2_cv_across_8": float(ks.std() / ks.mean()),
+            out["pooled"][f"{T}|{d}"] = {"k2_pooled": pooled, "k2_pooled_metric": pooled_m, "k2_cv_across_8": float(ks.std() / ks.mean()),
                                          "k2_cv_across_8_sample_sd": float(ks.std(ddof=1) / ks.mean()),
                                          "k2_min": float(ks.min()), "k2_max": float(ks.max())}
             print(f"== {T} {d}: pooled k''={pooled:.4f}; across 8 sorbents CV={ks.std()/ks.mean():.2f}, range {ks.min():.4f}-{ks.max():.4f}", flush=True)

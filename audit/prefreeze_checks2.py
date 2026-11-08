@@ -27,7 +27,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from p4.data import PARENT, SORBENTS, data_files, load_run, plateaus  # noqa: E402
 from p4.dataset import EXCLUDE_UNDRIED, _dry_mass  # noqa: E402
-from p4.segments import DT_MIN, dry_mass_post_activation, dry_mass_step_run, normalised_rms, step_segments  # noqa: E402
+from p4.segments import DT_MIN, dry_mass_post_activation, dry_mass_step_run, is_scored, normalised_rms, step_segments  # noqa: E402
 
 PRIMARY8 = ["ROS-037", "ROS-039", "ROS-040", "MOF-303", "MIL-160", "CAU-10", "Al-fumarate", "Syloid"]
 MIN_DW = 0.05
@@ -147,10 +147,11 @@ def main():
             for g in step_segments(run, m_dry, DT_MIN, start_after_min=info.get("end_time_min")):
                 key = (round(g.rh_from, 1), round(g.rh_to, 1))
                 ordinal[key] += 1
-                if abs(g.w[-1] - g.w[0]) < MIN_DW:
+                if not is_scored(g):         # PREREG section 6 inclusion rule (review finding C1)
                     continue
                 groups_seg[(rec["sorbent"], rec["temp"])].append(
-                    (rec["source"], stamp(rec["source"]), key, ordinal[key], g.w.astype(np.float32)))
+                    (rec["source"], stamp(rec["source"]), key, ordinal[key], g.w.astype(np.float32),
+                     float(abs(g.w[-1] - g.w[0]))))
         del run
 
     res["flow"] = {"plateaus_by_kind_and_flow": {f"{k}|{f}": n for (k, f), n in sorted(flow_count.items())},
@@ -167,6 +168,9 @@ def main():
             "experiments": len({(x[1], x[2], x[3]) for x in segs}),
             "segments_up": sum(1 for x in segs if x[2][1] > x[2][0]),
             "segments_down": sum(1 for x in segs if x[2][1] < x[2][0]),
+            # inference clusters of section 4: one RH step in one session
+            "inference_clusters": len({(x[1], x[2]) for x in segs}),
+            "abs_dw_wt_pct_quantiles_0_10_50_90_100": [float(q) for q in np.quantile([x[5] for x in segs], [0, .1, .5, .9, 1])],
             "files": files}
         pan, sesn = [], []
         by_key = defaultdict(list)
@@ -266,12 +270,15 @@ def write_md(res, path):
     L += ["", f"Plateaus not at 400 sccm or without a flow value: {len(off)}", ""]
     for o in off:
         L.append(f"- {o['run']} | plateau {o['plateau']} | set-point {o['set_point']:.1f} % | flow {o['flow_sccm']}")
-    L += ["", "## M5: clusters per sorbent and temperature (step runs in P, segments with |Δw| ≥ 0.05 wt%)", "",
-          "| group | step files | two-pan sessions | experiments | up segments | down segments |",
-          "|---|---|---|---|---|---|"]
+    L += ["", "## M5, C1: clusters per sorbent and temperature (step runs in P; scored segments: |Δm| ≥ 0.05 mg "
+          "with the sign of the RH step)", "",
+          "| group | step files | two-pan sessions | inference clusters | up segments | down segments | "
+          "|Δw| wt% min / 10 % / median / 90 % / max |",
+          "|---|---|---|---|---|---|---|"]
     for g, c in res["clusters"].items():
-        L.append(f"| {g} | {c['step_files']} | {c['two_pan_sessions']} | {c['experiments']} | "
-                 f"{c['segments_up']} | {c['segments_down']} |")
+        q = " / ".join(f"{v:.2f}" for v in c["abs_dw_wt_pct_quantiles_0_10_50_90_100"])
+        L.append(f"| {g} | {c['step_files']} | {c['two_pan_sessions']} | {c['inference_clusters']} | "
+                 f"{c['segments_up']} | {c['segments_down']} | {q} |")
     mix = res["two_pan_mixed_sorbents"]
     L += ["", "m10: two-pan sessions (shared start stamp) that combine different sorbents: "
           + ("none." if not mix else "; ".join(f"{s}: {', '.join(v)}" for s, v in mix.items())), ""]

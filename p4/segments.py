@@ -137,9 +137,20 @@ def normalised_rms(pred: np.ndarray, meas: np.ndarray) -> float:
     return float(np.sqrt(np.mean((pred[:n] - meas[:n]) ** 2)) / dw)
 
 
-def noise_floor_pairs(segments: list[Segment], min_dw: float = 0.05):
+MIN_DM_MG = 0.05      # AUDIT.md section 2.3: a step counts if |dm| >= 0.05 mg with the sign of the RH step
+
+
+def is_scored(seg: Segment, min_mg: float = MIN_DM_MG) -> bool:
+    """PREREG section 6 inclusion rule (review finding C1): the measured mass change over the
+    segment is at least `min_mg` and has the sign of the set-point change."""
+    dw = float(seg.w[-1] - seg.w[0])
+    return abs(dw) * seg.m_dry / 100.0 >= min_mg and np.sign(dw) == np.sign(seg.rh_to - seg.rh_from)
+
+
+def noise_floor_pairs(segments: list[Segment], min_dw: float | None = None):
     """Test-retest pairs within one run: same (rh_from, rh_to), consecutive repeats from the
-    second repeat on. Returns list of (E, rh_from, rh_to, n_points)."""
+    second repeat on, both scored by the section 6 inclusion rule (is_scored; `min_dw` in wt%
+    restores the old 0.05 wt% rule). Returns list of (E, rh_from, rh_to, n_points)."""
     by_step: dict[tuple, list[Segment]] = {}
     for s in segments:
         by_step.setdefault((round(s.rh_from, 1), round(s.rh_to, 1)), []).append(s)
@@ -148,7 +159,9 @@ def noise_floor_pairs(segments: list[Segment], min_dw: float = 0.05):
         segs = sorted(segs, key=lambda s: s.index)
         for a, b in zip(segs[1:], segs[2:]):
             n = min(len(a.w), len(b.w))
-            if abs(a.w[n - 1] - a.w[0]) < min_dw:
+            if min_dw is not None and abs(a.w[n - 1] - a.w[0]) < min_dw:
+                continue
+            if min_dw is None and not (is_scored(a) and is_scored(b)):
                 continue
             # compare the two responses as changes from their own start
             ea = a.w[:n] - a.w[0]

@@ -100,3 +100,22 @@ def test_signflip_exact_matches_enumeration():
         pos = ((np.arange(2 ** m)[:, None] >> np.arange(m)) & 1).astype(bool)
         assert abs(signflip_p(d) - np.mean((pos * r).sum(1) >= obs - 1e-9)) < 1e-12
     assert signflip_p(np.ones(30)) == 2.0 ** -30
+
+
+def test_prefix_skip_matches_full_integration():
+    """Rows sorted by length use the skip-finished-rows path; it must equal row-by-row runs."""
+    import numpy as np
+    from p4.physics import Branch, simulate_b0
+    rng = np.random.default_rng(0)
+    iso = Branch.from_points([0, 10, 20, 30, 60, 90], [0, 2, 8, 20, 25, 30])
+    lens = [300, 220, 220, 90, 40]
+    rh = np.full((5, 300), np.nan)
+    for i, L in enumerate(lens):
+        rh[i, :L] = 30 + rng.normal(0, 0.5, L)
+    w0 = np.array([1.0, 2.0, 0.5, 3.0, 1.5])
+    k = np.array([0.03, 0.05, 0.04, 0.02, 0.06])
+    batch = simulate_b0(rh, w0, k, k, iso)
+    for i in range(5):
+        one = simulate_b0(rh[i:i + 1], w0[i:i + 1], k[i:i + 1], k[i:i + 1], iso)
+        assert np.array_equal(np.isnan(batch[i]), np.isnan(one[0]))
+        assert np.nanmax(np.abs(batch[i] - one[0])) < 1e-12

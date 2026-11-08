@@ -173,7 +173,8 @@ def train_two_stage(kind, train_groups, val_groups, k2, iso_by_mat, *, width=16,
 
 
 def beats(E_model, E_b0, F, rel=0.10, n_boot=2000, seed=0):
-    """Pre-registered decision rule (section 7), one statistic throughout: the median over
+    """SUPERSEDED (kept to reproduce harness rounds 1-3): the section 7 rule now lives in p4.decide
+    (clusters, exact signed-rank test, every material). Old rule: the median over
     segments of the paired difference d = E_B0 - E_model. A model beats B0 if median(d) > F,
     median(d) >= rel * median(E_B0), and the 2.5 % bootstrap quantile of median(d) > 0.
     (Resampling by experiment, with two-pan pairs as one, is applied by the caller through

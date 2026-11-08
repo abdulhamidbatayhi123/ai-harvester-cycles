@@ -1,15 +1,23 @@
 """Apply the pre-registered decision rules (PREREG_P4 section 7) to the runner's rows.
 
-Per fold and learned model, the paired difference d = E_base - E_model is averaged within each
-cluster, and the rule is applied to the cluster-level d: median(d) > F of the held-out sorbent, median(d) >= 10 % of median E_base,
-and a one-sided exact Wilcoxon signed-rank test of d over clusters gives p <= 0.025. A cluster is
-one RH step in one measuring session (both pans and all repeats of that step averaged). E_base is the comparator
-chosen on the validation sorbent among B0, B0-b and B1 (rows written before that change: B0).
+Per fold, learned model and held-out MATERIAL (a parent and its composite are judged
+separately, and both must pass; review finding C2), segment values are averaged within each
+cluster (one RH step in one measuring session: both pans and all repeats). The model beats the
+comparator on that material if
+  1. median over clusters of d = E_base - E_model exceeds the material's F,
+  2. median d >= 10 % of the comparator's median E over the same clusters, and
+  3. a one-sided exact Wilcoxon signed-rank test over clusters of D = (E_base - E_model) * |dw|,
+     the difference in unnormalised RMS error (wt%), gives p <= 0.025. Ranking D rather than d
+     keeps the smallest steps from dominating the ranks (review finding C1).
+A beat also needs physical admissibility: the share of segments where the model violates and
+neither the data nor the comparator does is at most 5 points (review finding O3).
+E_base is the comparator chosen among B0, B0-b and B1 (section 5).
 
 H4a, L1 primary and L2 secondary: supported if the model beats the comparator on >= 7 of 8 LOSO
-folds; falsified only if the 95 % bootstrap interval over the LOSO folds of the mean relative
-improvement lies wholly below 10 %; otherwise not established. Transfer across families requires
-both non-trivial LOFO folds (Al-rod, Zn-triazolate-F).
+folds; falsified if at most one of the 8 LOSO folds has a relative improvement r = median d /
+median E_base of at least 10 % (the 7th order statistic of r is then a one-sided 96.5 % upper
+bound on the median of r below 10 %; review finding O1); otherwise not established. Transfer
+across families requires both non-trivial LOFO folds (Al-rod, Zn-triazolate-F).
 H4b (descriptive): the fraction of (E_B0 - F) that B0*, fitted by median E, closes per sorbent.
 
 usage: python -E -s -m p4.decide <rows.jsonl> <results/prefreeze/checks2.json> <out.json>
@@ -29,7 +37,6 @@ VIOL_MARGIN = 0.05
 # The silica and Cu-glutarate LOFO folds hold out the same sorbents as their LOSO folds (review
 # finding M6), so the family rule rests on the two folds that hold out a whole family.
 NONTRIVIAL_LOFO = ("LOFO:Al-rod", "LOFO:Zn-triazolate-F")
-N_BOOT = 5000
 
 
 def sorbent_F(checks2):
@@ -38,14 +45,25 @@ def sorbent_F(checks2):
     return {s: float(v) for s, v in checks2["F_within_segment_weighted"].items()}
 
 
-def cluster_level(seg_ids, e_b0, e_m):
+def material_of(sid):
+    """The segment id starts with the experiment id '<sorbent>|<T>|<stamp>|...'."""
+    return sid.split("|")[0]
+
+
+def cluster_level(seg_ids, e_b0, e_m, dw=None):
+    """Cluster means of E_base, E_model and of D = (E_base - E_model) * |dw| (NaN if dw is None),
+    with the material of each cluster."""
     by = defaultdict(list)
-    for sid, a, b in zip(seg_ids, e_b0, e_m):
+    dw = [np.nan] * len(seg_ids) if dw is None else dw
+    for sid, a, b, w in zip(seg_ids, e_b0, e_m, dw):
         if np.isfinite(a) and np.isfinite(b):
-            by[sid.split("#")[0]].append((a, b))
-    b0 = np.array([np.mean([x[0] for x in v]) for v in by.values()])
-    m = np.array([np.mean([x[1] for x in v]) for v in by.values()])
-    return b0, m
+            by[sid.split("#")[0]].append((a, b, (a - b) * w))
+    keys = list(by)
+    b0 = np.array([np.mean([x[0] for x in by[k]]) for k in keys])
+    m = np.array([np.mean([x[1] for x in by[k]]) for k in keys])
+    D = np.array([np.mean([x[2] for x in by[k]]) for k in keys])
+    mat = np.array([material_of(k) for k in keys])
+    return b0, m, D, mat
 
 
 def signflip_p(d, **_):
@@ -73,10 +91,12 @@ def signflip_p(d, **_):
     return float(sum(counts[obs:])) / float(2 ** n)
 
 
-def rule(e_b0, e_m, F, seed=0):
+def rule(e_b0, e_m, F, D=None):
+    """Section 7 for one material. D: cluster values of the unnormalised difference for the
+    test; without it (old rows) the test falls back to d."""
     d = e_b0 - e_m
     gain = float(np.median(d))
-    p = signflip_p(d)
+    p = signflip_p(d if D is None or not np.all(np.isfinite(D)) else D)
     ok = bool(gain > F and gain >= REL * float(np.median(e_b0)) and p <= ALPHA)
     return ok, {"median_gain": gain, "p_signflip": p, "E_B0": float(np.median(e_b0)),
                 "E_model": float(np.median(e_m)), "F": F, "n_clusters": int(len(d)),
@@ -93,34 +113,47 @@ def main():
         p = phys[fold]
         assert p["seg"] == r["seg"], f"segment order differs in {fold}"
         held = p["held"]
-        Fh = max(F.get(s, 0.0) for s in held)        # the larger floor when a fold holds several
-        b0, m = cluster_level(r["seg"], p["E"].get("base", p["E"]["B0"]), r["E"])
-        ok, info = rule(b0, m, Fh)
-        # physical admissibility (section 7): violation rate at most the data's own + 5 points
-        v_m = float(np.mean(r["viol"])) if r.get("viol") else None
-        v_d = float(np.mean(p["viol_data"])) if p.get("viol_data") else None
-        admissible = v_m is None or v_d is None or v_m <= v_d + VIOL_MARGIN
+        b0, m, D, mat = cluster_level(r["seg"], p["E"].get("base", p["E"]["B0"]), r["E"], p.get("dw"))
+        per_mat = {}
+        for s in held:
+            sel = mat == s
+            if sel.any():
+                per_mat[s] = rule(b0[sel], m[sel], F.get(s, 0.0), D[sel])
+        ok = bool(per_mat) and all(v[0] for v in per_mat.values())
+        _, info = rule(b0, m, max(F.get(s, 0.0) for s in held), D)     # pooled, reported
+        # physical admissibility (section 7, review finding O3): violations the model adds beyond
+        # both the data and the comparator on the same segment
+        vm = np.asarray(r.get("viol") or [], bool)
+        vd = np.asarray(p.get("viol_data") or [False] * len(vm), bool)
+        vb = np.asarray(p.get("viol_base") or [False] * len(vm), bool)
+        excess = float(np.mean(vm & ~vd & ~vb)) if len(vm) else None
+        admissible = excess is None or excess <= VIOL_MARGIN
         b2 = p["E"].get("B2")
-        out["folds"][f"{fold}|{kind}"] = {"beats_B0": bool(ok and admissible), "rule_met": ok,
-                                          "violation_rate": v_m, "violation_rate_data": v_d,
-                                          "admissible": admissible, "comparator": p.get("comparator", "B0"),
-                                          "E_B2": float(np.nanmedian(b2)) if b2 else None, **info}
+        out["folds"][f"{fold}|{kind}"] = {
+            "beats_B0": bool(ok and admissible), "rule_met": ok,
+            "per_material": {s: {"rule_met": v[0], **v[1]} for s, v in per_mat.items()},
+            "violation_rate": float(np.mean(vm)) if len(vm) else None,
+            "violation_rate_data": float(np.mean(vd)) if len(vd) else None,
+            "violation_rate_comparator": float(np.mean(vb)) if len(vb) else None,
+            "violation_excess": excess, "admissible": admissible,
+            "comparator": p.get("comparator", "B0"),
+            "E_B2": float(np.nanmedian(b2)) if b2 else None, **info}
     for kind in ("L1", "L2"):
         loso_v = [v for k, v in out["folds"].items() if k.startswith("LOSO") and k.endswith(kind)]
         loso = [v["beats_B0"] for v in loso_v]
         lofo = [v["beats_B0"] for k, v in out["folds"].items() if k.startswith("LOFO") and k.endswith(kind)
                 and k.split("|")[0] in NONTRIVIAL_LOFO]
         n = sum(loso)
-        # falsification needs an interval (review finding M3): the 95 % bootstrap interval, over
-        # the 8 LOSO folds, of the mean relative improvement must lie wholly below REL
+        # falsification (review finding O1): at most one LOSO fold with r >= REL, so that the
+        # 7th order statistic of r, a one-sided 96.5 % upper bound on its median, is below REL
         rel = np.array([v["median_gain"] / v["E_B0"] for v in loso_v]) if loso_v else np.array([])
-        rng = np.random.default_rng(1)
-        hi = float(np.quantile([rng.choice(rel, len(rel)).mean() for _ in range(N_BOOT)], 0.975)) if len(rel) else float("nan")
-        verdict = ("supported" if n >= 7 else "falsified" if hi < REL else "not established") if len(loso) == 8 else "incomplete"
+        n_rel = int(np.sum(rel >= REL))
+        verdict = ("supported" if n >= 7 else "falsified" if n_rel <= 1 else "not established") if len(loso) == 8 else "incomplete"
         out["H4a"][kind] = {"role": "primary" if kind == "L1" else "secondary", "LOSO_beats": n,
                             "LOSO_folds": len(loso), "verdict": verdict,
                             "rel_improvement_mean": float(rel.mean()) if len(rel) else None,
-                            "rel_improvement_upper95": hi,
+                            "rel_improvement_folds": rel.tolist(), "n_folds_rel_ge_10pct": n_rel,
+                            "rel_improvement_order7": float(np.sort(rel)[6]) if len(rel) == 8 else None,
                             "LOFO_beats_nontrivial": sum(lofo), "LOFO_folds_nontrivial": len(lofo),
                             "transfers_across_families": (sum(lofo) == 2) if len(lofo) == 2 else None}
     closes = 0

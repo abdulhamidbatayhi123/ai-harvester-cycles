@@ -54,35 +54,49 @@ def _b1_rate(w, r, k_ads, k_des, ads, des):
 
 
 def _integrate(rate, rh, w0, k_ads, k_des, ads, des, dt):
-    """rh: (n, L) forcing on a uniform grid (NaN after a segment ends); returns w (n, L)."""
+    """rh: (n, L) forcing on a uniform grid (NaN after a segment ends); returns w (n, L).
+    When the rows happen to be sorted by length (longest first), only the rows still running are
+    integrated; the result is the same as integrating all rows."""
     rh = np.atleast_2d(np.asarray(rh, float))
     n, L = rh.shape
     w = np.full((n, L), np.nan)
     w[:, 0] = w0
     k_ads = np.broadcast_to(np.asarray(k_ads, float), (n,))
     k_des = np.broadcast_to(np.asarray(k_des, float), (n,))
-    eq_up = lambda r: ads.w_of_rh(r)
-    eq_dn = lambda r: (ads if des is None else des).w_of_rh(r)
+    lens = np.isfinite(rh).sum(1)
+    contiguous = bool(np.all(np.isfinite(rh) == (np.arange(L)[None, :] < lens[:, None])))
+    prefix_ok = contiguous and bool(np.all(np.diff(lens) <= 0))
     for i in range(L - 1):
-        r0, r1 = rh[:, i], rh[:, i + 1]
+        if prefix_ok:
+            k = int(np.searchsorted(-lens, -(i + 2), side="right"))   # rows with lens >= i + 2
+            if k == 0:
+                break
+        else:
+            k = n
+        r0, r1 = rh[:k, i], rh[:k, i + 1]
         live = np.isfinite(r1)
         if not live.any():
             break
+        a_k, d_k = ads, des
+        ka, kd = k_ads[:k], k_des[:k]
         r0, r1 = np.where(live, r0, 0.0), np.where(live, r1, 0.0)
         rm = 0.5 * (r0 + r1)
-        y = w[:, i]
-        f = lambda yy, rr: rate(yy, rr, k_ads, k_des, ads, des)
+        y = w[:k, i]
+        f = lambda yy, rr: rate(yy, rr, ka, kd, a_k, d_k)
         k1 = f(y, r0)
         k2 = f(y + 0.5 * dt * k1, rm)
         k3 = f(y + 0.5 * dt * k2, rm)
         k4 = f(y + dt * k3, r1)
         yn = y + dt / 6.0 * (k1 + 2 * k2 + 2 * k3 + k4)
-        up = f(y, r1) > 0
-        dn = f(y, r1) < 0
-        yn = np.where(up, np.clip(yn, y, np.maximum(y, eq_up(r1))), yn)
-        yn = np.where(dn, np.clip(yn, np.minimum(y, eq_dn(r1)), y), yn)
+        f1 = f(y, r1)
+        up = f1 > 0
+        dn = f1 < 0
+        eq_up = a_k.w_of_rh(r1)
+        eq_dn = (a_k if d_k is None else d_k).w_of_rh(r1)
+        yn = np.where(up, np.clip(yn, y, np.maximum(y, eq_up)), yn)
+        yn = np.where(dn, np.clip(yn, np.minimum(y, eq_dn), y), yn)
         yn = np.where(~up & ~dn, y, yn)
-        w[:, i + 1] = np.where(live, yn, np.nan)
+        w[:k, i + 1] = np.where(live, yn, np.nan)
     return w
 
 
@@ -97,6 +111,27 @@ def simulate_b1(rh, w0, k_ads, k_des, ads: Branch, des: Branch | None = None, dt
     return _integrate(_b1_rate, rh, w0, k_ads, k_des, ads, des, dt)
 
 
+def _k_dir(k_rows, direction):
+    return (k_rows, 0.0) if direction == "ads" else (0.0, k_rows)
+
+
+def _preds(groups, simulate, k, direction, dt, k_of=None):
+    """Predictions per group for pooled k'' (or k_of(group) giving k'' per group)."""
+    for g in groups:
+        kk = (k if k_of is None else k_of(g)) / np.asarray(g["m"], float)
+        yield g, simulate(g["rh"], g["w"][:, 0], *_k_dir(kk, direction), g["ads"], g.get("des"), dt=dt)
+
+
+def _seg_E(pred, w):
+    """Per-segment scored metric E (section 6); NaN where the measured change is 0."""
+    n = np.isfinite(w).sum(1)
+    last = w[np.arange(len(w)), np.maximum(n - 1, 0)]
+    dw = np.abs(last - w[:, 0])
+    rms = np.sqrt(np.nanmean((pred - w) ** 2, axis=1))
+    with np.errstate(invalid="ignore", divide="ignore"):
+        return np.where(dw > 0, rms / dw, np.nan)
+
+
 def fit_scale(groups, simulate, direction, dt=0.1, bounds=(1e-4, 1e3)):
     """Fit one material-independent constant k'' (rate constant = k''/m) for one direction.
 
@@ -104,14 +139,9 @@ def fit_scale(groups, simulate, direction, dt=0.1, bounds=(1e-4, 1e3)):
     masses, ads, des. Loss: mean over all segments of the mean squared trajectory error.
     """
     def loss(logk):
-        k = np.exp(logk)
         se, cnt = 0.0, 0
-        for g in groups:
-            kk = k / np.asarray(g["m"], float)
-            ka, kd = (kk, 0.0) if direction == "ads" else (0.0, kk)
-            pred = simulate(g["rh"], g["w"][:, 0], ka, kd, g["ads"], g.get("des"), dt=dt)
-            err = (pred - g["w"]) ** 2
-            seg_mse = np.nanmean(err, axis=1)
+        for g, pred in _preds(groups, simulate, np.exp(logk), direction, dt):
+            seg_mse = np.nanmean((pred - g["w"]) ** 2, axis=1)
             se += float(np.sum(seg_mse))
             cnt += len(seg_mse)
         return se / max(cnt, 1)
@@ -120,32 +150,32 @@ def fit_scale(groups, simulate, direction, dt=0.1, bounds=(1e-4, 1e3)):
     return float(np.exp(r.x))
 
 
-def fit_scale_metric(groups, simulate, direction, dt=0.1, k_start=None, span=2.0, n_grid=41):
-    """Oracle fit (review finding F1): the k'' that minimises the SCORED metric, the median over
-    segments of E = RMS(pred - meas) / |measured change|, so that B0* is a true lower bound on
-    what tuning k'' alone can reach. The median is not smooth, so a log grid of `n_grid` points
-    over +-`span` decades around `k_start` (default: the least-squares fit) is searched first,
-    then a bounded scalar search refines inside the best grid cell."""
+def _median_E(groups, simulate, direction, dt, k=None, k_of=None):
+    E = np.concatenate([_seg_E(p, g["w"]) for g, p in _preds(groups, simulate, k, direction, dt, k_of)])
+    E = E[np.isfinite(E)]
+    return float(np.median(E)) if len(E) else float("inf")
+
+
+def fit_scale_metric(groups, simulate, direction, dt=0.1, k_start=None, half_width=0.5, n_grid=11,
+                     max_shifts=6):
+    """Fit by the SCORED metric (review findings F1, N5): the k'' that minimises the median over
+    segments of E = RMS(pred - meas) / |measured change|. Used for the oracle B0* and for every
+    physics comparator. The median is not smooth, so a log grid of `n_grid` points over
+    +-`half_width` decades around `k_start` (default: the least-squares fit) is searched first; if
+    the best point is at an edge, the window moves by one width (at most `max_shifts` times); a
+    bounded scalar search then refines inside the best grid cell."""
     if k_start is None:
         k_start = fit_scale(groups, simulate, direction, dt=dt)
-
-    def med_e(logk):
-        k = np.exp(logk)
-        E = []
-        for g in groups:
-            kk = k / np.asarray(g["m"], float)
-            ka, kd = (kk, 0.0) if direction == "ads" else (0.0, kk)
-            pred = simulate(g["rh"], g["w"][:, 0], ka, kd, g["ads"], g.get("des"), dt=dt)
-            for p_, w_ in zip(pred, g["w"]):
-                n = int(np.isfinite(w_).sum())
-                dw = abs(w_[n - 1] - w_[0])
-                if dw > 0:
-                    E.append(np.sqrt(np.mean((p_[:n] - w_[:n]) ** 2)) / dw)
-        return float(np.median(E)) if E else float("inf")
-    c = np.log(k_start)
-    grid = np.linspace(c - span * np.log(10), c + span * np.log(10), n_grid)
-    vals = [med_e(x) for x in grid]
-    i = int(np.argmin(vals))
+    med_e = lambda logk: _median_E(groups, simulate, direction, dt, k=np.exp(logk))
+    c, hw = np.log(k_start), half_width * np.log(10)
+    seen = {}
+    for _ in range(max_shifts + 1):
+        grid = np.linspace(c - hw, c + hw, n_grid)
+        vals = [seen.setdefault(round(x, 9), med_e(x)) for x in grid]
+        i = int(np.argmin(vals))
+        if 0 < i < n_grid - 1:
+            break
+        c = grid[i] + (hw if i == n_grid - 1 else -hw)
     lo, hi = grid[max(i - 1, 0)], grid[min(i + 1, n_grid - 1)]
     r = minimize_scalar(med_e, bounds=(lo, hi), method="bounded", options={"xatol": 1e-4})
     best = r.x if r.fun <= vals[i] else grid[i]
@@ -158,25 +188,27 @@ def rh50(ads: Branch) -> float:
     return float(ads.rh_of_w(0.5 * float(ads.w_of_rh(30.0))))
 
 
-def fit_b2(groups, direction, dt=0.1):
-    """B2 (reported comparator): log k'' = a + b * rh50/30, fitted by least squares over the
-    training groups of one temperature and direction. groups: dicts as for fit_scale, each with
-    one material's 'ads'. Returns (a, b)."""
+def fit_b2(groups, direction, dt=0.1, metric=False):
+    """B2 (reported comparator): log k'' = a + b * rh50/30, fitted over the training groups of
+    one temperature and direction, by least squares or (metric=True) by the median of E
+    (Nelder-Mead from the pooled fit). groups: dicts as for fit_scale, each with one material's
+    'ads'. Returns (a, b)."""
     from scipy.optimize import minimize
-    xs = [rh50(g["ads"]) / 30.0 for g in groups]
+    xs = {id(g): rh50(g["ads"]) / 30.0 for g in groups}
+    k_of = lambda p: (lambda g: np.exp(p[0] + p[1] * xs[id(g)]))
 
     def loss(p):
+        if metric:
+            return _median_E(groups, simulate_b0, direction, dt, k_of=k_of(p))
         se, cnt = 0.0, 0
-        for g, x in zip(groups, xs):
-            kk = np.exp(p[0] + p[1] * x) / np.asarray(g["m"], float)
-            ka, kd = (kk, 0.0) if direction == "ads" else (0.0, kk)
-            pred = simulate_b0(g["rh"], g["w"][:, 0], ka, kd, g["ads"], g.get("des"), dt=dt)
+        for g, pred in _preds(groups, simulate_b0, None, direction, dt, k_of(p)):
             seg = np.nanmean((pred - g["w"]) ** 2, axis=1)
             se += float(np.sum(seg))
             cnt += len(seg)
         return se / max(cnt, 1)
-    k0 = fit_scale(groups, simulate_b0, direction, dt=dt)
-    r = minimize(loss, [np.log(k0), 0.0], method="Nelder-Mead", options={"xatol": 1e-3, "fatol": 1e-9})
+    k0 = (fit_scale_metric if metric else fit_scale)(groups, simulate_b0, direction, dt=dt)
+    r = minimize(loss, [np.log(k0), 0.0], method="Nelder-Mead",
+                 options={"xatol": 1e-3, "fatol": 1e-9 if not metric else 1e-6})
     return float(r.x[0]), float(r.x[1])
 
 

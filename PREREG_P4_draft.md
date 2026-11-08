@@ -25,15 +25,15 @@ the results.
 
 - **H4a, primary.** A learned model, given only the held-out sorbent's isotherms, predicts its
   uptake trajectories more accurately than the best per-fold refitted isotherm-only physics
-  model (B0, B0-b or B1, chosen on the validation sorbent; section 5), by more than the
+  model (B0, B0-b or B1, chosen on the training sorbents; section 5), by more than the
   measured noise floor and by a practically relevant margin. L1 (grey box) is the primary
   learned model and L2 (black box) the secondary one; only L1 can support the headline claim.
 - **H4b, descriptive.** How much of B0's error on a held-out sorbent comes from the assumption
   that the rate constant is the same for every material. Measured as the fraction of the gap
   between B0 and the noise floor that the oracle B0* closes (B0 with k″ fitted on the held-out
   sorbent itself, by the scored metric). It is not a confirmatory test: an in-sample version of
-  both quantities was seen before the freeze (section 12), and it closed at most a third of the
-  gap for every sorbent.
+  both quantities was seen before the freeze (section 12): under R2, with k″ fitted by the
+  scored metric, it closed H4B_INSAMPLE (`results/prefreeze/h4b_insample.json`).
 - **H4c, descriptive.** Holding out whole families degrades every model more than holding out
   single sorbents does. Only two of the four LOFO folds differ from a LOSO fold (section 4), so
   this is reported descriptively, without a significance test.
@@ -179,13 +179,23 @@ be made and recorded before any model is evaluated on them.
   repeats of that step are averaged into one cluster value. Inference is thus over the
   humidity conditions measured for a sorbent, given the samples measured; the paper does not
   claim generalisation to new samples of the same sorbent beyond the pans in the archive.
+- **What a per-fold beat means (review findings C3, C4).** Clusters from one session share that
+  sample's systematic errors (its dry mass, its end-point offset, its mass); MOF-303's clusters
+  come from two sessions. A per-fold beat is therefore a consistency screen over humidity
+  conditions, not a material-level test; the error control at the material level is the
+  7-of-8 rule over held-out sorbents (section 7). Averaging the two pans hides the effect of
+  sample mass, so d is also reported per pan as a diagnostic.
+- **Parents and composites (review finding C2).** A composite is held out with its parent, but
+  the two are judged separately and both must pass (section 7): composite clusters are about two
+  thirds of those folds, and the composites respond several times faster than their parents.
 - **Sessions that mix sorbents.** Three kinds of two-pan sessions hold two different sorbents:
   CAU-10-H with MIL-160 (2021-08-27), ROS-040 with Syloid (2021-08-28), and the two composites
   (six sessions, 2022-04-28 to 05-03). Pans that share a session share their measured forcing,
   but no uptake trace is shared, so this is no leakage of the target. Clusters are formed
   within one sorbent.
-- **Gas flow (checked per plateau, 2026-11-08; `results/prefreeze/checks2.md`).** All 1,212
-  step plateaus and all 1,612 cycling plateaus in P ran at a logged total flow of 400 sccm, and
+- **Gas flow (checked per plateau, 2026-11-08; `results/prefreeze/checks2.md`).** All 1,188
+  step plateaus and all 1,492 cycling plateaus in P (after the duplicates were dropped) ran at a
+  logged total flow of 400 sccm, and
   none lacks a value. The isotherm runs used 50 sccm, which does not matter at equilibrium. The
   paper states 200 mL/min, plausibly per pan; this matters only for pooling with Gao 2026.
 - **LOSO (leave one sorbent out).** Eight folds, one per Bezrukov sorbent. A composite is
@@ -216,21 +226,35 @@ In every fold, everything that is fitted is fitted on the training sorbents only
     (RH_flow > RH_bed) and release (RH_flow < RH_bed).
   - RH_bed(w) is the inverse of the adsorption branch of the held-out sorbent's isotherm, in
     both directions, as in the published code. Interpolation is monotone.
-  - k = k″/m, with k″ fitted by least squares on the training sorbents only. It is fitted
-    separately for each temperature and direction, and pooled across materials: the
-    "independent of the material" assumption, refitted per fold.
+  - k = k″/m, with k″ fitted on the training sorbents only, by the scored metric (the median E
+    over segments, as for the oracle below). It is fitted separately for each temperature and
+    direction, and pooled across materials: the "independent of the material" assumption,
+    refitted per fold.
+  - Why the scored metric and not least squares (review finding N5): the learned models are
+    validated and early-stopped on median E, and L1 = B0·exp(g) can learn a constant g, which is
+    just a refit of k″ to that metric. Fitting the comparators by least squares would hand the
+    learned models that refit as a "win". In sample, the metric fit alone lowers B0's E from
+    0.022–0.237 to 0.018–0.236 (section 12). Every physics model (B0, B0-b, B1, B2, B0\*) is fitted
+    the same way.
   - The published code can rescale the isotherm to match a kinetic run ("scale_isotherm"). That
     uses the held-out sorbent's own kinetics, so it is forbidden here for every model.
   - Variant B0-b: the same, but reading the desorption branch during release.
 - **B1, the second baseline: linear driving force.**
   - Equation: dw/dt = k_LDF(T, m)·(w*(RH_flow) − w), with k_LDF = k‴(T)/m, fitted the same way.
-- **The comparator for H4a** is whichever of B0, B0-b and B1 has the lowest median E on the
-  fold's validation sorbent, the same choice the learned models get. A learned model that beat
-  B0 but not B1 would not have beaten "the isotherm".
+- **The comparator for H4a** is whichever of B0, B0-b and B1 does best across the fold's
+  training sorbents (review finding O2): each candidate is fitted on all training sorbents, and
+  the one with the lowest median, over those sorbents, of its per-sorbent median E is chosen.
+  The three have the same four parameters (one k″ per temperature and direction), so an
+  in-sample comparison does not favour a more flexible one, and six or seven sorbents make it far
+  less noisy than the single validation sorbent of the earlier draft. Inner leave-one-sorbent-out
+  was costed: on this machine it would add about INNER_H hours of physics fits to every run (main,
+  R1 and each null replicate), and it was rejected for that reason. The choice uses no outer
+  held-out data. A learned model that beat B0 but not B1 would not have beaten "the isotherm".
 - **B2, reported comparator (not in the decision rule).** B0 with k″ made material-dependent
   in the simplest way an isotherm allows: log k″ = a + b·(RH₅₀/30 %), where RH₅₀ is the RH at
   which the adsorption branch reaches half its uptake at 30 % RH. a and b are fitted per
-  temperature and direction on the training sorbents. If L1 beats the comparator but not B2,
+  temperature and direction on the training sorbents (by the scored metric, Nelder–Mead from
+  the pooled fit). If L1 beats the comparator but not B2,
   the paper says that a two-parameter isotherm descriptor does as well as learning.
 - **B0\*, the oracle.** B0 with k″ fitted on the held-out sorbent's own data by minimising the
   scored metric (the median E over its segments; a log-grid search then a bounded refinement),
@@ -272,7 +296,8 @@ Implementation and training rules:
 - Each learned model is an ensemble of 5 seeds, and its prediction is the ensemble mean.
 - Hyperparameters are chosen within each outer fold on one validation sorbent taken from the
   training sorbents, from a grid fixed here: width {16, 32}, depth {2}, weight decay
-  {1e-4, 1e-3}, learning rate {1e-3}. The comparator choice (B0, B0-b or B1) is made the same way.
+  {1e-4, 1e-3}, learning rate {1e-3}. (The comparator is chosen on all training sorbents
+  instead; see above.)
 - Stage A's centred difference over ±18 s spans about half of the fastest time-to-63 % (1.1
   min), so it smooths the onset of the fastest steps. Stage B trains on the trajectories
   themselves, so this affects only the starting point of training, not the scored quantity.
@@ -282,8 +307,14 @@ Implementation and training rules:
     ROS-040. If ROS-040 is held out too, it is CAU-10-H.
   - The same validation sorbent serves for early stopping.
   - The outer held-out sorbent is never used for any choice.
-  - Full inner leave-one-sorbent-out would be cleaner but costs about seven times more (section
-    11). A single validation sorbent makes the choice noisier, not leaky.
+  - Full inner leave-one-sorbent-out for the learned models would be cleaner but costs about
+    seven times more (section 11). A single validation sorbent makes the choice noisier, not
+    leaky.
+  - Syloid is the only non-MOF (review finding O2). Tuning on it can only pick configurations
+    that transfer worse to MOFs, which works against a positive H4a. It also weakens a
+    "falsified" verdict, so the paper states that the learned models were tuned on a silica gel
+    and does not claim that no tuning on MOFs could help. A second, MOF validation sorbent was
+    considered and rejected: it would cut the training set from six sorbents to five.
 
 ## 6. Metrics
 
@@ -304,9 +335,13 @@ Implementation and training rules:
     sorbent, is reported beside F as a ceiling, not a floor: pans and sessions differ in sample
     mass, and the rate scales with 1/m, so their disagreement mixes noise with a real,
     modelled effect. It is 0.034 to 0.374 (section 12).
-- **Segment inclusion.** A step segment is scored only if its measured change |Δw| is at least
-  0.05 wt% (`p4/dataset.py`); E is undefined as |Δw| → 0. The rule is applied to the measured
-  data before any model is run, so it is the same for every model.
+- **Segment inclusion.** A step segment is scored only if its measured mass change is at least
+  0.05 mg and has the sign of the set-point change (`p4/segments.py`, `is_scored`), the rule of
+  AUDIT.md section 2.3. For the dry masses in P (MDRY_RANGE) this is DW_RANGE. E is undefined as
+  |Δw| → 0 and is dominated by noise for tiny steps. The rule is applied to the measured data
+  before any model is run, so it is the same for every model, and the noise floor F uses the
+  same segments. (An earlier draft used |Δw| ≥ 0.05 wt%, ten times looser than the audit rule;
+  review finding C1, section 13.)
 - **Aggregation.** A sorbent's score pools all its segments at both temperatures and in both
   directions. Composite segments count towards the fold of their parent, with which they are
   held out. Temperature and direction strata are also reported separately.
@@ -326,59 +361,74 @@ Implementation and training rules:
 
 ## 7. Decision rules and falsifiers
 
-**Beating the comparator in a fold.** Per held-out sorbent, let d = E_comparator − E_model per
-segment, averaged within each cluster (one RH step in one session; section 4). A learned model
-"beats the comparator" in the fold if all three hold:
+**Beating the comparator in a fold.** For each held-out material (a parent and its composite
+separately; section 4), let d = E_comparator − E_model per segment, and let D = d·|Δw|, the
+difference in unnormalised RMS error (wt%). Both are averaged within each cluster (one RH step in
+one session). A learned model beats the comparator on a material if all three hold:
 
-1. the median of the cluster values of d exceeds that sorbent's F (section 6);
+1. the median of the cluster values of d exceeds that material's F (section 6);
 2. the median of d is at least 10 % of the comparator's median E over the same clusters
    (practical significance);
-3. a one-sided exact Wilcoxon signed-rank test of d over clusters gives p ≤ 0.025 (exact null
+3. a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025 (exact null
    distribution over all 2ⁿ sign vectors, average ranks for ties, computed by counting subset
    sums so that it is exact for any n).
 
-This is one statistic throughout, the paired difference, and `p4/decide.py` implements exactly
-this text. The signed-rank statistic replaces the median in the test because the median ties
-heavily under sign flips (six equal gains give p = 0.34, not 1/64). The attainable minimum p
-is 2⁻ⁿ for n clusters, so a sorbent with fewer than 6 clusters cannot be beaten; the cluster
-counts are recorded in section 12 before the freeze.
+It beats the comparator in the fold if it does so on every held-out material of the fold (both
+the parent and the composite in the ROS-037 and ROS-039 folds), and is physically admissible
+(below). `p4/decide.py` implements exactly this text.
+
+Why two quantities (review finding C1): conditions 1 and 2 are about the size of the gain
+relative to the error and to the noise, for which the dimensionless d is the natural scale. The
+test ranks D instead, because d divides by |Δw|, so the smallest steps would have the largest
+|d| and would dominate the ranks; D weights each cluster by how much water it moved. The
+signed-rank statistic is used rather than the median because the median ties heavily under sign
+flips (six equal gains give p = 0.34, not 1/64). The attainable minimum p is 2⁻ⁿ for n
+clusters, so a material with fewer than 6 clusters cannot be beaten; the counts are in section 12.
 
 The order of events matters for condition 2. The 10 % threshold was proposed on 2026-11-04,
 after the noise floor (F medians 0.001 to 0.013) and the in-sample B0 reproduction were seen,
 and before any learned model was fitted to real data. It exists because F alone would count
 almost any improvement as real. It is the author's to confirm or change at the freeze.
 
-**Physical admissibility.** A model whose violation rate on a held-out sorbent (section 6)
-exceeds the measured data's own rate by more than 5 percentage points does not beat the
-comparator in that fold, whatever its E.
+**Physical admissibility (review finding O3).** A segment counts as a violation against a
+learned model only if the model violates (section 6) and neither the measured data nor the
+comparator does on that segment: an isotherm-driven model can move against the step where the
+measured start lies off the isotherm, and L1 shares B0's driving force. If such excess
+violations exceed 5 % of a fold's segments, the model does not beat the comparator in that fold,
+whatever its E.
 
-**H4a**, decided on the 8 LOSO folds, separately for L1 (primary) and L2 (secondary):
+**H4a**, decided on the 8 LOSO folds, separately for L1 (primary) and L2 (secondary). Let r be a
+fold's relative improvement, the median d over its clusters divided by the comparator's median E.
 
-- **Supported** if the model beats the comparator in at least 7 of 8 folds. This is a
-  decision rule, not a p-value. The folds share most of their training sorbents, so a sign-test
-  p would overstate the evidence.
-- **Falsified** only if an interval excludes the declared effect: the 95 % bootstrap interval,
-  over the 8 folds, of the mean relative improvement (median d divided by the comparator's
-  median E) lies wholly below 10 %.
+- **Supported** if the model beats the comparator in at least 7 of 8 folds. This is a decision
+  rule, not a p-value; the folds share most of their training sorbents, so a sign-test p would
+  overstate the evidence. It also requires the null study to pass (section 10, criterion 4).
+- **Falsified** if at most one of the 8 folds has r ≥ 10 % (review finding O1). The 7th order
+  statistic of r is then below 10 %, and it is a one-sided 96.5 % upper bound on the median of
+  r over folds whatever their dependence on the training sets: P(at least 7 of 8 below the
+  median) = 1 − 9/256. A bootstrap over 8 dependent folds, the earlier rule, undercovers.
 - **Not established** otherwise, including a moderate real effect that the 8 folds cannot
   resolve.
 - The headline claim rests on L1. An L2 result is reported as secondary. If only L2 meets the
   rule, the paper says so and does not claim H4a.
 - The verdict must be the same under the primary dry-mass rule R2 and the sensitivity rule R1.
   If it differs, H4a is reported as not robust to the dry-mass definition, and the weaker of
-  the two verdicts is the result.
+  the two verdicts is the result. R2 is not drift-free for MOF-303 and Syloid (section 3.3), so
+  if R1 and R2 disagree on those folds in particular, the paper says so (review finding O4).
 
 **Transfer across families.** A model that is supported on LOSO transfers across families if it
 also beats the comparator on both non-trivial LOFO folds (aluminium rods; zinc triazolates).
 
-**Complete verdict table** (per model; LOSO beats out of 8; non-trivial LOFO beats out of 2):
+**Complete verdict table** (per model; LOSO beats out of 8; folds with r ≥ 10 %; non-trivial
+LOFO beats out of 2):
 
-| LOSO beats | Interval below 10 % | LOFO beats | Verdict |
+| LOSO beats | Folds with r ≥ 10 % | LOFO beats | Verdict |
 |---|---|---|---|
-| 7 or 8 | (not used) | 2 | supported, transfers across families |
-| 7 or 8 | (not used) | 0 or 1 | supported within families; does not transfer across families |
-| 0 to 6 | yes | any | falsified |
-| 0 to 6 | no | any | not established |
+| 7 or 8 (null study passed) | (not used) | 2 | supported, transfers across families |
+| 7 or 8 (null study passed) | (not used) | 0 or 1 | supported within families; does not transfer across families |
+| 7 or 8 (null study failed) | (not used) | any | not established; the paper reports the null study's failure |
+| 0 to 6 | 0 or 1 | any | falsified |
+| 0 to 6 | 2 or more | any | not established |
 
 **H4b and H4c** are estimates with bootstrap intervals and carry no verdict (section 2).
 
@@ -428,32 +478,58 @@ truth, and the fold pipeline is run on them (`audit/synthetic_harness.py`). Thre
 - **C, a learnable correction:** truth = B0 × exp(−0.7·w/w₃₀), a material-independent slow-down
   near saturation that a model given only the isotherm can learn. On the two held-out test
   sorbents it raises B0's median E from about 0.0005 (case N) to 0.036 and 0.041.
-- **Null, realistic (review finding F2):** every sorbent deviates from B0 by its own rate
-  factor exp(b_s + a_s·(w/w₃₀ − ½)), with b_s ~ N(0, 0.3²) and a_s ~ N(0, 0.6²) drawn
-  independently of anything in the isotherm; AR(1) measurement noise (σ = 0.01 wt%, φ = 0.9).
-  With these sizes B0's median E over the eight sorbents is 0.064 to 0.081 in three
-  replicates, and 0.021 to 0.205 per sorbent (`results/null_calibration.json`, computed before the
-  duplicate fix), inside the range B0 shows on the real data. A model given only the isotherm cannot predict these deviations, so any "beat" here is
-  a false positive.
+- **Null, realistic (review findings F2, N3, N4).** Every sorbent–temperature group deviates
+  from B0 in two ways drawn independently of anything in its isotherm, so a model given only the
+  isotherm cannot predict them, and any "beat" here is a false positive:
+  - a rate factor exp(b + a·(x − ½) − σ_b²/2 − σ_a²·(x − ½)²/2), x = w/w₃₀, with b ~ N(0, σ_b(T)²)
+    per group and a ~ N(0, σ_a²) per sorbent, σ_a = 0.6. The last two terms make the expected
+    factor exactly 1 at every w, so the null world holds no average shape that a model could
+    learn and transfer (N4). σ_b(T) is the measured spread of log k″ across the eight sorbents
+    (`results/prefreeze/reproduce_b0.json`): 0.089 at 27 °C and 0.300 at 60 °C;
+  - an equilibrium offset: the truth equilibrates on the isotherm scaled by (1 + ε), with ε
+    resampled from the 18 measured relative end-point offsets (median step end-point minus
+    isotherm, divided by w₃₀, per sorbent–temperature group; −0.04 to +0.45). This gives the
+    null world the material-specific equilibrium error of the real data (N3), which L2 could
+    otherwise exploit or be penalised for unrealistically;
+  - AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9.
+  With these sizes NULL_SIZE (`results/null_calibration.json`).
 
 The harness passes if:
 
 1. in world N, B0 refitted on the training sorbents recovers k″ within 2 %;
 2. in world C, L1 beats B0 by the section 7 rule on both held-out sorbents and halves B0's
-   median E (the injected effect; this number was set after round 2, which met it);
+   median E (the injected effect). This number was set after round 2, which met it, so round 2 does
+   not count for it: round 4 must meet it afresh (review finding O6);
 3. in world N, neither learned model beats B0 (a check that is weak by itself: noise-free data
    put E_B0 below every F, so condition 1 of the rule blocks a beat whatever the model does;
    in round 2, L1's median paired gain on the MOF-303 null fold was 24 % of E_B0 with its
    bootstrap interval above zero, so only F stopped a beat; on ROS-039 it was 6 %;
    `results/harness_round2/harness.json`);
-4. **in the null world, run through the confirmatory runner and decision script themselves**
-   (`p4.run_study --synthetic null`, `p4.decide`) on all 8 LOSO folds, with one configuration
-   and one seed per fit, the per-fold false-positive rate of each learned model is estimated
-   from all its null fold-fits. H4a can be declared only if that rate's one-sided 95 % upper
-   bound implies P(≥ 7 of 8 beats) ≤ 5 % under independence (`audit/null_summary.py`). With
-   16 fold-fits this allows at most about 2 null beats. The folds share training sorbents, so
-   independence is optimistic; the beats per replicate are reported as well. The number of
-   replicates is set by the compute available and stated; at least 2 (16 fold-fits per model).
+4. **the null study** (review findings N1, N2), run through the confirmatory runner and decision
+   script themselves (`p4.run_study --synthetic null`, `p4.decide`) on all 8 LOSO folds, and
+   summarised by `audit/null_summary.py`. Let r be a fold's relative improvement (section 7).
+   For each learned model, over all its null fold-fits:
+   - (i) no replicate has more than 2 of 8 beats;
+   - (ii) the 90th percentile of r is below 10 % and the mean of r is below 0.
+   These conditions do not lean on independence between folds. A spurious correction learned
+   from the shared training sorbents would make folds beat together, and then the chance of 7
+   of 8 approaches the per-fold rate itself; condition (i) and the distribution of r catch that
+   pattern where a count of beats under independence would not.
+   - (iii) The one-sided 95 % Clopper–Pearson bound on the per-fold beat rate is reported as what
+     it is: zero beats in 16 fold-fits bounds the rate at 0.17, and 59 fold-fits without a beat
+     would be needed to bound it at 0.05.
+
+   Two procedures:
+   - **Before the freeze**: at least 2 replicates (16 fold-fits per model) with a reduced
+     procedure, one configuration and one seed per fit. This tests the decision machinery and
+     the models in a realistic null; it must pass for the draft to be frozen.
+   - **With the confirmatory runs**: one further replicate (rep 2) with the full confirmatory
+     procedure for L1 (4 configurations tuned on the validation sorbent, then 5 seeds; 72 fits).
+     Selection on a validation sorbent and ensembling change how often a spurious correction
+     survives, in an unknown direction, so the reduced replicates alone would test a different
+     procedure. L1 can be declared "supported" only if this replicate also meets (i) and (ii).
+     For L2, which cannot carry the headline, the false-positive rate is stated as that of the
+     reduced procedure.
 
 **Round 1 (2026-11-04/05; `results/harness_round1/`)**, with whole-segment training. Seven of
 the eight runs finished before it was stopped:
@@ -494,9 +570,10 @@ Per model and fold: 4 configurations × 1 seed for tuning, then 5 seeds of the c
 | L1, primary rule R2 | 90 | about 68 |
 | L2, primary rule R2 | 90 | about 30 |
 | R1 sensitivity, reusing each fold's R2 configuration (5 seeds only) | 100 | about 54 |
-| Null study, 2 replicates × 8 folds × 2 models, 1 configuration, 1 seed | 32 | about 18 |
-| Physics baselines, B2 and oracle fits | — | under 3 |
-| **Total** | 312 | **about 173** |
+| Null study before the freeze, 2 replicates × 8 folds × 2 models, 1 configuration, 1 seed | 32 | about 18 |
+| Null study with the confirmatory runs, 1 replicate × 8 folds, L1, full procedure (4 + 5 fits) | 72 | about 55 |
+| Physics: three comparators, B2 and oracle fits, all by the scored metric, in every run | — | PHYS_H |
+| **Total** | 384 | **about TOTAL_H** |
 
 The R1 sensitivity run reuses the configuration chosen under R2 in each fold. It asks whether
 the dry-mass definition changes the verdict, not whether tuning changes it.
@@ -504,12 +581,15 @@ the dry-mass definition changes the verdict, not whether tuning changes it.
 **Pre-registered reduction order**, applied only if the full protocol cannot be run, decided
 and recorded at the freeze (before any real-data fit exists) and never afterwards:
 
-1. seeds per ensemble 5 → 3;
-2. tuning grid 4 → 2 configurations (width 32; both weight decays);
-3. the null study's second replicate dropped, with the false-positive bound computed from 8
-   fold-fits per model and stated as such.
+1. R1 sensitivity seeds 5 → 3;
+2. seeds per ensemble 5 → 3 (all other runs, including the full-procedure null replicate);
+3. tuning grid 4 → 2 configurations (width 32; both weight decays).
 
-Full inner leave-one-sorbent-out would add roughly 300 h and is not planned. The jobs are
+The null study is not on this list (review finding N1): it is what makes a positive H4a
+credible, so it is never reduced.
+
+Full inner leave-one-sorbent-out would add roughly 300 h for the learned models and about
+INNER_H h per run for the physics comparators; neither is planned (section 5). The jobs are
 independent, so they can run as parallel CPU jobs elsewhere (for example the author's Kaggle
 account) without changing any result. Every job writes a resumable row; a fit counts only if it
 completed. The final run times are reported.
@@ -556,7 +636,7 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
     k″ = 3.16 against 1.59 pooled.
   - Even with its own k″, B0's in-sample median E is 0.022 to 0.237 (0.018 to 0.236 when k″ is
     fitted by the scored metric). That is 3.5 to 67 times the noise floor, median 15 over the 32
-    strata (sorbent × temperature × direction). The remaining error lies in the model's form.
+    strata (sorbent × temperature × direction). The remaining error lies in the model's form or in its isotherm input (step end-points miss the isotherm by group medians of −1.16 to +3.13 wt% under R2).
   - Under R1 (`reproduce_b0_R1.json`): coefficients of variation 0.08, 0.10, 0.42, 0.29
     (population SD); E 0.018 to 0.206.
 - **Physical-violation floor** (section 6; `results/prefreeze/violation_floor.json`): the share of
@@ -604,3 +684,24 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   per sorbent (section 12), not 36 to 144. The signed-rank test now uses its exact null
   distribution for any number of clusters; before, it switched to Monte Carlo above 16. Neither
   change touched any real-data result: no learned model had been evaluated on real data.
+- 2026-11-09. **Second review (Claude Science T-P4-3) answered.**
+  - Comparators and B2 are fitted by the scored metric, like the oracle (N5). The comparator is
+    chosen on all training sorbents, not on Syloid (O2); inner leave-one-sorbent-out, which the
+    review proposed, was costed and rejected (section 5).
+  - Scored segments follow the audit rule, |Δm| ≥ 0.05 mg with the step's sign, not |Δw| ≥
+    0.05 wt% (C1). The test ranks the unnormalised difference D, so small steps no longer
+    dominate (C1). A parent and its composite must each pass (C2).
+  - Falsification uses the 7th order statistic of r over the 8 folds, not a bootstrap (O1).
+    Violations count against a learned model only beyond both the data and the comparator (O3).
+  - Null world: the expected rate factor is exactly 1 at every w (N4); the rate spread is per
+    temperature (N4); material-specific equilibrium offsets are resampled from the data (N3).
+    Criterion 4 no longer leans on independent folds (N1). One null replicate runs with the
+    full confirmatory procedure for L1 and gates "supported" (N2). The null study is off the
+    reduction order (N1).
+  - The harness now applies the section 7 rule of `p4/decide.py` itself (clusters, D test,
+    every material), not the old segment-level bootstrap in `p4/train.py`.
+  - The metric fit searches a narrower, moving log grid (±0.5 decade, 11 points, shifted if the
+    best point is at an edge) instead of a fixed ±2-decade grid of 41 points. Batching all
+    materials into one integration was tried; it gave identical results but was not faster
+    on this machine, and it was dropped.
+  - All pre-freeze numbers were recomputed after the inclusion change (section 12).

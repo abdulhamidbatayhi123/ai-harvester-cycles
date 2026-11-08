@@ -12,7 +12,7 @@ import numpy as np
 
 from p4.data import SORBENTS, data_files, load_run, plateaus, end_value
 from p4.physics import Branch
-from p4.segments import DT_MIN, dry_mass_post_activation, dry_mass_step_run, step_segments
+from p4.segments import DT_MIN, dry_mass_post_activation, dry_mass_step_run, is_scored, step_segments
 
 # Pre-registered isotherm choices (section 3.2): substring that identifies the file to use.
 ISOTHERM_CHOICE = {
@@ -91,7 +91,7 @@ def pad(arrs):
     return out
 
 
-def build_groups(root, min_dw=0.05, rule=None):
+def build_groups(root, min_dw=None, rule=None):
     runs = [load_run(os.path.join(root, f)) for f in data_files(root)]
     groups = []
     for s in SORBENTS:
@@ -105,7 +105,7 @@ def build_groups(root, min_dw=0.05, rule=None):
             for r in steps:
                 m_dry, info = _dry_mass(r, rule)
                 for g in step_segments(r, m_dry, DT_MIN, start_after_min=info.get("end_time_min")):
-                    if abs(g.w[-1] - g.w[0]) >= min_dw:
+                    if (is_scored(g) if min_dw is None else abs(g.w[-1] - g.w[0]) >= min_dw):
                         segs.append(g)
             groups.append({
                 "sorbent": s, "temp": T, "iso_source": iso_src, "ads": ads, "des": des, "segments": segs,

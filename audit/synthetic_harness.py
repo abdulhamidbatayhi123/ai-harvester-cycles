@@ -23,9 +23,11 @@ import torch
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from p4.dataset import build_groups  # noqa: E402
 from p4.learned import TorchBranch, integrate  # noqa: E402
-from p4.physics import fit_scale, simulate_b0  # noqa: E402
+from p4.physics import fit_scale, fit_scale_metric, simulate_b0  # noqa: E402
 from p4.segments import DT_MIN, normalised_rms  # noqa: E402
-from p4.train import beats, evaluate, isotherms_by_material, train_two_stage  # noqa: E402
+from p4.decide import cluster_level, rule  # noqa: E402
+from p4.run_study import seg_dw, seg_ids  # noqa: E402
+from p4.train import evaluate, isotherms_by_material, train_two_stage  # noqa: E402
 
 sys.stdout.reconfigure(encoding="utf-8")
 torch.set_num_threads(2)
@@ -68,33 +70,52 @@ def synthesise(groups, k2, corrected, seed):
 
 
 class NullTruth(torch.nn.Module):
-    """Realistic null world (review finding F2): every sorbent deviates from B0 by its own rate
-    factor exp(b_s + a_s (w / w30 - 1/2)), with (a_s, b_s) drawn independently of anything in the
-    isotherm. A model given only the isotherm cannot predict these deviations on a new sorbent,
-    so any 'beat' in this world is a false positive."""
+    """Realistic null world (review findings F2, N3, N4). Every sorbent-temperature group deviates
+    from B0 in two ways that are drawn independently of anything in its isotherm, so that a model
+    given only the isotherm cannot predict them on a new sorbent and any 'beat' is a false positive:
+      - a rate factor exp(b + a (x - 1/2) - sd_b^2/2 - sd_a^2 (x - 1/2)^2 / 2), x = w / w30, with
+        b ~ N(0, sd_b(T)^2) per group and a ~ N(0, sd_a^2) per sorbent; the last two terms make the
+        expected factor exactly 1 at every w (N4);
+      - an equilibrium offset: the truth equilibrates on the isotherm scaled by (1 + eps), eps
+        resampled from the 18 measured relative end-point offsets (N3)."""
 
-    def __init__(self, ab):
+    def __init__(self, a, b, eps, sd_b):
         super().__init__()
-        self.ab = ab          # (a_s, b_s) of the group being simulated
+        self.a, self.b, self.eps, self.sd_b = a, b, eps, sd_b
 
     def rate(self, w, r, ctx):
-        d = r - ctx["ads"].rh_of_w(w)
+        d = r - ctx["ads"].rh_of_w(w / (1.0 + self.eps))
         k = torch.where(d > 0, ctx["k_ads"], ctx["k_des"])
-        a, b = self.ab
-        return k * d * torch.exp(b + a * (w / ctx["w30"] - 0.5))
+        x = w / ctx["w30"] - 0.5
+        return k * d * torch.exp(self.b + self.a * x - self.sd_b ** 2 / 2 - NULL_SD_A ** 2 * x ** 2 / 2)
 
     def equilibrium(self, r, ctx):
-        e = ctx["ads"].w_of_rh(r)
+        e = ctx["ads"].w_of_rh(r) * (1.0 + self.eps)
         return e, e
 
 
-NULL_SD_B, NULL_SD_A = 0.30, 0.60      # sizes set so that B0's median E is near 0.05 (see PREREG section 10)
+# Sizes (PREREG section 10), from the real data before any learned model was run:
+# sd_b(T) = across-sorbent SD of log k'' fitted per sorbent (results/prefreeze/reproduce_b0.json, R2,
+# mean of uptake and release): 0.089 at 27 C, 0.300 at 60 C.
+NULL_SD_B = {"27C": 0.089, "60C": 0.300}
+NULL_SD_A = 0.60
+# relative end-point offsets, step end-point minus isotherm over w30, median per sorbent-temperature
+# group (results/prefreeze/dry_rules.json R2 and the isotherms in summary.json; null_eps_source.json)
+NULL_EPS = (0.001, 0.452, 0.000, 0.007, -0.005, -0.036, 0.038, 0.060, -0.011, 0.006, 0.059, -0.037,
+            -0.038, 0.012, -0.007, 0.023, -0.024, 0.221)
 NOISE_SD, NOISE_PHI = 0.01, 0.9        # AR(1) measurement noise, wt%
 
 
-def null_draws(sorbents, seed):
+def null_draws(sorbents, seed, temps=("27C", "60C")):
+    """{sorbent: {"a": a_s, "27C": (b, eps), "60C": (b, eps)}} for replicate `seed`."""
     rng = np.random.default_rng(1000 + seed)
-    return {s: (float(rng.normal(0, NULL_SD_A)), float(rng.normal(0, NULL_SD_B))) for s in sorted(sorbents)}
+    out = {}
+    for s in sorted(sorbents):
+        d = {"a": float(rng.normal(0, NULL_SD_A))}
+        for T in temps:
+            d[T] = (float(rng.normal(0, NULL_SD_B[T])), float(rng.choice(NULL_EPS)))
+        out[s] = d
+    return out
 
 
 def ar1(rng, shape):
@@ -115,12 +136,24 @@ def synthesise_null(groups, k2, seed):
         m = torch.as_tensor(g["m"])
         ctx = {"ads": TorchBranch(g["ads"].rh, g["ads"].w), "w30": torch.tensor(float(g["ads"].w_of_rh(30.0))),
                "k_ads": k2[(g["temp"], "ads")] / m, "k_des": k2[(g["temp"], "des")] / m}
+        dr = draws[g["sorbent"]]
+        b, eps = dr[g["temp"]]
+        truth = NullTruth(dr["a"], b, eps, NULL_SD_B[g["temp"]])
         with torch.no_grad():
-            w = integrate(NullTruth(draws[g["sorbent"]]), torch.as_tensor(g["rh"]),
-                          torch.as_tensor(g["w"][:, 0]), ctx, dt=DT_MIN).numpy()
+            w = integrate(truth, torch.as_tensor(g["rh"]), torch.as_tensor(g["w"][:, 0]), ctx, dt=DT_MIN).numpy()
         w = w + ar1(rng, w.shape) * np.isfinite(w)
         out.append({**g, "w": w})
     return out, draws
+
+
+def beats(te, E_m, E_b0, F):
+    """The section 7 rule of p4.decide on held-out groups `te` (clusters, D test, every material),
+    with the synthetic floor F for every material. Admissibility is not applied here."""
+    b0, m, D, mat = cluster_level(seg_ids(te), E_b0, E_m, seg_dw(te))
+    per = {s: rule(b0[mat == s], m[mat == s], F, D[mat == s]) for s in sorted(set(mat))}
+    ok = all(v[0] for v in per.values())
+    _, info = rule(b0, m, F, D)
+    return ok, {**info, "per_material": {s: v[1] for s, v in per.items()}}
 
 
 def b0_E(groups, k2):
@@ -134,7 +167,9 @@ def b0_E(groups, k2):
     return np.array(E)
 
 
-def fit_k2(groups):
+def fit_k2(groups, metric=False):
+    """Pooled k'' per temperature and direction; metric=True fits by the scored metric, as the
+    confirmatory comparators are (PREREG section 5, review finding N5)."""
     k2 = {}
     for T in ("27C", "60C"):
         for d in ("ads", "des"):
@@ -144,7 +179,7 @@ def fit_k2(groups):
                     continue
                 s = g["dir"] == (1 if d == "ads" else -1)
                 sel.append({"rh": g["rh"][s], "w": g["w"][s], "m": g["m"][s], "ads": g["ads"], "des": None})
-            k2[(T, d)] = fit_scale(sel, simulate_b0, d, dt=DT_MIN)
+            k2[(T, d)] = (fit_scale_metric if metric else fit_scale)(sel, simulate_b0, d, dt=DT_MIN)
     return k2
 
 
@@ -163,7 +198,7 @@ def main():
             tr = [g for g in syn if g["sorbent"] not in (held, VAL)]
             va = [g for g in syn if g["sorbent"] == VAL]
             te = [g for g in syn if g["sorbent"] == held]
-            k_fit = fit_k2([g for g in syn if g["sorbent"] != held])
+            k_fit = fit_k2([g for g in syn if g["sorbent"] != held], metric=True)
             rec = {"k_fit": {f"{a}|{b}": v for (a, b), v in k_fit.items()},
                    "k_rel_err": {f"{a}|{b}": k_fit[(a, b)] / k_true[(a, b)] - 1 for (a, b) in k_true}}
             E_b0 = b0_E(te, k_fit)
@@ -172,7 +207,7 @@ def main():
                 model, best = train_two_stage(kind, tr, va, k_fit, iso,
                                               log=lambda s: log(f"{case} {held} {kind} {s}"))
                 E_m = evaluate(model, kind, te, k_fit, iso)["E"]
-                ok, info = beats(E_m, E_b0, F_SYN)
+                ok, info = beats(te, E_m, E_b0, F_SYN)
                 rec[kind] = {"beats_B0": ok, **info, "train_s": time.time() - t0}
                 log(f"case {case} held {held} {kind}: beats={ok} {info} ({time.time() - t0:.0f}s)")
             res["cases"][f"{case}|{held}"] = rec

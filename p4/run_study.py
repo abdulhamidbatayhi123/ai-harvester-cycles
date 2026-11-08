@@ -1,13 +1,14 @@
 """Confirmatory runner of PREREG_P4 (sections 4, 5, 7 and 11). Run on real data ONLY after the
 freeze; before it, only with --synthetic (plumbing check on synthetic uptake).
 
-For each outer fold (8 LOSO, 4 LOFO):
-  1. fit B0, B0-b and B1 on the training sorbents (k'' per temperature and direction);
-     choose B0 or B0-b on the validation sorbent (section 5);
+For each outer fold (8 LOSO and the 2 LOFO folds that differ from them):
+  1. physics, all fitted by the scored metric (median E; section 5): fit B0, B0-b and B1 on the
+     training sorbents (validation sorbent included) and choose the comparator by the median
+     over those sorbents of the per-sorbent median E; B2 and the oracle B0* (k'' fitted on the
+     held-out sorbent itself, H4b); per-segment |dw| and violation flags of data and comparator;
   2. for L1 and L2: train each grid configuration (seed 0), choose on the validation sorbent,
      then train 5 seeds of the chosen configuration; the prediction is the seed mean;
-  3. score every model on the held-out groups: per-segment E (section 6), plus the oracle B0*
-     (k'' fitted on the held-out sorbent itself, H4b).
+  3. score every model on the held-out groups: per-segment E (section 6).
 Rows go to <out>/rows.jsonl, one per (fold, model, config, seed) step; finished steps are skipped
 on restart. Seed predictions are cached in <out>/pred/.
 
@@ -74,9 +75,10 @@ def sub(groups, T, d):
     return out
 
 
-def fit_physics(groups, simulate, use_des, metric=False):
-    """k'' per temperature and direction. metric=True fits the oracle B0* by the scored metric
-    (median E) instead of least squares (review finding F1)."""
+def fit_physics(groups, simulate, use_des, metric=True):
+    """k'' per temperature and direction, fitted by the scored metric, the median of E (review
+    findings F1 and N5: the learned models are validated on that metric, so the comparators and
+    the oracle B0* are fitted on it too). metric=False gives the least-squares fit."""
     k2 = {}
     for T in ("27C", "60C"):
         for d in ("ads", "des"):
@@ -89,23 +91,38 @@ def fit_physics(groups, simulate, use_des, metric=False):
     return k2
 
 
-def physics_E(groups, simulate, k2, use_des):
-    E = []
+def physics_pred(groups, simulate, k2, use_des):
+    out = []
     for g in groups:
         ka, kd = k2[(g["temp"], "ads")] / g["m"], k2[(g["temp"], "des")] / g["m"]
-        pred = simulate(g["rh"], g["w"][:, 0], ka, kd, g["ads"], g["des"] if use_des else None, dt=DT_MIN)
-        E += seg_E(pred, g["w"])
-    return E
+        out.append(simulate(g["rh"], g["w"][:, 0], ka, kd, g["ads"], g["des"] if use_des else None, dt=DT_MIN))
+    return out
+
+
+def physics_E(groups, simulate, k2, use_des, preds=None):
+    preds = physics_pred(groups, simulate, k2, use_des) if preds is None else preds
+    return sum((seg_E(p, g["w"]) for g, p in zip(groups, preds)), [])
+
+
+def seg_dw(groups):
+    """|measured change| per segment (wt%), for the section 7 test on unnormalised errors."""
+    out = []
+    for g in groups:
+        for w in g["w"]:
+            w = w[np.isfinite(w)]
+            out.append(float(abs(w[-1] - w[0])))
+    return out
 
 
 def b2_E(train, te):
-    """B2: log k'' = a + b * rh50/30 per temperature and direction, fitted on `train`."""
+    """B2: log k'' = a + b * rh50/30 per temperature and direction, fitted on `train` by the
+    scored metric."""
     ab = {}
     for T in ("27C", "60C"):
         for d in ("ads", "des"):
             gs = [{**g, "des": None} for g in sub(train, T, d)]
             if gs:
-                ab[(T, d)] = fit_b2(gs, d, dt=DT_MIN)
+                ab[(T, d)] = fit_b2(gs, d, dt=DT_MIN, metric=True)
     E = []
     for g in te:
         x = rh50(g["ads"]) / 30.0
@@ -113,6 +130,27 @@ def b2_E(train, te):
         kd = np.exp(ab[(g["temp"], "des")][0] + ab[(g["temp"], "des")][1] * x) / g["m"]
         E += seg_E(simulate_b0(g["rh"], g["w"][:, 0], ka, kd, g["ads"], None, dt=DT_MIN), g["w"])
     return E, {f"{a}|{b}": v for (a, b), v in ab.items()}
+
+
+CANDIDATES = {"B0": (simulate_b0, False), "B0-b": (simulate_b0, True), "B1": (simulate_b1, False)}
+
+
+def choose_comparator(fit_on, k_fit):
+    """Comparator choice on the fold's training sorbents (review finding O2), not on one
+    validation sorbent: each candidate, fitted on all training sorbents by the scored metric, is
+    scored by the median over training sorbents of its per-sorbent median E; the lowest wins.
+    The three candidates have the same four parameters (one k'' per temperature and direction),
+    so an in-sample comparison does not favour a more flexible one. Inner leave-one-sorbent-out
+    was costed and rejected (PREREG section 11). Returns (choice, {candidate: score},
+    {candidate: per-sorbent scores})."""
+    mats = sorted({g["sorbent"] for g in fit_on})
+    per = {c: {} for c in CANDIDATES}
+    for c, (sim, des) in CANDIDATES.items():
+        for s in mats:
+            gs = [g for g in fit_on if g["sorbent"] == s]
+            per[c][s] = float(np.nanmedian(physics_E(gs, sim, k_fit[c], des)))
+    score = {c: float(np.median(list(v.values()))) for c, v in per.items()}
+    return min(score, key=score.get), score, per
 
 
 def viol(groups, preds):
@@ -186,7 +224,7 @@ def main():
         if world == "null":
             groups, draws = synthesise_null(groups, k_true, seed=rep)
             with open(os.path.join(out, "null_world.json"), "w", encoding="utf-8") as fh:
-                json.dump({"rep": rep, "draws_a_b": draws, "k_true": {f"{a}|{b}": v for (a, b), v in k_true.items()}}, fh, indent=1)
+                json.dump({"rep": rep, "draws": draws, "k_true": {f"{a}|{b}": v for (a, b), v in k_true.items()}}, fh, indent=1)
             log(f"null world, replicate {rep}")
         else:
             groups = synthesise(groups, k_true, corrected=False, seed=7)
@@ -208,33 +246,31 @@ def main():
         key = f"{fold}|physics"
         if not rows.get(key):
             fit_on = tr + va
-            k_b0 = fit_physics(fit_on, simulate_b0, False)
-            k_b0b = fit_physics(fit_on, simulate_b0, True)
-            k_b1 = fit_physics(fit_on, simulate_b1, False)
-            v_b0 = np.nanmedian(physics_E(va, simulate_b0, k_b0, False))
-            v_b0b = np.nanmedian(physics_E(va, simulate_b0, k_b0b, True))
-            v_b1 = np.nanmedian(physics_E(va, simulate_b1, k_b1, False))
-            use_des = bool(v_b0b < v_b0)
-            k_base = k_b0b if use_des else k_b0
-            # comparator for H4a (review finding M7): the best isotherm-only physics model on the
-            # validation sorbent, among B0, B0-b and B1
-            base = min((("B0", v_b0), ("B0-b", v_b0b), ("B1", v_b1)), key=lambda x: x[1])[0]
-            E_b0 = physics_E(te, simulate_b0, k_base, use_des)
-            E_b1 = physics_E(te, simulate_b1, k_b1, False)
+            t0 = time.time()
+            k_fit = {c: fit_physics(fit_on, sim, des) for c, (sim, des) in CANDIDATES.items()}
+            base, inner_score, inner_per = choose_comparator(fit_on, k_fit)
+            use_des = bool(inner_score["B0-b"] < inner_score["B0"])
+            pred = {c: physics_pred(te, sim, k_fit[c], des) for c, (sim, des) in CANDIDATES.items()}
+            E = {c: physics_E(te, None, None, None, preds=pred[c]) for c in CANDIDATES}
+            b0v = "B0-b" if use_des else "B0"
             oracle = {}
             for s in held:
                 own = [g for g in te if g["sorbent"] == s]
                 if own:
-                    k_own = fit_physics(own, simulate_b0, use_des, metric=True)
+                    k_own = fit_physics(own, simulate_b0, use_des)
                     oracle[s] = physics_E(own, simulate_b0, k_own, use_des)
             E_b2, ab2 = b2_E(fit_on, te)
-            rows.put({"key": key, "fold": fold, "held": held, "val": vs, "B0_variant": "B0-b" if use_des else "B0",
+            rows.put({"key": key, "fold": fold, "held": held, "val": vs, "B0_variant": b0v,
                       "B2_ab": ab2, "viol_data": viol(te, [g["w"] for g in te]),
-                      "comparator": base, "k2": {f"{a}|{b}": v for (a, b), v in k_base.items()},
-                      "val_E": {"B0": v_b0, "B0-b": v_b0b, "B1": v_b1}, "seg": ids,
-                      "E": {"B0": E_b0, "B1": E_b1, "base": E_b1 if base == "B1" else E_b0,
-                            "B2": E_b2, "B0star": sum((oracle[s] for s in held if s in oracle), [])}})
-            log(f"{fold}: physics done ({'B0-b' if use_des else 'B0'}; comparator {base})")
+                      "viol_base": viol(te, pred[base]), "dw": seg_dw(te),
+                      "comparator": base, "k2": {f"{a}|{b}": v for (a, b), v in k_fit[b0v].items()},
+                      "k2_all": {c: {f"{a}|{b}": v for (a, b), v in k.items()} for c, k in k_fit.items()},
+                      "choice_score": inner_score, "choice_per_sorbent": inner_per, "seg": ids,
+                      "E": {"B0": E[b0v], "B0-b_or_B0_other": E["B0" if use_des else "B0-b"], "B1": E["B1"],
+                            "base": E[base], "B2": E_b2,
+                            "B0star": sum((oracle[s] for s in held if s in oracle), [])},
+                      "s": time.time() - t0})
+            log(f"{fold}: physics done ({b0v}; comparator {base}; {time.time() - t0:.0f}s)")
         ph = rows.get(key)
         k2 = {tuple(k.split("|")): v for k, v in ph["k2"].items()}
         # 2. learned models

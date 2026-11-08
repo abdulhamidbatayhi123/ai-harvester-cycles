@@ -10,11 +10,12 @@ def _rows(gain, n_clusters=8, viol=0.0):
     folds = [f"LOSO:S{i}" for i in range(8)] + ["LOFO:Al-rod", "LOFO:Zn-triazolate-F"]
     rng = np.random.default_rng(0)
     for f in folds:
-        seg = [f"sess{c}|27C|0>30#run{c}#{k}" for c in range(n_clusters) for k in range(2)]
+        held = [f.split(":")[1]]
+        seg = [f"{held[0]}|27C|sess{c}|{c}|27C|0>30#run{c}#{k}" for c in range(n_clusters) for k in range(2)]
         e_b = list(0.10 + 0.01 * rng.random(len(seg)))
         e_m = [e - gain for e in e_b]
-        held = [f.split(":")[1]]
         rows.append({"key": f"{f}|physics", "fold": f, "held": held, "seg": seg, "comparator": "B0",
+                     "dw": list(1.0 + rng.random(len(seg))),
                      "viol_data": [False] * len(seg), "E": {"B0": e_b, "base": e_b, "B2": e_b, "B0star": e_b}})
         for kind in ("L1", "L2"):
             rows.append({"key": f"{f}|{kind}|ensemble", "fold": f, "kind": kind, "seg": seg, "E": e_m,
@@ -51,6 +52,39 @@ def test_too_few_clusters_cannot_beat(tmp_path):
 def test_violations_block_a_beat(tmp_path):
     out = _run(tmp_path, _rows(0.03, viol=0.5))
     assert out["H4a"]["L2"]["LOSO_beats"] == 0
+
+
+def test_composite_must_pass_too(tmp_path):
+    """Review finding C2: a parent fold with a composite is beaten only if both materials pass."""
+    rows = _rows(0.03)
+    for r in rows:
+        if r["fold"] == "LOSO:S0":
+            r["held"] = ["S0", "S0_composite"]
+            if r["key"].endswith("physics"):
+                n = len(r["seg"])
+                r["seg"] = r["seg"] + [s.replace("S0|", "S0_composite|", 1) for s in r["seg"]]
+                for k in r["E"]:
+                    r["E"][k] = r["E"][k] * 2
+                r["dw"], r["viol_data"] = r["dw"] * 2, r["viol_data"] * 2
+            else:
+                r["seg"] = r["seg"] + [s.replace("S0|", "S0_composite|", 1) for s in r["seg"]]
+                base = [x + 0.03 for x in r["E"]]
+                r["E"] = r["E"] + base          # no gain at all on the composite
+                r["viol"] = r["viol"] * 2
+    out = _run(tmp_path, rows)
+    f = out["folds"]["LOSO:S0|L1"]
+    assert f["per_material"]["S0"]["rule_met"] and not f["per_material"]["S0_composite"]["rule_met"]
+    assert not f["beats_B0"]
+
+
+def test_one_good_fold_still_falsified(tmp_path):
+    """Review finding O1: falsified when at most one LOSO fold reaches r >= 10 %."""
+    rows = _rows(0.0)
+    for r in rows:
+        if r["fold"] == "LOSO:S0" and r["key"].endswith("ensemble"):
+            r["E"] = [e - 0.03 for e in r["E"]]
+    out = _run(tmp_path, rows)
+    assert out["H4a"]["L1"]["n_folds_rel_ge_10pct"] == 1 and out["H4a"]["L1"]["verdict"] == "falsified"
 
 
 def test_seg_ids_cluster_merges_pans_and_repeats():
