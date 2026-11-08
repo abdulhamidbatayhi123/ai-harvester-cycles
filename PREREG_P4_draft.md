@@ -315,11 +315,13 @@ Implementation and training rules:
     swing per unit time over the last three cycles, the definition Bezrukov uses.
   - E truncated at five times the segment's measured time-to-63 %, so that long equilibrium
     tails of experimenter-chosen length do not dilute the error of the transient.
-  - Physical violations: the fraction of held-out segments on which a model's trajectory moves
-    against the sign of the driving force (RH_flow − RH_bed) by more than 0.01 wt% within one
-    6 s step, or crosses the isotherm by more than 0.05 wt%. The measured data's own rate of
-    such events at 6 s resolution is computed before the freeze (section 12) and serves as the
-    floor. L1 cannot violate by construction; L2 can.
+  - Physical violations: the fraction of held-out segments on which a model's uptake moves
+    against the direction of the set-point step (falls after a rise in RH, or rises after a
+    fall) by more than 0.05 wt% over any 1-minute window. The measured data's own rate is the
+    floor (section 12). Tests against the isotherm-derived driving force or the isotherm itself
+    were considered and rejected before any model was run, because the measured data fail them
+    in 50 to 100 % of segments: measured equilibria differ from the isotherm. L1 cannot violate
+    the isotherm by construction; L2 can do anything.
 
 ## 7. Decision rules and falsifiers
 
@@ -546,3 +548,23 @@ Not frozen. Pre-freeze measurements so far (2026-11-04; `results/prefreeze/summa
   isotherm builder was changed to start at the reference. Corrected R2 is implemented in
   `p4/segments.py`; the comparison was rerun for R1, R2 and R3. The first-run numbers stay
   quoted here; the rule choice (R2) is unchanged, now with the correct numbers.
+- 2026-11-08. **Exact duplicate exports.** Eight files in the archive repeat another file's mass
+  trace exactly. One was inside P: the MOF-303 60 °C 5 mg step run, exported under two names, so
+  its segments were counted twice in every pre-freeze number. Each composite's "two" 27 °C
+  isotherms are one file in two folders, so the planned sensitivity check between them was void.
+  Found while checking the file lists the review asked for. Duplicates are now dropped in one
+  place (`p4/data.py`, `duplicate_files`), and every pre-freeze number in section 12 was
+  recomputed (`audit/rerun_prefreeze.sh`).
+- 2026-11-08. **Dry-mass rationale.** R2 was first chosen by how well step end-points agree with
+  the isotherm. The review (finding M8) pointed out that this moves the target toward the
+  baseline's own input. R2 is now justified by an isotherm-free criterion, the mass drift at the
+  end of each window (section 3.3), which gives the same choice. The end-point check stays as
+  supporting evidence.
+- 2026-11-08. **L2 output scale.** Round 3 of the harness showed that L2's output, scaled by w₃₀,
+  depended on a number the network never sees. The output is now a water mass flux (section 5).
+- 2026-11-08. **Decision statistics** (review findings F1, M1, M3–M7). The paired difference is the
+  only statistic. Per-fold inference uses session × step clusters and an exact signed-rank test,
+  in place of a bootstrap over sessions, which are as few as one per temperature. Falsification
+  needs an interval. L1 is primary. The comparator is the best of B0, B0-b and B1. The oracle is
+  fitted by the scored metric. H4b and H4c are descriptive, and the family rule uses the two
+  non-trivial LOFO folds. A realistic null world is added to the harness.

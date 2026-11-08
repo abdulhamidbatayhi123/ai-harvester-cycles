@@ -180,22 +180,21 @@ def fit_b2(groups, direction, dt=0.1):
     return float(r.x[0]), float(r.x[1])
 
 
-def violations(traj, rh, dirs, ads: Branch, des: Branch, tol_sign=0.01, tol_iso=0.05):
-    """Physical violations per segment (PREREG section 6). traj, rh: (n, L) NaN-padded; dirs: +1
-    uptake, -1 release. A segment violates if, in any 6 s step, uptake moves against the sign of
-    the driving force (RH - RH_bed(w), adsorption branch) by more than `tol_sign` wt%, or if it
-    crosses the isotherm (above the adsorption branch during uptake, below the desorption
-    branch during release) by more than `tol_iso` wt%. Returns a boolean array (n,)."""
-    traj, rh = np.atleast_2d(traj), np.atleast_2d(rh)
+def violations(traj, rh, dirs, ads: Branch = None, des: Branch = None, window=10, tol=0.05):
+    """Physical violations per segment (PREREG section 6), defined without the isotherm: within
+    a step whose set-point went up (dirs = +1), uptake falls, or within a step whose set-point
+    went down (-1), uptake rises, by more than `tol` wt% over any non-overlapping window of
+    `window` grid points (1 minute at 6 s). Tests against the isotherm-derived driving force or
+    the isotherm itself are not used: the measured data fail them in 50 to 100 % of segments,
+    because measured equilibria differ from the isotherm (section 12). `ads`/`des` are unused
+    and kept for the call signature. Returns a boolean array (n,)."""
+    traj = np.atleast_2d(traj)
     out = np.zeros(len(traj), bool)
-    for i, (w, r, d) in enumerate(zip(traj, rh, dirs)):
-        ok = np.isfinite(w) & np.isfinite(r)
-        w, r = w[ok], r[ok]
-        if len(w) < 2:
+    for i, (w, d) in enumerate(zip(traj, dirs)):
+        w = w[np.isfinite(w)]
+        n = (len(w) - 1) // window
+        if n < 1:
             continue
-        drive = r[:-1] - ads.rh_of_w(w[:-1])
-        dw = np.diff(w)
-        against = np.any(((drive > 0) & (dw < -tol_sign)) | ((drive < 0) & (dw > tol_sign)))
-        cross = np.any(w - ads.w_of_rh(r) > tol_iso) if d > 0 else np.any(des.w_of_rh(r) - w > tol_iso)
-        out[i] = bool(against or cross)
+        ch = w[window: n * window + 1: window] - w[0: n * window: window]
+        out[i] = bool(np.any(ch * d < -tol))
     return out
