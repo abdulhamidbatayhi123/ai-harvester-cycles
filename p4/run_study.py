@@ -12,7 +12,7 @@ Rows go to <out>/rows.jsonl, one per (fold, model, config, seed) step; finished 
 on restart. Seed predictions are cached in <out>/pred/.
 
 usage: python -I -m p4.run_study <data_derived/bezrukov2023> <out_dir> [--synthetic [N|null] [--rep k]]
-       [--fast] [--rule R1|R2] [--seeds n] [--grid n] [--loso-only]
+       [--fast] [--rule R1|R2] [--seeds n] [--grid n] [--loso-only] [--configs-from rows.jsonl]
 (--rule R1 runs the pre-registered dry-mass sensitivity analysis into a separate out_dir)
 """
 from __future__ import annotations
@@ -165,6 +165,13 @@ def main():
     arg = lambda name, default: int(sys.argv[sys.argv.index(name) + 1]) if name in sys.argv else default
     rep, n_seeds, n_grid = arg("--rep", 0), arg("--seeds", None), arg("--grid", None)
     loso_only = "--loso-only" in sys.argv
+    # R1 sensitivity run (PREREG section 11): reuse each fold's configuration chosen under R2
+    cfg_from = {}
+    if "--configs-from" in sys.argv:
+        for line in open(sys.argv[sys.argv.index("--configs-from") + 1], encoding="utf-8"):
+            r = json.loads(line)
+            if r["key"].endswith("|ensemble"):
+                cfg_from[(r["fold"], r["kind"])] = GRID.index(r["cfg"])
     rule = sys.argv[sys.argv.index("--rule") + 1] if "--rule" in sys.argv else "R2"
     os.makedirs(os.path.join(out, "pred"), exist_ok=True)
     torch.set_num_threads(2)
@@ -231,8 +238,8 @@ def main():
         k2 = {tuple(k.split("|")): v for k, v in ph["k2"].items()}
         # 2. learned models
         for kind in ("L1", "L2"):
-            best_cfg, best_v = None, float("inf")
-            for ci, cfg in enumerate(grid):
+            best_cfg, best_v = cfg_from.get((fold, kind)), float("inf")
+            for ci, cfg in enumerate(grid if best_cfg is None else []):
                 k = f"{fold}|{kind}|cfg{ci}|tune"
                 if not rows.get(k):
                     t0 = time.time()
@@ -247,7 +254,7 @@ def main():
                 k = f"{fold}|{kind}|seed{seed}"
                 if not (rows.get(k) and os.path.exists(pf)):
                     t0 = time.time()
-                    model, v = train_two_stage(kind, tr, va, k2, iso, seed=seed, **grid[best_cfg], **kw)
+                    model, v = train_two_stage(kind, tr, va, k2, iso, seed=seed, **GRID[best_cfg], **kw)
                     arrs = {f"g{i}": predict(model, kind, g, k2, iso)[0] for i, g in enumerate(te)}
                     np.savez_compressed(pf, **arrs)
                     rows.put({"key": k, "fold": fold, "kind": kind, "cfg": best_cfg, "seed": seed, "val_medE": v,
@@ -262,7 +269,7 @@ def main():
                     mean = np.mean([p[i] for p in preds], axis=0)
                     means.append(mean)
                     E += seg_E(mean, g["w"])
-                rows.put({"key": k, "fold": fold, "kind": kind, "cfg": grid[best_cfg], "n_seeds": len(preds),
+                rows.put({"key": k, "fold": fold, "kind": kind, "cfg": GRID[best_cfg], "n_seeds": len(preds),
                           "seg": ids, "E": E, "viol": viol(te, means)})
                 log(f"{fold} {kind} ensemble median E {np.nanmedian(E):.4f}")
     log("done")

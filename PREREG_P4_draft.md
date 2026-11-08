@@ -472,12 +472,31 @@ have measured the same flaw.
 
 Measured in harness round 2 (`results/harness_round2/harness.json`, six or seven training
 sorbents per fit, on the shared laptop): one L1 fit took 39 to 55 minutes (mean 45.5), one L2 fit
-13 to 36 minutes (mean 19.9). For 12 outer folds (8 LOSO, 4 LOFO) this gives:
+13 to 36 minutes (mean 19.9). Round 4 times replace the L2 figure when it finishes.
 
-- hyperparameter choice on the validation sorbent, 4 configurations, 1 seed: about 52 h;
-- final fits, 5 seeds of the chosen configuration: about 65 h;
-- physics baselines: under 1 h;
-- total: about 118 h of single-job CPU time.
+The protocol has 10 outer folds (8 LOSO and the 2 LOFO folds that differ from them; section 4).
+Per model and fold: 4 configurations × 1 seed for tuning, then 5 seeds of the chosen one, so
+9 fits. That gives 90 fits per model:
+
+| Item | Fits | Hours (single job) |
+|---|---|---|
+| L1, primary rule R2 | 90 | about 68 |
+| L2, primary rule R2 | 90 | about 30 |
+| R1 sensitivity, reusing each fold's R2 configuration (5 seeds only) | 100 | about 54 |
+| Null study, 2 replicates × 8 folds × 2 models, 1 configuration, 1 seed | 32 | about 18 |
+| Physics baselines, B2 and oracle fits | — | under 3 |
+| **Total** | 312 | **about 173** |
+
+The R1 sensitivity run reuses the configuration chosen under R2 in each fold. It asks whether
+the dry-mass definition changes the verdict, not whether tuning changes it.
+
+**Pre-registered reduction order**, applied only if the full protocol cannot be run, decided
+and recorded at the freeze (before any real-data fit exists) and never afterwards:
+
+1. seeds per ensemble 5 → 3;
+2. tuning grid 4 → 2 configurations (width 32; both weight decays);
+3. the null study's second replicate dropped, with the false-positive bound computed from 8
+   fold-fits per model and stated as such.
 
 Full inner leave-one-sorbent-out would add roughly 300 h and is not planned. The jobs are
 independent, so they can run as parallel CPU jobs elsewhere (for example the author's Kaggle
