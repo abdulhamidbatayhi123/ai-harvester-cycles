@@ -11,7 +11,7 @@
 | MIL-160 | 27C | 0.0026 | 0.0045 | 16 |
 | MIL-160 | 60C | 0.0044 | 0.0103 | 21 |
 | MOF-303 | 27C | 0.0019 | 0.0022 | 8 |
-| MOF-303 | 60C | 0.0050 | 0.0100 | 21 |
+| MOF-303 | 60C | 0.0050 | 0.0092 | 14 |
 | ROS-037_composite | 60C | 0.0062 | 0.0168 | 42 |
 | ROS-037 | 27C | 0.0020 | 0.0099 | 16 |
 | ROS-037 | 60C | 0.0050 | 0.0134 | 28 |
@@ -35,7 +35,7 @@
 | MIL-160 | 27C | +0.16 | 4.87 | 25 |
 | MIL-160 | 60C | -1.48 | 2.85 | 56 |
 | MOF-303 | 27C | +0.98 | 1.82 | 9 |
-| MOF-303 | 60C | -0.21 | 3.40 | 45 |
+| MOF-303 | 60C | -0.06 | 3.40 | 30 |
 | ROS-037_composite | 27C | +0.99 | 1.32 | 12 |
 | ROS-037_composite | 60C | +0.12 | 1.05 | 135 |
 | ROS-037 | 27C | -0.64 | 2.17 | 47 |
@@ -53,18 +53,18 @@
 
 - None: 2
 - [100.0, 200.0]: 2
-- [200.0, 400.0]: 28
+- [200.0, 400.0]: 27
 - [200.0]: 1
-- [400.0]: 119
+- [400.0]: 112
 - [50.0, 200.0]: 2
 - [50.0, 400.0]: 18
 - [50.0]: 2
 
 ## Dry-mass rule used
 
-- isotherm, activation: 18
+- isotherm, activation: 16
 - isotherm, first-0%-plateau: 6
-- step, activation: 65
+- step, activation: 64
 - step, first-0%-plateau: 9
 
-## Two-pan pairs: 37 groups sharing a start timestamp
+## Two-pan pairs: 31 groups sharing a start timestamp

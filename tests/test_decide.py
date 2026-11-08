@@ -51,3 +51,17 @@ def test_too_few_clusters_cannot_beat(tmp_path):
 def test_violations_block_a_beat(tmp_path):
     out = _run(tmp_path, _rows(0.03, viol=0.5))
     assert out["H4a"]["L2"]["LOSO_beats"] == 0
+
+
+def test_seg_ids_cluster_merges_pans_and_repeats():
+    """PREREG section 4: one cluster per RH step per session; both pans and all repeats merge."""
+    from types import SimpleNamespace as NS
+    import numpy as np
+    from p4.run_study import seg_ids
+    segs = [NS(rh_from=0, rh_to=30, index=3), NS(rh_from=0, rh_to=30, index=7),
+            NS(rh_from=0, rh_to=30, index=3), NS(rh_from=30, rh_to=0, index=4)]
+    g = {"temp": "27C", "segments": segs,
+         "exp": np.array(["X|27C|S1|3", "X|27C|S1|7", "X|27C|S1|3", "X|27C|S1|4"]),
+         "run": np.array(["pan5mg", "pan5mg", "pan8mg", "pan5mg"])}
+    keys = [s.split("#")[0] for s in seg_ids([g])]
+    assert len(set(keys)) == 2 and keys[0] == keys[1] == keys[2]

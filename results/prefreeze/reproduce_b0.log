@@ -1,40 +1,40 @@
-27C ads ROS-037            n= 24 k''=  0.3007  E_own=0.072  E_pooled=0.076
-27C ads ROS-039            n= 24 k''=  0.2980  E_own=0.049  E_pooled=0.042
-27C ads ROS-040            n= 24 k''=  0.2985  E_own=0.042  E_pooled=0.049
-27C ads MOF-303            n= 12 k''=  0.3490  E_own=0.042  E_pooled=0.043
-27C ads MIL-160            n= 24 k''=  0.3493  E_own=0.053  E_pooled=0.065
-27C ads CAU-10             n= 24 k''=  0.3047  E_own=0.053  E_pooled=0.048
-27C ads Al-fumarate        n= 18 k''=  0.3077  E_own=0.048  E_pooled=0.036
-27C ads Syloid             n= 24 k''=  0.3030  E_own=0.040  E_pooled=0.046
+27C ads ROS-037            n= 24 k''=  0.3007  E_own=0.072  E_pooled=0.076  E_own_metric=0.072
+27C ads ROS-039            n= 24 k''=  0.2980  E_own=0.049  E_pooled=0.042  E_own_metric=0.037
+27C ads ROS-040            n= 24 k''=  0.2985  E_own=0.042  E_pooled=0.049  E_own_metric=0.039
+27C ads MOF-303            n= 12 k''=  0.3490  E_own=0.042  E_pooled=0.043  E_own_metric=0.038
+27C ads MIL-160            n= 24 k''=  0.3493  E_own=0.053  E_pooled=0.065  E_own_metric=0.047
+27C ads CAU-10             n= 24 k''=  0.3047  E_own=0.053  E_pooled=0.048  E_own_metric=0.048
+27C ads Al-fumarate        n= 18 k''=  0.3077  E_own=0.048  E_pooled=0.036  E_own_metric=0.035
+27C ads Syloid             n= 24 k''=  0.3030  E_own=0.040  E_pooled=0.046  E_own_metric=0.036
 == 27C ads: pooled k''=0.3232; across 8 sorbents CV=0.07, range 0.2980-0.3493
-27C des ROS-037            n= 24 k''=  0.2149  E_own=0.032  E_pooled=0.062
-27C des ROS-039            n= 24 k''=  0.2631  E_own=0.027  E_pooled=0.028
-27C des ROS-040            n= 24 k''=  0.2909  E_own=0.022  E_pooled=0.043
-27C des MOF-303            n= 12 k''=  0.2649  E_own=0.028  E_pooled=0.029
-27C des MIL-160            n= 24 k''=  0.2721  E_own=0.059  E_pooled=0.064
-27C des CAU-10             n= 24 k''=  0.2149  E_own=0.034  E_pooled=0.060
-27C des Al-fumarate        n= 18 k''=  0.2600  E_own=0.037  E_pooled=0.035
-27C des Syloid             n= 24 k''=  0.2650  E_own=0.031  E_pooled=0.031
+27C des ROS-037            n= 24 k''=  0.2149  E_own=0.032  E_pooled=0.062  E_own_metric=0.023
+27C des ROS-039            n= 24 k''=  0.2631  E_own=0.027  E_pooled=0.028  E_own_metric=0.026
+27C des ROS-040            n= 24 k''=  0.2909  E_own=0.022  E_pooled=0.043  E_own_metric=0.021
+27C des MOF-303            n= 12 k''=  0.2649  E_own=0.028  E_pooled=0.029  E_own_metric=0.027
+27C des MIL-160            n= 24 k''=  0.2721  E_own=0.059  E_pooled=0.064  E_own_metric=0.047
+27C des CAU-10             n= 24 k''=  0.2149  E_own=0.034  E_pooled=0.060  E_own_metric=0.027
+27C des Al-fumarate        n= 18 k''=  0.2600  E_own=0.037  E_pooled=0.035  E_own_metric=0.025
+27C des Syloid             n= 24 k''=  0.2650  E_own=0.031  E_pooled=0.031  E_own_metric=0.027
 == 27C des: pooled k''=0.2572; across 8 sorbents CV=0.10, range 0.2149-0.2909
-60C ads ROS-037            n= 48 k''=  1.1680  E_own=0.073  E_pooled=0.111
-60C ads ROS-039            n= 24 k''=  1.2609  E_own=0.064  E_pooled=0.069
-60C ads ROS-040            n= 36 k''=  1.5421  E_own=0.080  E_pooled=0.078
-60C ads MOF-303            n= 36 k''=  1.3511  E_own=0.074  E_pooled=0.072
-60C ads MIL-160            n= 36 k''=  1.3756  E_own=0.064  E_pooled=0.067
-60C ads CAU-10             n= 36 k''=  3.1572  E_own=0.187  E_pooled=0.164
-60C ads Al-fumarate        n= 24 k''=  1.1438  E_own=0.237  E_pooled=0.254
-60C ads Syloid             n= 48 k''=  1.7296  E_own=0.162  E_pooled=0.165
-60C ads ROS-037_composite  n= 72 k''=  0.8911  E_own=0.111  E_pooled=0.131
-60C ads ROS-039_composite  n= 72 k''=  1.0154  E_own=0.106  E_pooled=0.129
-== 60C ads: pooled k''=1.5587; across 8 sorbents CV=0.39, range 1.1438-3.1572
-60C des ROS-037            n= 48 k''=  0.7188  E_own=0.070  E_pooled=0.097
-60C des ROS-039            n= 23 k''=  1.3677  E_own=0.029  E_pooled=0.097
-60C des ROS-040            n= 36 k''=  0.7982  E_own=0.064  E_pooled=0.072
-60C des MOF-303            n= 36 k''=  0.8760  E_own=0.047  E_pooled=0.052
-60C des MIL-160            n= 36 k''=  1.5047  E_own=0.030  E_pooled=0.114
-60C des CAU-10             n= 36 k''=  0.9116  E_own=0.029  E_pooled=0.033
-60C des Al-fumarate        n= 24 k''=  0.7972  E_own=0.044  E_pooled=0.083
-60C des Syloid             n= 48 k''=  0.7973  E_own=0.056  E_pooled=0.072
-60C des ROS-037_composite  n= 72 k''=  0.4779  E_own=0.096  E_pooled=0.164
-60C des ROS-039_composite  n= 72 k''=  1.0863  E_own=0.102  E_pooled=0.098
-== 60C des: pooled k''=1.0161; across 8 sorbents CV=0.28, range 0.7188-1.5047
+60C ads ROS-037            n= 48 k''=  1.1680  E_own=0.073  E_pooled=0.114  E_own_metric=0.073
+60C ads ROS-039            n= 24 k''=  1.2609  E_own=0.064  E_pooled=0.073  E_own_metric=0.053
+60C ads ROS-040            n= 36 k''=  1.5421  E_own=0.080  E_pooled=0.075  E_own_metric=0.073
+60C ads MOF-303            n= 24 k''=  1.3910  E_own=0.079  E_pooled=0.073  E_own_metric=0.070
+60C ads MIL-160            n= 36 k''=  1.3756  E_own=0.064  E_pooled=0.069  E_own_metric=0.061
+60C ads CAU-10             n= 36 k''=  3.1572  E_own=0.187  E_pooled=0.164  E_own_metric=0.155
+60C ads Al-fumarate        n= 24 k''=  1.1438  E_own=0.237  E_pooled=0.256  E_own_metric=0.236
+60C ads Syloid             n= 48 k''=  1.7296  E_own=0.162  E_pooled=0.165  E_own_metric=0.161
+60C ads ROS-037_composite  n= 72 k''=  0.8911  E_own=0.111  E_pooled=0.132  E_own_metric=0.097
+60C ads ROS-039_composite  n= 72 k''=  1.0154  E_own=0.106  E_pooled=0.131  E_own_metric=0.101
+== 60C ads: pooled k''=1.5921; across 8 sorbents CV=0.39, range 1.1438-3.1572
+60C des ROS-037            n= 48 k''=  0.7188  E_own=0.070  E_pooled=0.100  E_own_metric=0.054
+60C des ROS-039            n= 23 k''=  1.3677  E_own=0.029  E_pooled=0.093  E_own_metric=0.029
+60C des ROS-040            n= 36 k''=  0.7982  E_own=0.064  E_pooled=0.075  E_own_metric=0.057
+60C des MOF-303            n= 24 k''=  0.8928  E_own=0.048  E_pooled=0.049  E_own_metric=0.045
+60C des MIL-160            n= 36 k''=  1.5047  E_own=0.030  E_pooled=0.111  E_own_metric=0.029
+60C des CAU-10             n= 36 k''=  0.9116  E_own=0.029  E_pooled=0.036  E_own_metric=0.018
+60C des Al-fumarate        n= 24 k''=  0.7972  E_own=0.044  E_pooled=0.086  E_own_metric=0.044
+60C des Syloid             n= 48 k''=  0.7973  E_own=0.056  E_pooled=0.074  E_own_metric=0.053
+60C des ROS-037_composite  n= 72 k''=  0.4779  E_own=0.096  E_pooled=0.165  E_own_metric=0.089
+60C des ROS-039_composite  n= 72 k''=  1.0863  E_own=0.102  E_pooled=0.098  E_own_metric=0.098
+== 60C des: pooled k''=1.0289; across 8 sorbents CV=0.28, range 0.7188-1.5047

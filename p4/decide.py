@@ -47,31 +47,35 @@ def cluster_level(seg_ids, e_b0, e_m):
     return b0, m
 
 
-def signflip_p(d, n_mc=20000, seed=0):
-    """One-sided exact Wilcoxon signed-rank test of d > 0 over clusters, by enumerating every
-    sign vector up to 16 clusters (Monte Carlo above). The statistic is the sum of the ranks of
-    |d| over positive d (average ranks for ties); the attainable minimum p is 2**-n. The median
-    is not used as the statistic: it ties heavily under sign flips (six equal gains give
-    p = 0.34 instead of 1/64)."""
+def signflip_p(d, **_):
+    """One-sided exact Wilcoxon signed-rank test of d > 0 over clusters. The statistic is the sum
+    of the ranks of |d| over positive d (average ranks for ties). Its null distribution over all
+    2**n sign vectors is computed exactly for any n by counting subset sums of the (doubled,
+    hence integer) ranks; the attainable minimum p is 2**-n. The median is not used as the
+    statistic: it ties heavily under sign flips (six equal gains give p = 0.34 instead of 1/64)."""
     from scipy.stats import rankdata
     d = np.asarray(d, float)
     d = d[d != 0]
     n = len(d)
     if n == 0:
         return 1.0
-    r = rankdata(np.abs(d))
-    obs = float(np.sum(r[d > 0]))
-    if n <= 16:
-        pos = ((np.arange(2 ** n)[:, None] >> np.arange(n)) & 1).astype(bool)
-    else:
-        pos = np.random.default_rng(seed).random((n_mc, n)) < 0.5
-    return float(np.mean((pos * r).sum(1) >= obs - 1e-9))
+    r2 = np.rint(2 * rankdata(np.abs(d))).astype(int)      # average ranks are multiples of 1/2
+    obs = int(r2[d > 0].sum())
+    counts = [0] * (int(r2.sum()) + 1)                       # exact integer counts of subset sums
+    counts[0] = 1
+    top = 0
+    for x in r2:
+        for s in range(top, -1, -1):
+            if counts[s]:
+                counts[s + x] += counts[s]
+        top += int(x)
+    return float(sum(counts[obs:])) / float(2 ** n)
 
 
 def rule(e_b0, e_m, F, seed=0):
     d = e_b0 - e_m
     gain = float(np.median(d))
-    p = signflip_p(d, seed=seed)
+    p = signflip_p(d)
     ok = bool(gain > F and gain >= REL * float(np.median(e_b0)) and p <= ALPHA)
     return ok, {"median_gain": gain, "p_signflip": p, "E_B0": float(np.median(e_b0)),
                 "E_model": float(np.median(e_m)), "F": F, "n_clusters": int(len(d)),

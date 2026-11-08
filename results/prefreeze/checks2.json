@@ -1,8 +1,8 @@
 {
  "flow": {
   "plateaus_by_kind_and_flow": {
-   "cycling|[400.0]": 1612,
-   "step|[400.0]": 1212
+   "cycling|[400.0]": 1492,
+   "step|[400.0]": 1188
   },
   "not_400_or_missing": []
  },
@@ -92,14 +92,13 @@
    ]
   },
   "MOF-303|60C": {
-   "step_files": 3,
+   "step_files": 2,
    "two_pan_sessions": 1,
    "experiments": 24,
-   "segments_up": 36,
-   "segments_down": 36,
+   "segments_up": 24,
+   "segments_down": 24,
    "files": [
     "MOF-303/60C/MOF-303-SS1131_kinetics_5mg_50-100um-2021-06-08 10-08-23.xls",
-    "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls",
     "MOF-303/60C/MOF-303-SS1131_kinetics_60C_8mg_50-100um-2021-06-08 10-08-23.xls"
    ]
   },
@@ -327,10 +326,10 @@
    "n_session": 0
   },
   "MOF-303|60C": {
-   "F_within": 0.005002189126503025,
-   "n_within": 21,
-   "F_between_pan": 0.0667971555525367,
-   "n_pan": 45,
+   "F_within": 0.004962640030437124,
+   "n_within": 14,
+   "F_between_pan": 0.07745359352093356,
+   "n_pan": 15,
    "F_between_session": null,
    "n_session": 0
   },
@@ -781,19 +780,6 @@
     "R2_stretch_min": 89.95
    },
    {
-    "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls",
-    "kind": "step",
-    "sorbent": "MOF-303",
-    "temp": "60C",
-    "R1_drift_pct_h": -0.34809759446550154,
-    "R1_fit_min": 9.989999999999998,
-    "R1_temp_C": 60.9,
-    "R2_drift_pct_h": 0.07043970853355111,
-    "R2_fit_min": 9.980000000000004,
-    "R2_temp_C": 61.0,
-    "R2_stretch_min": 89.95
-   },
-   {
     "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_8mg_50-100um-2021-06-08 10-08-23.xls",
     "kind": "step",
     "sorbent": "MOF-303",
@@ -964,19 +950,6 @@
    },
    {
     "run": "ROS-037_composite/27C/19-0182-4_isotherm_27C-2021-12-24 14-41-16.xlsx",
-    "kind": "isotherm",
-    "sorbent": "ROS-037_composite",
-    "temp": "27C",
-    "R1_drift_pct_h": -0.16464076973816685,
-    "R1_fit_min": 9.979999999999997,
-    "R1_temp_C": 27.7,
-    "R2_drift_pct_h": 0.04893301600936414,
-    "R2_fit_min": 9.980000000000018,
-    "R2_temp_C": 27.4,
-    "R2_stretch_min": 100.01000000000002
-   },
-   {
-    "run": "ROS-037_composite/27C/hm/19-0182-4_isotherm_27C-2021-12-24 14-41-16.xlsx",
     "kind": "isotherm",
     "sorbent": "ROS-037_composite",
     "temp": "27C",
@@ -1171,19 +1144,6 @@
    },
    {
     "run": "ROS-039_composite/27C/21-0043-1_ROS-039_paper_isotherm_27C-2022-01-01 16-50-03.xls",
-    "kind": "isotherm",
-    "sorbent": "ROS-039_composite",
-    "temp": "27C",
-    "R1_drift_pct_h": -0.11263758298204465,
-    "R1_fit_min": 9.979999999999997,
-    "R1_temp_C": 27.8,
-    "R2_drift_pct_h": 0.04814553389979015,
-    "R2_fit_min": 9.97999999999999,
-    "R2_temp_C": 27.3,
-    "R2_stretch_min": 99.97
-   },
-   {
-    "run": "ROS-039_composite/27C/hm/21-0043-1_ROS-039_paper_isotherm_27C-2022-01-01 16-50-03.xls",
     "kind": "isotherm",
     "sorbent": "ROS-039_composite",
     "temp": "27C",
@@ -1609,12 +1569,12 @@
     "n_R2": 1
    },
    "isotherm|ROS-037_composite|27C": {
-    "n": 2,
+    "n": 1,
     "R1_drift_median": -0.16464076973816685,
     "R2_drift_median": 0.04893301600936414,
     "R1_temp_median": 27.7,
     "R2_temp_median": 27.4,
-    "n_R2": 2
+    "n_R2": 1
    },
    "isotherm|ROS-037_composite|60C": {
     "n": 1,
@@ -1641,12 +1601,12 @@
     "n_R2": 0
    },
    "isotherm|ROS-039_composite|27C": {
-    "n": 2,
+    "n": 1,
     "R1_drift_median": -0.11263758298204465,
     "R2_drift_median": 0.04814553389979015,
     "R1_temp_median": 27.8,
     "R2_temp_median": 27.3,
-    "n_R2": 2
+    "n_R2": 1
    },
    "isotherm|ROS-039_composite|60C": {
     "n": 1,
@@ -1745,12 +1705,12 @@
     "n_R2": 2
    },
    "step|MOF-303|60C": {
-    "n": 3,
-    "R1_drift_median": -0.34809759446550154,
-    "R2_drift_median": 0.07043970853355111,
+    "n": 2,
+    "R1_drift_median": -0.2665400475550924,
+    "R2_drift_median": 0.1201625521778734,
     "R1_temp_median": 60.9,
     "R2_temp_median": 61.0,
-    "n_R2": 3
+    "n_R2": 2
    },
    "step|ROS-037|27C": {
     "n": 4,
@@ -1855,7 +1815,7 @@
    "ROS-037|60C|ads": 14.745554087818165,
    "ROS-039|60C|ads": 22.519911440179648,
    "ROS-040|60C|ads": 12.02163896127931,
-   "MOF-303|60C|ads": 14.795104110159182,
+   "MOF-303|60C|ads": 14.913011713807425,
    "MIL-160|60C|ads": 14.343197053776798,
    "CAU-10|60C|ads": 66.6721506657946,
    "Al-fumarate|60C|ads": 18.828545365986688,
@@ -1863,7 +1823,7 @@
    "ROS-037|60C|des": 14.209577024855783,
    "ROS-039|60C|des": 10.08715032607234,
    "ROS-040|60C|des": 9.670936261197445,
-   "MOF-303|60C|des": 9.408770094678337,
+   "MOF-303|60C|des": 9.483752029707711,
    "MIL-160|60C|des": 6.663420663735345,
    "CAU-10|60C|des": 10.496793570948736,
    "Al-fumarate|60C|des": 3.5273383027435115,
@@ -1917,7 +1877,7 @@
   "ROS-037": 0.003972375960272201,
   "ROS-039": 0.002332715434601723,
   "ROS-040": 0.005370847405646704,
-  "MOF-303": 0.004218908905669943,
+  "MOF-303": 0.0039314494346816475,
   "MIL-160": 0.0037066252285916173,
   "CAU-10": 0.002058693532087516,
   "Al-fumarate": 0.007803180663510524,

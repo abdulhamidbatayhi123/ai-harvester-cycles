@@ -8,8 +8,8 @@ Made by audit/prefreeze_checks2.py; full numbers in checks2.json.
 Kinetic plateaus only: step runs after the dry reference, all plateaus of the 27 °C cycling runs.
 Plateau = run of constant set-point on the raw time base.
 
-- cycling|[400.0]: 1612
-- step|[400.0]: 1212
+- cycling|[400.0]: 1492
+- step|[400.0]: 1188
 
 Plateaus not at 400 sccm or without a flow value: 0
 
@@ -25,7 +25,7 @@ Plateaus not at 400 sccm or without a flow value: 0
 | MIL-160|27C | 4 | 2 | 24 | 24 | 24 |
 | MIL-160|60C | 3 | 3 | 72 | 36 | 36 |
 | MOF-303|27C | 2 | 1 | 12 | 12 | 12 |
-| MOF-303|60C | 3 | 1 | 24 | 36 | 36 |
+| MOF-303|60C | 2 | 1 | 24 | 24 | 24 |
 | ROS-037|27C | 4 | 2 | 24 | 24 | 24 |
 | ROS-037|60C | 4 | 2 | 48 | 48 | 48 |
 | ROS-037_composite|60C | 6 | 6 | 144 | 72 | 72 |
@@ -54,7 +54,7 @@ from their own start (as for the within-file F). 'pan' = the other pan of the sa
 | MIL-160|27C | 0.0026 (16) | 0.2157 (16) | 0.2021 (32) |
 | MIL-160|60C | 0.0044 (21) | n/a (0) | 0.0857 (45) |
 | MOF-303|27C | 0.0019 (8) | 0.1644 (8) | n/a (0) |
-| MOF-303|60C | 0.0050 (21) | 0.0668 (45) | n/a (0) |
+| MOF-303|60C | 0.0050 (14) | 0.0775 (15) | n/a (0) |
 | ROS-037|27C | 0.0020 (16) | 0.1023 (16) | 0.1553 (32) |
 | ROS-037|60C | 0.0050 (28) | 0.0660 (30) | 0.0885 (60) |
 | ROS-037_composite|60C | 0.0062 (42) | n/a (0) | 0.0343 (225) |
@@ -66,7 +66,7 @@ from their own start (as for the within-file F). 'pan' = the other pan of the sa
 | Syloid|27C | 0.0011 (16) | 0.1747 (16) | 0.1514 (32) |
 | Syloid|60C | 0.0058 (28) | 0.1260 (15) | 0.0743 (75) |
 
-Segment-weighted within-file F per sorbent (both temperatures): ROS-037 0.0040; ROS-039 0.0023; ROS-040 0.0054; MOF-303 0.0042; MIL-160 0.0037; CAU-10 0.0021; Al-fumarate 0.0078; Syloid 0.0042; ROS-037_composite 0.0062; ROS-039_composite 0.0062
+Segment-weighted within-file F per sorbent (both temperatures): ROS-037 0.0040; ROS-039 0.0023; ROS-040 0.0054; MOF-303 0.0039; MIL-160 0.0037; CAU-10 0.0021; Al-fumarate 0.0078; Syloid 0.0042; ROS-037_composite 0.0062; ROS-039_composite 0.0062
 
 ## M8: mass drift at the end of the dry-mass windows (isotherm-free)
 
@@ -85,11 +85,11 @@ losing mass); temperature = median sample temperature over the last minute.
 | isotherm | MOF-303 60C | 2 | -0.08 | 0.57 (2) | 61.05 | 61.05 |
 | isotherm | ROS-037 27C | 1 | -0.03 | -0.00 (1) | 25.10 | 25.20 |
 | isotherm | ROS-037 60C | 1 | -0.01 | -0.00 (1) | 61.00 | 61.00 |
-| isotherm | ROS-037_composite 27C | 2 | -0.16 | 0.05 (2) | 27.70 | 27.40 |
+| isotherm | ROS-037_composite 27C | 1 | -0.16 | 0.05 (1) | 27.70 | 27.40 |
 | isotherm | ROS-037_composite 60C | 1 | -0.10 | 0.01 (1) | 60.70 | 60.70 |
 | isotherm | ROS-039 27C | 1 | n/a | n/a (0) | n/a | n/a |
 | isotherm | ROS-039 60C | 1 | n/a | n/a (0) | n/a | n/a |
-| isotherm | ROS-039_composite 27C | 2 | -0.11 | 0.05 (2) | 27.80 | 27.30 |
+| isotherm | ROS-039_composite 27C | 1 | -0.11 | 0.05 (1) | 27.80 | 27.30 |
 | isotherm | ROS-039_composite 60C | 1 | -0.07 | 0.01 (1) | 60.70 | 60.70 |
 | isotherm | ROS-040 27C | 1 | -0.11 | 0.06 (1) | 27.40 | 27.40 |
 | isotherm | ROS-040 60C | 1 | -0.06 | 0.00 (1) | 61.10 | 61.10 |
@@ -102,7 +102,7 @@ losing mass); temperature = median sample temperature over the last minute.
 | step | MIL-160 27C | 4 | -0.07 | 0.18 (4) | 27.45 | 27.45 |
 | step | MIL-160 60C | 3 | -0.17 | 0.02 (3) | 60.90 | 60.90 |
 | step | MOF-303 27C | 2 | -0.06 | 1.59 (2) | 27.40 | 27.40 |
-| step | MOF-303 60C | 3 | -0.35 | 0.07 (3) | 60.90 | 61.00 |
+| step | MOF-303 60C | 2 | -0.27 | 0.12 (2) | 60.90 | 61.00 |
 | step | ROS-037 27C | 4 | -0.22 | 0.01 (4) | 27.40 | 27.40 |
 | step | ROS-037 60C | 4 | -0.04 | 0.00 (4) | 60.85 | 60.90 |
 | step | ROS-037_composite 60C | 6 | -0.01 | 0.01 (6) | 60.70 | 60.70 |
@@ -114,7 +114,7 @@ losing mass); temperature = median sample temperature over the last minute.
 | step | Syloid 27C | 4 | -0.32 | 0.35 (4) | 27.40 | 27.45 |
 | step | Syloid 60C | 4 | -0.17 | 0.01 (4) | 60.90 | 60.90 |
 
-All runs: median |drift| R1 0.108 %/h (n 83, max 3.012); R2 0.024 %/h (n 83, max 1.845).
+All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).
 
 ## m1: B0 with its own k'' against the noise floor (R2)
 

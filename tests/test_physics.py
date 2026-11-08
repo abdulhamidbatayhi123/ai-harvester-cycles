@@ -85,3 +85,18 @@ def test_signflip_exact():
     from p4.decide import signflip_p
     assert abs(signflip_p(np.ones(6)) - 1 / 64) < 1e-12
     assert signflip_p(np.array([1.0, -1.0, 1.0, -1.0])) > 0.3
+
+
+def test_signflip_exact_matches_enumeration():
+    """The subset-sum distribution equals brute-force enumeration, with ties, and stays exact above 16."""
+    import numpy as np
+    from p4.decide import signflip_p
+    from scipy.stats import rankdata
+    rng = np.random.default_rng(3)
+    for n in (5, 9, 12):
+        d = np.round(rng.normal(0.3, 1, n), 1)
+        d = d[d != 0]
+        r = rankdata(np.abs(d)); obs = r[d > 0].sum(); m = len(d)
+        pos = ((np.arange(2 ** m)[:, None] >> np.arange(m)) & 1).astype(bool)
+        assert abs(signflip_p(d) - np.mean((pos * r).sum(1) >= obs - 1e-9)) < 1e-12
+    assert signflip_p(np.ones(30)) == 2.0 ** -30

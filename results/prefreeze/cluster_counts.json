@@ -1,0 +1,89 @@
+{
+ "note": "inference clusters (PREREG section 4) per sorbent, both temperatures; made by the inline script in the 2026-11-08 session after the seg_ids fix",
+ "counts": {
+  "R2": {
+   "Al-fumarate": {
+    "clusters": 17,
+    "segments": 84
+   },
+   "CAU-10": {
+    "clusters": 35,
+    "segments": 120
+   },
+   "MIL-160": {
+    "clusters": 35,
+    "segments": 120
+   },
+   "MOF-303": {
+    "clusters": 13,
+    "segments": 72
+   },
+   "ROS-037": {
+    "clusters": 26,
+    "segments": 144
+   },
+   "ROS-037_composite": {
+    "clusters": 54,
+    "segments": 144
+   },
+   "ROS-039": {
+    "clusters": 26,
+    "segments": 95
+   },
+   "ROS-039_composite": {
+    "clusters": 54,
+    "segments": 144
+   },
+   "ROS-040": {
+    "clusters": 35,
+    "segments": 120
+   },
+   "Syloid": {
+    "clusters": 35,
+    "segments": 144
+   }
+  },
+  "R1": {
+   "Al-fumarate": {
+    "clusters": 17,
+    "segments": 84
+   },
+   "CAU-10": {
+    "clusters": 35,
+    "segments": 120
+   },
+   "MIL-160": {
+    "clusters": 35,
+    "segments": 120
+   },
+   "MOF-303": {
+    "clusters": 13,
+    "segments": 72
+   },
+   "ROS-037": {
+    "clusters": 26,
+    "segments": 144
+   },
+   "ROS-037_composite": {
+    "clusters": 54,
+    "segments": 144
+   },
+   "ROS-039": {
+    "clusters": 26,
+    "segments": 95
+   },
+   "ROS-039_composite": {
+    "clusters": 54,
+    "segments": 144
+   },
+   "ROS-040": {
+    "clusters": 35,
+    "segments": 120
+   },
+   "Syloid": {
+    "clusters": 35,
+    "segments": 144
+   }
+  }
+ }
+}

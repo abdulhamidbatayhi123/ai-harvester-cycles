@@ -106,14 +106,15 @@ series; they use the standard flow and stay in P. The other flow levels stay exc
       which fits re-adsorption at the instrument's real "0 %" (0.1 to 1.2 % RH).
     - **Primary criterion, isotherm-free (review finding M8):** a dry mass should be taken where
       the mass has stopped changing. The mass drift over the last 10 minutes of each window
-      (`results/prefreeze/checks2.md`) has a median magnitude of DRIFT_R2 %/h for R2 against
-      DRIFT_R1 %/h for R1. At the end of R1 the sample is still losing mass in almost every group.
-      R2 is near zero except for MOF-303 at 27 °C, where the mass is rising (about +1.6 %/h,
-      consistent with re-adsorption at the instrument's real "0 %"), and Syloid at 27 °C
-      (+0.35 %/h).
+      (`results/prefreeze/checks2.md`) has a median magnitude of 0.023 %/h for R2 against
+      0.106 %/h for R1 (80 runs each). At the end of R1 the sample is still losing mass in 32 of
+      the 33 run groups with both windows (kind × sorbent × temperature).
+      R2 is near zero except in MOF-303, where the mass is rising (step runs +1.6 %/h at 27 °C;
+      isotherm runs +1.1 and +0.6 %/h), consistent with re-adsorption at the instrument's real
+      "0 %"; Syloid step runs at 27 °C (+0.35 %/h); and the Syloid isotherm at 60 °C (−0.7 %/h).
     - Supporting check, which uses the isotherm and so was not the basis of the choice: how well
       equilibrated step end-points agree with the isotherm at the same measured RH. Median over
-      the 18 sorbent–temperature groups: R2 ENDGAP_R2 wt%, R1 ENDGAP_R1 wt%. The rule was first
+      the 18 sorbent–temperature groups: R2 0.50 wt%, R1 0.79 wt%. The rule was first
       chosen on this check (2026-11-08) and re-justified by the drift criterion the same day,
       after the review pointed out that agreement with the isotherm moves the target toward the
       baseline's own input (section 13).
@@ -332,8 +333,9 @@ segment, averaged within each cluster (one RH step in one session; section 4). A
 1. the median of the cluster values of d exceeds that sorbent's F (section 6);
 2. the median of d is at least 10 % of the comparator's median E over the same clusters
    (practical significance);
-3. a one-sided exact Wilcoxon signed-rank test of d over clusters, by enumeration of all sign
-   vectors, gives p ≤ 0.025.
+3. a one-sided exact Wilcoxon signed-rank test of d over clusters gives p ≤ 0.025 (exact null
+   distribution over all 2ⁿ sign vectors, average ranks for ties, computed by counting subset
+   sums so that it is exact for any n).
 
 This is one statistic throughout, the paired difference, and `p4/decide.py` implements exactly
 this text. The signed-rank statistic replaces the median in the test because the median ties
@@ -514,35 +516,56 @@ completed. The final run times are reported.
 
 ## 12. Freeze record
 
-Not frozen. Pre-freeze measurements so far (2026-11-04; `results/prefreeze/summary.md`):
+Not frozen. Pre-freeze measurements, recomputed on 2026-11-08 after the duplicate exports were
+dropped (section 13). All are data-only or in-sample; none evaluates a learned model on real data.
 
-- **Noise floor F**, median normalised RMS between consecutive repeats, per sorbent at 27 / 60 °C:
+- **Noise floor F** (within-file test-retest: median normalised RMS between repeats of the same
+  step in the same file; `results/prefreeze/checks2.md`). F is a ratio and is the same under R1
+  and R2 to the fourth decimal.
 
-| Sorbent | 27 °C | 60 °C |
-|---|---|---|
-| Al-fumarate | 0.0014 | 0.0126 |
-| CAU-10-H | 0.0009 | 0.0028 |
-| MIL-160 | 0.0026 | 0.0044 |
-| MOF-303 | 0.0019 | 0.0050 |
-| ROS-037 | 0.0020 | 0.0050 |
-| ROS-039 | 0.0018 | 0.0029 |
-| ROS-040 | 0.0035 | 0.0066 |
-| Syloid | 0.0011 | 0.0058 |
-| ROS-037 composite | excluded | 0.0062 |
-| ROS-039 composite | excluded | 0.0062 |
+| Sorbent | 27 °C (pairs) | 60 °C (pairs) | F used in section 7 (segment-weighted) | clusters |
+|---|---|---|---|---|
+| ROS-037 | 0.0020 (16) | 0.0050 (28) | 0.0040 | 26 |
+| ROS-039 | 0.0018 (16) | 0.0029 (13) | 0.0023 | 26 |
+| ROS-040 | 0.0035 (16) | 0.0066 (21) | 0.0054 | 35 |
+| MOF-303 | 0.0019 (8) | 0.0050 (14) | 0.0039 | 13 |
+| MIL-160 | 0.0026 (16) | 0.0044 (21) | 0.0037 | 35 |
+| CAU-10-H | 0.0009 (16) | 0.0028 (21) | 0.0021 | 35 |
+| Al-fumarate | 0.0014 (12) | 0.0126 (14) | 0.0078 | 17 |
+| Syloid | 0.0011 (16) | 0.0058 (28) | 0.0042 | 35 |
+| ROS-037 composite | excluded | 0.0062 (42) | 0.0062 | 54 |
+| ROS-039 composite | excluded | 0.0062 (42) | 0.0062 | 54 |
 
-- **Step end-points minus the isotherm at the same measured RH**: medians between −1.8 and
-  +2.8 wt%, worst single point 9.8 wt% (Al-fumarate, 60 °C). Every isotherm-driven model
-  inherits this error.
-- **In-sample reproduction of B0** under the primary dry-mass rule R2
-  (`results/prefreeze/reproduce_b0.json`; per-material and pooled fits, no held-out evaluation):
-  - At 27 °C the per-material k″ agree across the eight sorbents (coefficient of variation 0.07
-    for uptake, 0.10 for release), reproducing Bezrukov's "independent of the material" there.
-  - At 60 °C they do not (0.39 and 0.28; CAU-10-H uptake 3.16 against 1.56 pooled).
-  - Even with its own k″, B0's in-sample median E is 0.022 to 0.237, 10 to 50 times the noise
-    floor. The remaining error lies in the model's form.
-  - Under R1 (`reproduce_b0_R1.json`) the picture is the same: coefficients of variation 0.08,
-    0.10, 0.42, 0.29; E 0.021 to 0.206.
+- **Inference clusters** (one RH step in one session, both temperatures;
+  `results/prefreeze/cluster_counts.json`, identical under R1 and R2): 13 to 54 per sorbent, so
+  every held-out sorbent can reach p ≤ 0.025 (minimum attainable p 2⁻¹³ for MOF-303).
+- **F_between** (same step and repeat in another pan or another session): 0.066 to 0.216
+  between pans and 0.034 to 0.374 between sessions. It is reported as a ceiling only.
+- **Dry-mass rules** (section 3.3): end-of-window drift, median |drift| 0.023 %/h (R2) against
+  0.106 %/h (R1) over 80 runs. Step end-points minus the isotherm at the same measured RH, median
+  per sorbent–temperature group: −1.16 to +3.13 wt% under R2 (median of the absolute values
+  0.50 wt%) and −1.80 to +2.78 wt% under R1 (0.79 wt%); worst single point 9.8 wt% under R1
+  (Al-fumarate, 60 °C; `results/prefreeze/summary.md`). Every isotherm-driven model inherits this
+  error.
+- **In-sample reproduction of B0** (`results/prefreeze/reproduce_b0.json`, R2; per-material and
+  pooled fits, no held-out evaluation):
+  - At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07
+    for uptake and 0.11 for release (sample SD; 0.07 and 0.10 with the population SD),
+    reproducing Bezrukov's "independent of the material" there.
+  - At 60 °C they do not: 0.42 and 0.30 (population SD 0.39 and 0.28). CAU-10-H uptake has
+    k″ = 3.16 against 1.59 pooled.
+  - Even with its own k″, B0's in-sample median E is 0.022 to 0.237 (0.018 to 0.236 when k″ is
+    fitted by the scored metric). That is 3.5 to 67 times the noise floor, median 15 over the 32
+    strata (sorbent × temperature × direction). The remaining error lies in the model's form.
+  - Under R1 (`reproduce_b0_R1.json`): coefficients of variation 0.08, 0.10, 0.42, 0.29
+    (population SD); E 0.018 to 0.206.
+- **Physical-violation floor** (section 6; `results/prefreeze/violation_floor.json`): the share of
+  measured segments in which uptake moves against the step direction for a minute is 0 for the
+  three ROS sorbents, Syloid and both composites; 0.04 for MIL-160, 0.06 for CAU-10-H, 0.15 for
+  Al-fumarate and 0.28 for MOF-303.
+- **Null-world size** (section 10; `results/null_calibration.json`): B0's median E in the null
+  world, over all eight sorbents, is 0.080, 0.064 and 0.081 for replicates 0 to 2, inside the
+  range seen on the real data.
 - Commit hash, date and compute budget: to be filled at the freeze.
 
 ## 13. Corrections to this draft
@@ -575,3 +598,9 @@ Not frozen. Pre-freeze measurements so far (2026-11-04; `results/prefreeze/summa
   needs an interval. L1 is primary. The comparator is the best of B0, B0-b and B1. The oracle is
   fitted by the scored metric. H4b and H4c are descriptive, and the family rule uses the two
   non-trivial LOFO folds. A realistic null world is added to the harness.
+- 2026-11-08. **Cluster key and exact test.** A code check against section 4 found that the
+  cluster key in `p4/run_study.py` (`seg_ids`) still held the plateau number, so every repeat of a
+  step was its own cluster, against the text. Fixed, with a unit test. Clusters are now 13 to 54
+  per sorbent (section 12), not 36 to 144. The signed-rank test now uses its exact null
+  distribution for any number of clusters; before, it switched to Monte Carlo above 16. Neither
+  change touched any real-data result: no learned model had been evaluated on real data.

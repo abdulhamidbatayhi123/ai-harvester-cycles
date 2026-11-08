@@ -1,0 +1,21 @@
+R1 median over groups of median |end-point - isotherm| = 0.789 wt%; worst group 2.782
+R2 median over groups of median |end-point - isotherm| = 0.505 wt%; worst group 3.128
+R3 median over groups of median |end-point - isotherm| = 0.613 wt%; worst group 3.799
+  Al-fumarate|27C          R1 |1.32|  R2 |0.07|  R3 |0.11|
+  Al-fumarate|60C          R1 |2.25|  R2 |3.13|  R3 |0.87|
+  CAU-10|27C               R1 |1.58|  R2 |1.20|  R3 |1.29|
+  CAU-10|60C               R1 |0.55|  R2 |0.21|  R3 |0.42|
+  MIL-160|27C              R1 |0.68|  R2 |0.49|  R3 |2.12|
+  MIL-160|60C              R1 |1.48|  R2 |1.16|  R3 |1.54|
+  MOF-303|27C              R1 |0.98|  R2 |1.41|  R3 |0.66|
+  MOF-303|60C              R1 |0.86|  R2 |2.19|  R3 |3.80|
+  ROS-037|27C              R1 |0.64|  R2 |0.09|  R3 |0.04|
+  ROS-037|60C              R1 |0.15|  R2 |0.06|  R3 |0.04|
+  ROS-037_composite|60C    R1 |0.33|  R2 |0.31|  R3 |0.47|
+  ROS-039|27C              R1 |1.80|  R2 |0.82|  R3 |0.93|
+  ROS-039|60C              R1 |1.13|  R2 |0.83|  R3 |0.89|
+  ROS-039_composite|60C    R1 |0.72|  R2 |0.39|  R3 |0.40|
+  ROS-040|27C              R1 |0.51|  R2 |0.09|  R3 |0.05|
+  ROS-040|60C              R1 |0.53|  R2 |0.29|  R3 |0.54|
+  Syloid|27C               R1 |0.64|  R2 |0.52|  R3 |0.56|
+  Syloid|60C               R1 |2.78|  R2 |2.58|  R3 |2.93|

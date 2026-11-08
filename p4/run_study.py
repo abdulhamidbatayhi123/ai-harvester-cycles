@@ -135,8 +135,9 @@ def seg_ids(groups):
     """One id per held-out segment: '<session>|<temperature>|<from>><to>#<run file>#<plateau>'.
     The part before the first '#' is the inference cluster of PREREG section 7: one RH step in one
     measuring session, so the two pans of a pair and the repeats of a step within a file fall in
-    one cluster (review finding M5: whole sessions are too few, MOF-303 has one per temperature)."""
-    return [f"{e}|{g['temp']}|{s.rh_from:.0f}>{s.rh_to:.0f}#{r}#{s.index}"
+    one cluster (review finding M5: whole sessions are too few, MOF-303 has one per temperature).
+    g["exp"] ends in the plateau number; it is dropped here, or every repeat would be its own cluster."""
+    return [f"{e.rsplit('|', 1)[0]}|{g['temp']}|{s.rh_from:.0f}>{s.rh_to:.0f}#{r}#{s.index}"
             for g in groups for e, r, s in zip(g["exp"], g["run"], g["segments"])]
 
 

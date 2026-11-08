@@ -445,34 +445,6 @@
    "sample_number": 1.0
   },
   {
-   "source": "MIL-160/27C/hm/start_from_zero/Heatmap_validation_full_cycle_MIL-160_DJO-02-500_5-100um_HMvalidation-2021-12-27 04-08-05.xls",
-   "sorbent": "MIL-160",
-   "temp_dir": "27C",
-   "kind": "cycling",
-   "m_dry": null,
-   "dry_rule": "n/a",
-   "flow_sccm": [
-    400.0
-   ],
-   "stamp": "2021-12-27 04-08-05",
-   "instrument": "DVS Endeavour",
-   "sample_number": 1.0
-  },
-  {
-   "source": "MIL-160/27C/hm/start_from_zero/Heatmap_validation_full_cycle_MIL-160_DJO-02-500_5-100um_HMvalidation-2021-12-27 08-17-06.xls",
-   "sorbent": "MIL-160",
-   "temp_dir": "27C",
-   "kind": "cycling",
-   "m_dry": null,
-   "dry_rule": "n/a",
-   "flow_sccm": [
-    400.0
-   ],
-   "stamp": "2021-12-27 08-17-06",
-   "instrument": "DVS Endeavour",
-   "sample_number": 1.0
-  },
-  {
    "source": "MIL-160/60C/DJO-02-500_isotherm_60C-2021-05-17 19-16-27.xls",
    "sorbent": "MIL-160",
    "temp_dir": "60C",
@@ -674,20 +646,6 @@
    "sample_number": 2.0
   },
   {
-   "source": "MOF-303/27C/hm/start_from_zero/Heatmap_validation_full_cycle_-MOF-303_SS-1131_5-100um_HMvalidation-2021-12-27 08-17-06.xls",
-   "sorbent": "MOF-303",
-   "temp_dir": "27C",
-   "kind": "cycling",
-   "m_dry": null,
-   "dry_rule": "n/a",
-   "flow_sccm": [
-    400.0
-   ],
-   "stamp": "2021-12-27 08-17-06",
-   "instrument": "DVS Endeavour",
-   "sample_number": 2.0
-  },
-  {
    "source": "MOF-303/27C/same_mass/MOF-303-SS1131_heatmap_27C_15mg_50-100um-2021-07-03 16-54-02.xls",
    "sorbent": "MOF-303",
    "temp_dir": "27C",
@@ -703,21 +661,6 @@
   },
   {
    "source": "MOF-303/60C/MOF-303-SS1131_kinetics_5mg_50-100um-2021-06-08 10-08-23.xls",
-   "sorbent": "MOF-303",
-   "temp_dir": "60C",
-   "kind": "step",
-   "m_dry": 4.8922,
-   "dry_rule": "activation",
-   "flow_sccm": [
-    200.0,
-    400.0
-   ],
-   "stamp": "2021-06-08 10-08-23",
-   "instrument": "DVS Endeavour",
-   "sample_number": 1.0
-  },
-  {
-   "source": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls",
    "sorbent": "MOF-303",
    "temp_dir": "60C",
    "kind": "step",
@@ -1045,20 +988,6 @@
   },
   {
    "source": "ROS-037_composite/27C/19-0182-4_isotherm_27C-2021-12-24 14-41-16.xlsx",
-   "sorbent": "ROS-037_composite",
-   "temp_dir": "27C",
-   "kind": "isotherm",
-   "m_dry": 8.9288,
-   "dry_rule": "activation",
-   "flow_sccm": [
-    400.0
-   ],
-   "stamp": "2021-12-24 14-41-16",
-   "instrument": "DVS Endeavour",
-   "sample_number": 1
-  },
-  {
-   "source": "ROS-037_composite/27C/hm/19-0182-4_isotherm_27C-2021-12-24 14-41-16.xlsx",
    "sorbent": "ROS-037_composite",
    "temp_dir": "27C",
    "kind": "isotherm",
@@ -1561,20 +1490,6 @@
   },
   {
    "source": "ROS-039_composite/27C/21-0043-1_ROS-039_paper_isotherm_27C-2022-01-01 16-50-03.xls",
-   "sorbent": "ROS-039_composite",
-   "temp_dir": "27C",
-   "kind": "isotherm",
-   "m_dry": 8.2911,
-   "dry_rule": "activation",
-   "flow_sccm": [
-    400.0
-   ],
-   "stamp": "2022-01-01 16-50-03",
-   "instrument": "DVS Endeavour",
-   "sample_number": 1.0
-  },
-  {
-   "source": "ROS-039_composite/27C/hm/21-0043-1_ROS-039_paper_isotherm_27C-2022-01-01 16-50-03.xls",
    "sorbent": "ROS-039_composite",
    "temp_dir": "27C",
    "kind": "isotherm",
@@ -2229,20 +2144,6 @@
    "sample_number": 2.0
   },
   {
-   "source": "Variable flow/10mg/400flow-ROS-037_pureBatch_50-100um_10mg_flowRateVariation-2021-05-25 14-51-36.xls",
-   "sorbent": null,
-   "temp_dir": null,
-   "kind": "other",
-   "m_dry": null,
-   "dry_rule": "n/a",
-   "flow_sccm": [
-    400.0
-   ],
-   "stamp": "2021-05-25 14-51-36",
-   "instrument": "DVS Endeavour",
-   "sample_number": 2.0
-  },
-  {
    "source": "Variable flow/5mg/100flow-ROS-037_pureBatch_50-100um_5mg_flowRateVariation-2021-05-26 10-22-20.xls",
    "sorbent": null,
    "temp_dir": null,
@@ -2269,20 +2170,6 @@
     400.0
    ],
    "stamp": "2021-05-26 00-10-44",
-   "instrument": "DVS Endeavour",
-   "sample_number": 1.0
-  },
-  {
-   "source": "Variable flow/5mg/400flow-ROS-037_pureBatch_50-100um_5mg_flowRateVariation-2021-05-25 14-51-36.xls",
-   "sorbent": null,
-   "temp_dir": null,
-   "kind": "other",
-   "m_dry": null,
-   "dry_rule": "n/a",
-   "flow_sccm": [
-    400.0
-   ],
-   "stamp": "2021-05-25 14-51-36",
    "instrument": "DVS Endeavour",
    "sample_number": 1.0
   },
@@ -5864,9 +5751,9 @@
    ]
   },
   "MOF-303|60C": {
-   "median_E": 0.005002189126503025,
-   "p90_E": 0.009956790103888787,
-   "n_pairs": 21,
+   "median_E": 0.004962640030437124,
+   "p90_E": 0.009181215318014425,
+   "n_pairs": 14,
    "pairs": [
     {
      "E": 0.0023591487675793743,
@@ -5909,48 +5796,6 @@
      "step": "60.0->10.7",
      "n": 591,
      "run": "MOF-303/60C/MOF-303-SS1131_kinetics_5mg_50-100um-2021-06-08 10-08-23.xls"
-    },
-    {
-     "E": 0.0023591487675793743,
-     "step": "0.0->30.0",
-     "n": 303,
-     "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls"
-    },
-    {
-     "E": 0.007371540817640907,
-     "step": "0.0->30.0",
-     "n": 304,
-     "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls"
-    },
-    {
-     "E": 0.005873691817416539,
-     "step": "30.0->0.0",
-     "n": 448,
-     "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls"
-    },
-    {
-     "E": 0.009956790103888787,
-     "step": "30.0->5.4",
-     "n": 369,
-     "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls"
-    },
-    {
-     "E": 0.01096035430844693,
-     "step": "60.0->0.0",
-     "n": 456,
-     "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls"
-    },
-    {
-     "E": 0.005002189126503025,
-     "step": "0.0->60.0",
-     "n": 235,
-     "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls"
-    },
-    {
-     "E": 0.0049230909343712225,
-     "step": "60.0->10.7",
-     "n": 591,
-     "run": "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls"
     },
     {
      "E": 0.0021426555832384764,
@@ -9455,115 +9300,10 @@
    ]
   },
   "MOF-303|60C": {
-   "median_diff_wt%": -0.20840407341323974,
+   "median_diff_wt%": -0.06195551184569892,
    "max_abs_diff_wt%": 3.397961754194083,
-   "n": 45,
+   "n": 30,
    "points": [
-    {
-     "rh": 31.393333333333338,
-     "w_step": 36.41715383671968,
-     "w_iso": 36.35117124712451,
-     "diff": 0.06598258959516556,
-     "dir": "ads"
-    },
-    {
-     "rh": 31.347499999999993,
-     "w_step": 36.364008012754994,
-     "w_iso": 36.344527621491565,
-     "diff": 0.019480391263428487,
-     "dir": "ads"
-    },
-    {
-     "rh": 31.303750000000015,
-     "w_step": 36.31699439924778,
-     "w_iso": 36.33818597884194,
-     "diff": -0.021191579594159293,
-     "dir": "ads"
-    },
-    {
-     "rh": 0.48,
-     "w_step": 0.46741070820216607,
-     "w_iso": 3.739321469659503,
-     "diff": -3.2719107614573373,
-     "dir": "des"
-    },
-    {
-     "rh": 6.621666666666666,
-     "w_step": 5.210334818690962,
-     "w_iso": 6.463607911994865,
-     "diff": -1.2532730933039034,
-     "dir": "des"
-    },
-    {
-     "rh": 31.864166666666627,
-     "w_step": 36.06199664772497,
-     "w_iso": 36.423715396591504,
-     "diff": -0.36171874886653654,
-     "dir": "ads"
-    },
-    {
-     "rh": 6.636666666666653,
-     "w_step": 5.288690841203011,
-     "w_iso": 6.469910148747644,
-     "diff": -1.181219307544633,
-     "dir": "des"
-    },
-    {
-     "rh": 31.923333333333332,
-     "w_step": 36.110543313846534,
-     "w_iso": 36.433888653955755,
-     "diff": -0.32334534010922056,
-     "dir": "ads"
-    },
-    {
-     "rh": 6.62875,
-     "w_step": 5.365002793562541,
-     "w_iso": 6.466583968239236,
-     "diff": -1.1015811746766957,
-     "dir": "des"
-    },
-    {
-     "rh": 58.49,
-     "w_step": 38.9553779485712,
-     "w_iso": 39.497638167548466,
-     "diff": -0.542260218977269,
-     "dir": "ads"
-    },
-    {
-     "rh": 0.48,
-     "w_step": 0.3413597154654199,
-     "w_iso": 3.739321469659503,
-     "diff": -3.397961754194083,
-     "dir": "des"
-    },
-    {
-     "rh": 57.73,
-     "w_step": 38.72490903887823,
-     "w_iso": 39.43310710824791,
-     "diff": -0.7081980693696792,
-     "dir": "ads"
-    },
-    {
-     "rh": 57.53999999999988,
-     "w_step": 38.78214300314788,
-     "w_iso": 39.416974343422766,
-     "diff": -0.6348313402748857,
-     "dir": "ads"
-    },
-    {
-     "rh": 59.56749999999995,
-     "w_step": 38.73308531948816,
-     "w_iso": 39.5891279259647,
-     "diff": -0.8560426064765423,
-     "dir": "ads"
-    },
-    {
-     "rh": 12.264999999999958,
-     "w_step": 9.523322840439874,
-     "w_iso": 9.731726913853114,
-     "diff": -0.20840407341323974,
-     "dir": "des"
-    },
     {
      "rh": 31.393333333333338,
      "w_step": 36.41715383671968,
@@ -14948,24 +14688,11 @@
    "MIL-160/27C/MIL-160_DJO-02-500_kinetics_27C_5mg_50-100um-2021-06-17 14-20-40_1.xls"
   ],
   [
-   "MIL-160/27C/hm/Heatmap_validation_full_cycle_MIL-160_DJO-02-500_5-100um_HMvalidation-2021-12-27 04-08-05.xls",
-   "MIL-160/27C/hm/start_from_zero/Heatmap_validation_full_cycle_MIL-160_DJO-02-500_5-100um_HMvalidation-2021-12-27 04-08-05.xls"
-  ],
-  [
-   "MIL-160/27C/hm/Heatmap_validation_full_cycle_MIL-160_DJO-02-500_5-100um_HMvalidation-2021-12-27 08-17-06.xls",
-   "MIL-160/27C/hm/start_from_zero/Heatmap_validation_full_cycle_MIL-160_DJO-02-500_5-100um_HMvalidation-2021-12-27 08-17-06.xls"
-  ],
-  [
    "MOF-303/27C/MOF-303-SS1131_kinetics_27C_12mg_50-100um-2021-06-03 09-37-23.xls",
    "MOF-303/27C/MOF-303-SS1131_kinetics_27C_20mg_50-100um-2021-06-03 09-37-23.xls"
   ],
   [
-   "MOF-303/27C/hm/Heatmap_validation_full_cycle_-MOF-303_SS-1131_5-100um_HMvalidation-2021-12-27 08-17-06.xls",
-   "MOF-303/27C/hm/start_from_zero/Heatmap_validation_full_cycle_-MOF-303_SS-1131_5-100um_HMvalidation-2021-12-27 08-17-06.xls"
-  ],
-  [
    "MOF-303/60C/MOF-303-SS1131_kinetics_5mg_50-100um-2021-06-08 10-08-23.xls",
-   "MOF-303/60C/MOF-303-SS1131_kinetics_60C_5mg_50-100um-2021-06-08 10-08-23.xls",
    "MOF-303/60C/MOF-303-SS1131_kinetics_60C_8mg_50-100um-2021-06-08 10-08-23.xls"
   ],
   [
@@ -14993,10 +14720,6 @@
    "ROS-037_composite/27C/19-0182-4_CircleConnectedToAdventurePanWWire8-2021-12-24 12-04-36.xls"
   ],
   [
-   "ROS-037_composite/27C/19-0182-4_isotherm_27C-2021-12-24 14-41-16.xlsx",
-   "ROS-037_composite/27C/hm/19-0182-4_isotherm_27C-2021-12-24 14-41-16.xlsx"
-  ],
-  [
    "ROS-039/27C/ROS039-SD-1-183_kinetics_12mg_50-100um-2021-06-05 12-06-31.xls",
    "ROS-039/27C/ROS039-SD-1-183_kinetics_20mg_50-100um-2021-06-05 12-06-31.xls"
   ],
@@ -15011,10 +14734,6 @@
   [
    "ROS-039_composite/27C/21-0043-1_CircleConnectedToAdventurePanWWire4-2022-01-01 12-46-31.xls",
    "ROS-039_composite/27C/21-0043-1_CircleConnectedToAdventurePanWWire5-2022-01-01 12-46-31.xls"
-  ],
-  [
-   "ROS-039_composite/27C/21-0043-1_ROS-039_paper_isotherm_27C-2022-01-01 16-50-03.xls",
-   "ROS-039_composite/27C/hm/21-0043-1_ROS-039_paper_isotherm_27C-2022-01-01 16-50-03.xls"
   ],
   [
    "ROS-040/27C/ROS-040_SD-1-82_kinetics_12mg_27C_50-100um-2021-06-30 09-53-50.xls",
@@ -15043,10 +14762,6 @@
   [
    "Variable flow/10mg/200flow-ROS-037_pureBatch_50-100um_10mg_flowRateVariation-2021-05-26 00-10-44.xls",
    "Variable flow/5mg/200flow_ROS-037_pureBatch_50-100um_5mg_flowRateVariation-2021-05-26 00-10-44.xls"
-  ],
-  [
-   "Variable flow/10mg/400flow-ROS-037_pureBatch_50-100um_10mg_flowRateVariation-2021-05-25 14-51-36.xls",
-   "Variable flow/5mg/400flow-ROS-037_pureBatch_50-100um_5mg_flowRateVariation-2021-05-25 14-51-36.xls"
   ],
   [
    "different_fractions/CAU-10-H/CAU-10-H_NK-1531_100-150um_TGApan_kinetics-2022-08-04 15-16-55.xls",
