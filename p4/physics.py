@@ -150,3 +150,52 @@ def fit_scale_metric(groups, simulate, direction, dt=0.1, k_start=None, span=2.0
     r = minimize_scalar(med_e, bounds=(lo, hi), method="bounded", options={"xatol": 1e-4})
     best = r.x if r.fun <= vals[i] else grid[i]
     return float(np.exp(best))
+
+
+def rh50(ads: Branch) -> float:
+    """B2's isotherm descriptor: the RH (%) at which the adsorption branch reaches half of its
+    uptake at 30 % RH."""
+    return float(ads.rh_of_w(0.5 * float(ads.w_of_rh(30.0))))
+
+
+def fit_b2(groups, direction, dt=0.1):
+    """B2 (reported comparator): log k'' = a + b * rh50/30, fitted by least squares over the
+    training groups of one temperature and direction. groups: dicts as for fit_scale, each with
+    one material's 'ads'. Returns (a, b)."""
+    from scipy.optimize import minimize
+    xs = [rh50(g["ads"]) / 30.0 for g in groups]
+
+    def loss(p):
+        se, cnt = 0.0, 0
+        for g, x in zip(groups, xs):
+            kk = np.exp(p[0] + p[1] * x) / np.asarray(g["m"], float)
+            ka, kd = (kk, 0.0) if direction == "ads" else (0.0, kk)
+            pred = simulate_b0(g["rh"], g["w"][:, 0], ka, kd, g["ads"], g.get("des"), dt=dt)
+            seg = np.nanmean((pred - g["w"]) ** 2, axis=1)
+            se += float(np.sum(seg))
+            cnt += len(seg)
+        return se / max(cnt, 1)
+    k0 = fit_scale(groups, simulate_b0, direction, dt=dt)
+    r = minimize(loss, [np.log(k0), 0.0], method="Nelder-Mead", options={"xatol": 1e-3, "fatol": 1e-9})
+    return float(r.x[0]), float(r.x[1])
+
+
+def violations(traj, rh, dirs, ads: Branch, des: Branch, tol_sign=0.01, tol_iso=0.05):
+    """Physical violations per segment (PREREG section 6). traj, rh: (n, L) NaN-padded; dirs: +1
+    uptake, -1 release. A segment violates if, in any 6 s step, uptake moves against the sign of
+    the driving force (RH - RH_bed(w), adsorption branch) by more than `tol_sign` wt%, or if it
+    crosses the isotherm (above the adsorption branch during uptake, below the desorption
+    branch during release) by more than `tol_iso` wt%. Returns a boolean array (n,)."""
+    traj, rh = np.atleast_2d(traj), np.atleast_2d(rh)
+    out = np.zeros(len(traj), bool)
+    for i, (w, r, d) in enumerate(zip(traj, rh, dirs)):
+        ok = np.isfinite(w) & np.isfinite(r)
+        w, r = w[ok], r[ok]
+        if len(w) < 2:
+            continue
+        drive = r[:-1] - ads.rh_of_w(w[:-1])
+        dw = np.diff(w)
+        against = np.any(((drive > 0) & (dw < -tol_sign)) | ((drive < 0) & (dw > tol_sign)))
+        cross = np.any(w - ads.w_of_rh(r) > tol_iso) if d > 0 else np.any(des.w_of_rh(r) - w > tol_iso)
+        out[i] = bool(against or cross)
+    return out

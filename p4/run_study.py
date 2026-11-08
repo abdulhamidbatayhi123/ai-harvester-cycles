@@ -26,7 +26,7 @@ import numpy as np
 import torch
 
 from p4.dataset import build_groups
-from p4.physics import fit_scale, fit_scale_metric, simulate_b0, simulate_b1
+from p4.physics import fit_b2, fit_scale, fit_scale_metric, rh50, simulate_b0, simulate_b1, violations
 from p4.segments import DT_MIN, normalised_rms
 from p4.train import isotherms_by_material, predict, train_two_stage
 
@@ -43,11 +43,16 @@ SEEDS = [0, 1, 2, 3, 4]
 
 
 def folds():
+    """8 LOSO folds and the LOFO folds that differ from every LOSO fold. The silica and
+    Cu-glutarate LOFO folds hold out exactly the Syloid and ROS-037 LOSO sorbents, so they are
+    not trained again; p4.decide reads their LOSO rows (review finding M6)."""
     out = []
     for s in PRIMARY8:
         out.append(("LOSO:" + s, [s] + ([COMPOSITE_OF[s]] if s in COMPOSITE_OF else [])))
+    loso_sets = [set(h) for _, h in out]
     for fam, members in FAMILIES.items():
-        out.append(("LOFO:" + fam, members))
+        if set(members) not in loso_sets:
+            out.append(("LOFO:" + fam, members))
     return out
 
 
@@ -93,6 +98,31 @@ def physics_E(groups, simulate, k2, use_des):
     return E
 
 
+def b2_E(train, te):
+    """B2: log k'' = a + b * rh50/30 per temperature and direction, fitted on `train`."""
+    ab = {}
+    for T in ("27C", "60C"):
+        for d in ("ads", "des"):
+            gs = [{**g, "des": None} for g in sub(train, T, d)]
+            if gs:
+                ab[(T, d)] = fit_b2(gs, d, dt=DT_MIN)
+    E = []
+    for g in te:
+        x = rh50(g["ads"]) / 30.0
+        ka = np.exp(ab[(g["temp"], "ads")][0] + ab[(g["temp"], "ads")][1] * x) / g["m"]
+        kd = np.exp(ab[(g["temp"], "des")][0] + ab[(g["temp"], "des")][1] * x) / g["m"]
+        E += seg_E(simulate_b0(g["rh"], g["w"][:, 0], ka, kd, g["ads"], None, dt=DT_MIN), g["w"])
+    return E, {f"{a}|{b}": v for (a, b), v in ab.items()}
+
+
+def viol(groups, preds):
+    """Per-segment physical-violation flags (PREREG section 6) for predictions (list per group)."""
+    out = []
+    for g, p in zip(groups, preds):
+        out += violations(p, g["rh"], g["dir"], g["ads"], g["des"]).tolist()
+    return out
+
+
 def seg_E(pred, w):
     out = []
     for p, ww in zip(pred, w):
@@ -102,9 +132,12 @@ def seg_E(pred, w):
 
 
 def seg_ids(groups):
-    """One id per held-out segment: '<experiment id>#<run file>' (experiment ids are shared by
-    the two pans of a pair)."""
-    return [f"{e}#{r}" for g in groups for e, r in zip(g["exp"], g["run"])]
+    """One id per held-out segment: '<session>|<temperature>|<from>><to>#<run file>#<plateau>'.
+    The part before the first '#' is the inference cluster of PREREG section 7: one RH step in one
+    measuring session, so the two pans of a pair and the repeats of a step within a file fall in
+    one cluster (review finding M5: whole sessions are too few, MOF-303 has one per temperature)."""
+    return [f"{e}|{g['temp']}|{s.rh_from:.0f}>{s.rh_to:.0f}#{r}#{s.index}"
+            for g in groups for e, r, s in zip(g["exp"], g["run"], g["segments"])]
 
 
 class Rows:
@@ -186,11 +219,13 @@ def main():
                 if own:
                     k_own = fit_physics(own, simulate_b0, use_des, metric=True)
                     oracle[s] = physics_E(own, simulate_b0, k_own, use_des)
+            E_b2, ab2 = b2_E(fit_on, te)
             rows.put({"key": key, "fold": fold, "held": held, "val": vs, "B0_variant": "B0-b" if use_des else "B0",
+                      "B2_ab": ab2, "viol_data": viol(te, [g["w"] for g in te]),
                       "comparator": base, "k2": {f"{a}|{b}": v for (a, b), v in k_base.items()},
                       "val_E": {"B0": v_b0, "B0-b": v_b0b, "B1": v_b1}, "seg": ids,
                       "E": {"B0": E_b0, "B1": E_b1, "base": E_b1 if base == "B1" else E_b0,
-                            "B0star": sum((oracle[s] for s in held if s in oracle), [])}})
+                            "B2": E_b2, "B0star": sum((oracle[s] for s in held if s in oracle), [])}})
             log(f"{fold}: physics done ({'B0-b' if use_des else 'B0'}; comparator {base})")
         ph = rows.get(key)
         k2 = {tuple(k.split("|")): v for k, v in ph["k2"].items()}
@@ -222,12 +257,13 @@ def main():
                 preds.append([z[f"g{i}"] for i in range(len(te))])
             k = f"{fold}|{kind}|ensemble"
             if not rows.get(k):
-                E = []
+                E, means = [], []
                 for i, g in enumerate(te):
                     mean = np.mean([p[i] for p in preds], axis=0)
+                    means.append(mean)
                     E += seg_E(mean, g["w"])
                 rows.put({"key": k, "fold": fold, "kind": kind, "cfg": grid[best_cfg], "n_seeds": len(preds),
-                          "seg": ids, "E": E})
+                          "seg": ids, "E": E, "viol": viol(te, means)})
                 log(f"{fold} {kind} ensemble median E {np.nanmedian(E):.4f}")
     log("done")
 

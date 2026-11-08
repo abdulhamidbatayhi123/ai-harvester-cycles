@@ -1,9 +1,9 @@
 """Apply the pre-registered decision rules (PREREG_P4 section 7) to the runner's rows.
 
 Per fold and learned model, the paired difference d = E_base - E_model is averaged within each
-experiment (the two pans of a pair are one experiment), and the rule is applied to the
-experiment-level d: median(d) > F of the held-out sorbent, median(d) >= 10 % of median E_base,
-and the 2.5 % bootstrap quantile of median(d) over experiments > 0. E_base is the comparator
+cluster, and the rule is applied to the cluster-level d: median(d) > F of the held-out sorbent, median(d) >= 10 % of median E_base,
+and a one-sided exact Wilcoxon signed-rank test of d over clusters gives p <= 0.025. A cluster is
+one RH step in one measuring session (both pans and all repeats of that step averaged). E_base is the comparator
 chosen on the validation sorbent among B0, B0-b and B1 (rows written before that change: B0).
 
 H4a, L1 primary and L2 secondary: supported if the model beats the comparator on >= 7 of 8 LOSO
@@ -12,7 +12,7 @@ improvement lies wholly below 10 %; otherwise not established. Transfer across f
 both non-trivial LOFO folds (Al-rod, Zn-triazolate-F).
 H4b (descriptive): the fraction of (E_B0 - F) that B0*, fitted by median E, closes per sorbent.
 
-usage: python -I -m p4.decide <rows.jsonl> <results/prefreeze/summary.json> <out.json>
+usage: python -I -m p4.decide <rows.jsonl> <results/prefreeze/checks2.json> <out.json>
 """
 from __future__ import annotations
 
@@ -23,21 +23,21 @@ from collections import defaultdict
 import numpy as np
 
 REL = 0.10
+ALPHA = 0.025
+VIOL_MARGIN = 0.05
 # The silica and Cu-glutarate LOFO folds hold out the same sorbents as their LOSO folds (review
 # finding M6), so the family rule rests on the two folds that hold out a whole family.
 NONTRIVIAL_LOFO = ("LOFO:Al-rod", "LOFO:Zn-triazolate-F")
 N_BOOT = 5000
 
 
-def sorbent_F(summary):
-    pairs = defaultdict(list)
-    for key, v in summary["noise_floor"].items():
-        s = key.split("|")[0]
-        pairs[s] += [p["E"] for p in v["pairs"]]
-    return {s: float(np.median(e)) for s, e in pairs.items()}
+def sorbent_F(checks2):
+    """One F per sorbent: the segment-weighted mean of its within-file floors at 27 and 60 C
+    (PREREG section 6), as computed before the freeze by audit/prefreeze_checks2.py."""
+    return {s: float(v) for s, v in checks2["F_within_segment_weighted"].items()}
 
 
-def experiment_level(seg_ids, e_b0, e_m):
+def cluster_level(seg_ids, e_b0, e_m):
     by = defaultdict(list)
     for sid, a, b in zip(seg_ids, e_b0, e_m):
         if np.isfinite(a) and np.isfinite(b):
@@ -47,15 +47,35 @@ def experiment_level(seg_ids, e_b0, e_m):
     return b0, m
 
 
+def signflip_p(d, n_mc=20000, seed=0):
+    """One-sided exact Wilcoxon signed-rank test of d > 0 over clusters, by enumerating every
+    sign vector up to 16 clusters (Monte Carlo above). The statistic is the sum of the ranks of
+    |d| over positive d (average ranks for ties); the attainable minimum p is 2**-n. The median
+    is not used as the statistic: it ties heavily under sign flips (six equal gains give
+    p = 0.34 instead of 1/64)."""
+    from scipy.stats import rankdata
+    d = np.asarray(d, float)
+    d = d[d != 0]
+    n = len(d)
+    if n == 0:
+        return 1.0
+    r = rankdata(np.abs(d))
+    obs = float(np.sum(r[d > 0]))
+    if n <= 16:
+        pos = ((np.arange(2 ** n)[:, None] >> np.arange(n)) & 1).astype(bool)
+    else:
+        pos = np.random.default_rng(seed).random((n_mc, n)) < 0.5
+    return float(np.mean((pos * r).sum(1) >= obs - 1e-9))
+
+
 def rule(e_b0, e_m, F, seed=0):
-    rng = np.random.default_rng(seed)
     d = e_b0 - e_m
     gain = float(np.median(d))
-    boots = np.array([np.median(d[rng.integers(0, len(d), len(d))]) for _ in range(N_BOOT)])
-    lo = float(np.quantile(boots, 0.025))
-    ok = bool(gain > F and gain >= REL * float(np.median(e_b0)) and lo > 0)
-    return ok, {"median_gain": gain, "ci_low": lo, "E_B0": float(np.median(e_b0)),
-                "E_model": float(np.median(e_m)), "F": F, "n_exp": int(len(d))}
+    p = signflip_p(d, seed=seed)
+    ok = bool(gain > F and gain >= REL * float(np.median(e_b0)) and p <= ALPHA)
+    return ok, {"median_gain": gain, "p_signflip": p, "E_B0": float(np.median(e_b0)),
+                "E_model": float(np.median(e_m)), "F": F, "n_clusters": int(len(d)),
+                "min_attainable_p": float(2.0 ** -len(d))}
 
 
 def main():
@@ -69,9 +89,17 @@ def main():
         assert p["seg"] == r["seg"], f"segment order differs in {fold}"
         held = p["held"]
         Fh = max(F.get(s, 0.0) for s in held)        # the larger floor when a fold holds several
-        b0, m = experiment_level(r["seg"], p["E"].get("base", p["E"]["B0"]), r["E"])
+        b0, m = cluster_level(r["seg"], p["E"].get("base", p["E"]["B0"]), r["E"])
         ok, info = rule(b0, m, Fh)
-        out["folds"][f"{fold}|{kind}"] = {"beats_B0": ok, **info}
+        # physical admissibility (section 7): violation rate at most the data's own + 5 points
+        v_m = float(np.mean(r["viol"])) if r.get("viol") else None
+        v_d = float(np.mean(p["viol_data"])) if p.get("viol_data") else None
+        admissible = v_m is None or v_d is None or v_m <= v_d + VIOL_MARGIN
+        b2 = p["E"].get("B2")
+        out["folds"][f"{fold}|{kind}"] = {"beats_B0": bool(ok and admissible), "rule_met": ok,
+                                          "violation_rate": v_m, "violation_rate_data": v_d,
+                                          "admissible": admissible, "comparator": p.get("comparator", "B0"),
+                                          "E_B2": float(np.nanmedian(b2)) if b2 else None, **info}
     for kind in ("L1", "L2"):
         loso_v = [v for k, v in out["folds"].items() if k.startswith("LOSO") and k.endswith(kind)]
         loso = [v["beats_B0"] for v in loso_v]

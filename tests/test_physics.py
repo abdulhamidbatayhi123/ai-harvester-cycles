@@ -78,3 +78,10 @@ def test_fit_recovers_material_independent_constant():
         groups.append({"rh": R, "w": w, "m": m, "ads": b})
     k_hat = fit_scale(groups, simulate_b0, "ads", dt=DT)
     assert abs(k_hat / k_true - 1) < 0.02
+
+
+def test_signflip_exact():
+    import numpy as np
+    from p4.decide import signflip_p
+    assert abs(signflip_p(np.ones(6)) - 1 / 64) < 1e-12
+    assert signflip_p(np.array([1.0, -1.0, 1.0, -1.0])) > 0.3
