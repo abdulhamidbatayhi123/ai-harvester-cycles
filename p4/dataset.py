@@ -6,6 +6,7 @@ file) and its step segments on the 6 s grid, NaN-padded into (n, L) arrays for b
 from __future__ import annotations
 
 import os
+import re
 
 import numpy as np
 
@@ -52,6 +53,11 @@ def isotherm_for(runs, sorbent, temp_dir):
     return Branch.from_points(rh[: top + 1], w[: top + 1]), Branch.from_points(rh[top:], w[top:]), run.source
 
 
+def _stamp(source):
+    m = re.search(r"(\d{4}-\d{2}-\d{2} \d{2}-\d{2}-\d{2})", source)
+    return m.group(1) if m else source
+
+
 def pad(arrs):
     L = max(len(a) for a in arrs)
     out = np.full((len(arrs), L), np.nan)
@@ -82,5 +88,8 @@ def build_groups(root, min_dw=0.05):
                 "m": np.array([g.m_dry for g in segs]),
                 "dir": np.array([1 if g.rh_to > g.rh_from else -1 for g in segs]),
                 "run": np.array([g.source for g in segs]),
+                "plateau": np.array([g.index for g in segs]),
+                # experiment id: two-pan pairs share a start stamp, so they share an id (section 4)
+                "exp": np.array([f"{s}|{T}|{_stamp(g.source)}|{g.index}" for g in segs]),
             })
     return groups

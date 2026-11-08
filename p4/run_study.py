@@ -96,7 +96,9 @@ def seg_E(pred, w):
 
 
 def seg_ids(groups):
-    return [f"{g['sorbent']}|{g['temp']}|{r}|{i}" for g in groups for i, r in enumerate(g["run"])]
+    """One id per held-out segment: '<experiment id>#<run file>' (experiment ids are shared by
+    the two pans of a pair)."""
+    return [f"{e}#{r}" for g in groups for e, r in zip(g["exp"], g["run"])]
 
 
 class Rows:
