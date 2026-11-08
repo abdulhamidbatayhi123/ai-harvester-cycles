@@ -11,7 +11,7 @@ For each outer fold (8 LOSO, 4 LOFO):
 Rows go to <out>/rows.jsonl, one per (fold, model, config, seed) step; finished steps are skipped
 on restart. Seed predictions are cached in <out>/pred/.
 
-usage: python -I -m p4.run_study <data_derived/bezrukov2023> <out_dir> [--synthetic [N|null] [--rep k]]
+usage: python -E -s -m p4.run_study <data_derived/bezrukov2023> <out_dir> [--synthetic [N|null] [--rep k]]
        [--fast] [--rule R1|R2] [--seeds n] [--grid n] [--loso-only] [--configs-from rows.jsonl]
 (--rule R1 runs the pre-registered dry-mass sensitivity analysis into a separate out_dir)
 """

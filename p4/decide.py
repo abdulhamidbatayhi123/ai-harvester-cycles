@@ -12,7 +12,8 @@ improvement lies wholly below 10 %; otherwise not established. Transfer across f
 both non-trivial LOFO folds (Al-rod, Zn-triazolate-F).
 H4b (descriptive): the fraction of (E_B0 - F) that B0*, fitted by median E, closes per sorbent.
 
-usage: python -I -m p4.decide <rows.jsonl> <results/prefreeze/checks2.json> <out.json>
+usage: python -E -s -m p4.decide <rows.jsonl> <results/prefreeze/checks2.json> <out.json>
+(run from the repo root; -I would also hide the p4 package from -m)
 """
 from __future__ import annotations
 
