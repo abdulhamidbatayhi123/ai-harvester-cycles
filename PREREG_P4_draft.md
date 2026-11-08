@@ -425,8 +425,9 @@ truth, and the fold pipeline is run on them (`audit/synthetic_harness.py`). Thre
 - **Null, realistic (review finding F2):** every sorbent deviates from B0 by its own rate
   factor exp(b_s + a_s·(w/w₃₀ − ½)), with b_s ~ N(0, 0.3²) and a_s ~ N(0, 0.6²) drawn
   independently of anything in the isotherm; AR(1) measurement noise (σ = 0.01 wt%, φ = 0.9).
-  The sizes put B0's median E near NULL_E (`results/null_calibration.json`), inside the real
-  range. A model given only the isotherm cannot predict these deviations, so any "beat" here is
+  With these sizes B0's median E over the eight sorbents is 0.064 to 0.081 in three
+  replicates, and 0.021 to 0.205 per sorbent (`results/null_calibration.json`, computed before the
+  duplicate fix), inside the range B0 shows on the real data. A model given only the isotherm cannot predict these deviations, so any "beat" here is
   a false positive.
 
 The harness passes if:
