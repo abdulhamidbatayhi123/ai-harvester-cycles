@@ -199,10 +199,14 @@ def main():
     k_true = fit_k2(real)                     # the truth's rate constants
     log(f"k_true {k_true}")
     res = {"k_true": {f"{a}|{b}": v for (a, b), v in k_true.items()}, "cases": {}}
+    only_cases = os.environ.get("HARNESS_CASES", "N,C,C2").split(",")      # diagnostics only
+    held_list = os.environ.get("HARNESS_HELD", ",".join(HELD)).split(",")
     for case, corrected in (("N", False), ("C", True), ("C2", "C2")):
+        if case not in only_cases:
+            continue
         syn = synthesise(real, k_true, corrected, seed=1)
         iso = isotherms_by_material(syn)
-        for held in HELD:
+        for held in held_list:
             tr = [g for g in syn if g["sorbent"] not in (held, VAL)]
             va = [g for g in syn if g["sorbent"] == VAL]
             te = [g for g in syn if g["sorbent"] == held]
@@ -216,10 +220,15 @@ def main():
                                               log=lambda s: log(f"{case} {held} {kind} {s}"))
                 E_m = evaluate(model, kind, te, k_fit, iso)["E"]
                 ok, info = beats(te, E_m, E_b0, F_SYN)
-                rec[kind] = {"beats_B0": ok, **info, "train_s": time.time() - t0}
+                rec[kind] = {"beats_B0": ok, **info, "train_s": time.time() - t0,
+                             "seg": list(seg_ids(te)), "E_seg_B0": [float(x) for x in E_b0],
+                             "E_seg_model": [float(x) for x in E_m], "dw": [float(x) for x in seg_dw(te)]}
                 log(f"case {case} held {held} {kind}: beats={ok} {info} ({time.time() - t0:.0f}s)")
             res["cases"][f"{case}|{held}"] = rec
             json.dump(res, open(os.path.join(out, "harness.json"), "w"), indent=1)
+    if set(only_cases) != {"N", "C", "C2"} or set(held_list) != set(HELD):
+        log("diagnostic subset run: criteria not evaluated")
+        return
     c1 = all(abs(v) < 0.02 for h in HELD for v in res["cases"][f"N|{h}"]["k_rel_err"].values())
     # criterion 2 (section 10): L1 beats B0 on both held-out sorbents and halves B0's median E.
     # From round 6 it is judged on world C2, which no diagnostic touched; world C, on which the
