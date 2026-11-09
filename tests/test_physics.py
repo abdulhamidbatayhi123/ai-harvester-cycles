@@ -119,3 +119,11 @@ def test_prefix_skip_matches_full_integration():
         one = simulate_b0(rh[i:i + 1], w0[i:i + 1], k[i:i + 1], k[i:i + 1], iso)
         assert np.array_equal(np.isnan(batch[i]), np.isnan(one[0]))
         assert np.nanmax(np.abs(batch[i] - one[0])) < 1e-12
+
+
+def test_smoothed_rh_window():
+    import numpy as np
+    from p4.train import smoothed_rh
+    x = np.array([[1, 2, 3, 4, 5, 6, 7, 8, np.nan, np.nan]], float)
+    out = smoothed_rh(x, 1)
+    assert np.isnan(out[0, 0]) and np.isnan(out[0, 7]) and np.allclose(out[0, 1:7], [2, 3, 4, 5, 6, 7])

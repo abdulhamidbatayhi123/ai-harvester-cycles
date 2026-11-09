@@ -1,0 +1,18 @@
+{
+ "MOF-303": {
+  "variant": "anchor",
+  "final_loss": 0.0001253901481905165,
+  "median_E_L2": 0.0743734004086155,
+  "median_E_B0": 0.00030325110873779767,
+  "median_abs_rate_at_eq_wtpct_min": 0.0,
+  "s": 244.30136346817017
+ },
+ "ROS-039": {
+  "variant": "anchor",
+  "final_loss": 0.0011545907373904862,
+  "median_E_L2": 0.06329797327749016,
+  "median_E_B0": 0.0004711141091708454,
+  "median_abs_rate_at_eq_wtpct_min": 0.0,
+  "s": 498.57036304473877
+ }
+}

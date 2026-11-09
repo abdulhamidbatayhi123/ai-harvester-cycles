@@ -99,10 +99,30 @@ def measured_rates(w, dt=DT_MIN, half=3):
     return r
 
 
+def smoothed_rh(rh, half=3):
+    """RH averaged over the same centred window as measured_rates (+-`half` grid points), NaN
+    where the window leaves the segment. Stage A pairs each finite-difference rate, an average over
+    the window, with this average rather than the instantaneous measured RH: the RH jitter is
+    otherwise an error in the input variable, largest relative to the driving force near
+    equilibrium (harness round 4 diagnostic, audit/diag/l1_stageA_diag.py: on held-out MOF-303
+    in world C, L1 reached E 0.021 with the instantaneous RH, 0.008 with the smoothed RH, 0.007
+    with the exact rates)."""
+    out = np.full_like(rh, np.nan)
+    ok = np.isfinite(rh)
+    cs = np.cumsum(np.where(ok, rh, 0.0), axis=1)
+    cn = np.cumsum(ok, axis=1)
+    pad = lambda a: np.pad(a, ((0, 0), (1, 0)))
+    s = cs[:, 2 * half:] - pad(cs)[:, :-2 * half - 1]
+    n = cn[:, 2 * half:] - pad(cn)[:, :-2 * half - 1]
+    out[:, half:-half] = np.where(n == 2 * half + 1, s / np.maximum(n, 1), np.nan)
+    return out
+
+
 def train_two_stage(kind, train_groups, val_groups, k2, iso_by_mat, *, width=16, depth=2, wd=1e-4,
                     lr=1e-3, steps_rate=2000, steps_roll=300, window=100, batch_size=64, seed=0,
                     eval_every=100, log=None):
-    """Stage A: fit the rate law to measured dw/dt (no integration; fast). Stage B: fine-tune on
+    """Stage A: fit the rate law to measured dw/dt, paired with the RH averaged over the same
+    window (smoothed_rh; no integration; fast). Stage B: fine-tune on
     open-loop rollouts over random windows of `window` grid steps (10 min), started from the
     measured uptake. Validation (full segments, open loop) selects the best state of stage B,
     or of stage A if B never improves on it."""
@@ -116,10 +136,11 @@ def train_two_stage(kind, train_groups, val_groups, k2, iso_by_mat, *, width=16,
     pts = []
     for gi, g in enumerate(train_groups):
         r = measured_rates(g["w"])
+        rh_s = smoothed_rh(g["rh"])
         dw = np.abs(np.nanmax(g["w"], 1) - np.nanmin(g["w"], 1))[:, None] * np.ones_like(g["w"])
-        ok = np.isfinite(r) & np.isfinite(g["rh"])
+        ok = np.isfinite(r) & np.isfinite(rh_s)
         seg = np.repeat(np.arange(len(g["m"]))[:, None], g["w"].shape[1], 1)
-        pts.append((gi, seg[ok], g["w"][ok], g["rh"][ok], r[ok], dw[ok]))
+        pts.append((gi, seg[ok], g["w"][ok], rh_s[ok], r[ok], dw[ok]))
     for step in range(1, steps_rate + 1):
         gi, seg, w, rh, r, dw = pts[rng.integers(len(pts))]
         j = rng.integers(0, len(w), size=min(4096, len(w)))
