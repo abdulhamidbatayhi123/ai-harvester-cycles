@@ -1,0 +1,22 @@
+MOF-303 step 1000 log-factor mse 0.00688
+MOF-303 step 2000 log-factor mse 0.00396
+MOF-303 step 3000 log-factor mse 0.00464
+MOF-303 step 4000 log-factor mse 0.0028
+MOF-303 step 5000 log-factor mse 0.00373
+MOF-303 step 6000 log-factor mse 0.00274
+MOF-303 step 7000 log-factor mse 0.00076
+MOF-303 step 8000 log-factor mse 0.00059
+MOF-303 step 9000 log-factor mse 0.00044
+MOF-303 step 10000 log-factor mse 0.00021
+MOF-303 factor-fit L1: beats True E_B0 0.0249 E_L1 0.0018 p 0.0001220703125
+ROS-039 step 1000 log-factor mse 0.0072
+ROS-039 step 2000 log-factor mse 0.00774
+ROS-039 step 3000 log-factor mse 0.00417
+ROS-039 step 4000 log-factor mse 0.00429
+ROS-039 step 5000 log-factor mse 0.00397
+ROS-039 step 6000 log-factor mse 0.00258
+ROS-039 step 7000 log-factor mse 0.00135
+ROS-039 step 8000 log-factor mse 0.00083
+ROS-039 step 9000 log-factor mse 0.00039
+ROS-039 step 10000 log-factor mse 0.00088
+ROS-039 factor-fit L1: beats True E_B0 0.0133 E_L1 0.0033 p 1.4901161193847656e-08

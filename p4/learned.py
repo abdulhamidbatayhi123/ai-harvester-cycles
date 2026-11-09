@@ -55,11 +55,20 @@ def mlp(n_in, width, depth, n_out=1):
 
 class L1(nn.Module):
     """dw/dt = k (RH_flow - RH_bed(w)) * exp(2 tanh(g(z))). The factor lies in [e^-2, e^2], is
-    positive, and leaves the equilibrium and the sign of the rate unchanged."""
+    positive, and leaves the equilibrium and the sign of the rate unchanged.
+
+    Inputs: w/w30, RH, RH_bed(w), the adsorption-branch slope at w, sign of d, T, 1/m, and (since
+    harness round 6) the driving force d = RH - RH_bed itself, /30. Without d the network must form
+    it as a difference of two inputs, and with six training sorbents it could not do so precisely
+    enough: fitted directly to the needed world-C2 factor it plateaued at a log-factor MSE of 0.004
+    and lost to B0 open loop; with d as an input it reached 0.0001 and E 0.001
+    (audit/diag/factor_fit_c2.py, results/diag/c2_factor_fit*.log)."""
+
+    N_IN = 8
 
     def __init__(self, width=16, depth=2):
         super().__init__()
-        self.g = mlp(7, width, depth)
+        self.g = mlp(self.N_IN, width, depth)
 
     def rate(self, w, r, ctx):
         ads, w30 = ctx["ads"], ctx["w30"]
@@ -67,7 +76,7 @@ class L1(nn.Module):
         d = r - r_bed
         k = torch.where(d > 0, ctx["k_ads"], ctx["k_des"])
         z = torch.stack([w / w30, r / 100, r_bed / 100, ads.slope_at_w(w) * 10 / w30,
-                         torch.sign(d), (ctx["temp"] - 27.0) / 33.0, 10.0 / ctx["m"]], -1)
+                         torch.sign(d), (ctx["temp"] - 27.0) / 33.0, 10.0 / ctx["m"], d / 30.0], -1)
         return k * d * torch.exp(2 * torch.tanh(self.g(z).squeeze(-1)))
 
     def equilibrium(self, r, ctx):

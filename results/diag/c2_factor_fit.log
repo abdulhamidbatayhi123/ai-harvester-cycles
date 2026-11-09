@@ -1,0 +1,8 @@
+MOF-303 step 1000 log-factor mse 0.0097
+MOF-303 step 2000 log-factor mse 0.004
+MOF-303 step 3000 log-factor mse 0.00411
+MOF-303 factor-fit L1: beats False E_B0 0.0249 E_L1 0.0321 p 0.9161376953125
+ROS-039 step 1000 log-factor mse 0.00979
+ROS-039 step 2000 log-factor mse 0.00782
+ROS-039 step 3000 log-factor mse 0.00428
+ROS-039 factor-fit L1: beats False E_B0 0.0133 E_L1 0.0267 p 0.14568814635276794

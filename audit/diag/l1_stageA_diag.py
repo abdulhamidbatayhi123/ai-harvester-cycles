@@ -31,7 +31,7 @@ MASK = [int(i) for i in os.environ.get("DIAG_MASK", "").split(",") if i]   # L1 
 
 
 class L1m(L1):
-    """L1 with some inputs zeroed (diagnostic): 0 w/w30, 1 RH, 2 RH_bed, 3 slope, 4 sign d, 5 T, 6 1/m."""
+    """L1 with some inputs zeroed (diagnostic): 0 w/w30, 1 RH, 2 RH_bed, 3 slope, 4 sign d, 5 T, 6 1/m, 7 d/30."""
 
     def rate(self, w, r, ctx):
         ads, w30 = ctx["ads"], ctx["w30"]
@@ -39,7 +39,7 @@ class L1m(L1):
         d = r - r_bed
         k = torch.where(d > 0, ctx["k_ads"], ctx["k_des"])
         z = torch.stack([w / w30, r / 100, r_bed / 100, ads.slope_at_w(w) * 10 / w30,
-                         torch.sign(d), (ctx["temp"] - 27.0) / 33.0, 10.0 / ctx["m"]], -1)
+                         torch.sign(d), (ctx["temp"] - 27.0) / 33.0, 10.0 / ctx["m"], d / 30.0], -1)
         if MASK:
             z = z.clone(); z[..., MASK] = 0.0
         return k * d * torch.exp(2 * torch.tanh(self.g(z).squeeze(-1)))
