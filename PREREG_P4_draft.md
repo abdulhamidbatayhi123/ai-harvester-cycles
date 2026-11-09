@@ -341,8 +341,9 @@ Implementation and training rules:
     step and compared with the same normalised RMS.
   - Per sorbent and temperature, F is the median over its pairs. The F used in the decision rule
     is one number per sorbent: the segment-weighted mean of its two temperature values
-    (`results/prefreeze/checks2.json`, `F_within_segment_weighted`). A fold that holds out
-    several sorbents uses the largest.
+    (`results/prefreeze/checks2.json`, `F_within_segment_weighted`). In a fold that holds out a
+    parent and its composite, each material is judged against its own F (section 7); the
+    largest of the two is used only for the pooled figures that are reported beside them.
   - F is computed before the freeze (section 9) and recorded in section 12.
   - **Between-pan and between-session agreement**, the same step compared across files of one
     sorbent, is reported beside F as a ceiling, not a floor: pans and sessions differ in sample
@@ -378,19 +379,23 @@ Implementation and training rules:
 **Beating the comparator in a fold.** For each held-out material (a parent and its composite
 separately; section 4), let d = E_comparator − E_model per segment, and let D = d·|Δw|, the
 difference in unnormalised RMS error (wt%). Both are averaged within each cluster (one RH step in
-one session). A learned model beats the comparator on a material if all four hold:
+one session). A segment whose model E is not finite (a diverged prediction) counts as an
+infinite loss for the model, never as a missing value; a segment whose comparator E is not
+finite is left out. A learned model beats the comparator on a material if all four hold:
 
-1. the median of the cluster values of d exceeds that material's F (section 6);
-2. the median of d is at least 10 % of the comparator's median E over the same clusters
-   (practical significance);
+1. the median of the cluster values of d exceeds that material's own F (section 6);
+2. r, the median of d divided by the comparator's median cluster E over the same clusters, is
+   at least 10 % (practical significance). The same r, computed once, is used for "falsified"
+   below;
 3. a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025 (exact null
    distribution over all 2ⁿ sign vectors, average ranks for ties, computed by counting subset
-   sums so that it is exact for any n);
+   sums so that it is exact for any n; clusters with D exactly 0 are dropped, the Wilcoxon
+   convention);
 4. the model's median cluster E is below the comparator's median cluster E.
 
 It beats the comparator in the fold if it does so on every held-out material of the fold (both
-the parent and the composite in the ROS-037 and ROS-039 folds), and is physically admissible
-(below). `p4/decide.py` implements exactly this text.
+the parent and the composite in the ROS-037 and ROS-039 folds; a held material with no scored
+segment fails), and is physically admissible (below). `p4/decide.py` implements exactly this text.
 
 Why two quantities (review finding C1): conditions 1 and 2 are about the size of the gain
 relative to the error and to the noise, for which the dimensionless d is the natural scale. The
@@ -437,15 +442,17 @@ fold to r ≥ 10 % and turn "falsified" into "not established".
 - **Not established** otherwise, including a moderate real effect that the 8 folds cannot
   resolve.
 - The verdict must be the same under the primary dry-mass rule R2 and the sensitivity rule R1.
-  If it differs, H4a is reported as not robust to the dry-mass definition, and the weaker of
-  the two verdicts is the result. R2 is not drift-free for MOF-303 and Syloid (section 3.3), so
+  If it differs, H4a is reported as not robust to the dry-mass definition, and the result is
+  "not established": neither "supported" nor "falsified" stands unless both rules give it.
+  `p4/final_verdict.py` combines the R2 and R1 outputs of `p4.decide` with criterion 4 of the
+  null study into the verdict of the table below (tested over every combination of its inputs). R2 is not drift-free for MOF-303 and Syloid (section 3.3), so
   if R1 and R2 disagree on those folds in particular, the paper says so (review finding O4).
 
 **Robustness to the comparator choice (review T-P4-4 F-7).** The comparator is chosen on the
 training sorbents (section 5), which keeps the held-out test valid but does not guarantee that
 it is the strongest candidate on the held-out sorbent. `p4.decide` therefore also applies the
 rule against each of the three candidates (B0, the other B0 variant, B1) and against the one
-with the lowest held-out median E in each fold. If L1 is supported against the chosen
+with the lowest held-out median E (median over the fold's held-out segments) in each fold. If L1 is supported against the chosen
 comparator but beats the held-out-best candidate in fewer than 7 of 8 folds, the paper says
 "supported against the comparator chosen on the training sorbents only" and does not say that
 L1 beats the isotherm-driven models. This decides only the wording of the claim, not the
@@ -591,8 +598,8 @@ The harness passes if:
    - **Before the freeze**: 3 null worlds of the same design (24 fold-fits per model) with a reduced
      procedure, one configuration and one seed per fit. This tests the decision machinery and
      the models in a realistic null; it must pass for the draft to be frozen.
-   - **With the confirmatory runs**: one further replicate (rep 2) with the full confirmatory
-     procedure for L1 (4 configurations tuned on the validation sorbent, then 5 seeds; 72 fits).
+   - **With the confirmatory runs**: one further null world (replicate 3; the pre-freeze worlds
+     are replicates 0 to 2) with the full confirmatory procedure for L1 (4 configurations tuned on the validation sorbent, then 5 seeds; 72 fits).
      Selection on a validation sorbent and ensembling change how often a spurious correction
      survives, in an unknown direction, so the reduced replicates alone would test a different
      procedure. L1 can be declared "supported" only if this replicate also meets (b), and if (a) and (c)
@@ -894,3 +901,15 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   - Null draws are keyed per sorbent, and |ε·w₃₀| is capped at 3.13 wt% (F-8, F-9). The null
     calibration numbers in section 10 were computed before this change and will be recomputed
     with it before the freeze.
+- 2026-11-10 (independent re-implementation of the decision rule from this text alone,
+  `audit/independent_decide.py`, compared with `p4/decide.py` on the archived null replicate and
+  240 random cases; `results/independent_decide_check*.json`). Five places in the text were
+  unclear and are now explicit: each material is judged against its own F (section 6 said the
+  largest); clusters with D = 0 are dropped; a diverged prediction counts as an infinite loss; the
+  held-out-best candidate is chosen by the median over segments; disagreeing R1 and R2 verdicts
+  give "not established". The confirmatory full-procedure null world is replicate 3. Code fixes:
+  a held material with no scored segment now fails (it was skipped); a non-finite model E now
+  counts as a loss (it was dropped, which favoured a diverging model); r is computed once and
+  used for both condition 2 and "falsified" (the two could disagree at exactly 10 % by rounding);
+  the cluster gain is the mean of segment differences. `p4/final_verdict.py` added. No result
+  depended on these: no real-data fit exists, and the archived null replicate agrees in every fold.

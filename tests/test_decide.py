@@ -157,3 +157,28 @@ def test_claim_wording_when_another_candidate_wins_on_heldout(tmp_path):
     assert h["claim_wording"] == "supported against the comparator chosen on the training sorbents only"
     out = _run(tmp_path, _rows(0.03))
     assert out["H4a"]["L1"]["claim_wording"] == "beats the isotherm-driven models"
+
+
+def test_diverged_model_segments_count_as_losses(tmp_path):
+    """Independent-scorer check 2026-11-10: a non-finite model E is an infinite loss, not a dropped
+    segment; a model that diverges on most clusters cannot beat the comparator."""
+    rows = _rows(0.03)
+    for r in rows:
+        if r["fold"] == "LOSO:S0" and r["key"].endswith("L1|ensemble"):
+            r["E"] = [float("nan") if i % 4 else e for i, e in enumerate(r["E"])]
+    out = _run(tmp_path, rows)
+    f = out["folds"]["LOSO:S0|L1"]
+    assert not f["beats_B0"] and f["r_fold"] < 0
+
+
+def test_held_composite_without_segments_fails(tmp_path):
+    """Independent-scorer check 2026-11-10: "both must pass" also when a held material has no
+    scored segment at all."""
+    rows = _rows(0.03)
+    for r in rows:
+        if r["fold"] == "LOSO:S0":
+            r["held"] = ["S0", "S0_composite"]
+    out = _run(tmp_path, rows)
+    f = out["folds"]["LOSO:S0|L1"]
+    assert f["per_material"]["S0"]["rule_met"] and not f["per_material"]["S0_composite"]["rule_met"]
+    assert not f["beats_B0"]

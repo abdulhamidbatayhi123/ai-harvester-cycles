@@ -1,0 +1,18 @@
+max {'cases': 240, 'cases_agree': 206, 'fold_comparisons': 2183, 'material_comparisons': 3104, 'by_what': {'material beat': 42, 'beat vs candidate B1': 8, 'beat vs candidate B0-b_or_B0_other': 9, 'beat vs held-out best': 3, 'beat vs candidate B0': 9, 'fold beat': 8, 'H4a LOSO beats': 5, 'H4a verdict': 5, 'H4a LOFO non-trivial beats': 3, 'H4a wording': 5, 'H4a heldout-best LOSO beats': 2}}
+own {'cases': 240, 'cases_agree': 240, 'fold_comparisons': 2183, 'material_comparisons': 3104, 'by_what': {}}
+coverage {'material_beats': 987, 'fold_beats': 514, 'supported': 31, 'falsified': 95, 'not_established': 114}
+real {'max': 0, 'own': 0}
+S1 F reading (own vs largest) {'max': [], 'own': []}
+S1b F reading, parent in between {'max': ['material beat', 'fold beat', 'beat vs candidate B0', 'beat vs held-out best', 'H4a LOSO beats', 'H4a heldout-best LOSO beats'], 'own': []}
+S2 exact 10 % at E=0.3 {'max': [], 'own': []}
+S2 exact 10 % at E=0.7 {'max': [], 'own': []}
+S2 exact 10 % at E=0.1 {'max': [], 'own': []}
+S2 exact 10 % at E=0.5 {'max': [], 'own': []}
+S3 held composite without segments {'max': ['fold r'], 'own': ['fold r']}
+S4 NaN model E on one segment {'max': ['material r', 'fold r', 'H4a n r>=10%'], 'own': ['material r', 'fold r', 'H4a n r>=10%']}
+S5 excess violations 1/20 {'max': [], 'own': []}
+S5 excess violations 2/40 {'max': [], 'own': []}
+S5 excess violations 3/40 {'max': [], 'own': []}
+S6 5 equal gains {'max': [], 'own': []}
+S6 6 equal gains {'max': [], 'own': []}
+S7 equal median E {'max': [], 'own': []}

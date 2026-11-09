@@ -1,0 +1,1639 @@
+{
+ "n_random": 240,
+ "seed": 20261110,
+ "modes": {
+  "max": {
+   "cases": 240,
+   "cases_agree": 198,
+   "fold_comparisons": 2183,
+   "material_comparisons": 3104,
+   "by_what": {
+    "material beat": 61,
+    "beat vs candidate B1": 12,
+    "beat vs candidate B0-b_or_B0_other": 10,
+    "beat vs held-out best": 5,
+    "H4a n r>=10%": 10,
+    "H4a verdict": 8,
+    "fold beat": 14,
+    "beat vs candidate B0": 10,
+    "H4a LOSO beats": 11,
+    "H4a heldout-best LOSO beats": 4,
+    "H4a LOFO non-trivial beats": 3,
+    "H4a wording": 5
+   },
+   "examples": {
+    "material beat": {
+     "case": 192,
+     "scenario": {
+      "tiny": true,
+      "quant": false,
+      "exact10": true,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.05,
+      "noise": 0.3,
+      "viol": false,
+      "lofo": true,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOFO:Al-rod",
+      "material": "CAU-10",
+      "what": "material beat",
+      "mine": false,
+      "code": true,
+      "mine_conds": [
+       false,
+       true,
+       true,
+       true
+      ],
+      "med_d": 0.003044609904965384,
+      "medE_comp": 0.030446099049653837,
+      "F_mine": 0.007803180663510524,
+      "F_code": 0.002058693532087516,
+      "r": 0.1,
+      "p": 0.0078125
+     },
+     "n_seg": 12,
+     "minimal_material_data": {
+      "n_seg": 12,
+      "seg": [
+       "CAU-10|27C|2021-01-10 10-00-00|27C|0>30",
+       "CAU-10|60C|2021-02-11 10-00-01|60C|30>0",
+       "CAU-10|27C|2021-01-12 10-00-02|27C|0>11",
+       "CAU-10|60C|2021-02-13 10-00-00|60C|11>30",
+       "CAU-10|60C|2021-02-13 10-00-00|60C|11>30",
+       "CAU-10|27C|2021-01-14 10-00-01|27C|30>60",
+       "CAU-10|27C|2021-01-14 10-00-01|27C|30>60",
+       "CAU-10|60C|2021-02-15 10-00-02|60C|60>11",
+       "CAU-10|27C|2021-01-16 10-00-00|27C|11>60",
+       "CAU-10|27C|2021-01-16 10-00-00|27C|11>60",
+       "CAU-10|27C|2021-01-16 10-00-00|27C|11>60",
+       "CAU-10|27C|2021-01-16 10-00-00|27C|11>60"
+      ],
+      "E_comp": [
+       0.0286532855798241,
+       0.020819094879497683,
+       0.03542785252203668,
+       0.024194222903532216,
+       0.024194222903532216,
+       0.12841745071744304,
+       0.12841745071744304,
+       0.030446099049653837,
+       0.04810796129990816,
+       0.04810796129990816,
+       0.04810796129990816,
+       0.04810796129990816
+      ],
+      "E_model": [
+       0.02578795702184169,
+       0.018737185391547916,
+       0.03188506726983301,
+       0.021774800613178994,
+       0.021774800613178994,
+       0.11557570564569873,
+       0.11557570564569873,
+       0.027401489144688453,
+       0.04329716516991734,
+       0.04329716516991734,
+       0.04329716516991734,
+       0.04329716516991734
+      ],
+      "dw": [
+       36.70285512383058,
+       29.517188798205357,
+       17.38188316972679,
+       8.78851322524673,
+       21.271143849258998,
+       15.144824931846625,
+       19.907725393822062,
+       21.318259983537352,
+       27.54754505200976,
+       28.275675080641463,
+       37.76000819154794,
+       20.301182120680206
+      ]
+     }
+    },
+    "beat vs candidate B1": {
+     "case": 15,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.05,
+      "noise": 0.0,
+      "viol": false,
+      "lofo": true,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOSO:ROS-037",
+      "what": "beat vs candidate B1",
+      "mine": false,
+      "code": true
+     }
+    },
+    "beat vs candidate B0-b_or_B0_other": {
+     "case": 15,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.05,
+      "noise": 0.0,
+      "viol": false,
+      "lofo": true,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOFO:Zn-triazolate-F",
+      "what": "beat vs candidate B0-b_or_B0_other",
+      "mine": false,
+      "code": true
+     }
+    },
+    "beat vs held-out best": {
+     "case": 23,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": true,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": true,
+      "empty": false,
+      "nfold8": false
+     },
+     "diff": {
+      "fold": "LOFO:ROS-037",
+      "what": "beat vs held-out best",
+      "mine": false,
+      "code": true
+     }
+    },
+    "H4a n r>=10%": {
+     "case": 33,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": true,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.05,
+      "noise": 0.3,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a n r>=10%",
+      "mine": 2,
+      "code": 1
+     }
+    },
+    "H4a verdict": {
+     "case": 33,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": true,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.05,
+      "noise": 0.3,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a verdict",
+      "mine": "not established",
+      "code": "falsified"
+     }
+    },
+    "fold beat": {
+     "case": 39,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOSO:ROS-040",
+      "what": "fold beat",
+      "mine": false,
+      "code": true,
+      "excess_mine": 0.0,
+      "excess_code": 0.0
+     }
+    },
+    "beat vs candidate B0": {
+     "case": 39,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOSO:ROS-040",
+      "what": "beat vs candidate B0",
+      "mine": false,
+      "code": true
+     }
+    },
+    "H4a LOSO beats": {
+     "case": 39,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a LOSO beats",
+      "mine": 0,
+      "code": 1
+     }
+    },
+    "H4a heldout-best LOSO beats": {
+     "case": 39,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a heldout-best LOSO beats",
+      "mine": 0,
+      "code": 1
+     }
+    },
+    "H4a LOFO non-trivial beats": {
+     "case": 66,
+     "scenario": {
+      "tiny": false,
+      "quant": true,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.15,
+      "noise": 0.0,
+      "viol": false,
+      "lofo": true,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a LOFO non-trivial beats",
+      "mine": 1,
+      "code": 2
+     }
+    },
+    "H4a wording": {
+     "case": 66,
+     "scenario": {
+      "tiny": false,
+      "quant": true,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.15,
+      "noise": 0.0,
+      "viol": false,
+      "lofo": true,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a wording",
+      "mine": null,
+      "code": "restricted"
+     }
+    }
+   },
+   "all": [
+    {
+     "case": 11,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 15,
+     "on_10pct_boundary": false,
+     "what": [
+      "beat vs candidate B0-b_or_B0_other",
+      "beat vs candidate B1"
+     ]
+    },
+    {
+     "case": 18,
+     "on_10pct_boundary": false,
+     "what": [
+      "beat vs candidate B0-b_or_B0_other"
+     ]
+    },
+    {
+     "case": 23,
+     "on_10pct_boundary": false,
+     "what": [
+      "beat vs candidate B0-b_or_B0_other",
+      "beat vs held-out best",
+      "material beat"
+     ]
+    },
+    {
+     "case": 26,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 33,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%",
+      "H4a verdict",
+      "material beat"
+     ]
+    },
+    {
+     "case": 39,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a LOSO beats",
+      "H4a heldout-best LOSO beats",
+      "H4a n r>=10%",
+      "H4a verdict",
+      "beat vs candidate B0",
+      "beat vs held-out best",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 40,
+     "on_10pct_boundary": false,
+     "what": [
+      "beat vs candidate B0",
+      "material beat"
+     ]
+    },
+    {
+     "case": 42,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 44,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOSO beats",
+      "beat vs candidate B0-b_or_B0_other",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 45,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%",
+      "material beat"
+     ]
+    },
+    {
+     "case": 59,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%"
+     ]
+    },
+    {
+     "case": 64,
+     "on_10pct_boundary": true,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 66,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOFO non-trivial beats",
+      "H4a LOSO beats",
+      "H4a verdict",
+      "H4a wording",
+      "beat vs candidate B0",
+      "beat vs candidate B0-b_or_B0_other",
+      "beat vs candidate B1",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 72,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 92,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%"
+     ]
+    },
+    {
+     "case": 93,
+     "on_10pct_boundary": true,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 95,
+     "on_10pct_boundary": true,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 98,
+     "on_10pct_boundary": false,
+     "what": [
+      "beat vs candidate B0"
+     ]
+    },
+    {
+     "case": 99,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOSO beats",
+      "H4a verdict",
+      "H4a wording",
+      "beat vs candidate B0",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 105,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 106,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a LOSO beats",
+      "H4a n r>=10%",
+      "beat vs candidate B0",
+      "beat vs candidate B1",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 109,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%",
+      "material beat"
+     ]
+    },
+    {
+     "case": 111,
+     "on_10pct_boundary": true,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 113,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOSO beats",
+      "H4a verdict",
+      "H4a wording",
+      "beat vs candidate B0",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 117,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%",
+      "material beat"
+     ]
+    },
+    {
+     "case": 131,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 153,
+     "on_10pct_boundary": true,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 155,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 156,
+     "on_10pct_boundary": false,
+     "what": [
+      "beat vs candidate B0",
+      "material beat"
+     ]
+    },
+    {
+     "case": 158,
+     "on_10pct_boundary": false,
+     "what": [
+      "beat vs candidate B1"
+     ]
+    },
+    {
+     "case": 162,
+     "on_10pct_boundary": false,
+     "what": [
+      "beat vs candidate B0-b_or_B0_other"
+     ]
+    },
+    {
+     "case": 183,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a heldout-best LOSO beats",
+      "beat vs candidate B0-b_or_B0_other",
+      "beat vs held-out best"
+     ]
+    },
+    {
+     "case": 185,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOSO beats",
+      "H4a verdict",
+      "H4a wording",
+      "beat vs candidate B0",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 188,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 191,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a heldout-best LOSO beats",
+      "beat vs candidate B1",
+      "beat vs held-out best"
+     ]
+    },
+    {
+     "case": 192,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a LOSO beats",
+      "H4a heldout-best LOSO beats",
+      "H4a n r>=10%",
+      "beat vs candidate B1",
+      "beat vs held-out best",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 203,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 222,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a LOSO beats",
+      "H4a n r>=10%",
+      "H4a verdict",
+      "beat vs candidate B1",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 223,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOFO non-trivial beats",
+      "H4a LOSO beats",
+      "H4a verdict",
+      "H4a wording",
+      "beat vs candidate B0",
+      "beat vs candidate B0-b_or_B0_other",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 227,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOFO non-trivial beats",
+      "beat vs candidate B1",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 230,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOSO beats",
+      "beat vs candidate B1",
+      "fold beat",
+      "material beat"
+     ]
+    }
+   ]
+  },
+  "own": {
+   "cases": 240,
+   "cases_agree": 225,
+   "fold_comparisons": 2183,
+   "material_comparisons": 3104,
+   "by_what": {
+    "material beat": 19,
+    "H4a n r>=10%": 10,
+    "H4a verdict": 3,
+    "fold beat": 6,
+    "beat vs candidate B0": 1,
+    "beat vs held-out best": 2,
+    "H4a LOSO beats": 6,
+    "H4a heldout-best LOSO beats": 2,
+    "beat vs candidate B0-b_or_B0_other": 1,
+    "beat vs candidate B1": 4
+   },
+   "examples": {
+    "material beat": {
+     "case": 45,
+     "scenario": {
+      "tiny": true,
+      "quant": true,
+      "exact10": true,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.6,
+      "noise": 0.3,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOSO:ROS-037",
+      "material": "ROS-037_composite",
+      "what": "material beat",
+      "mine": false,
+      "code": true,
+      "mine_conds": [
+       true,
+       false,
+       true,
+       true
+      ],
+      "med_d": 0.008599999999999997,
+      "medE_comp": 0.08600000000000001,
+      "F_mine": 0.006151471913883388,
+      "F_code": 0.006151471913883388,
+      "r": 0.09999999999999995,
+      "p": 0.015625
+     },
+     "n_seg": 13,
+     "minimal_material_data": {
+      "n_seg": 13,
+      "seg": [
+       "ROS-037_composite|27C|2021-01-10 10-00-00|27C|0>30",
+       "ROS-037_composite|27C|2021-01-10 10-00-00|27C|0>30",
+       "ROS-037_composite|60C|2021-02-11 10-00-01|60C|30>0",
+       "ROS-037_composite|60C|2021-02-11 10-00-01|60C|30>0",
+       "ROS-037_composite|60C|2021-02-11 10-00-01|60C|30>0",
+       "ROS-037_composite|27C|2021-01-12 10-00-02|27C|0>11",
+       "ROS-037_composite|27C|2021-01-12 10-00-02|27C|0>11",
+       "ROS-037_composite|27C|2021-01-12 10-00-02|27C|0>11",
+       "ROS-037_composite|27C|2021-01-12 10-00-02|27C|0>11",
+       "ROS-037_composite|60C|2021-02-13 10-00-00|60C|11>30",
+       "ROS-037_composite|27C|2021-01-14 10-00-01|27C|30>60",
+       "ROS-037_composite|27C|2021-01-14 10-00-01|27C|30>60",
+       "ROS-037_composite|60C|2021-02-15 10-00-02|60C|60>11"
+      ],
+      "E_comp": [
+       0.106,
+       0.106,
+       0.095,
+       0.095,
+       0.095,
+       0.077,
+       0.077,
+       0.077,
+       0.077,
+       0.071,
+       0.059,
+       0.059,
+       0.126
+      ],
+      "E_model": [
+       0.0954,
+       0.0954,
+       0.0855,
+       0.0855,
+       0.0855,
+       0.0693,
+       0.0693,
+       0.0693,
+       0.0693,
+       0.0639,
+       0.0531,
+       0.0531,
+       0.1134
+      ],
+      "dw": [
+       10.0,
+       20.0,
+       20.0,
+       5.0,
+       20.0,
+       5.0,
+       5.0,
+       10.0,
+       10.0,
+       5.0,
+       20.0,
+       5.0,
+       5.0
+      ]
+     }
+    },
+    "H4a n r>=10%": {
+     "case": 33,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": true,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.05,
+      "noise": 0.3,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a n r>=10%",
+      "mine": 2,
+      "code": 1
+     }
+    },
+    "H4a verdict": {
+     "case": 33,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": true,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.05,
+      "noise": 0.3,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a verdict",
+      "mine": "not established",
+      "code": "falsified"
+     }
+    },
+    "fold beat": {
+     "case": 39,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOSO:ROS-040",
+      "what": "fold beat",
+      "mine": false,
+      "code": true,
+      "excess_mine": 0.0,
+      "excess_code": 0.0
+     }
+    },
+    "beat vs candidate B0": {
+     "case": 39,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOSO:ROS-040",
+      "what": "beat vs candidate B0",
+      "mine": false,
+      "code": true
+     }
+    },
+    "beat vs held-out best": {
+     "case": 39,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOSO:ROS-040",
+      "what": "beat vs held-out best",
+      "mine": false,
+      "code": true
+     }
+    },
+    "H4a LOSO beats": {
+     "case": 39,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a LOSO beats",
+      "mine": 0,
+      "code": 1
+     }
+    },
+    "H4a heldout-best LOSO beats": {
+     "case": 39,
+     "scenario": {
+      "tiny": false,
+      "quant": false,
+      "exact10": false,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.1,
+      "noise": 0.0,
+      "viol": true,
+      "lofo": false,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "what": "H4a heldout-best LOSO beats",
+      "mine": 0,
+      "code": 1
+     }
+    },
+    "beat vs candidate B0-b_or_B0_other": {
+     "case": 44,
+     "scenario": {
+      "tiny": true,
+      "quant": false,
+      "exact10": false,
+      "Fedge": true,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.6,
+      "noise": 0.3,
+      "viol": false,
+      "lofo": false,
+      "empty": false,
+      "nfold8": false
+     },
+     "diff": {
+      "fold": "LOSO:MOF-303",
+      "what": "beat vs candidate B0-b_or_B0_other",
+      "mine": true,
+      "code": false
+     }
+    },
+    "beat vs candidate B1": {
+     "case": 106,
+     "scenario": {
+      "tiny": false,
+      "quant": true,
+      "exact10": true,
+      "Fedge": false,
+      "eqmed": false,
+      "zeros": false,
+      "gain": 0.3,
+      "noise": 0.3,
+      "viol": false,
+      "lofo": true,
+      "empty": false,
+      "nfold8": true
+     },
+     "diff": {
+      "fold": "LOSO:CAU-10",
+      "what": "beat vs candidate B1",
+      "mine": false,
+      "code": true
+     }
+    }
+   },
+   "all": [
+    {
+     "case": 33,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%",
+      "H4a verdict",
+      "material beat"
+     ]
+    },
+    {
+     "case": 39,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a LOSO beats",
+      "H4a heldout-best LOSO beats",
+      "H4a n r>=10%",
+      "H4a verdict",
+      "beat vs candidate B0",
+      "beat vs held-out best",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 44,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOSO beats",
+      "beat vs candidate B0-b_or_B0_other",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 45,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%",
+      "material beat"
+     ]
+    },
+    {
+     "case": 59,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%"
+     ]
+    },
+    {
+     "case": 64,
+     "on_10pct_boundary": true,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 92,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%"
+     ]
+    },
+    {
+     "case": 93,
+     "on_10pct_boundary": true,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 106,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a LOSO beats",
+      "H4a n r>=10%",
+      "beat vs candidate B1",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 109,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%",
+      "material beat"
+     ]
+    },
+    {
+     "case": 117,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a n r>=10%",
+      "material beat"
+     ]
+    },
+    {
+     "case": 192,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a LOSO beats",
+      "H4a heldout-best LOSO beats",
+      "H4a n r>=10%",
+      "beat vs candidate B1",
+      "beat vs held-out best",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 203,
+     "on_10pct_boundary": false,
+     "what": [
+      "material beat"
+     ]
+    },
+    {
+     "case": 222,
+     "on_10pct_boundary": true,
+     "what": [
+      "H4a LOSO beats",
+      "H4a n r>=10%",
+      "H4a verdict",
+      "beat vs candidate B1",
+      "fold beat",
+      "material beat"
+     ]
+    },
+    {
+     "case": 230,
+     "on_10pct_boundary": false,
+     "what": [
+      "H4a LOSO beats",
+      "beat vs candidate B1",
+      "fold beat",
+      "material beat"
+     ]
+    }
+   ]
+  }
+ },
+ "real": {
+  "null_rep0_preD": {
+   "max": [],
+   "own": []
+  }
+ },
+ "special": {
+  "S1 F reading (own vs largest)": {
+   "max": [],
+   "own": []
+  },
+  "S1b F reading, parent in between": {
+   "max": [
+    {
+     "fold": "LOSO:ROS-037",
+     "material": "ROS-037",
+     "what": "material beat",
+     "mine": false,
+     "code": true,
+     "mine_conds": [
+      false,
+      true,
+      true,
+      true
+     ],
+     "med_d": 0.0049999999999999975,
+     "medE_comp": 0.04,
+     "F_mine": 0.006151471913883388,
+     "F_code": 0.003972375960272201,
+     "r": 0.12499999999999993,
+     "p": 0.00390625
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "fold beat",
+     "mine": false,
+     "code": true,
+     "excess_mine": 0.0,
+     "excess_code": 0.0
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs candidate B0",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs held-out best",
+     "mine": false,
+     "code": true
+    },
+    {
+     "what": "H4a LOSO beats",
+     "mine": 0,
+     "code": 1
+    },
+    {
+     "what": "H4a heldout-best LOSO beats",
+     "mine": 0,
+     "code": 1
+    }
+   ],
+   "own": []
+  },
+  "S2 exact 10 % at E=0.3": {
+   "max": [],
+   "own": []
+  },
+  "S2 exact 10 % at E=0.7": {
+   "max": [],
+   "own": []
+  },
+  "S2 exact 10 % at E=0.1": {
+   "max": [],
+   "own": []
+  },
+  "S2 exact 10 % at E=0.5": {
+   "max": [],
+   "own": []
+  },
+  "S3 held composite without segments": {
+   "max": [
+    {
+     "fold": "LOSO:ROS-037",
+     "material": "ROS-037_composite",
+     "what": "material missing in code (no segments)",
+     "mine_beat": false
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "fold beat",
+     "mine": false,
+     "code": true,
+     "excess_mine": 0.0,
+     "excess_code": 0.0
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "fold r",
+     "mine": NaN,
+     "code": 0.5
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs candidate B0",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs candidate B0-b_or_B0_other",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs candidate B1",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs held-out best",
+     "mine": false,
+     "code": true
+    },
+    {
+     "what": "H4a LOSO beats",
+     "mine": 0,
+     "code": 1
+    },
+    {
+     "what": "H4a n r>=10%",
+     "mine": 0,
+     "code": 1
+    },
+    {
+     "what": "H4a heldout-best LOSO beats",
+     "mine": 0,
+     "code": 1
+    }
+   ],
+   "own": [
+    {
+     "fold": "LOSO:ROS-037",
+     "material": "ROS-037_composite",
+     "what": "material missing in code (no segments)",
+     "mine_beat": false
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "fold beat",
+     "mine": false,
+     "code": true,
+     "excess_mine": 0.0,
+     "excess_code": 0.0
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "fold r",
+     "mine": NaN,
+     "code": 0.5
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs candidate B0",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs candidate B0-b_or_B0_other",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs candidate B1",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:ROS-037",
+     "what": "beat vs held-out best",
+     "mine": false,
+     "code": true
+    },
+    {
+     "what": "H4a LOSO beats",
+     "mine": 0,
+     "code": 1
+    },
+    {
+     "what": "H4a n r>=10%",
+     "mine": 0,
+     "code": 1
+    },
+    {
+     "what": "H4a heldout-best LOSO beats",
+     "mine": 0,
+     "code": 1
+    }
+   ]
+  },
+  "S4 NaN model E on one segment": {
+   "max": [
+    {
+     "fold": "LOSO:MOF-303",
+     "material": "MOF-303",
+     "what": "material beat",
+     "mine": false,
+     "code": true,
+     "mine_conds": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "med_d": NaN,
+     "medE_comp": 0.1,
+     "F_mine": 0.0039314494346816475,
+     "F_code": 0.0039314494346816475,
+     "r": NaN,
+     "p": 0.1171875
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "material": "MOF-303",
+     "what": "p",
+     "mine": 0.1171875,
+     "code": 0.0078125
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "material": "MOF-303",
+     "what": "material r",
+     "mine": NaN,
+     "code": 0.5
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "fold beat",
+     "mine": false,
+     "code": true,
+     "excess_mine": 0.0,
+     "excess_code": 0.0
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "fold r",
+     "mine": NaN,
+     "code": 0.5
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "beat vs candidate B0",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "beat vs candidate B0-b_or_B0_other",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "beat vs candidate B1",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "beat vs held-out best",
+     "mine": false,
+     "code": true
+    },
+    {
+     "what": "H4a LOSO beats",
+     "mine": 0,
+     "code": 1
+    },
+    {
+     "what": "H4a n r>=10%",
+     "mine": 0,
+     "code": 1
+    },
+    {
+     "what": "H4a heldout-best LOSO beats",
+     "mine": 0,
+     "code": 1
+    }
+   ],
+   "own": [
+    {
+     "fold": "LOSO:MOF-303",
+     "material": "MOF-303",
+     "what": "material beat",
+     "mine": false,
+     "code": true,
+     "mine_conds": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "med_d": NaN,
+     "medE_comp": 0.1,
+     "F_mine": 0.0039314494346816475,
+     "F_code": 0.0039314494346816475,
+     "r": NaN,
+     "p": 0.1171875
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "material": "MOF-303",
+     "what": "p",
+     "mine": 0.1171875,
+     "code": 0.0078125
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "material": "MOF-303",
+     "what": "material r",
+     "mine": NaN,
+     "code": 0.5
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "fold beat",
+     "mine": false,
+     "code": true,
+     "excess_mine": 0.0,
+     "excess_code": 0.0
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "fold r",
+     "mine": NaN,
+     "code": 0.5
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "beat vs candidate B0",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "beat vs candidate B0-b_or_B0_other",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "beat vs candidate B1",
+     "mine": false,
+     "code": true
+    },
+    {
+     "fold": "LOSO:MOF-303",
+     "what": "beat vs held-out best",
+     "mine": false,
+     "code": true
+    },
+    {
+     "what": "H4a LOSO beats",
+     "mine": 0,
+     "code": 1
+    },
+    {
+     "what": "H4a n r>=10%",
+     "mine": 0,
+     "code": 1
+    },
+    {
+     "what": "H4a heldout-best LOSO beats",
+     "mine": 0,
+     "code": 1
+    }
+   ]
+  },
+  "S5 excess violations 1/20": {
+   "max": [],
+   "own": []
+  },
+  "S5 excess violations 2/40": {
+   "max": [],
+   "own": []
+  },
+  "S5 excess violations 3/40": {
+   "max": [],
+   "own": []
+  },
+  "S6 5 equal gains": {
+   "max": [],
+   "own": []
+  },
+  "S6 6 equal gains": {
+   "max": [],
+   "own": []
+  },
+  "S7 equal median E": {
+   "max": [],
+   "own": []
+  }
+ },
+ "criterion4": {
+  "cases": 500,
+  "cp_upper_mismatches": [],
+  "disagreements": []
+ },
+ "random_coverage": {
+  "material_beats": 987,
+  "fold_beats": 514,
+  "supported": 31,
+  "falsified": 95,
+  "not_established": 114
+ },
+ "summary": {
+  "real_null_rep0_preD": "0 disagreements in either F reading (per-fold beats, r, p all equal); H4a verdict 'incomplete' in code (6 folds) accepted",
+  "random_own_F": "225/240 cases agree; all 15 disagreeing cases sit on a float tie at a threshold: 12 at r = 10 % exactly (code tests median_d >= 0.1*medE, independent tests median_d/medE >= 0.1; code's own r_fold uses the ratio, so code's condition 2 and its falsification count can disagree at the tie), 3 at median d = F within 1 ulp (cases 44, 203, 230: code averages E_base and E_model per cluster then subtracts, independent averages per-segment d; mathematically equal)",
+  "random_max_F": "198/240 agree; the extra 27 cases are the F reading: code uses each material's own F (section 7 'that material's F'); section 6 says a fold holding several sorbents uses the largest",
+  "special_S3": "held composite without segments: code skips the material and judges the fold on the parent alone; text says both must pass -> CODE wrong (latent: not possible in P)",
+  "special_S4": "NaN model E on a segment: code silently drops the segment (favours a diverged model); text silent -> TEXT unclear",
+  "criterion4": "500 random replicate sets and all CP bounds n=8..32: 0 disagreements with audit/null_summary.py",
+  "not_in_decide": "decide.py prints 'supported' without the null-study gate (section 7 requires criterion 4) and without the R1/R2 'weaker verdict' rule; both are applied outside decide.py, if at all"
+ }
+}
