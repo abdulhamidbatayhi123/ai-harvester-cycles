@@ -99,3 +99,19 @@ def test_seg_ids_cluster_merges_pans_and_repeats():
          "run": np.array(["pan5mg", "pan5mg", "pan8mg", "pan5mg"])}
     keys = [s.split("#")[0] for s in seg_ids([g])]
     assert len(set(keys)) == 2 and keys[0] == keys[1] == keys[2]
+
+
+def test_paired_gain_with_worse_typical_error_is_not_a_beat():
+    """Harness round 6 (world C2, held-out ROS-039; results/diag/c2_clusters): L1 is far better on
+    the desorption clusters and up to twelve times worse on the 0>30 adsorption clusters. The paired
+    median and the signed-rank test favour it; condition 4 must refuse it."""
+    b0 = np.array([0.0024, 0.0099, 0.0029, 0.0021, 0.0087, 0.0027, 0.0097, 0.0037, 0.0063, 0.0073,
+                   0.0076, 0.0110, 0.0111, 0.0155, 0.0689, 0.0835, 0.1026, 0.1027, 0.1148, 0.1153,
+                   0.0878, 0.0913, 0.1028, 0.1016, 0.1788, 0.1843])
+    m = np.array([0.0296, 0.0359, 0.0263, 0.0250, 0.0313, 0.0252, 0.0103, 0.0028, 0.0045, 0.0043,
+                  0.0013, 0.0014, 0.0013, 0.0022, 0.0432, 0.0525, 0.0704, 0.0673, 0.0786, 0.0755,
+                  0.0440, 0.0432, 0.0516, 0.0484, 0.1212, 0.1258])
+    ok, info = decide.rule(b0, m, 0.003, D=b0 - m)
+    assert info["median_gain"] > 0.003 and info["p_signflip"] <= 0.025
+    assert info["E_model"] > 2 * info["E_B0"]
+    assert not ok

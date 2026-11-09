@@ -374,14 +374,15 @@ Implementation and training rules:
 **Beating the comparator in a fold.** For each held-out material (a parent and its composite
 separately; section 4), let d = E_comparator − E_model per segment, and let D = d·|Δw|, the
 difference in unnormalised RMS error (wt%). Both are averaged within each cluster (one RH step in
-one session). A learned model beats the comparator on a material if all three hold:
+one session). A learned model beats the comparator on a material if all four hold:
 
 1. the median of the cluster values of d exceeds that material's F (section 6);
 2. the median of d is at least 10 % of the comparator's median E over the same clusters
    (practical significance);
 3. a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025 (exact null
    distribution over all 2ⁿ sign vectors, average ranks for ties, computed by counting subset
-   sums so that it is exact for any n).
+   sums so that it is exact for any n);
+4. the model's median cluster E is below the comparator's median cluster E.
 
 It beats the comparator in the fold if it does so on every held-out material of the fold (both
 the parent and the composite in the ROS-037 and ROS-039 folds), and is physically admissible
@@ -394,6 +395,14 @@ test ranks D instead, because d divides by |Δw|, so the smallest steps would ha
 signed-rank statistic is used rather than the median because the median ties heavily under sign
 flips (six equal gains give p = 0.34, not 1/64). The attainable minimum p is 2⁻ⁿ for n
 clusters, so a material with fewer than 6 clusters cannot be beaten; the counts are in section 12.
+
+Why condition 4 (added 2026-11-09, before any real-data fit): conditions 1 to 3 are paired.
+Harness round 6 (section 10) showed that they can favour a model that is much better on the hard
+steps and several times worse on the easy ones. In world C2, on held-out ROS-039, L1 improved 19
+of 26 clusters (median d +0.012, p = 0.009), but its median E was 0.034 against B0's 0.013,
+because it was up to twelve times worse on every 0→30 % adsorption step
+(`results/diag/c2_clusters/harness.json`). Such a model has not beaten the comparator, so
+condition 4 asks that its typical error be lower too. It can only make a beat harder.
 
 The order of events matters for condition 2. The 10 % threshold was proposed on 2026-11-04,
 after the noise floor (F medians 0.001 to 0.013) and the in-sample B0 reproduction were seen,

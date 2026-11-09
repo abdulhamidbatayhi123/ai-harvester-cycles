@@ -25,12 +25,29 @@ from synthetic_harness import PRIMARY8, Truth, b0_E, beats, fit_k2, synthesise  
 
 torch.set_num_threads(2)
 EPS = 0.05
+WORLD = {"C": True, "C2": "C2"}[os.environ.get("DIAG_WORLD", "C")]     # world C2 added after round 6
+MASK = [int(i) for i in os.environ.get("DIAG_MASK", "").split(",") if i]   # L1 input columns set to 0
+
+
+class L1m(L1):
+    """L1 with some inputs zeroed (diagnostic): 0 w/w30, 1 RH, 2 RH_bed, 3 slope, 4 sign d, 5 T, 6 1/m."""
+
+    def rate(self, w, r, ctx):
+        ads, w30 = ctx["ads"], ctx["w30"]
+        r_bed = ads.rh_of_w(w)
+        d = r - r_bed
+        k = torch.where(d > 0, ctx["k_ads"], ctx["k_des"])
+        z = torch.stack([w / w30, r / 100, r_bed / 100, ads.slope_at_w(w) * 10 / w30,
+                         torch.sign(d), (ctx["temp"] - 27.0) / 33.0, 10.0 / ctx["m"]], -1)
+        if MASK:
+            z = z.clone(); z[..., MASK] = 0.0
+        return k * d * torch.exp(2 * torch.tanh(self.g(z).squeeze(-1)))
 
 
 def stage_a(tr, k, iso, weight, steps, seed=0, exact_k=None, half=3, smooth_rh=False):
     torch.manual_seed(seed)
     rng = np.random.default_rng(seed)
-    model = L1(width=16, depth=2)
+    model = L1m(width=16, depth=2)
     opt = torch.optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-4)
     pts = []
     for g in tr:
@@ -45,7 +62,7 @@ def stage_a(tr, k, iso, weight, steps, seed=0, exact_k=None, half=3, smooth_rh=F
             sg = np.repeat(np.arange(len(g["m"]))[:, None], g["w"].shape[1], 1)[ok]
             with torch.no_grad():
                 r = r.copy()
-                r[ok] = Truth(True).rate(torch.as_tensor(g["w"][ok]), torch.as_tensor(g["rh"][ok]),
+                r[ok] = Truth(WORLD).rate(torch.as_tensor(g["w"][ok]), torch.as_tensor(g["rh"][ok]),
                                          make_ctx(g, exact_k, iso, sg)).numpy()
         seg = np.repeat(np.arange(len(g["m"]))[:, None], g["w"].shape[1], 1)[ok]
         dw = (np.nanmax(g["w"], 1) - np.nanmin(g["w"], 1))[seg]
@@ -79,7 +96,7 @@ def main():
     root, out = sys.argv[1], sys.argv[2]
     real = [g for g in build_groups(root) if g["sorbent"] in PRIMARY8]
     k_true = fit_k2(real)
-    syn = synthesise(real, k_true, corrected=True, seed=1)
+    syn = synthesise(real, k_true, corrected=WORLD, seed=1)
     iso = isotherms_by_material(syn)
     res = {}
     for held in (sys.argv[4].split(",") if len(sys.argv) > 4 else ("MOF-303",)):

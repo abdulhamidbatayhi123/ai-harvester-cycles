@@ -97,7 +97,12 @@ def rule(e_b0, e_m, F, D=None):
     d = e_b0 - e_m
     gain = float(np.median(d))
     p = signflip_p(d if D is None or not np.all(np.isfinite(D)) else D)
-    ok = bool(gain > F and gain >= REL * float(np.median(e_b0)) and p <= ALPHA)
+    # condition 4 (added 2026-11-09 after harness round 6): the model's own median cluster E must be
+    # below the comparator's. A paired median can favour a model that is far better on the hard
+    # steps but several times worse on the easy ones (world C2, ROS-039: median d +0.012 while the
+    # model's median E was 0.034 against B0's 0.013); such a model has not beaten the comparator.
+    ok = bool(gain > F and gain >= REL * float(np.median(e_b0)) and p <= ALPHA
+              and float(np.median(e_m)) < float(np.median(e_b0)))
     return ok, {"median_gain": gain, "p_signflip": p, "E_B0": float(np.median(e_b0)),
                 "E_model": float(np.median(e_m)), "F": F, "n_clusters": int(len(d)),
                 "min_attainable_p": float(2.0 ** -len(d))}
