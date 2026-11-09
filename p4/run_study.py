@@ -14,6 +14,7 @@ on restart. Seed predictions are cached in <out>/pred/.
 
 usage: python -E -s -m p4.run_study <data_derived/bezrukov2023> <out_dir> [--synthetic [N|null] [--rep k]]
        [--fast] [--rule R1|R2] [--seeds n] [--grid n] [--loso-only] [--configs-from rows.jsonl]
+       [--kinds L1[,L2]]  (default L1; L2 was dropped after harness round 4)
 (--rule R1 runs the pre-registered dry-mass sensitivity analysis into a separate out_dir)
 """
 from __future__ import annotations
@@ -204,6 +205,8 @@ def main():
     arg = lambda name, default: int(sys.argv[sys.argv.index(name) + 1]) if name in sys.argv else default
     rep, n_seeds, n_grid = arg("--rep", 0), arg("--seeds", None), arg("--grid", None)
     loso_only = "--loso-only" in sys.argv
+    # L2 failed the synthetic harness and was dropped from H4a (PREREG section 10, round 4)
+    kinds = tuple(sys.argv[sys.argv.index("--kinds") + 1].split(",")) if "--kinds" in sys.argv else ("L1",)
     # R1 sensitivity run (PREREG section 11): reuse each fold's configuration chosen under R2
     cfg_from = {}
     if "--configs-from" in sys.argv:
@@ -285,7 +288,7 @@ def main():
         ph = rows.get(key)
         k2 = {tuple(k.split("|")): v for k, v in ph["k2"].items()}
         # 2. learned models
-        for kind in ("L1", "L2"):
+        for kind in kinds:
             best_cfg, best_v = cfg_from.get((fold, kind)), float("inf")
             for ci, cfg in enumerate(grid if best_cfg is None else []):
                 k = f"{fold}|{kind}|cfg{ci}|tune"

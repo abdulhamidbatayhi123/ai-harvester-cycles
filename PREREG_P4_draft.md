@@ -252,7 +252,7 @@ In every fold, everything that is fitted is fitted on the training sorbents only
   The three have the same four parameters (one k″ per temperature and direction), so an
   in-sample comparison does not favour a more flexible one, and six or seven sorbents make it far
   less noisy than the single validation sorbent of the earlier draft. Inner leave-one-sorbent-out
-  was costed: on this machine it would add about INNER_H hours of physics fits to every run (main,
+  was costed: on this machine it would add about 17 to 28 hours of physics fits to every run (main,
   R1 and each null replicate), and it was rejected for that reason. The choice uses no outer
   held-out data. A learned model that beat B0 but not B1 would not have beaten "the isotherm".
 - **B2, reported comparator (not in the decision rule).** B0 with k″ made material-dependent
@@ -630,7 +630,9 @@ The null study is not on this list (review finding N1): it is what makes a posit
 credible, so it is never reduced.
 
 Full inner leave-one-sorbent-out would add roughly 300 h for the learned models and about
-INNER_H h per run for the physics comparators; neither is planned (section 5). The jobs are
+17 to 28 h per run for the physics comparators (seven inner folds, each refitting the three
+candidates on six sorbents: 6 × the 17 to 28 minutes the three candidate fits took per fold in null
+replicate 0, `results/null_rep0/rows.jsonl` field `s_parts`, × 10 folds); neither is planned (section 5). The jobs are
 independent, so they can run as parallel CPU jobs elsewhere (for example the author's Kaggle
 account) without changing any result. Every job writes a resumable row; a fit counts only if it
 completed. The final run times are reported.
