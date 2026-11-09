@@ -496,7 +496,14 @@ truth, and the fold pipeline is run on them (`audit/synthetic_harness.py`). Thre
     null world the material-specific equilibrium error of the real data (N3), which L2 could
     otherwise exploit or be penalised for unrealistically;
   - AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9.
-  With these sizes NULL_SIZE (`results/null_calibration.json`).
+  With these sizes (`results/null_calibration.json`, computed by the same code for the real and
+  the synthetic data, pooled least-squares k″ refitted on each): B0's median E over the eight
+  sorbents is 0.057, 0.070 and 0.045 in replicates 0 to 2, against 0.067 on the real data, and
+  0.032 to 0.125 per sorbent, against 0.055 to 0.093. The null world's within-file noise floor
+  F, per sorbent–temperature group, is 0.0014 to 0.0140, against 0.0009 to 0.0126 on the real
+  data, and lies within a factor of about two of the real value in each group. So the noise
+  model (σ = 0.01 wt%, φ = 0.9) reproduces the measured F, and the decision rule is tested
+  where it will run on real data.
 
 The harness passes if:
 
@@ -652,9 +659,10 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   measured segments in which uptake moves against the step direction for a minute is 0 for the
   three ROS sorbents, Syloid and both composites; 0.04 for MIL-160, 0.06 for CAU-10-H, 0.15 for
   Al-fumarate and 0.28 for MOF-303.
-- **Null-world size** (section 10; `results/null_calibration.json`): B0's median E in the null
-  world, over all eight sorbents, is 0.080, 0.064 and 0.081 for replicates 0 to 2, inside the
-  range seen on the real data.
+- **Null-world size** (section 10; `results/null_calibration.json`, recomputed for the revised
+  null world): B0's median E over the eight sorbents is 0.057, 0.070 and 0.045 for replicates
+  0 to 2, against 0.067 on the real data; the null world's F per group is 0.0014 to 0.0140,
+  against the real 0.0009 to 0.0126.
 - Commit hash, date and compute budget: to be filled at the freeze.
 
 ## 13. Corrections to this draft
