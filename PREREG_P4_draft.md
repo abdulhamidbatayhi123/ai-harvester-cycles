@@ -28,6 +28,8 @@ the results.
   model (B0, B0-b or B1, chosen on the training sorbents; section 5), by more than the
   measured noise floor and by a practically relevant margin. L1 (grey box) is the primary
   learned model and L2 (black box) the secondary one; only L1 can support the headline claim.
+  L2 failed the synthetic harness and is dropped from H4a under the rule in section 5 (section
+  10, round 4); its harness results are reported.
 - **H4b, descriptive.** How much of B0's error on a held-out sorbent comes from the assumption
   that the rate constant is the same for every material. Measured as the fraction of the gap
   between B0 and the noise floor that the oracle B0* closes (B0 with k″ fitted on the held-out
@@ -289,8 +291,12 @@ Implementation and training rules:
 
 - L1 and L2 are small multilayer perceptrons, trained in two stages (changed after harness
   round 1, section 10):
-  - stage A fits the rate law to the measured dw/dt, a centred difference over ±18 s, with each
-    point's error divided by its segment's change;
+  - stage A fits the rate law to the measured dw/dt, a centred difference over ±18 s. Each rate is
+    paired with the RH averaged over the same window, not the instantaneous RH, whose jitter
+    would be an error in an input variable. Each point's error is weighted by its segment's
+    t63/|Δw|: a rate error times the segment's time scale is the trajectory error it causes, in
+    units of E, so slow and fast segments count alike. (Both rules were found in harness rounds
+    4 and 5, section 10.)
   - stage B fine-tunes on open-loop rollouts over random 10-minute windows, started from the
     measured uptake.
   Validation on whole segments, open loop, picks the best state. Backpropagating through whole
@@ -401,7 +407,7 @@ measured start lies off the isotherm, and L1 shares B0's driving force. If such 
 violations exceed 5 % of a fold's segments, the model does not beat the comparator in that fold,
 whatever its E.
 
-**H4a**, decided on the 8 LOSO folds, separately for L1 (primary) and L2 (secondary). Let r be a
+**H4a**, decided on the 8 LOSO folds for L1 (L2 was dropped; section 10, round 4). Let r be a
 fold's relative improvement, the median d over its clusters divided by the comparator's median E.
 
 - **Supported** if the model beats the comparator in at least 7 of 8 folds. This is a decision
@@ -413,8 +419,6 @@ fold's relative improvement, the median d over its clusters divided by the compa
   median) = 1 − 9/256. A bootstrap over 8 dependent folds, the earlier rule, undercovers.
 - **Not established** otherwise, including a moderate real effect that the 8 folds cannot
   resolve.
-- The headline claim rests on L1. An L2 result is reported as secondary. If only L2 meets the
-  rule, the paper says so and does not claim H4a.
 - The verdict must be the same under the primary dry-mass rule R2 and the sensitivity rule R1.
   If it differs, H4a is reported as not robust to the dry-mass definition, and the weaker of
   the two verdicts is the result. R2 is not drift-free for MOF-303 and Syloid (section 3.3), so
@@ -436,7 +440,7 @@ LOFO beats out of 2):
 
 **H4b and H4c** are estimates with bootstrap intervals and carry no verdict (section 2).
 
-**Negative results.** If L1 and L2 both fail H4a, the paper reports that, on these data, a
+**Negative results.** If L1 fails H4a, the paper reports that, on these data, a
 learned dynamic model adds nothing measurable to the isotherm. Section 8's analyses are then
 used only to say where the residual error lives, not to rescue the claim.
 
@@ -539,8 +543,6 @@ The harness passes if:
      Selection on a validation sorbent and ensembling change how often a spurious correction
      survives, in an unknown direction, so the reduced replicates alone would test a different
      procedure. L1 can be declared "supported" only if this replicate also meets (i) and (ii).
-     For L2, which cannot carry the headline, the false-positive rate is stated as that of the
-     reduced procedure.
 
 **Round 1 (2026-11-04/05; `results/harness_round1/`)**, with whole-segment training. Seven of
 the eight runs finished before it was stopped:
@@ -564,27 +566,55 @@ number the network never sees, so the rate scale of a new sorbent was unknowable
 is now a water mass flux (section 5). Round 3 was stopped during world C, since that run would
 have measured the same flaw.
 
-**Round 4**: ROUND4.
+**Round 4 (2026-11-09; `results/harness_round4/`), L1 and L2, with the revised rule and the
+metric-fitted comparator.** Criteria 1 and 3 passed: k″ recovered; no beat in world N. Criterion
+2 failed. Fitted by the scored metric, B0 absorbs part of the injected slow-down (its E in world C
+is 0.026 on MOF-303, against 0.036 under least squares in round 2). L1 reached only 0.020 there
+(p = 0.53) and 0.031 against 0.031 on ROS-039. Round 2 had passed mainly because its comparator
+was weaker. L2 failed world N outright: E 0.22 to 0.30 against B0's 0.0003 to 0.0005.
+
+Diagnostics on world C, held-out MOF-303, stage A only (`audit/diag/`, `results/diag/`):
+- **L1 can represent the correction.** Fitted to the exact truth rates, it reaches E 0.007, and
+  0.003 with weights relative to B0's rate.
+- **The bias came from the stage-A target.** Each finite-difference rate averages over ±18 s,
+  but it was paired with the instantaneous measured RH. That RH jitter is an error in an input
+  variable, and it is largest relative to the driving force near equilibrium, where the
+  correction acts. Pairing the rate with the RH averaged over the same window gives E 0.008.
+  Wider difference windows (±36 s to ±150 s), relative weights on noisy rates and longer
+  training did not help (E 0.023 to 0.059).
+- Stage A now uses the window-averaged RH (`p4/train.py`, `smoothed_rh`). Stage B and
+  validation are unchanged.
+- **L2 cannot hold equilibrium.** Fitted to the exact world-N rates, L2 still reaches only E
+  0.19 on held-out sorbents. Its rate at equilibrium is 0.03 to 0.06 wt%/min where the truth is
+  zero, and over equilibrium tails of an hour or more that drifts by several wt%. Explicit
+  driving-force inputs do not help (0.17 to 0.18). Subtracting the network's own output on the isotherm,
+  which imposes only the equilibrium, gives 0.06 to 0.07: still about 200 times B0.
+- Under the rule in section 5, **L2 is dropped from H4a**. Three L2 designs failed world N. The
+  paper reports this as a result: an unconstrained flux network trained on six sorbents does not
+  hold the equilibrium precisely enough for open-loop prediction over long plateaus. H4a rests on
+  L1 alone, which section 2 already made the only model that can carry the headline claim.
+
+**Round 5**: ROUND5.
 
 ## 11. Compute
 
 Measured in harness round 2 (`results/harness_round2/harness.json`, six or seven training
-sorbents per fit, on the shared laptop): one L1 fit took 39 to 55 minutes (mean 45.5), one L2 fit
-13 to 36 minutes (mean 19.9). Round 4 times replace the L2 figure when it finishes.
+sorbents per fit, on the shared laptop): one L1 fit took 39 to 55 minutes (mean 45.5). One
+physics fold (three comparators, B2 and the oracle, all by the scored metric) took about 64
+minutes in the end-to-end dry run (`results/dryrun_null.log`), under the same shared load.
 
 The protocol has 10 outer folds (8 LOSO and the 2 LOFO folds that differ from them; section 4).
-Per model and fold: 4 configurations × 1 seed for tuning, then 5 seeds of the chosen one, so
-9 fits. That gives 90 fits per model:
+Per fold: 4 configurations × 1 seed for tuning, then 5 seeds of the chosen one, so 9 fits. That
+gives 90 L1 fits (L2 was dropped; section 10):
 
 | Item | Fits | Hours (single job) |
 |---|---|---|
 | L1, primary rule R2 | 90 | about 68 |
-| L2, primary rule R2 | 90 | about 30 |
-| R1 sensitivity, reusing each fold's R2 configuration (5 seeds only) | 100 | about 54 |
-| Null study before the freeze, 2 replicates × 8 folds × 2 models, 1 configuration, 1 seed | 32 | about 18 |
-| Null study with the confirmatory runs, 1 replicate × 8 folds, L1, full procedure (4 + 5 fits) | 72 | about 55 |
-| Physics: three comparators, B2 and oracle fits, all by the scored metric, in every run | — | PHYS_H |
-| **Total** | 384 | **about TOTAL_H** |
+| R1 sensitivity, reusing each fold's R2 configuration (5 seeds only) | 50 | about 38 |
+| Null study before the freeze, 2 replicates × 8 folds, 1 configuration, 1 seed | 16 | about 12 |
+| Null study with the confirmatory runs, 1 replicate × 8 folds, full procedure (4 + 5 fits) | 72 | about 55 |
+| Physics in every run (10 folds for R2 and R1, 8 per null replicate; about 64 min per fold) | — | about 47 |
+| **Total** | 228 | **about 220** |
 
 The R1 sensitivity run reuses the configuration chosen under R2 in each fold. It asks whether
 the dry-mass definition changes the verdict, not whether tuning changes it.
