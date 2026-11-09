@@ -26,6 +26,7 @@ from synthetic_harness import PRIMARY8, Truth, b0_E, beats, fit_k2, synthesise  
 torch.set_num_threads(2)
 EPS = 0.05
 WORLD = {"C": True, "C2": "C2"}[os.environ.get("DIAG_WORLD", "C")]     # world C2 added after round 6
+TAU_CAP = float(os.environ.get("DIAG_TAU_CAP", "10"))   # cap on tau, in units of the segment's t63
 MASK = [int(i) for i in os.environ.get("DIAG_MASK", "").split(",") if i]   # L1 input columns set to 0
 
 
@@ -69,7 +70,18 @@ def stage_a(tr, k, iso, weight, steps, seed=0, exact_k=None, half=3, smooth_rh=F
         ctx = make_ctx(g, k, iso, seg)
         d = torch.as_tensor(rh_in[ok]) - ctx["ads"].rh_of_w(torch.as_tensor(g["w"][ok]))
         rb = (torch.where(d > 0, ctx["k_ads"], ctx["k_des"]) * d).abs().numpy()
-        if weight == "t63":        # rate error x t63 / |dw|: the trajectory error it causes, in units of E
+        if weight == "tau":        # rate error x B0's local relaxation time |w - w_eq(RH)| / |rate_B0|, / |dw|
+            t63 = np.empty(len(g["m"]))
+            for i, row in enumerate(g["w"]):
+                row = row[np.isfinite(row)]
+                ch = np.abs(row - row[0]); tot = abs(row[-1] - row[0])
+                j = int(np.argmax(ch >= 0.63 * tot)) if tot > 0 else 1
+                t63[i] = max(j, 1) * 0.1
+            weq = ctx["ads"].w_of_rh(torch.as_tensor(rh_in[ok])).numpy()
+            tau = np.abs(g["w"][ok] - weq) / np.maximum(rb, 1e-9)
+            tau = np.clip(tau, 0.1, TAU_CAP * t63[seg])
+            wt = tau / np.maximum(dw, 1e-3)
+        elif weight == "t63":        # rate error x t63 / |dw|: the trajectory error it causes, in units of E
             t63 = np.empty(len(g["m"]))
             for i, row in enumerate(g["w"]):
                 row = row[np.isfinite(row)]
@@ -104,10 +116,10 @@ def main():
         te = [g for g in syn if g["sorbent"] == held]
         k = fit_k2([g for g in syn if g["sorbent"] != held], metric=True)
         E_b = b0_E(te, k)
-        variants = [(a, a, 2000, None) for a in ("dw",)] + [("exact", "dw", 2000, k_true), ("exact_rel", "rel", 2000, k_true)]
+        variants = [(a, a, 2000, None) for a in ("dw",)] + [("exact", "dw", 2000, k_true), ("exact_rel", "rel", 2000, k_true), ("exact_t63", "t63", 2000, k_true), ("exact_tau", "tau", 2000, k_true)]
         variants += [(f"{wt}_h{h}", wt, 2000, None, h) for h in (6, 12, 25) for wt in ("dw", "rel")]
         variants = [v if len(v) == 5 else v + (3,) for v in variants]
-        variants = [v + (False,) for v in variants] + [(f"{wt}_srh{h}", wt, 2000, None, h, True) for h in (3, 6) for wt in ("dw", "rel", "t63")]
+        variants = [v + (False,) for v in variants] + [(f"{wt}_srh{h}", wt, 2000, None, h, True) for h in (3, 6) for wt in ("dw", "rel", "t63", "tau")]
         if len(sys.argv) > 3:
             variants = [v for v in variants if v[0] in sys.argv[3].split(",")]
         for name, weight, steps, ek, h, srh in variants:
