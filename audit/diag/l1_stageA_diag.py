@@ -52,7 +52,16 @@ def stage_a(tr, k, iso, weight, steps, seed=0, exact_k=None, half=3, smooth_rh=F
         ctx = make_ctx(g, k, iso, seg)
         d = torch.as_tensor(rh_in[ok]) - ctx["ads"].rh_of_w(torch.as_tensor(g["w"][ok]))
         rb = (torch.where(d > 0, ctx["k_ads"], ctx["k_des"]) * d).abs().numpy()
-        wt = 1.0 / np.maximum(dw, 1e-3) if weight == "dw" else 1.0 / (rb + EPS)
+        if weight == "t63":        # rate error x t63 / |dw|: the trajectory error it causes, in units of E
+            t63 = np.empty(len(g["m"]))
+            for i, row in enumerate(g["w"]):
+                row = row[np.isfinite(row)]
+                ch = np.abs(row - row[0]); tot = abs(row[-1] - row[0])
+                j = int(np.argmax(ch >= 0.63 * tot)) if tot > 0 else 1
+                t63[i] = max(j, 1) * 0.1
+            wt = t63[seg] / np.maximum(dw, 1e-3)
+        else:
+            wt = 1.0 / np.maximum(dw, 1e-3) if weight == "dw" else 1.0 / (rb + EPS)
         pts.append((g, seg, g["w"][ok], rh_in[ok], r[ok], wt))
     for step in range(steps):
         g, seg, w, rh, r, wt = pts[rng.integers(len(pts))]
@@ -73,7 +82,7 @@ def main():
     syn = synthesise(real, k_true, corrected=True, seed=1)
     iso = isotherms_by_material(syn)
     res = {}
-    for held in ("MOF-303",):
+    for held in (sys.argv[4].split(",") if len(sys.argv) > 4 else ("MOF-303",)):
         tr = [g for g in syn if g["sorbent"] not in (held, "Syloid")]
         te = [g for g in syn if g["sorbent"] == held]
         k = fit_k2([g for g in syn if g["sorbent"] != held], metric=True)
@@ -81,7 +90,7 @@ def main():
         variants = [(a, a, 2000, None) for a in ("dw",)] + [("exact", "dw", 2000, k_true), ("exact_rel", "rel", 2000, k_true)]
         variants += [(f"{wt}_h{h}", wt, 2000, None, h) for h in (6, 12, 25) for wt in ("dw", "rel")]
         variants = [v if len(v) == 5 else v + (3,) for v in variants]
-        variants = [v + (False,) for v in variants] + [(f"{wt}_srh{h}", wt, 2000, None, h, True) for h in (3, 6) for wt in ("dw", "rel")]
+        variants = [v + (False,) for v in variants] + [(f"{wt}_srh{h}", wt, 2000, None, h, True) for h in (3, 6) for wt in ("dw", "rel", "t63")]
         if len(sys.argv) > 3:
             variants = [v for v in variants if v[0] in sys.argv[3].split(",")]
         for name, weight, steps, ek, h, srh in variants:
@@ -89,6 +98,13 @@ def main():
             m = stage_a(tr, k, iso, weight, steps, exact_k=ek, half=h, smooth_rh=srh)
             E_m = evaluate(m, "L1", te, k, iso)["E"]
             ok, info = beats(te, E_m, E_b, 0.003)
+            from p4.decide import cluster_level
+            from p4.run_study import seg_dw, seg_ids
+            ids = seg_ids(te)
+            b0c, mc, Dc, _ = cluster_level(ids, E_b, E_m, seg_dw(te))
+            keys = list(dict.fromkeys(s.split("#")[0] for s, a, b in zip(ids, E_b, E_m) if np.isfinite(a) and np.isfinite(b)))
+            for kk, a, b, D in sorted(zip(keys, b0c, mc, Dc), key=lambda x: x[3]):
+                print(f"   {kk:60s} E_B0 {a:.4f} E_L1 {b:.4f} D {D:+.4f}", flush=True)
             res[f"{held}|{name}"] = {"beats": ok, "E_B0": float(np.nanmedian(E_b)), "E_L1": float(np.nanmedian(E_m)),
                                      "p": info["p_signflip"], "median_gain": info["median_gain"], "s": time.time() - t0}
             print(held, name, res[f"{held}|{name}"], flush=True)

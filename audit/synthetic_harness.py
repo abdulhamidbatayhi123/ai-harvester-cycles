@@ -6,6 +6,9 @@ a known truth, and the full fold pipeline is run on it:
   case N (no correction): truth = B0 with the pooled k'' of the real data.
   case C (correction):    truth = B0 x exp(-0.7 w / w30), a material-independent slow-down
                           near saturation that a model given only the isotherm can learn.
+  case C2 (fresh, round 6): truth = B0 x exp(0.8 tanh(d / 15)), d = RH - RH_bed: a nonlinear
+                          driving force. Added after the stage-A fixes were developed on world C,
+                          so that criterion 2 is judged on a world no diagnostic touched.
 
 Gaussian noise of 0.01 wt% is added. Held-out folds for the test: MOF-303 and ROS-039.
 Pass criteria (section 10):
@@ -46,7 +49,12 @@ class Truth(torch.nn.Module):
     def rate(self, w, r, ctx):
         d = r - ctx["ads"].rh_of_w(w)
         k = torch.where(d > 0, ctx["k_ads"], ctx["k_des"])
-        f = torch.exp(-0.7 * w / ctx["w30"]) if self.corrected else torch.ones_like(w)
+        if self.corrected == "C2":       # fresh world (round 6): nonlinear driving force
+            f = torch.exp(0.8 * torch.tanh(d / 15.0))
+        elif self.corrected:
+            f = torch.exp(-0.7 * w / ctx["w30"])
+        else:
+            f = torch.ones_like(w)
         return k * d * f
 
     def equilibrium(self, r, ctx):
@@ -191,7 +199,7 @@ def main():
     k_true = fit_k2(real)                     # the truth's rate constants
     log(f"k_true {k_true}")
     res = {"k_true": {f"{a}|{b}": v for (a, b), v in k_true.items()}, "cases": {}}
-    for case, corrected in (("N", False), ("C", True)):
+    for case, corrected in (("N", False), ("C", True), ("C2", "C2")):
         syn = synthesise(real, k_true, corrected, seed=1)
         iso = isotherms_by_material(syn)
         for held in HELD:
@@ -213,7 +221,13 @@ def main():
             res["cases"][f"{case}|{held}"] = rec
             json.dump(res, open(os.path.join(out, "harness.json"), "w"), indent=1)
     c1 = all(abs(v) < 0.02 for h in HELD for v in res["cases"][f"N|{h}"]["k_rel_err"].values())
-    c2 = all(res["cases"][f"C|{h}"]["L1"]["beats_B0"] for h in HELD) if "L1" in KINDS else None
+    # criterion 2 (section 10): L1 beats B0 on both held-out sorbents and halves B0's median E.
+    # From round 6 it is judged on world C2, which no diagnostic touched; world C, on which the
+    # stage-A fixes of rounds 4-5 were developed, is reported but not counted.
+    found = lambda c, h: (res["cases"][f"{c}|{h}"]["L1"]["beats_B0"]
+                          and res["cases"][f"{c}|{h}"]["L1"]["E_model"] <= 0.5 * res["cases"][f"{c}|{h}"]["L1"]["E_B0"])
+    c2 = all(found("C2", h) for h in HELD) if "L1" in KINDS else None
+    res["world_C_reported_only"] = {h: found("C", h) for h in HELD} if "L1" in KINDS else None
     c3 = not any(res["cases"][f"N|{h}"][k]["beats_B0"] for h in HELD for k in KINDS)
     res["pass"] = {"1_k_recovered": c1, "2_L1_finds_correction": c2, "3_no_false_positive": c3}
     json.dump(res, open(os.path.join(out, "harness.json"), "w"), indent=1)

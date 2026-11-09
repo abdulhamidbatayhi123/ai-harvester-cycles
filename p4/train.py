@@ -118,11 +118,23 @@ def smoothed_rh(rh, half=3):
     return out
 
 
+def segment_t63(w, dt=DT_MIN):
+    """Time (min) for each segment to reach 63 % of its measured change, at least one grid step."""
+    out = np.empty(len(w))
+    for i, row in enumerate(w):
+        row = row[np.isfinite(row)]
+        tot = abs(row[-1] - row[0])
+        j = int(np.argmax(np.abs(row - row[0]) >= 0.63 * tot)) if tot > 0 else 1
+        out[i] = max(j, 1) * dt
+    return out
+
+
 def train_two_stage(kind, train_groups, val_groups, k2, iso_by_mat, *, width=16, depth=2, wd=1e-4,
                     lr=1e-3, steps_rate=2000, steps_roll=300, window=100, batch_size=64, seed=0,
                     eval_every=100, log=None):
     """Stage A: fit the rate law to measured dw/dt, paired with the RH averaged over the same
-    window (smoothed_rh; no integration; fast). Stage B: fine-tune on
+    window (smoothed_rh), each point's error weighted by t63 / |dw| of its segment (no
+    integration; fast). Stage B: fine-tune on
     open-loop rollouts over random windows of `window` grid steps (10 min), started from the
     measured uptake. Validation (full segments, open loop) selects the best state of stage B,
     or of stage A if B never improves on it."""
@@ -137,7 +149,11 @@ def train_two_stage(kind, train_groups, val_groups, k2, iso_by_mat, *, width=16,
     for gi, g in enumerate(train_groups):
         r = measured_rates(g["w"])
         rh_s = smoothed_rh(g["rh"])
-        dw = np.abs(np.nanmax(g["w"], 1) - np.nanmin(g["w"], 1))[:, None] * np.ones_like(g["w"])
+        # weight = t63 / |dw| per segment: a rate error times the segment's time scale is the
+        # trajectory error it causes, in units of E, so slow and fast segments count alike
+        # (harness round 5 diagnostic: weighting by 1/|dw| alone left the slow 27 C releases
+        # underfitted, and L1 lost to B0 there)
+        dw = (np.abs(np.nanmax(g["w"], 1) - np.nanmin(g["w"], 1)) / segment_t63(g["w"]))[:, None] * np.ones_like(g["w"])
         ok = np.isfinite(r) & np.isfinite(rh_s)
         seg = np.repeat(np.arange(len(g["m"]))[:, None], g["w"].shape[1], 1)
         pts.append((gi, seg[ok], g["w"][ok], rh_s[ok], r[ok], dw[ok]))
