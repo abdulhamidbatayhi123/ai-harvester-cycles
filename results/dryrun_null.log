@@ -1,0 +1,59 @@
+2026-11-09 01:45:20 dry-mass rule R2; 1187 segments in 18 groups
+2026-11-09 01:56:33 null world, replicate 0
+2026-11-09 03:01:38 LOSO:ROS-037: physics done (B0; comparator B0; 3905s)
+2026-11-09 03:10:53 LOSO:ROS-037 L1 cfg0 val 0.2233
+2026-11-09 03:21:25 LOSO:ROS-037 L1 seed 0 val 0.2233
+2026-11-09 03:31:27 LOSO:ROS-037 L1 seed 1 val 0.1726
+2026-11-09 03:31:27 LOSO:ROS-037 L1 ensemble median E 0.0813
+2026-11-09 03:39:23 LOSO:ROS-037 L2 cfg0 val 0.7198
+2026-11-09 03:48:52 LOSO:ROS-037 L2 seed 0 val 0.7198
+2026-11-09 03:59:04 LOSO:ROS-037 L2 seed 1 val 0.6996
+2026-11-09 03:59:04 LOSO:ROS-037 L2 ensemble median E 0.6346
+2026-11-09 05:01:52 LOSO:ROS-039: physics done (B0; comparator B0; 3768s)
+2026-11-09 05:09:21 LOSO:ROS-039 L1 cfg0 val 0.2501
+2026-11-09 05:18:26 LOSO:ROS-039 L1 seed 0 val 0.2501
+2026-11-09 05:26:20 LOSO:ROS-039 L1 seed 1 val 0.2392
+2026-11-09 05:26:20 LOSO:ROS-039 L1 ensemble median E 0.2445
+2026-11-09 05:31:32 LOSO:ROS-039 L2 cfg0 val 0.6370
+2026-11-09 05:39:34 LOSO:ROS-039 L2 seed 0 val 0.6370
+2026-11-09 05:44:25 LOSO:ROS-039 L2 seed 1 val 0.6013
+2026-11-09 05:44:25 LOSO:ROS-039 L2 ensemble median E 0.6425
+2026-11-09 05:44:25 done
+{
+ "H4a": {
+  "L1": {
+   "role": "primary",
+   "LOSO_beats": 0,
+   "LOSO_folds": 2,
+   "verdict": "incomplete",
+   "rel_improvement_mean": -0.9165323865282601,
+   "rel_improvement_folds": [
+    -0.06949642463990702,
+    -1.7635683484166131
+   ],
+   "n_folds_rel_ge_10pct": 0,
+   "rel_improvement_order7": null,
+   "LOFO_beats_nontrivial": 0,
+   "LOFO_folds_nontrivial": 0,
+   "transfers_across_families": null
+  },
+  "L2": {
+   "role": "secondary",
+   "LOSO_beats": 0,
+   "LOSO_folds": 2,
+   "verdict": "incomplete",
+   "rel_improvement_mean": -7.473755994786613,
+   "rel_improvement_folds": [
+    -7.591868888487799,
+    -7.355643101085427
+   ],
+   "n_folds_rel_ge_10pct": 0,
+   "rel_improvement_order7": null,
+   "LOFO_beats_nontrivial": 0,
+   "LOFO_folds_nontrivial": 0,
+   "transfers_across_families": null
+  }
+ },
+ "H4b_n_closing_more_than_half": 2
+}
+EXIT 0
