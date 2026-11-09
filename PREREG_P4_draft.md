@@ -270,11 +270,13 @@ In every fold, everything that is fitted is fitted on the training sorbents only
   grid point (the first sample after the set-point change), and runs open loop to the end of
   the segment with no later resetting.
 - **L1, grey box.**
-  - Equation: dw/dt = k(T, m)·(RH_flow − RH_bed(w))·exp(g_θ(z)).
-  - The correction is a positive factor, so the rate is still zero at equilibrium and the
-    model cannot produce uptake against the driving force.
+  - Equation: dw/dt = k(T, m)·(RH_flow − RH_bed(w))·exp(2 tanh g_θ(z)).
+  - The correction is a positive factor between e⁻² and e², so the rate is still zero at
+    equilibrium and the model cannot produce uptake against the driving force.
   - z holds: w normalised by the isotherm's uptake at 30 % RH; RH_flow; RH_bed; the local
-    isotherm slope dw/dRH at w; the branch flag; T; and 1/m.
+    isotherm slope dw/dRH at w; the branch flag; T; 1/m; and the driving force
+    d = RH_flow − RH_bed itself. d was added after harness round 6 (section 10): without it the
+    network had to form d as a difference of two inputs and could not do so precisely enough.
 - **L2, black box: a neural ODE.**
   - Equation: dw/dt = (S/m)·f_θ(z), with S = 10 a fixed unit scale. Since w = 100·(water
     mass)/m_dry, f_θ is the water mass flux into the sample; the factor 1/m is a unit identity,
@@ -619,7 +621,41 @@ world C as a reported run and judges criterion 2 on a fresh world C2, fixed befo
 true rate is B0's times exp(0.8 tanh(d/15)), where d = RH − RH_bed(w) is B0's own driving force in
 % RH. It speeds adsorption and slows desorption by up to a factor e^0.8 ≈ 2.2, saturating at large
 |d|: a different form from world C, which slows uptake as loading rises. Criterion
-2 needs a beat on both held-out sorbents AND E_model ≤ 0.5·E_B0. ROUND6
+2 needs a beat on both held-out sorbents AND E_model ≤ 0.5·E_B0.
+
+**Round 6 (2026-11-09; `results/harness_round6/`), L1 in worlds N, C and C2.** Criteria 1 and 3
+passed, and world C (reported only) now passed too: E 0.0054 against B0's 0.026 on MOF-303, and
+0.014 against 0.031 on ROS-039. **Criterion 2 failed on C2.** On MOF-303, L1 more than halved
+B0's E (0.011 against 0.025), but over 13 clusters the gain was not consistent enough
+(p = 0.040). On ROS-039 the rule of the time declared a beat (19 of 26 clusters improved, median
+d +0.012, p = 0.009), yet L1's median E was 0.034 against B0's 0.013. That result led to
+condition 4 of section 7.
+
+Diagnostics on world C2 (`audit/diag/`, `results/diag/c2_*`), which spent C2 as a judge:
+- **The pipeline is sound.** The true C2 rate law, run through L1's own evaluation path,
+  reproduces the synthetic data to the noise level (median E 0.0003 to 0.0005;
+  `oracle_c2.py`).
+- **Noise and weighting were not the cause.** Fitted to the exact true rates, with any of four
+  weightings, L1 still lost to B0 on ROS-039 (E 0.019 to 0.037, against 0.019). Zeroing the
+  inputs that could carry sorbent identity did not help either. In the exact-rate fit, L1 was
+  accurate away from equilibrium, but within 5 % RH of it, where C2's factor changes fastest,
+  its log-factor was about ±0.25 where ±0.6 to 0.7 was needed, even on the training sorbents
+  (`factor_c2.py`).
+- **L1 could not represent the correction precisely enough.** B0 fitted by the scored metric is
+  already close to the C2 truth (E 0.013 to 0.025), so halving its error needs a factor accurate
+  to a few per cent. Even fitted directly to the needed log-factor (possible only in a synthetic
+  world), L1 plateaued at a mean squared error of 0.004, and open loop it still lost to B0
+  (E 0.032 against 0.025 on MOF-303, 0.027 against 0.013 on ROS-039; `factor_fit_c2.py`).
+- **The driving force as an input fixes it.** With d = RH − RH_bed given explicitly, the same
+  direct fit reached a log-factor mean squared error of 0.0001 and E 0.001 on both held-out
+  sorbents. Trained on the noisy rates by the normal stage A, L1 then beat B0 in C2 (E 0.0037
+  against 0.023 on MOF-303, and 0.0092 against 0.019 on ROS-039) and in C (0.0056 against
+  0.027, and 0.010 against 0.030). Section 5 now lists d among L1's inputs.
+
+**Round 7** runs the full procedure in worlds N, C, C2 and C3. World C3 was defined and committed
+before any run on it (repository commit a7d163e): the true rate is B0's times
+exp(−0.6 tanh(4(RH_bed/100 − 0.25))), faster where the bed sits low on its isotherm and slower
+high up. Criterion 2 is judged on C3 alone; C and C2 are reported. ROUND7
 
 ## 11. Compute
 
