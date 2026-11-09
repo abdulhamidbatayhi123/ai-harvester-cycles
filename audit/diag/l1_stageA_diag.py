@@ -25,7 +25,12 @@ from synthetic_harness import PRIMARY8, Truth, b0_E, beats, fit_k2, synthesise  
 
 torch.set_num_threads(2)
 EPS = 0.05
-WORLD = {"C": True, "C2": "C2"}[os.environ.get("DIAG_WORLD", "C")]     # world C2 added after round 6
+WORLD_NAME = os.environ.get("DIAG_WORLD", "C")
+# C, C2: corrected harness worlds. null, null_noeps (no equilibrium offsets), null_rateonly
+# (= null_noeps), null_epsonly (offsets, no rate heterogeneity): the null world of replicate 0,
+# taken apart after the pre-d null replicate showed beats (results/null_rep0_preD). C3 is
+# deliberately not available here: it judges round 7 and must not be used in diagnostics.
+WORLD = {"C": True, "C2": "C2"}.get(WORLD_NAME, WORLD_NAME)
 TAU_CAP = float(os.environ.get("DIAG_TAU_CAP", "10"))   # cap on tau, in units of the segment's t63
 MASK = [int(i) for i in os.environ.get("DIAG_MASK", "").split(",") if i]   # L1 input columns set to 0
 
@@ -108,7 +113,15 @@ def main():
     root, out = sys.argv[1], sys.argv[2]
     real = [g for g in build_groups(root) if g["sorbent"] in PRIMARY8]
     k_true = fit_k2(real)
-    syn = synthesise(real, k_true, corrected=WORLD, seed=1)
+    if str(WORLD).startswith("null"):
+        import synthetic_harness as sh
+        if WORLD in ("null_noeps", "null_rateonly"):
+            sh.NULL_EPS = (0.0,)
+        if WORLD == "null_epsonly":
+            sh.NULL_SD_B = {"27C": 0.0, "60C": 0.0}; sh.NULL_SD_A = 0.0
+        syn, _ = sh.synthesise_null(real, k_true, seed=0)
+    else:
+        syn = synthesise(real, k_true, corrected=WORLD, seed=1)
     iso = isotherms_by_material(syn)
     res = {}
     for held in (sys.argv[4].split(",") if len(sys.argv) > 4 else ("MOF-303",)):

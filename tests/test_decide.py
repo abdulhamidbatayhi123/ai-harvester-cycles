@@ -115,3 +115,45 @@ def test_paired_gain_with_worse_typical_error_is_not_a_beat():
     assert info["median_gain"] > 0.003 and info["p_signflip"] <= 0.025
     assert info["E_model"] > 2 * info["E_B0"]
     assert not ok
+
+
+def test_composite_only_gain_does_not_count_as_r(tmp_path):
+    """Review T-P4-4 F-6: r of a parent + composite fold is the smaller per-material r, so a gain on
+    the composite alone cannot move a fold to r >= 10 % (pooled r is only reported)."""
+    rows = _rows(0.0)
+    for r in rows:
+        if r["fold"] == "LOSO:S0":
+            r["held"] = ["S0", "S0_composite"]
+            comp = [s.replace("S0|", "S0_composite|", 1) for s in r["seg"]]
+            comp = comp + [s.replace("#run", "#xrun") for s in comp]          # composite: 2x the clusters' segments
+            comp = [c.replace("sess", "csess") for c in comp]
+            if r["key"].endswith("physics"):
+                n = len(comp)
+                r["seg"] = r["seg"] + comp
+                for k in r["E"]:
+                    r["E"][k] = r["E"][k] + [0.10] * n
+                r["dw"], r["viol_data"] = r["dw"] + [1.0] * n, r["viol_data"] + [False] * n
+            else:
+                n = len(comp)
+                r["seg"] = r["seg"] + comp
+                r["E"] = r["E"] + [0.07] * n          # 30 % gain on the composite only
+                r["viol"] = r["viol"] + [False] * n
+    out = _run(tmp_path, rows)
+    f = out["folds"]["LOSO:S0|L1"]
+    assert f["r_pooled"] >= 0.10 and abs(f["r_fold"]) < 1e-9
+    assert not f["beats_B0"] and out["H4a"]["L1"]["n_folds_rel_ge_10pct"] == 0
+
+
+def test_claim_wording_when_another_candidate_wins_on_heldout(tmp_path):
+    """Review T-P4-4 F-7: supported against the chosen comparator but not against the candidate with
+    the lowest held-out E -> the claim is worded as against the training-chosen comparator only."""
+    rows = _rows(0.03)
+    for r in rows:
+        if r["key"].endswith("physics"):
+            r["E"]["B1"] = [e - 0.05 for e in r["E"]["B0"]]       # B1 better than the learned model
+    out = _run(tmp_path, rows)
+    h = out["H4a"]["L1"]
+    assert h["verdict"] == "supported" and h["LOSO_beats_vs_heldout_best_candidate"] == 0
+    assert h["claim_wording"] == "supported against the comparator chosen on the training sorbents only"
+    out = _run(tmp_path, _rows(0.03))
+    assert out["H4a"]["L1"]["claim_wording"] == "beats the isotherm-driven models"

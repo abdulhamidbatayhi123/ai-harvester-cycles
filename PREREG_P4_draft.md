@@ -313,7 +313,9 @@ Implementation and training rules:
   min), so it smooths the onset of the fastest steps. Stage B trains on the trajectories
   themselves, so this affects only the starting point of training, not the scored quantity.
 - **A model that fails the synthetic harness (section 10) is dropped from H4a**, and the paper
-  says so.
+  says so. A failed model may be redesigned before the freeze only if it is then judged on a
+  world not used during the redesign. L1 failed rounds 4 to 6 and was revised each time; round 7
+  is its last chance (section 10, stopping rule).
   - The validation sorbent is Syloid AL-1, except in folds that hold Syloid out, where it is
     ROS-040. If ROS-040 is held out too, it is CAU-10-H.
   - The same validation sorbent serves for early stopping.
@@ -420,6 +422,10 @@ whatever its E.
 
 **H4a**, decided on the 8 LOSO folds for L1 (L2 was dropped; section 10, round 4). Let r be a
 fold's relative improvement, the median d over its clusters divided by the comparator's median E.
+In a fold that holds out a parent with its composite, r is the smaller of the two materials'
+values, consistent with "both must pass"; the pooled value is reported (review T-P4-4 F-6).
+Otherwise a gain on the composite alone, which has twice the parent's clusters, could move a
+fold to r ≥ 10 % and turn "falsified" into "not established".
 
 - **Supported** if the model beats the comparator in at least 7 of 8 folds. This is a decision
   rule, not a p-value; the folds share most of their training sorbents, so a sign-test p would
@@ -434,6 +440,16 @@ fold's relative improvement, the median d over its clusters divided by the compa
   If it differs, H4a is reported as not robust to the dry-mass definition, and the weaker of
   the two verdicts is the result. R2 is not drift-free for MOF-303 and Syloid (section 3.3), so
   if R1 and R2 disagree on those folds in particular, the paper says so (review finding O4).
+
+**Robustness to the comparator choice (review T-P4-4 F-7).** The comparator is chosen on the
+training sorbents (section 5), which keeps the held-out test valid but does not guarantee that
+it is the strongest candidate on the held-out sorbent. `p4.decide` therefore also applies the
+rule against each of the three candidates (B0, the other B0 variant, B1) and against the one
+with the lowest held-out median E in each fold. If L1 is supported against the chosen
+comparator but beats the held-out-best candidate in fewer than 7 of 8 folds, the paper says
+"supported against the comparator chosen on the training sorbents only" and does not say that
+L1 beats the isotherm-driven models. This decides only the wording of the claim, not the
+verdict.
 
 **Transfer across families.** A model that is supported on LOSO transfers across families if it
 also beats the comparator on both non-trivial LOFO folds (aluminium rods; zinc triazolates).
@@ -511,6 +527,13 @@ truth, and the fold pipeline is run on them (`audit/synthetic_harness.py`). Thre
     null world the material-specific equilibrium error of the real data (N3), which L2 could
     otherwise exploit or be penalised for unrealistically;
   - AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9.
+  - Two corrections from review T-P4-4: each sorbent's draws come from its own random stream,
+    keyed by the replicate and the sorbent's name, so a sorbent gets the same world in the
+    calibration (8 sorbents) as in the study (10, with the composites) (F-8). A relative offset
+    drawn from a low-capacity group could put a high-capacity sorbent 17 wt% off its isotherm,
+    against a largest observed group median of 3.13 wt% (Al-fumarate at 60 °C,
+    `results/prefreeze/dry_rules.json`); |ε·w₃₀| is therefore capped at that value, and the
+    realised absolute offsets are stored with each replicate's draws (F-9).
   With these sizes (`results/null_calibration.json`, computed by the same code for the real and
   the synthetic data, pooled least-squares k″ refitted on each): B0's median E over the eight
   sorbents is 0.057, 0.070 and 0.045 in replicates 0 to 2, against 0.067 on the real data, and
@@ -523,9 +546,12 @@ truth, and the fold pipeline is run on them (`audit/synthetic_harness.py`). Thre
 The harness passes if:
 
 1. in world N, B0 refitted on the training sorbents recovers k″ within 2 %;
-2. in world C, L1 beats B0 by the section 7 rule on both held-out sorbents and halves B0's
-   median E (the injected effect). This number was set after round 2, which met it, so round 2 does
-   not count for it: round 4 must meet it afresh (review finding O6);
+2. in a correction world not used to develop L1, L1 beats B0 by the section 7 rule on every
+   held-out sorbent and halves B0's median E there (the injected effect). The halving was set
+   after round 2, which met it, so round 2 does not count for it (review finding O6). The judging
+   world moved from C (rounds 2 to 5) to C2 (round 6) to C3 (round 7) as each earlier one was
+   spent on diagnosis; round 7 is the last (stopping rule below), and C3 is judged on MOF-303,
+   ROS-039 and Al-fumarate;
 3. in world N, neither learned model beats B0 (a check that is weak by itself: noise-free data
    put E_B0 below every F, so condition 1 of the rule blocks a beat whatever the model does;
    in round 2, L1's median paired gain on the MOF-303 null fold was 24 % of E_B0 with its
@@ -534,26 +560,43 @@ The harness passes if:
 4. **the null study** (review findings N1, N2), run through the confirmatory runner and decision
    script themselves (`p4.run_study --synthetic null`, `p4.decide`) on all 8 LOSO folds, and
    summarised by `audit/null_summary.py`. Let r be a fold's relative improvement (section 7).
+
+   *What a null beat is.* All clusters of a held-out sorbent share its random rate draws (b, a).
+   With six training sorbents, some isotherm feature always correlates with their draws by chance,
+   and on a held-out sorbent the shift a learner takes from that has the right sign about half
+   the time; the within-fold test, with clusters as units, then gives p near 0. A per-fold beat
+   means "better on this sorbent" (section 4). The claim about new sorbents rests on the 7-of-8
+   count, so criterion 4 bounds the per-fold null beat rate rather than demanding no beats:
+   P(at least 7 of 8 | per-fold rate q), independent folds, is 0.0013 at q = 0.3, 0.0085 at 0.4,
+   0.025 at 0.473 and 0.05 at 0.529. (The diagnostic that found this is in round 7's notes below.)
+
    For each learned model, over all its null fold-fits:
-   - (i) no replicate has more than 2 of 8 beats;
-   - (ii) the 90th percentile of r is below 10 % and the mean of r is below 0.
-   These conditions do not lean on independence between folds. A spurious correction learned
-   from the shared training sorbents would make folds beat together, and then the chance of 7
-   of 8 approaches the per-fold rate itself; condition (i) and the distribution of r catch that
-   pattern where a count of beats under independence would not.
-   - (iii) The one-sided 95 % Clopper–Pearson bound on the per-fold beat rate is reported as what
-     it is: zero beats in 16 fold-fits bounds the rate at 0.17, and 59 fold-fits without a beat
-     would be needed to bound it at 0.05.
+   - (a) the one-sided 95 % Clopper–Pearson upper bound on the per-fold beat rate is at most
+     0.40, so that even at the bound P(at least 7 of 8) ≤ 0.0085 for independent folds, leaving
+     room for positive dependence between folds that share training sorbents. With 24 fold-fits
+     (3 replicates) this allows at most 5 beats (bound 0.389; 6 beats give 0.435);
+   - (b) no replicate has 5 or more of its 8 folds beaten, a direct check on the dependence that
+     (a) does not model: a spurious correction learned from the shared training sorbents would
+     make the folds of one replicate beat together;
+   - (c) the mean of r over the null folds is below 2.5 %, a quarter of the 10 % practical margin.
+     The earlier "mean below 0" would fail half the time for an exactly neutral model (review
+     T-P4-4 F-5); a transferable spurious correction shows as r of about 10 % or more.
+   The earlier conditions, at most 2 beats per replicate and a 90th percentile of r below 10 %,
+   were replaced on 2026-11-09, before any null replicate with the final L1 existed: no learner
+   that deviates from B0 at all can meet them when sorbent effects of the measured size exist,
+   while the 7-of-8 claim is protected at any per-fold rate below about 0.47. The 90th
+   percentile of r is still reported.
 
    Two procedures:
-   - **Before the freeze**: at least 2 replicates (16 fold-fits per model) with a reduced
+   - **Before the freeze**: 3 null worlds of the same design (24 fold-fits per model) with a reduced
      procedure, one configuration and one seed per fit. This tests the decision machinery and
      the models in a realistic null; it must pass for the draft to be frozen.
    - **With the confirmatory runs**: one further replicate (rep 2) with the full confirmatory
      procedure for L1 (4 configurations tuned on the validation sorbent, then 5 seeds; 72 fits).
      Selection on a validation sorbent and ensembling change how often a spurious correction
      survives, in an unknown direction, so the reduced replicates alone would test a different
-     procedure. L1 can be declared "supported" only if this replicate also meets (i) and (ii).
+     procedure. L1 can be declared "supported" only if this replicate also meets (b), and if (a) and (c)
+     still hold with its 8 fold-fits added.
 
 **Round 1 (2026-11-04/05; `results/harness_round1/`)**, with whole-segment training. Seven of
 the eight runs finished before it was stopped:
@@ -655,7 +698,24 @@ Diagnostics on world C2 (`audit/diag/`, `results/diag/c2_*`), which spent C2 as 
 **Round 7** runs the full procedure in worlds N, C, C2 and C3. World C3 was defined and committed
 before any run on it (repository commit a7d163e): the true rate is B0's times
 exp(−0.6 tanh(4(RH_bed/100 − 0.25))), faster where the bed sits low on its isotherm and slower
-high up. Criterion 2 is judged on C3 alone; C and C2 are reported. ROUND7
+high up. Criterion 2 is judged on C3 alone; C and C2 are reported.
+
+**Stopping rule and an untouched fold (review T-P4-4 F-2, F-3), written on 2026-11-09 while round
+7 was in world C, before any C3 result existed.**
+- L1 is not redesigned again. If it fails criterion 2 on C3, no learned model has passed the
+  harness. The paper then reports H4a as "not tested: no learned model passed the synthetic
+  harness", with every round of this section, and no confirmatory LOSO verdict is claimed for L1.
+  "Fix, then judge on a fresh world" cannot repeat without limit, or the harness stops being a test.
+- C3 is judged on three held-out sorbents, not two. MOF-303 and ROS-039 were held out in the
+  stage-A diagnostics of rounds 4 to 6, so a fit to their forcing, isotherm shape or step mix could
+  carry over to any world. Al-fumarate was never held out in any diagnostic. A run with the same
+  code and seed holds it out in worlds N and C3 (`HARNESS_HELD=Al-fumarate HARNESS_CASES=N,C3`), and
+  criterion 2 needs a beat and E_model ≤ 0.5·E_B0 on all three. Criterion 3 (no beat in world N)
+  covers Al-fumarate too.
+- B0's E in world N and in each correction world is reported per held-out sorbent, so the size of
+  the injected effect that the metric-fitted B0 cannot absorb is on record.
+
+ROUND7
 
 ## 11. Compute
 
@@ -817,3 +877,20 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
     materials into one integration was tried; it gave identical results but was not faster
     on this machine, and it was dropped.
   - All pre-freeze numbers were recomputed after the inclusion change (section 12).
+- 2026-11-09 (review T-P4-4 and the null-world diagnostics; none of this used real data).
+  - World C2 and round 5 and 6 text added to section 10 (F-1, F-4). L1 gained the driving force
+    d as an input after round 6 (section 5). Condition 4 of the section 7 rule added after round 6
+    showed a paired-median "beat" with a worse typical error.
+  - World C3 committed before any run on it (repository commit a7d163e). A stopping rule for the
+    harness: round 7 is L1's last; and C3 is also judged on Al-fumarate, a sorbent no diagnostic
+    held out (F-2, F-3). Both written while round 7 was in world C, before any C3 result.
+  - r in a parent + composite fold is the smaller per-material value (F-6). The rule is also
+    applied against every comparator candidate and against the held-out-best one, which sets
+    the wording of a positive claim (F-7).
+  - Criterion 4 rewritten around the per-fold null beat rate: Clopper–Pearson 95 % bound ≤ 0.40,
+    no replicate with 5 or more of 8 beats, mean r below 2.5 %; 3 null worlds before the freeze
+    (F-5 and the sorbent-level-luck diagnostic). A null replicate with the old L1 (before the d
+    input) is archived in `results/null_rep0_preD/` and does not count.
+  - Null draws are keyed per sorbent, and |ε·w₃₀| is capped at 3.13 wt% (F-8, F-9). The null
+    calibration numbers in section 10 were computed before this change and will be recomputed
+    with it before the freeze.

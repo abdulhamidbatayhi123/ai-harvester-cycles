@@ -91,6 +91,9 @@ def signflip_p(d, **_):
     return float(sum(counts[obs:])) / float(2 ** n)
 
 
+CANDIDATE_KEYS = ("B0", "B0-b_or_B0_other", "B1")   # as stored by run_study (review T-P4-4 F-7)
+
+
 def rule(e_b0, e_m, F, D=None):
     """Section 7 for one material. D: cluster values of the unnormalised difference for the
     test; without it (old rows) the test falls back to d."""
@@ -126,6 +129,20 @@ def main():
                 per_mat[s] = rule(b0[sel], m[sel], F.get(s, 0.0), D[sel])
         ok = bool(per_mat) and all(v[0] for v in per_mat.values())
         _, info = rule(b0, m, max(F.get(s, 0.0) for s in held), D)     # pooled, reported
+        # review T-P4-4 F-6: in a parent + composite fold the relative improvement r is the smaller of
+        # the two per-material values (consistent with "both must pass"); the pooled r is reported
+        r_fold = min(v[1]["median_gain"] / v[1]["E_B0"] for v in per_mat.values()) if per_mat else float("nan")
+        # review T-P4-4 F-7: robustness against every comparator candidate, and against the candidate
+        # with the lowest held-out median E (descriptive; it decides only the wording of the claim)
+        cand = {}
+        for c in CANDIDATE_KEYS:
+            if p["E"].get(c) is None:
+                continue
+            cb, cm, cD, cmat = cluster_level(r["seg"], p["E"][c], r["E"], p.get("dw"))
+            res = [rule(cb[cmat == s], cm[cmat == s], F.get(s, 0.0), cD[cmat == s])[0]
+                   for s in held if (cmat == s).any()]
+            cand[c] = {"rule_met": bool(res) and all(res), "E_heldout": float(np.nanmedian(p["E"][c]))}
+        best = min(cand, key=lambda c: cand[c]["E_heldout"]) if cand else None
         # physical admissibility (section 7, review finding O3): violations the model adds beyond
         # both the data and the comparator on the same segment
         vm = np.asarray(r.get("viol") or [], bool)
@@ -142,7 +159,10 @@ def main():
             "violation_rate_comparator": float(np.mean(vb)) if len(vb) else None,
             "violation_excess": excess, "admissible": admissible,
             "comparator": p.get("comparator", "B0"),
-            "E_B2": float(np.nanmedian(b2)) if b2 else None, **info}
+            "E_B2": float(np.nanmedian(b2)) if b2 else None,
+            "r_fold": r_fold, "r_pooled": info["median_gain"] / info["E_B0"],
+            "candidates": cand, "heldout_best_candidate": best,
+            "beats_heldout_best": bool(best is not None and cand[best]["rule_met"] and admissible), **info}
     for kind in ("L1", "L2"):
         loso_v = [v for k, v in out["folds"].items() if k.startswith("LOSO") and k.endswith(kind)]
         loso = [v["beats_B0"] for v in loso_v]
@@ -151,7 +171,8 @@ def main():
         n = sum(loso)
         # falsification (review finding O1): at most one LOSO fold with r >= REL, so that the
         # 7th order statistic of r, a one-sided 96.5 % upper bound on its median, is below REL
-        rel = np.array([v["median_gain"] / v["E_B0"] for v in loso_v]) if loso_v else np.array([])
+        rel = np.array([v["r_fold"] for v in loso_v]) if loso_v else np.array([])
+        n_best = sum(v["beats_heldout_best"] for v in loso_v)
         n_rel = int(np.sum(rel >= REL))
         verdict = ("supported" if n >= 7 else "falsified" if n_rel <= 1 else "not established") if len(loso) == 8 else "incomplete"
         out["H4a"][kind] = {"role": "primary" if kind == "L1" else "secondary", "LOSO_beats": n,
@@ -159,6 +180,9 @@ def main():
                             "rel_improvement_mean": float(rel.mean()) if len(rel) else None,
                             "rel_improvement_folds": rel.tolist(), "n_folds_rel_ge_10pct": n_rel,
                             "rel_improvement_order7": float(np.sort(rel)[6]) if len(rel) == 8 else None,
+                            "LOSO_beats_vs_heldout_best_candidate": n_best,
+                            "claim_wording": (None if verdict != "supported" else "beats the isotherm-driven models"
+                                              if n_best >= 7 else "supported against the comparator chosen on the training sorbents only"),
                             "LOFO_beats_nontrivial": sum(lofo), "LOFO_folds_nontrivial": len(lofo),
                             "transfers_across_families": (sum(lofo) == 2) if len(lofo) == 2 else None}
     closes = 0

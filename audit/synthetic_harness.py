@@ -22,7 +22,7 @@ Pass criteria (section 10):
 
 usage: python -I audit/synthetic_harness.py data_derived/bezrukov2023 results/harness
 """
-import json, os, sys, time
+import json, os, sys, time, zlib
 
 import numpy as np
 import torch
@@ -121,11 +121,19 @@ NULL_EPS = (0.001, 0.452, 0.000, 0.007, -0.005, -0.036, 0.038, 0.060, -0.011, 0.
 NOISE_SD, NOISE_PHI = 0.01, 0.9        # AR(1) measurement noise, wt%
 
 
+# largest |step end-point minus isotherm| group median, R2 (results/prefreeze/dry_rules.json R2 per_group: -1.161 to +3.128 wt%)
+NULL_OFFSET_MAX_WT = 3.128   # Al-fumarate 60C
+
+
 def null_draws(sorbents, seed, temps=("27C", "60C")):
-    """{sorbent: {"a": a_s, "27C": (b, eps), "60C": (b, eps)}} for replicate `seed`."""
-    rng = np.random.default_rng(1000 + seed)
+    """{sorbent: {"a": a_s, "27C": (b, eps), "60C": (b, eps)}} for replicate `seed`.
+
+    Each sorbent has its own random stream keyed by (replicate, sorbent name), so a sorbent gets the
+    same draws whichever other sorbents are present (review T-P4-4 F-8: the calibration over 8 sorbents
+    and the study over 10 used to give different draws for the same replicate)."""
     out = {}
     for s in sorted(sorbents):
+        rng = np.random.default_rng([1000 + seed, zlib.crc32(s.encode("utf-8"))])
         d = {"a": float(rng.normal(0, NULL_SD_A))}
         for T in temps:
             d[T] = (float(rng.normal(0, NULL_SD_B[T])), float(rng.choice(NULL_EPS)))
@@ -153,6 +161,12 @@ def synthesise_null(groups, k2, seed):
                "k_ads": k2[(g["temp"], "ads")] / m, "k_des": k2[(g["temp"], "des")] / m}
         dr = draws[g["sorbent"]]
         b, eps = dr[g["temp"]]
+        # review T-P4-4 F-9: a relative offset drawn from a low-capacity group can exceed every observed
+        # absolute offset on a high-capacity sorbent; cap |eps * w30| at the largest observed group median
+        w30 = float(ctx["w30"])
+        if abs(eps) * w30 > NULL_OFFSET_MAX_WT:
+            eps = float(np.sign(eps)) * NULL_OFFSET_MAX_WT / w30
+        dr.setdefault("offset_wt_realised", {})[g["temp"]] = eps * w30
         truth = NullTruth(dr["a"], b, eps, NULL_SD_B[g["temp"]])
         with torch.no_grad():
             w = integrate(truth, torch.as_tensor(g["rh"]), torch.as_tensor(g["w"][:, 0]), ctx, dt=DT_MIN).numpy()
