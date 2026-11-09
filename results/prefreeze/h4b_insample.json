@@ -1,0 +1,314 @@
+{
+ "ROS-037": {
+  "strata": [
+   {
+    "stratum": "27C|ads",
+    "n_seg": 24,
+    "fraction": 0.0573106169076908,
+    "E_pooled_metric": 0.07612586455711925,
+    "E_own_metric": 0.07199070361359192
+   },
+   {
+    "stratum": "27C|des",
+    "n_seg": 24,
+    "fraction": 0.6144657733744882,
+    "E_pooled_metric": 0.0536964435811039,
+    "E_own_metric": 0.023142705915144203
+   },
+   {
+    "stratum": "60C|ads",
+    "n_seg": 48,
+    "fraction": 0.10604019120155793,
+    "E_pooled_metric": 0.08086704377854684,
+    "E_own_metric": 0.07271311850071671
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 48,
+    "fraction": 0.1514241142905932,
+    "E_pooled_metric": 0.06252222212550312,
+    "E_own_metric": 0.05365636352808255
+   }
+  ],
+  "fraction_weighted": 0.19778416687774683,
+  "fraction_max_stratum": 0.6144657733744882
+ },
+ "ROS-039": {
+  "strata": [
+   {
+    "stratum": "27C|ads",
+    "n_seg": 24,
+    "fraction": 0.07954933857519457,
+    "E_pooled_metric": 0.03974012425379428,
+    "E_own_metric": 0.03676438962441561
+   },
+   {
+    "stratum": "27C|des",
+    "n_seg": 24,
+    "fraction": 0.23411902128629,
+    "E_pooled_metric": 0.033702201748936456,
+    "E_own_metric": 0.02635800831477074
+   },
+   {
+    "stratum": "60C|ads",
+    "n_seg": 24,
+    "fraction": 0.1991515006599804,
+    "E_pooled_metric": 0.06568529420693064,
+    "E_own_metric": 0.05306853307374172
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 23,
+    "fraction": 0.8276738154695269,
+    "E_pooled_metric": 0.15595481022391308,
+    "E_own_metric": 0.02880582488922242
+   }
+  ],
+  "fraction_weighted": 0.32993867798225557,
+  "fraction_max_stratum": 0.8276738154695269
+ },
+ "ROS-040": {
+  "strata": [
+   {
+    "stratum": "27C|ads",
+    "n_seg": 24,
+    "fraction": 0.16805154877095266,
+    "E_pooled_metric": 0.04632371500991514,
+    "E_own_metric": 0.039441522182406055
+   },
+   {
+    "stratum": "27C|des",
+    "n_seg": 24,
+    "fraction": 0.6692193239432215,
+    "E_pooled_metric": 0.051364518015950884,
+    "E_own_metric": 0.020584664864455905
+   },
+   {
+    "stratum": "60C|ads",
+    "n_seg": 36,
+    "fraction": 0.23594455722068067,
+    "E_pooled_metric": 0.09395334071426037,
+    "E_own_metric": 0.07305278355305561
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 36,
+    "fraction": 0.06661315795585016,
+    "E_pooled_metric": 0.06058451940720445,
+    "E_own_metric": 0.05690656235284218
+   }
+  ],
+  "fraction_weighted": 0.25822148909579407,
+  "fraction_max_stratum": 0.6692193239432215
+ },
+ "MOF-303": {
+  "strata": [
+   {
+    "stratum": "27C|ads",
+    "n_seg": 12,
+    "fraction": 0.16794329729999652,
+    "E_pooled_metric": 0.04542362383351266,
+    "E_own_metric": 0.03845529125282648
+   },
+   {
+    "stratum": "27C|des",
+    "n_seg": 12,
+    "fraction": 0.2122283974306046,
+    "E_pooled_metric": 0.033419635594112485,
+    "E_own_metric": 0.027161405102361143
+   },
+   {
+    "stratum": "60C|ads",
+    "n_seg": 24,
+    "fraction": 0.024456091817304213,
+    "E_pooled_metric": 0.0717293943565818,
+    "E_own_metric": 0.07007132159054727
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 24,
+    "fraction": 0.18053193116896982,
+    "E_pooled_metric": 0.05371480417068579,
+    "E_own_metric": 0.04472731900012508
+   }
+  ],
+  "fraction_weighted": 0.1316912901171915,
+  "fraction_max_stratum": 0.2122283974306046
+ },
+ "MIL-160": {
+  "strata": [
+   {
+    "stratum": "27C|ads",
+    "n_seg": 24,
+    "fraction": 0.3005606572817607,
+    "E_pooled_metric": 0.06630014025728745,
+    "E_own_metric": 0.04748699223868687
+   },
+   {
+    "stratum": "27C|des",
+    "n_seg": 24,
+    "fraction": 0.32380443633425315,
+    "E_pooled_metric": 0.06772359226715714,
+    "E_own_metric": 0.04699461433940597
+   },
+   {
+    "stratum": "60C|ads",
+    "n_seg": 36,
+    "fraction": 0.1466307338818183,
+    "E_pooled_metric": 0.07087940228766726,
+    "E_own_metric": 0.06102980869061523
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 36,
+    "fraction": 0.839037118806676,
+    "E_pooled_metric": 0.1626115466399094,
+    "E_own_metric": 0.02928441921475606
+   }
+  ],
+  "fraction_weighted": 0.420573374529751,
+  "fraction_max_stratum": 0.839037118806676
+ },
+ "CAU-10": {
+  "strata": [
+   {
+    "stratum": "27C|ads",
+    "n_seg": 24,
+    "fraction": 0.008401490230945437,
+    "E_pooled_metric": 0.0484184687722263,
+    "E_own_metric": 0.04802897757343745
+   },
+   {
+    "stratum": "27C|des",
+    "n_seg": 24,
+    "fraction": 0.5084303146804202,
+    "E_pooled_metric": 0.052385591354898786,
+    "E_own_metric": 0.026797870857957495
+   },
+   {
+    "stratum": "60C|ads",
+    "n_seg": 36,
+    "fraction": 0.12091620504588801,
+    "E_pooled_metric": 0.17606427290490329,
+    "E_own_metric": 0.15502417859033135
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 36,
+    "fraction": 0.5705932589525113,
+    "E_pooled_metric": 0.03911383072765829,
+    "E_own_metric": 0.01797041923430514
+   }
+  ],
+  "fraction_weighted": 0.310819200181793,
+  "fraction_max_stratum": 0.5705932589525113
+ },
+ "Al-fumarate": {
+  "strata": [
+   {
+    "stratum": "27C|ads",
+    "n_seg": 18,
+    "fraction": 0.07886847548242965,
+    "E_pooled_metric": 0.037306914727703304,
+    "E_own_metric": 0.03498000020102139
+   },
+   {
+    "stratum": "27C|des",
+    "n_seg": 18,
+    "fraction": 0.19587804216350402,
+    "E_pooled_metric": 0.02961095005928208,
+    "E_own_metric": 0.025339286886085166
+   },
+   {
+    "stratum": "60C|ads",
+    "n_seg": 24,
+    "fraction": 0.001898261572378234,
+    "E_pooled_metric": 0.236904486600595,
+    "E_own_metric": 0.23646959239535295
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 24,
+    "fraction": 0.1723715128763978,
+    "E_pooled_metric": 0.05209133422151932,
+    "E_own_metric": 0.044457318190223125
+   }
+  ],
+  "fraction_weighted": 0.10866561790949321,
+  "fraction_max_stratum": 0.19587804216350402
+ },
+ "Syloid": {
+  "strata": [
+   {
+    "stratum": "27C|ads",
+    "n_seg": 24,
+    "fraction": 0.19824419374823396,
+    "E_pooled_metric": 0.0439891296135826,
+    "E_own_metric": 0.03610302535655802
+   },
+   {
+    "stratum": "27C|des",
+    "n_seg": 24,
+    "fraction": 0.22455193057692294,
+    "E_pooled_metric": 0.033229117410762565,
+    "E_own_metric": 0.026712679500567257
+   },
+   {
+    "stratum": "60C|ads",
+    "n_seg": 48,
+    "fraction": 0.08125158837644803,
+    "E_pooled_metric": 0.17529836271894678,
+    "E_own_metric": 0.16139711117367955
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 48,
+    "fraction": 0.01511246919739955,
+    "E_pooled_metric": 0.054011135271030644,
+    "E_own_metric": 0.05325850778863111
+   }
+  ],
+  "fraction_weighted": 0.10258737324547534,
+  "fraction_max_stratum": 0.22455193057692294
+ },
+ "ROS-037_composite": {
+  "strata": [
+   {
+    "stratum": "60C|ads",
+    "n_seg": 72,
+    "fraction": 0.15096546747348114,
+    "E_pooled_metric": 0.1137094637550122,
+    "E_own_metric": 0.09747192123620732
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 72,
+    "fraction": 0.39888485952695646,
+    "E_pooled_metric": 0.1443503128043992,
+    "E_own_metric": 0.08922488756899759
+   }
+  ],
+  "fraction_weighted": 0.2749251635002188,
+  "fraction_max_stratum": 0.39888485952695646
+ },
+ "ROS-039_composite": {
+  "strata": [
+   {
+    "stratum": "60C|ads",
+    "n_seg": 72,
+    "fraction": 0.13011872257233376,
+    "E_pooled_metric": 0.11547891057401677,
+    "E_own_metric": 0.10125809568350148
+   },
+   {
+    "stratum": "60C|des",
+    "n_seg": 72,
+    "fraction": 0.17906475687099788,
+    "E_pooled_metric": 0.1176218618573705,
+    "E_own_metric": 0.09766795527742406
+   }
+  ],
+  "fraction_weighted": 0.15459173972166582,
+  "fraction_max_stratum": 0.17906475687099788
+ }
+}

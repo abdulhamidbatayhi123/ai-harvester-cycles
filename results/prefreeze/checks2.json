@@ -13,6 +13,14 @@
    "experiments": 24,
    "segments_up": 18,
    "segments_down": 18,
+   "inference_clusters": 8,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    31.810842223236897,
+    31.882168998104397,
+    36.17071543483327,
+    39.557584561112265,
+    39.57335546793941
+   ],
    "files": [
     "Al-fumarate/27C/AL-fumarate_NK-1-1091_kinetics_27C_5mg_50-100um-2021-06-16 19-38-13.xls",
     "Al-fumarate/27C/AL-fumarate_NK-1-1091_kinetics_27C_8mg_50-100um-2021-06-16 19-38-13.xls",
@@ -25,6 +33,14 @@
    "experiments": 24,
    "segments_up": 24,
    "segments_down": 24,
+   "inference_clusters": 9,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    19.49660066920996,
+    20.34774763254547,
+    29.259109282979193,
+    37.28550000688052,
+    37.508428628438544
+   ],
    "files": [
     "Al-fumarate/60C/Al-fumarate_NK-1-1091_kinetics_60C_5mg_50-100um-2021-06-11 09-09-57.xls",
     "Al-fumarate/60C/Al-fumarate_NK-1-1091_kinetics_60C_8mg_50-100um-2021-06-11 09-09-57.xls"
@@ -36,6 +52,14 @@
    "experiments": 24,
    "segments_up": 24,
    "segments_down": 24,
+   "inference_clusters": 8,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    23.691746168340785,
+    23.799674533050823,
+    26.377328381067315,
+    30.14589271832082,
+    30.168437419020464
+   ],
    "files": [
     "CAU-10/27C/CAU-10-H_NK-1-153_kinetics_12mg_27C_50-100um-2021-06-24 13-11-08_1.xls",
     "CAU-10/27C/CAU-10-H_NK-1-153_kinetics_20mg_27C_50-100-2021-06-24 13-11-08_1.xls",
@@ -49,6 +73,14 @@
    "experiments": 72,
    "segments_up": 36,
    "segments_down": 36,
+   "inference_clusters": 27,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    22.712028034278035,
+    22.793555399162035,
+    23.975358015775445,
+    25.42529762431233,
+    25.622653100884538
+   ],
    "files": [
     "CAU-10/60C/CAU-10-H_NK-1-153_kinetics_15mg_60C_50-100um-2021-08-27 20-08-03.xls",
     "CAU-10/60C/CAU-10-H_NK-1-153_kinetics_20mg_60C_50-100um-2021-06-26 12-15-55_1.xls",
@@ -61,6 +93,14 @@
    "experiments": 24,
    "segments_up": 24,
    "segments_down": 24,
+   "inference_clusters": 8,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    12.117113711522396,
+    32.94453551130264,
+    34.945242955508334,
+    39.72884803981164,
+    40.59620200841296
+   ],
    "files": [
     "MIL-160/27C/MIL-160_DJ2500_kinetics_27C_12mg_50-100um-2021-06-15 17-03-17_1.xls",
     "MIL-160/27C/MIL-160_DJ2500_kinetics_27C_16mg_50-100um-2021-06-15 17-03-17_1.xls",
@@ -74,6 +114,14 @@
    "experiments": 72,
    "segments_up": 36,
    "segments_down": 36,
+   "inference_clusters": 27,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    13.505951867701974,
+    14.03437653205329,
+    30.02028581671968,
+    35.17609009022194,
+    35.64227298364354
+   ],
    "files": [
     "MIL-160/60C/MIL-160_DJ2500_kinetics_60C_8mg_50-100um-2021-06-10 12-41-51.xls",
     "MIL-160/60C/MIL-160_DJO-02-500_kinetics_60C_12mg_50-100um-2021-08-27 20-08-03.xls",
@@ -86,6 +134,14 @@
    "experiments": 12,
    "segments_up": 12,
    "segments_down": 12,
+   "inference_clusters": 4,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    32.61197772110622,
+    32.635696644489684,
+    34.9398021143675,
+    35.93206975518358,
+    36.80540471446565
+   ],
    "files": [
     "MOF-303/27C/MOF-303-SS1131_kinetics_27C_12mg_50-100um-2021-06-03 09-37-23.xls",
     "MOF-303/27C/MOF-303-SS1131_kinetics_27C_20mg_50-100um-2021-06-03 09-37-23.xls"
@@ -97,6 +153,14 @@
    "experiments": 24,
    "segments_up": 24,
    "segments_down": 24,
+   "inference_clusters": 9,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    29.194479708423785,
+    29.54160374702466,
+    35.822176667312675,
+    38.68946915709644,
+    38.968800389035344
+   ],
    "files": [
     "MOF-303/60C/MOF-303-SS1131_kinetics_5mg_50-100um-2021-06-08 10-08-23.xls",
     "MOF-303/60C/MOF-303-SS1131_kinetics_60C_8mg_50-100um-2021-06-08 10-08-23.xls"
@@ -108,6 +172,14 @@
    "experiments": 24,
    "segments_up": 24,
    "segments_down": 24,
+   "inference_clusters": 8,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    8.442327083546452,
+    8.465270572418124,
+    8.883885463038315,
+    9.345266254375924,
+    9.356318971968234
+   ],
    "files": [
     "ROS-037/27C/400flow-ROS-037_pureBatch_50-100um_10mg_flowRateVariation-2021-05-25 14-51-36.xls",
     "ROS-037/27C/400flow-ROS-037_pureBatch_50-100um_5mg_flowRateVariation-2021-05-25 14-51-36.xls",
@@ -121,6 +193,14 @@
    "experiments": 48,
    "segments_up": 48,
    "segments_down": 48,
+   "inference_clusters": 18,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    8.902541712147194,
+    8.978178297460346,
+    9.161582118135044,
+    9.56223484148482,
+    9.77214952314333
+   ],
    "files": [
     "ROS-037/60C/ROS-037_pureBatch_50-100um_5mg_60C_11mg-2021-08-24 06-11-27.xls",
     "ROS-037/60C/ROS-037_pureBatch_50-100um_5mg_60C_12mg-2021-08-24 06-11-27.xls",
@@ -134,6 +214,14 @@
    "experiments": 144,
    "segments_up": 72,
    "segments_down": 72,
+   "inference_clusters": 54,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    5.630938959574811,
+    5.884534385071217,
+    6.570110085622147,
+    7.730178821299103,
+    8.015092613766297
+   ],
    "files": [
     "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire1_60C-2022-04-28 17-09-42.xls",
     "ROS-037_composite/60C/19-0182-4_CircleConnectedToAdventurePanWWire2_60C-2022-04-29 10-06-14_1.xls",
@@ -149,6 +237,14 @@
    "experiments": 24,
    "segments_up": 24,
    "segments_down": 24,
+   "inference_clusters": 8,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    21.2518548707338,
+    21.275119129726004,
+    22.124283926699885,
+    22.93203748698368,
+    22.946199236376263
+   ],
    "files": [
     "ROS-039/27C/ROS039-SD-1-183_kinetics_12mg_50-100um-2021-06-05 12-06-31.xls",
     "ROS-039/27C/ROS039-SD-1-183_kinetics_20mg_50-100um-2021-06-05 12-06-31.xls",
@@ -162,6 +258,14 @@
    "experiments": 47,
    "segments_up": 24,
    "segments_down": 23,
+   "inference_clusters": 18,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    4.594208190724938,
+    4.685983560558545,
+    21.03126134750603,
+    22.53470567483429,
+    22.605262017787627
+   ],
    "files": [
     "ROS-039/60C/ROS039-SD-1-183_kinetics_60C_12mg_50-100um-2021-06-07 02-16-59.xls",
     "ROS-039/60C/ROS039-SD-1-183_kinetics_60C_8mg_50-100um-2021-06-07 19-55-24.xls"
@@ -173,6 +277,14 @@
    "experiments": 144,
    "segments_up": 72,
    "segments_down": 72,
+   "inference_clusters": 54,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    3.9810728422585164,
+    4.745651870952738,
+    14.24939715182675,
+    16.58506122943661,
+    18.236948012569588
+   ],
    "files": [
     "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire1_60C-2022-04-28 17-09-42.xls",
     "ROS-039_composite/60C/21-0043-1_CircleConnectedToAdventurePanWWire2_60C-2022-04-29 10-06-14.xls",
@@ -188,6 +300,14 @@
    "experiments": 24,
    "segments_up": 24,
    "segments_down": 24,
+   "inference_clusters": 8,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    13.66241058380124,
+    13.753365125759546,
+    14.852091850591865,
+    15.942431020322566,
+    15.960123717825509
+   ],
    "files": [
     "ROS-040/27C/ROS-040_SD-1-82_kinetics_12mg_27C_50-100um-2021-06-30 09-53-50.xls",
     "ROS-040/27C/ROS-040_SD-1-82_kinetics_16mg_27C_50-100um-2021-06-30 09-53-50.xls",
@@ -201,6 +321,14 @@
    "experiments": 72,
    "segments_up": 36,
    "segments_down": 36,
+   "inference_clusters": 27,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    12.459265331353448,
+    12.773101719197717,
+    13.647541809727937,
+    15.390806215036156,
+    15.795621538113718
+   ],
    "files": [
     "ROS-040/60C/ROS-040_SD-1-82_kinetics_16mg_60C_50-100um-2021-06-29 09-48-37.xls",
     "ROS-040/60C/ROS-040_SD-1-82_kinetics_17mg_60C_50-100um-2021-08-28 16-11-45.xls",
@@ -213,6 +341,14 @@
    "experiments": 24,
    "segments_up": 24,
    "segments_down": 24,
+   "inference_clusters": 8,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    12.217205430935842,
+    12.644084859835036,
+    19.94471001468964,
+    26.838297753176086,
+    26.9264158164456
+   ],
    "files": [
     "Syloid/27C/Syloid_kinetics_50-100um_27C_12mg-2021-07-15 13-38-52.xls",
     "Syloid/27C/Syloid_kinetics_50-100um_27C_5mg-2021-07-15 13-38-52.xls",
@@ -226,6 +362,14 @@
    "experiments": 72,
    "segments_up": 48,
    "segments_down": 48,
+   "inference_clusters": 27,
+   "abs_dw_wt_pct_quantiles_0_10_50_90_100": [
+    10.71946199779698,
+    11.368020576572722,
+    17.986621313974428,
+    27.35539091663579,
+    29.596050073187254
+   ],
    "files": [
     "Syloid/60C/Syloid_kinetics_60C_17mg_50-100um-2021-08-28 16-11-45.xls",
     "Syloid/60C/syloid_kinetics_50-100um_12mg_60C-2021-07-13 17-43-44.xls",
@@ -1815,7 +1959,7 @@
    "ROS-037|60C|ads": 14.745554087818165,
    "ROS-039|60C|ads": 22.519911440179648,
    "ROS-040|60C|ads": 12.02163896127931,
-   "MOF-303|60C|ads": 14.913011713807425,
+   "MOF-303|60C|ads": 15.885359860243968,
    "MIL-160|60C|ads": 14.343197053776798,
    "CAU-10|60C|ads": 66.6721506657946,
    "Al-fumarate|60C|ads": 18.828545365986688,
@@ -1823,7 +1967,7 @@
    "ROS-037|60C|des": 14.209577024855783,
    "ROS-039|60C|des": 10.08715032607234,
    "ROS-040|60C|des": 9.670936261197445,
-   "MOF-303|60C|des": 9.483752029707711,
+   "MOF-303|60C|des": 9.67140070170082,
    "MIL-160|60C|des": 6.663420663735345,
    "CAU-10|60C|des": 10.496793570948736,
    "Al-fumarate|60C|des": 3.5273383027435115,
@@ -1837,7 +1981,7 @@
    "CAU-10|60C|ads",
    66.6721506657946
   ],
-  "median": 15.422745673146787
+  "median": 15.833082347128016
  },
  "k2_cv": {
   "27C|ads": {
@@ -1858,19 +2002,19 @@
   },
   "60C|ads": {
    "n": 8,
-   "mean": 1.5910423700775447,
+   "mean": 1.59602381453697,
    "min": 1.1438385404912266,
    "max": 3.157199384940187,
-   "cv_population": 0.38912270031764895,
-   "cv_sample": 0.4159896645728439
+   "cv_population": 0.38678485952677355,
+   "cv_sample": 0.41349040764019246
   },
   "60C|des": {
    "n": 8,
-   "mean": 0.9714413182913154,
+   "mean": 0.9735490063730369,
    "min": 0.7187906159148861,
    "max": 1.5047496562910347,
-   "cv_population": 0.2839262553962992,
-   "cv_sample": 0.3035299345150364
+   "cv_population": 0.2826193760360473,
+   "cv_sample": 0.3021328217116339
   }
  },
  "F_within_segment_weighted": {

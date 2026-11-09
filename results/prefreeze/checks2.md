@@ -14,28 +14,28 @@ Plateau = run of constant set-point on the raw time base.
 Plateaus not at 400 sccm or without a flow value: 0
 
 
-## M5: clusters per sorbent and temperature (step runs in P, segments with |Δw| ≥ 0.05 wt%)
+## M5, C1: clusters per sorbent and temperature (step runs in P; scored segments: |Δm| ≥ 0.05 mg with the sign of the RH step)
 
-| group | step files | two-pan sessions | experiments | up segments | down segments |
-|---|---|---|---|---|---|
-| Al-fumarate|27C | 3 | 2 | 24 | 18 | 18 |
-| Al-fumarate|60C | 2 | 1 | 24 | 24 | 24 |
-| CAU-10|27C | 4 | 2 | 24 | 24 | 24 |
-| CAU-10|60C | 3 | 3 | 72 | 36 | 36 |
-| MIL-160|27C | 4 | 2 | 24 | 24 | 24 |
-| MIL-160|60C | 3 | 3 | 72 | 36 | 36 |
-| MOF-303|27C | 2 | 1 | 12 | 12 | 12 |
-| MOF-303|60C | 2 | 1 | 24 | 24 | 24 |
-| ROS-037|27C | 4 | 2 | 24 | 24 | 24 |
-| ROS-037|60C | 4 | 2 | 48 | 48 | 48 |
-| ROS-037_composite|60C | 6 | 6 | 144 | 72 | 72 |
-| ROS-039|27C | 4 | 2 | 24 | 24 | 24 |
-| ROS-039|60C | 2 | 2 | 47 | 24 | 23 |
-| ROS-039_composite|60C | 6 | 6 | 144 | 72 | 72 |
-| ROS-040|27C | 4 | 2 | 24 | 24 | 24 |
-| ROS-040|60C | 3 | 3 | 72 | 36 | 36 |
-| Syloid|27C | 4 | 2 | 24 | 24 | 24 |
-| Syloid|60C | 4 | 3 | 72 | 48 | 48 |
+| group | step files | two-pan sessions | inference clusters | up segments | down segments | |Δw| wt% min / 10 % / median / 90 % / max |
+|---|---|---|---|---|---|---|
+| Al-fumarate|27C | 3 | 2 | 8 | 18 | 18 | 31.81 / 31.88 / 36.17 / 39.56 / 39.57 |
+| Al-fumarate|60C | 2 | 1 | 9 | 24 | 24 | 19.50 / 20.35 / 29.26 / 37.29 / 37.51 |
+| CAU-10|27C | 4 | 2 | 8 | 24 | 24 | 23.69 / 23.80 / 26.38 / 30.15 / 30.17 |
+| CAU-10|60C | 3 | 3 | 27 | 36 | 36 | 22.71 / 22.79 / 23.98 / 25.43 / 25.62 |
+| MIL-160|27C | 4 | 2 | 8 | 24 | 24 | 12.12 / 32.94 / 34.95 / 39.73 / 40.60 |
+| MIL-160|60C | 3 | 3 | 27 | 36 | 36 | 13.51 / 14.03 / 30.02 / 35.18 / 35.64 |
+| MOF-303|27C | 2 | 1 | 4 | 12 | 12 | 32.61 / 32.64 / 34.94 / 35.93 / 36.81 |
+| MOF-303|60C | 2 | 1 | 9 | 24 | 24 | 29.19 / 29.54 / 35.82 / 38.69 / 38.97 |
+| ROS-037|27C | 4 | 2 | 8 | 24 | 24 | 8.44 / 8.47 / 8.88 / 9.35 / 9.36 |
+| ROS-037|60C | 4 | 2 | 18 | 48 | 48 | 8.90 / 8.98 / 9.16 / 9.56 / 9.77 |
+| ROS-037_composite|60C | 6 | 6 | 54 | 72 | 72 | 5.63 / 5.88 / 6.57 / 7.73 / 8.02 |
+| ROS-039|27C | 4 | 2 | 8 | 24 | 24 | 21.25 / 21.28 / 22.12 / 22.93 / 22.95 |
+| ROS-039|60C | 2 | 2 | 18 | 24 | 23 | 4.59 / 4.69 / 21.03 / 22.53 / 22.61 |
+| ROS-039_composite|60C | 6 | 6 | 54 | 72 | 72 | 3.98 / 4.75 / 14.25 / 16.59 / 18.24 |
+| ROS-040|27C | 4 | 2 | 8 | 24 | 24 | 13.66 / 13.75 / 14.85 / 15.94 / 15.96 |
+| ROS-040|60C | 3 | 3 | 27 | 36 | 36 | 12.46 / 12.77 / 13.65 / 15.39 / 15.80 |
+| Syloid|27C | 4 | 2 | 8 | 24 | 24 | 12.22 / 12.64 / 19.94 / 26.84 / 26.93 |
+| Syloid|60C | 4 | 3 | 27 | 48 | 48 | 10.72 / 11.37 / 17.99 / 27.36 / 29.60 |
 
 m10: two-pan sessions (shared start stamp) that combine different sorbents: 2021-08-27 20-08-03: CAU-10, MIL-160; 2022-04-28 17-09-42: ROS-037_composite, ROS-039_composite; 2022-04-29 10-06-14: ROS-037_composite, ROS-039_composite; 2022-04-30 16-40-18: ROS-037_composite, ROS-039_composite; 2022-05-02 10-36-27: ROS-037_composite, ROS-039_composite; 2022-05-03 10-56-06: ROS-037_composite, ROS-039_composite; 2022-05-03 22-56-16: ROS-037_composite, ROS-039_composite; 2021-08-28 16-11-45: ROS-040, Syloid
 
@@ -118,7 +118,7 @@ All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max
 
 ## m1: B0 with its own k'' against the noise floor (R2)
 
-E_own / F over the 32 strata of the 8 sorbents: min 3.5 (Al-fumarate|60C|des), median 15.4, max 66.7 (CAU-10|60C|ads).
+E_own / F over the 32 strata of the 8 sorbents: min 3.5 (Al-fumarate|60C|des), median 15.8, max 66.7 (CAU-10|60C|ads).
 
 ## m2: k'' across the 8 sorbents (R2)
 
@@ -126,5 +126,5 @@ E_own / F over the 32 strata of the 8 sorbents: min 3.5 (Al-fumarate|60C|des), m
 |---|---|---|---|---|
 | 27C|ads | 0.314 | 0.298 to 0.349 | 0.066 | 0.070 |
 | 27C|des | 0.256 | 0.215 to 0.291 | 0.099 | 0.105 |
-| 60C|ads | 1.591 | 1.144 to 3.157 | 0.389 | 0.416 |
-| 60C|des | 0.971 | 0.719 to 1.505 | 0.284 | 0.304 |
+| 60C|ads | 1.596 | 1.144 to 3.157 | 0.387 | 0.413 |
+| 60C|des | 0.974 | 0.719 to 1.505 | 0.283 | 0.302 |

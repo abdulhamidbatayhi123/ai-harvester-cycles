@@ -33,7 +33,10 @@ the results.
   between B0 and the noise floor that the oracle B0* closes (B0 with k″ fitted on the held-out
   sorbent itself, by the scored metric). It is not a confirmatory test: an in-sample version of
   both quantities was seen before the freeze (section 12): under R2, with k″ fitted by the
-  scored metric, it closed H4B_INSAMPLE (`results/prefreeze/h4b_insample.json`).
+  scored metric, a sorbent's own k″ closed 10 % to 42 % of the gap per sorbent (segment-weighted
+  over its four strata; up to 84 % in single strata; `results/prefreeze/h4b_insample.json`). An
+  earlier draft said "at most a third"; that figure predated the duplicate fix and used a
+  least-squares oracle.
 - **H4c, descriptive.** Holding out whole families degrades every model more than holding out
   single sorbents does. Only two of the four LOFO folds differ from a LOSO fold (section 4), so
   this is reported descriptively, without a significance test.
@@ -337,7 +340,8 @@ Implementation and training rules:
     modelled effect. It is 0.034 to 0.374 (section 12).
 - **Segment inclusion.** A step segment is scored only if its measured mass change is at least
   0.05 mg and has the sign of the set-point change (`p4/segments.py`, `is_scored`), the rule of
-  AUDIT.md section 2.3. For the dry masses in P (MDRY_RANGE) this is DW_RANGE. E is undefined as
+  AUDIT.md section 2.3. Every step segment in P changes by 4.0 to 40.6 wt% (`results/prefreeze/checks2.md`),
+  far above it, so in P the rule excludes nothing; it matters for the secondary analyses. E is undefined as
   |Δw| → 0 and is dominated by noise for tiny steps. The rule is applied to the measured data
   before any model is run, so it is the same for every model, and the noise floor F uses the
   same segments. (An earlier draft used |Δw| ≥ 0.05 wt%, ten times looser than the audit rule;
@@ -635,10 +639,15 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   - At 60 °C they do not: 0.42 and 0.30 (population SD 0.39 and 0.28). CAU-10-H uptake has
     k″ = 3.16 against 1.59 pooled.
   - Even with its own k″, B0's in-sample median E is 0.022 to 0.237 (0.018 to 0.236 when k″ is
-    fitted by the scored metric). That is 3.5 to 67 times the noise floor, median 15 over the 32
+    fitted by the scored metric). That is 3.5 to 67 times the noise floor, median 16 over the 32
     strata (sorbent × temperature × direction). The remaining error lies in the model's form or in its isotherm input (step end-points miss the isotherm by group medians of −1.16 to +3.13 wt% under R2).
   - Under R1 (`reproduce_b0_R1.json`): coefficients of variation 0.08, 0.10, 0.42, 0.29
     (population SD); E 0.018 to 0.206.
+  - The pooled k″ fitted by the scored metric, as the comparator now is (section 5), is close to
+    the least-squares value at 27 °C (0.320 against 0.323 for uptake, 0.252 against 0.257 for
+    release) but clearly lower at 60 °C (1.25 against 1.59, and 0.86 against 1.03), consistent with
+    the median discounting the worst-fitted segments that dominate a squared error. With it, B0's in-sample
+    median E per stratum is 0.030 to 0.237, against 0.028 to 0.256 with the least-squares k″.
 - **Physical-violation floor** (section 6; `results/prefreeze/violation_floor.json`): the share of
   measured segments in which uptake moves against the step direction for a minute is 0 for the
   three ROS sorbents, Syloid and both composites; 0.04 for MIL-160, 0.06 for CAU-10-H, 0.15 for
@@ -689,8 +698,10 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
     chosen on all training sorbents, not on Syloid (O2); inner leave-one-sorbent-out, which the
     review proposed, was costed and rejected (section 5).
   - Scored segments follow the audit rule, |Δm| ≥ 0.05 mg with the step's sign, not |Δw| ≥
-    0.05 wt% (C1). The test ranks the unnormalised difference D, so small steps no longer
-    dominate (C1). A parent and its composite must each pass (C2).
+    0.05 wt% (C1). In P this excludes no segment: all move 4.0 to 40.6 wt%, so F and the cluster
+    counts are unchanged. The test ranks the unnormalised difference D, so that within a fold
+    the larger steps (up to about five times larger) carry more weight than under d (C1). A parent and
+    its composite must each pass (C2).
   - Falsification uses the 7th order statistic of r over the 8 folds, not a bootstrap (O1).
     Violations count against a learned model only beyond both the data and the comparator (O3).
   - Null world: the expected rate factor is exactly 1 at every w (N4); the rate spread is per

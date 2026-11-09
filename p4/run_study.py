@@ -247,19 +247,30 @@ def main():
         if not rows.get(key):
             fit_on = tr + va
             t0 = time.time()
-            k_fit = {c: fit_physics(fit_on, sim, des) for c, (sim, des) in CANDIDATES.items()}
+            tm = {}
+            k_fit = {}
+            for c, (sim, des) in CANDIDATES.items():
+                t1 = time.time()
+                k_fit[c] = fit_physics(fit_on, sim, des)
+                tm[f"fit_{c}"] = time.time() - t1
+            t1 = time.time()
             base, inner_score, inner_per = choose_comparator(fit_on, k_fit)
+            tm["choose"] = time.time() - t1
             use_des = bool(inner_score["B0-b"] < inner_score["B0"])
             pred = {c: physics_pred(te, sim, k_fit[c], des) for c, (sim, des) in CANDIDATES.items()}
             E = {c: physics_E(te, None, None, None, preds=pred[c]) for c in CANDIDATES}
             b0v = "B0-b" if use_des else "B0"
+            t1 = time.time()
             oracle = {}
             for s in held:
                 own = [g for g in te if g["sorbent"] == s]
                 if own:
                     k_own = fit_physics(own, simulate_b0, use_des)
                     oracle[s] = physics_E(own, simulate_b0, k_own, use_des)
+            tm["oracle"] = time.time() - t1
+            t1 = time.time()
             E_b2, ab2 = b2_E(fit_on, te)
+            tm["B2"] = time.time() - t1
             rows.put({"key": key, "fold": fold, "held": held, "val": vs, "B0_variant": b0v,
                       "B2_ab": ab2, "viol_data": viol(te, [g["w"] for g in te]),
                       "viol_base": viol(te, pred[base]), "dw": seg_dw(te),
@@ -269,7 +280,7 @@ def main():
                       "E": {"B0": E[b0v], "B0-b_or_B0_other": E["B0" if use_des else "B0-b"], "B1": E["B1"],
                             "base": E[base], "B2": E_b2,
                             "B0star": sum((oracle[s] for s in held if s in oracle), [])},
-                      "s": time.time() - t0})
+                      "s": time.time() - t0, "s_parts": tm})
             log(f"{fold}: physics done ({b0v}; comparator {base}; {time.time() - t0:.0f}s)")
         ph = rows.get(key)
         k2 = {tuple(k.split("|")): v for k, v in ph["k2"].items()}
