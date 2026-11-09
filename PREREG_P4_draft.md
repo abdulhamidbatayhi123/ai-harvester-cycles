@@ -594,7 +594,23 @@ Diagnostics on world C, held-out MOF-303, stage A only (`audit/diag/`, `results/
   hold the equilibrium precisely enough for open-loop prediction over long plateaus. H4a rests on
   L1 alone, which section 2 already made the only model that can carry the headline claim.
 
-**Round 5**: ROUND5.
+**Round 5 (2026-11-09; `results/harness_round5/`), L1 with the window-averaged RH.** Criteria 1
+and 3 passed again. Criterion 2 failed. On MOF-303, L1 cut E from B0's 0.026 to 0.0065, but over
+13 clusters the gain was not consistent enough (p = 0.11). On ROS-039 it was worse than B0
+(0.035 against 0.031). Per-cluster diagnostics on ROS-039 (`results/diag/diag_l1_clusters.log`,
+`diag_l1_t63.log`) showed why. Stage A summed raw rate errors, so the fast steps, whose rates are
+largest, set the fit, and the slow steps, where the correction acts longest, hardly counted.
+Weighting each point's rate error by t63/|Δw| of its segment puts every segment on the scale of
+the scored relative error. With that weight, the stage-A fit on ROS-039 reaches E 0.014 against
+B0's 0.030 (p = 1.5 × 10⁻⁸). Without it, the fit reaches 0.042. Stage A now uses this weight
+(`p4/train.py`, `segment_t63`).
+
+World C had now been used to develop two fixes, so it can no longer judge them. **Round 6** keeps
+world C as a reported run and judges criterion 2 on a fresh world C2, fixed before the run: the
+true rate is B0's times exp(0.8 tanh(d/15)), where d = RH − RH_bed(w) is B0's own driving force in
+% RH. It speeds adsorption and slows desorption by up to a factor e^0.8 ≈ 2.2, saturating at large
+|d|: a different form from world C, which slows uptake as loading rises. Criterion
+2 needs a beat on both held-out sorbents AND E_model ≤ 0.5·E_B0. ROUND6
 
 ## 11. Compute
 
