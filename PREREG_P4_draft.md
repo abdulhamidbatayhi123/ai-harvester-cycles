@@ -722,7 +722,44 @@ high up. Criterion 2 is judged on C3 alone; C and C2 are reported.
 - B0's E in world N and in each correction world is reported per held-out sorbent, so the size of
   the injected effect that the metric-fitted B0 cannot absorb is on record.
 
-ROUND7
+**Round 7 result (2026-11-10; `results/harness_round7/harness.json` and `harness.log`).** Median E
+per held-out sorbent, L1 against B0 refitted on the training sorbents:
+
+| World | MOF-303: L1 / B0 (ratio) | ROS-039: L1 / B0 (ratio) | Section 7 rule |
+|---|---|---|---|
+| N | 0.00032 / 0.00032 (1.00) | 0.00053 / 0.00049 (1.07) | no beat on either (p 0.97, 0.98) |
+| C (reported) | 0.0067 / 0.026 (0.26) | 0.0091 / 0.031 (0.29) | beat on both |
+| C2 (reported) | 0.0028 / 0.025 (0.11) | 0.0076 / 0.013 (0.57) | beat on both |
+| C3 (judged) | 0.0070 / 0.0128 (0.55) | 0.013 / 0.036 (0.36) | beat on ROS-039 only |
+
+- Criterion 1 passed: in world N, k″ was recovered within 0.13 % in every stratum (largest error
+  0.12 %, ROS-039 fold).
+- Criterion 3 passed on MOF-303 and ROS-039.
+- **Criterion 2 failed.** On MOF-303 in C3, L1 lowered the median E from 0.0128 to 0.0070, but
+  the median cluster gain, 0.0022, was below F = 0.003; the signed-rank p, 0.034, was above
+  0.025; and the ratio, 0.55, missed the required halving. On ROS-039 in C3 it passed every
+  condition (gain 0.020, p = 1.5 × 10⁻⁸, ratio 0.36). C3's effect on MOF-303 was the smallest
+  of any correction-world case (B0's E 0.0128, against 0.025 to 0.036 elsewhere), so the
+  margin over F was narrowest exactly where the world was new. (In C2, ROS-039's ratio of 0.57
+  would also have missed the halving.)
+
+**Outcome, under the stopping rule written before any C3 result:** L1 is not redesigned and no
+learned model passed the harness. H4a is reported as "not tested: no learned model passed the
+synthetic harness", with every round of this section. The Al-fumarate run (worlds N and C3, same
+code and seed) was specified in advance and is reported below; it cannot change the outcome,
+since criterion 2 needs all three sorbents. What follows from sections 5, 7 and 11 as written:
+
+- no confirmatory L1 fits, and no null study: criterion 4 exists to make a positive H4a
+  credible, and with no learned model in H4a there is nothing for it to protect. The null worlds
+  already run stay in the record as harness evidence;
+- the confirmatory runs are the physics models (B0, B0-b, B1, B2 and the oracle B0*) on the 10
+  outer folds under R2 and R1, for H4b and H4c, plus the section 8 analyses;
+- the paper's negative result is about the method, not the data: a grey-box learner given only
+  isotherms could not reliably recover a known, injected, isotherm-dependent rate correction of
+  this size at the noise floor of these measurements. No statement is made that learning cannot
+  help on the real data.
+
+ALFU
 
 ## 11. Compute
 
@@ -913,3 +950,8 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   used for both condition 2 and "falsified" (the two could disagree at exactly 10 % by rounding);
   the cluster gain is the mean of segment differences. `p4/final_verdict.py` added. No result
   depended on these: no real-data fit exists, and the archived null replicate agrees in every fold.
+- 2026-11-10 (round 7 result). L1 failed criterion 2 in world C3 on MOF-303 (section 10). Under
+  the stopping rule written on 2026-11-09, before any C3 result, H4a becomes "not tested", the
+  confirmatory L1 fits and the null study are not run, and the confirmatory runs are the physics
+  models for H4b and H4c. The Al-fumarate run continues because it was specified in advance; it
+  cannot change the outcome.
