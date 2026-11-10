@@ -102,12 +102,29 @@ def signflip_p(d, **_):
 CANDIDATE_KEYS = ("B0", "B0-b_or_B0_other", "B1")   # as stored by run_study (review T-P4-4 F-7)
 
 
+def share_of_oracle_gain(p, r):
+    """(E_B0 - E_B2) / (E_B0 - E_B0*), medians over the fold's held-out segments: the share of what a
+    sorbent's own k'' could gain that B2 gains out of sample (H4a', descriptive; red-team M7)."""
+    if not p["E"].get("B0star"):
+        return None
+    e0, e2, es = (float(np.nanmedian(x)) for x in (p["E"]["B0"], r["E"], p["E"]["B0star"]))
+    return (e0 - e2) / (e0 - es) if e0 != es else None
+
+
+def cand_key(p):
+    """The CANDIDATE_KEYS entry of the fold's chosen comparator: "B0" is the fold's B0 variant."""
+    c = p.get("comparator", "B0")
+    return "B0" if c == p.get("B0_variant", "B0") else "B0-b_or_B0_other" if c in ("B0", "B0-b") else c
+
+
 def rule(e_b0, e_m, F, D=None, d=None):
     """Section 7 for one material. D: cluster values of the unnormalised difference for the
     test; without it (old rows) the test falls back to d. d: cluster mean differences (from
     cluster_level); without it, e_b0 - e_m."""
     d = e_b0 - e_m if d is None else d
     gain = float(np.median(d))
+    if D is not None and np.isnan(D).any() and not np.isnan(D).all():
+        print("warning: some cluster values of D are NaN; the test falls back to d", file=sys.stderr)
     p = signflip_p(d if D is None or np.isnan(D).any() else D)
     # r is computed once and used both here (condition 2) and for "falsified", so the two cannot
     # disagree at r = 10 % through rounding (independent-scorer check, 2026-11-10)
@@ -130,16 +147,20 @@ def main():
     phys = {r["fold"]: r for r in rows if r["key"].endswith("|physics")}
     ens = {(r["fold"], r["kind"]): r for r in rows if r["key"].endswith("|ensemble")}
     # H4a' (PREREG section 2, added 2026-11-10 after L1 failed the harness): B2 is judged by the same
-    # rule as a learned model, against the same comparator, from the physics row of each fold
+    # rule as a learned model, from the physics row of each fold. Its primary contrast is the pooled
+    # B0 of the same variant (E["B0"]), so that only k'' differs (red-team B2); the chosen comparator
+    # and the held-out-best candidate set the wording, as for L1.
     for fold, p in phys.items():
         if p["E"].get("B2") is not None:
-            ens[(fold, "B2")] = {"seg": p["seg"], "E": p["E"]["B2"], "viol": p.get("viol_B2")}
+            assert "viol_B2" in p, f"{fold}: physics row without B2 violation flags"
+            ens[(fold, "B2")] = {"seg": p["seg"], "E": p["E"]["B2"], "viol": p["viol_B2"]}
     out = {"folds": {}, "H4a": {}, "H4b": {}}
     for (fold, kind), r in sorted(ens.items()):
         p = phys[fold]
         assert p["seg"] == r["seg"], f"segment order differs in {fold}"
         held = p["held"]
-        b0, m, D, mat, dd = cluster_level(r["seg"], p["E"].get("base", p["E"]["B0"]), r["E"], p.get("dw"), with_d=True)
+        ref = p["E"]["B0"] if kind == "B2" else p["E"].get("base", p["E"]["B0"])
+        b0, m, D, mat, dd = cluster_level(r["seg"], ref, r["E"], p.get("dw"), with_d=True)
         per_mat = {}
         for s in held:
             sel = mat == s
@@ -182,7 +203,9 @@ def main():
             "violation_rate_data": float(np.mean(vd)) if len(vd) else None,
             "violation_rate_comparator": float(np.mean(vb)) if len(vb) else None,
             "violation_excess": excess, "admissible": admissible,
-            "comparator": p.get("comparator", "B0"),
+            "comparator": ("B0, same variant (" + p.get("B0_variant", "B0") + ")") if kind == "B2" else p.get("comparator", "B0"),
+            "chosen_comparator_rule_met": cand.get(cand_key(p), {}).get("rule_met") if kind == "B2" else None,
+            "share_of_oracle_gain": share_of_oracle_gain(p, r) if kind == "B2" else None,
             "E_B2": float(np.nanmedian(b2)) if b2 else None,
             "r_fold": r_fold, "r_pooled": info["r"],
             "candidates": cand, "heldout_best_candidate": best,
@@ -209,7 +232,10 @@ def main():
                             "rel_improvement_folds": rel.tolist(), "n_folds_rel_ge_10pct": n_rel,
                             "rel_improvement_order7": float(np.sort(rel)[6]) if len(rel) == 8 else None,
                             "LOSO_beats_vs_heldout_best_candidate": n_best,
-                            "claim_wording": (None if verdict != "supported" else "beats the isotherm-driven models"
+                            "claim_wording": (None if verdict != "supported" else
+                                              ("beats the shared-k'' model of the same form and every shared-k'' candidate"
+                                               if n_best >= 7 else "beats the shared-k'' model of the same form only")
+                                              if kind == "B2" else "beats the isotherm-driven models"
                                               if n_best >= 7 else "supported against the comparator chosen on the training sorbents only"),
                             "LOFO_beats_nontrivial": sum(lofo), "LOFO_folds_nontrivial": len(lofo),
                             "transfers_across_families": (sum(lofo) == 2) if len(lofo) == 2 else None}

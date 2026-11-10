@@ -49,6 +49,7 @@ def test_b2_needs_every_harness_criterion():
     assert combine(_b2("supported"), _b2("supported"), ok, "B2")["verdict"] == "supported"
     for k in ok["pass"]:
         bad = {"pass": {**ok["pass"], k: False}}
-        assert combine(_b2("supported"), _b2("supported"), bad, "B2")["verdict"] == "not established"
-    assert combine(_b2("supported"), _b2("supported"), {}, "B2")["verdict"] == "not established"
+        for v in ("supported", "falsified", "not established"):
+            assert combine(_b2(v), _b2(v), bad, "B2")["verdict"] == "not tested"
+    assert combine(_b2("falsified"), _b2("falsified"), {}, "B2")["verdict"] == "not tested"
     assert combine(_b2("falsified"), _b2("falsified"), ok, "B2")["verdict"] == "falsified"

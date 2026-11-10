@@ -40,6 +40,11 @@ def combine(r2, r1, null, kind="L1"):
             out["note"] = "7 or more LOSO beats, but the null study failed criterion 4 (section 7, verdict table)"
     else:
         out["verdict"] = a["verdict"]
+    if kind == "B2" and not c4:
+        # a verdict reached with a harness that failed (or is missing) tests nothing: "not tested",
+        # whatever R1 and R2 say, as for L1 (section 10b; red-team B3, 2026-11-10)
+        out["verdict"] = "not tested"
+        out["note"] = "the B2 harness (section 10b) did not pass all three criteria"
     if out["verdict"] == "supported":
         out["claim_wording"] = a.get("claim_wording")
         out["transfers_across_families"] = bool(a.get("transfers_across_families")) and bool(b.get("transfers_across_families"))

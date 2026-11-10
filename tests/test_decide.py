@@ -16,7 +16,8 @@ def _rows(gain, n_clusters=8, viol=0.0):
         e_m = [e - gain for e in e_b]
         rows.append({"key": f"{f}|physics", "fold": f, "held": held, "seg": seg, "comparator": "B0",
                      "dw": list(1.0 + rng.random(len(seg))),
-                     "viol_data": [False] * len(seg), "E": {"B0": e_b, "base": e_b, "B2": e_b, "B0star": e_b}})
+                     "viol_data": [False] * len(seg), "viol_B2": [False] * len(seg),
+                     "E": {"B0": e_b, "base": e_b, "B2": e_b, "B0star": e_b}})
         for kind in ("L1", "L2"):
             rows.append({"key": f"{f}|{kind}|ensemble", "fold": f, "kind": kind, "seg": seg, "E": e_m,
                          "viol": [i < viol * len(seg) for i in range(len(seg))]})
@@ -65,7 +66,7 @@ def test_composite_must_pass_too(tmp_path):
                 r["seg"] = r["seg"] + [s.replace("S0|", "S0_composite|", 1) for s in r["seg"]]
                 for k in r["E"]:
                     r["E"][k] = r["E"][k] * 2
-                r["dw"], r["viol_data"] = r["dw"] * 2, r["viol_data"] * 2
+                r["dw"], r["viol_data"], r["viol_B2"] = r["dw"] * 2, r["viol_data"] * 2, r["viol_B2"] * 2
             else:
                 r["seg"] = r["seg"] + [s.replace("S0|", "S0_composite|", 1) for s in r["seg"]]
                 base = [x + 0.03 for x in r["E"]]
@@ -132,7 +133,7 @@ def test_composite_only_gain_does_not_count_as_r(tmp_path):
                 r["seg"] = r["seg"] + comp
                 for k in r["E"]:
                     r["E"][k] = r["E"][k] + [0.10] * n
-                r["dw"], r["viol_data"] = r["dw"] + [1.0] * n, r["viol_data"] + [False] * n
+                r["dw"], r["viol_data"], r["viol_B2"] = r["dw"] + [1.0] * n, r["viol_data"] + [False] * n, r["viol_B2"] + [False] * n
             else:
                 n = len(comp)
                 r["seg"] = r["seg"] + comp

@@ -189,13 +189,17 @@ def rh50(ads: Branch) -> float:
 
 
 def fit_b2(groups, direction, dt=0.1, metric=False):
-    """B2 (reported comparator): log k'' = a + b * rh50/30, fitted over the training groups of
-    one temperature and direction, by least squares or (metric=True) by the median of E
-    (Nelder-Mead from the pooled fit). groups: dicts as for fit_scale, each with one material's
-    'ads'. Returns (a, b)."""
+    """B2 (H4a'): log k'' = a + b * (rh50/30 - xbar), fitted over the training groups of one
+    temperature and direction, by least squares or (metric=True) by the median of E. xbar is the
+    mean of rh50/30 over the training groups, so a and b are not correlated through an uncentred
+    x, and Nelder-Mead starts from the pooled fit with an explicit simplex whose step in b is 0.5
+    (SciPy's default step for a zero entry is 0.00025, which left b near 0; red-team M10,
+    2026-11-10). groups: dicts as for fit_scale, each with one material's 'ads' (and 'des' for the
+    B0-b variant). Returns (a, b, xbar, converged)."""
     from scipy.optimize import minimize
     xs = {id(g): rh50(g["ads"]) / 30.0 for g in groups}
-    k_of = lambda p: (lambda g: np.exp(p[0] + p[1] * xs[id(g)]))
+    xbar = float(np.mean(list(xs.values())))
+    k_of = lambda p: (lambda g: np.exp(p[0] + p[1] * (xs[id(g)] - xbar)))
 
     def loss(p):
         if metric:
@@ -207,9 +211,11 @@ def fit_b2(groups, direction, dt=0.1, metric=False):
             cnt += len(seg)
         return se / max(cnt, 1)
     k0 = (fit_scale_metric if metric else fit_scale)(groups, simulate_b0, direction, dt=dt)
-    r = minimize(loss, [np.log(k0), 0.0], method="Nelder-Mead",
-                 options={"xatol": 1e-3, "fatol": 1e-9 if not metric else 1e-6})
-    return float(r.x[0]), float(r.x[1])
+    a0 = float(np.log(k0))
+    r = minimize(loss, [a0, 0.0], method="Nelder-Mead",
+                 options={"xatol": 1e-3, "fatol": 1e-9 if not metric else 1e-6, "maxiter": 400,
+                          "initial_simplex": np.array([[a0, 0.0], [a0 + 0.1, 0.0], [a0, 0.5]])})
+    return float(r.x[0]), float(r.x[1]), xbar, bool(r.success)
 
 
 def violations(traj, rh, dirs, ads: Branch = None, des: Branch = None, window=10, tol=0.05):

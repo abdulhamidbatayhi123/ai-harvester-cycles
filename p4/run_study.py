@@ -100,44 +100,56 @@ def physics_pred(groups, simulate, k2, use_des):
     return out
 
 
-def endpoint_eps(groups):
-    """Relative end-point offset of the held-out sorbent's own data, per (sorbent, temperature):
-    the median over its equilibrated segments of w_end / w_ads(RH_end) - 1, the factor by which the
-    isotherm would have to be scaled, over segments that end where w_ads(RH_end) >= 0.2 w30 (a step
-    that ends near 0 % RH carries no information on a scale factor), where a segment is
-    equilibrated if it moved at least 0.5 wt% and the slope of its last tenth, extrapolated over the
-    segment, is below 2 % of the move (the rule of audit/compare_dry_rules.py), RH_end is the median
-    RH over that tenth, and w_ads is the adsorption branch that B0 equilibrates on in both
-    directions. Uses held-out data: an oracle diagnostic (PREREG section 8, cs T-P4-5 R5a)."""
+def endpoint_eps(groups, use_des=False):
+    """Relative end-point offsets of the held-out sorbent's own data, per (sorbent, temperature):
+    (eps_ads, eps_des). eps_ads is the median over its equilibrated UPTAKE segments of
+    w_end / w_ads(RH_end) - 1, the factor by which the adsorption branch would have to be scaled;
+    eps_des the same over RELEASE segments against the desorption branch, only for the B0-b
+    variant (use_des), which equilibrates on it. Uptake and release are kept apart so that
+    hysteresis is not read as a scale error (red-team M13, 2026-11-10). Only segments that end where
+    the branch value is at least 0.2 w30 count (a step that ends near 0 % RH carries no information
+    on a scale factor). A segment is equilibrated if it moved at least 0.5 wt% and the slope of its
+    last tenth, extrapolated over the segment, is below 2 % of the move (the rule of
+    audit/compare_dry_rules.py); RH_end is the median RH over that tenth. A missing value is None.
+    Uses held-out data: an oracle diagnostic (PREREG section 8, cs T-P4-5 R5a)."""
     by = {}
     for g in groups:
         w30 = float(g["ads"].w_of_rh(30.0))
-        for w, rh in zip(g["w"], g["rh"]):
+        for w, rh, dr in zip(g["w"], g["rh"], g["dir"]):
             n = int(np.isfinite(w).sum())
             w, rh = w[:n], rh[:n]
-            if n < 10:
+            if n < 10 or (dr < 0 and not use_des):
+                continue
+            br = g["ads"] if dr > 0 else g["des"]
+            if br is None:
                 continue
             n10 = max(5, n // 10)
             dw = abs(w[-1] - w[0])
             tail = np.polyfit(np.arange(n10) * DT_MIN, w[-n10:], 1)[0] * n * DT_MIN
             if dw < 0.5 or abs(tail) > 0.02 * dw:
                 continue
-            w_eq = float(g["ads"].w_of_rh(float(np.median(rh[-n10:]))))
+            w_eq = float(br.w_of_rh(float(np.median(rh[-n10:]))))
             if w_eq < 0.2 * w30:
                 continue
-            by.setdefault((g["sorbent"], g["temp"]), []).append(w[-1] / w_eq - 1.0)
-    return {k: float(np.median(v)) for k, v in by.items()}
+            by.setdefault((g["sorbent"], g["temp"], 1 if dr > 0 else -1), []).append(w[-1] / w_eq - 1.0)
+    keys = {(s, T) for g in groups for s, T in [(g["sorbent"], g["temp"])]}
+    med = lambda k: float(np.median(by[k])) if k in by else None
+    return {(s, T): (med((s, T, 1)), med((s, T, -1)) if use_des else None) for s, T in keys}
 
 
 def endpoint_oracle_E(groups, k2, use_des, eps):
-    """B0 (the fold's variant, pooled k'' of the training sorbents) re-scored with the isotherm
-    scaled by (1 + eps) of the held-out sorbent's own end-points (endpoint_eps): how much of B0's
-    error is the end point and how much the rate (PREREG section 8). No refit."""
+    """B0 (the fold's variant, pooled k'' of the training sorbents) re-scored with its branches
+    scaled by the held-out sorbent's own end-point offsets (endpoint_eps): how much of B0's error
+    is the end point and how much the rate (PREREG section 8). No refit. Segments of a group whose
+    offset is missing get NaN (reported as missing, not silently B0; red-team m14)."""
     E = []
     for g in groups:
-        e = eps.get((g["sorbent"], g["temp"]), 0.0)
-        ads = Branch.from_points(g["ads"].rh, g["ads"].w * (1.0 + e))
-        des = Branch.from_points(g["des"].rh, g["des"].w * (1.0 + e)) if use_des and g.get("des") is not None else None
+        ea, ed = eps.get((g["sorbent"], g["temp"]), (None, None))
+        if ea is None or (use_des and ed is None):
+            E += [float("nan")] * len(g["w"])
+            continue
+        ads = Branch.from_points(g["ads"].rh, g["ads"].w * (1.0 + ea))
+        des = Branch.from_points(g["des"].rh, g["des"].w * (1.0 + ed)) if use_des else None
         ka, kd = k2[(g["temp"], "ads")] / g["m"], k2[(g["temp"], "des")] / g["m"]
         E += seg_E(simulate_b0(g["rh"], g["w"][:, 0], ka, kd, ads, des, dt=DT_MIN), g["w"])
     return E
@@ -158,22 +170,24 @@ def seg_dw(groups):
     return out
 
 
-def b2_E(train, te, return_pred=False):
+def b2_E(train, te, return_pred=False, use_des=False):
     """B2: log k'' = a + b * rh50/30 per temperature and direction, fitted on `train` by the
     scored metric. With return_pred, also the predictions per held-out group (for the violation
-    flags of H4a', PREREG section 7)."""
+    flags of H4a', PREREG section 7). use_des: build B2 on the B0-b variant (desorption branch
+    during release), so that B2 and the fold's pooled B0 share their equation (red-team B2)."""
     ab = {}
     for T in ("27C", "60C"):
         for d in ("ads", "des"):
-            gs = [{**g, "des": None} for g in sub(train, T, d)]
+            gs = [{**g, "des": g.get("des") if use_des else None} for g in sub(train, T, d)]
             if gs:
                 ab[(T, d)] = fit_b2(gs, d, dt=DT_MIN, metric=True)
     E, preds = [], []
     for g in te:
         x = rh50(g["ads"]) / 30.0
-        ka = np.exp(ab[(g["temp"], "ads")][0] + ab[(g["temp"], "ads")][1] * x) / g["m"]
-        kd = np.exp(ab[(g["temp"], "des")][0] + ab[(g["temp"], "des")][1] * x) / g["m"]
-        pr = simulate_b0(g["rh"], g["w"][:, 0], ka, kd, g["ads"], None, dt=DT_MIN)
+        pa, pd = ab[(g["temp"], "ads")], ab[(g["temp"], "des")]
+        ka = np.exp(pa[0] + pa[1] * (x - pa[2])) / g["m"]
+        kd = np.exp(pd[0] + pd[1] * (x - pd[2])) / g["m"]
+        pr = simulate_b0(g["rh"], g["w"][:, 0], ka, kd, g["ads"], g["des"] if use_des else None, dt=DT_MIN)
         preds.append(pr)
         E += seg_E(pr, g["w"])
     ab = {f"{a}|{b}": v for (a, b), v in ab.items()}
@@ -322,14 +336,14 @@ def main():
                     oracle[s] = physics_E(own, simulate_b0, k_own, use_des)
             tm["oracle"] = time.time() - t1
             t1 = time.time()
-            E_b2, ab2, pred_b2 = b2_E(fit_on, te, return_pred=True)
+            E_b2, ab2, pred_b2 = b2_E(fit_on, te, return_pred=True, use_des=use_des)
             tm["B2"] = time.time() - t1
-            eps_hat = endpoint_eps(te)
+            eps_hat = endpoint_eps(te, use_des)
             E_eq = endpoint_oracle_E(te, k_fit[b0v], use_des, eps_hat)
             rows.put({"key": key, "fold": fold, "held": held, "val": vs, "B0_variant": b0v,
                       "B2_ab": ab2, "viol_data": viol(te, [g["w"] for g in te]),
                       "viol_base": viol(te, pred[base]), "viol_B2": viol(te, pred_b2), "dw": seg_dw(te),
-                      "eps_hat": {f"{a}|{b}": v for (a, b), v in eps_hat.items()},
+                      "eps_hat": {f"{a}|{b}": list(v) for (a, b), v in eps_hat.items()},
                       "comparator": base, "k2": {f"{a}|{b}": v for (a, b), v in k_fit[b0v].items()},
                       "k2_all": {c: {f"{a}|{b}": v for (a, b), v in k.items()} for c, k in k_fit.items()},
                       "choice_score": inner_score, "choice_per_sorbent": inner_per, "seg": ids,
