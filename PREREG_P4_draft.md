@@ -1,9 +1,11 @@
 # Pre-registration (DRAFT, not frozen): Paper 4
 
-**Working title.** Is the water-sorption rate constant material-independent? A pre-registered
-held-out-sorbent test of isotherm-driven uptake dynamics for ten sorbents. (Until 2026-11-10:
-"Does learning beat the isotherm?"; changed when the learned model failed the synthetic harness,
-section 10.)
+**Working title.** Does the isotherm predict an unseen sorbent's rate constant? A pre-registered
+held-out-sorbent test of isotherm-driven water-uptake dynamics for ten sorbents. (Until
+2026-11-10: "Does learning beat the isotherm?"; changed when the learned model failed the
+synthetic harness, section 10. A title asking whether the rate constant is material-independent
+was considered and dropped the same day: section 12 already shows in sample that it is not at
+60 °C, and a B2 verdict cannot answer that question; red-team M5.)
 
 **Status.** Draft written 2026-11-03 for the author's review. Nothing in it has been run on
 real data except what section 9 lists as allowed before the freeze. When frozen, the commit
@@ -16,7 +18,13 @@ hash goes in section 12 and no confirmatory number exists before that commit.
 When a sorbent has never been seen in training, can a learned dynamic model predict how its
 water uptake rises and falls over time better than the published isotherm-driven model?
 Both models are driven by measured humidity and temperature, and both are told only the new
-sorbent's water isotherms.
+sorbent's water isotherms. (Before the freeze this question became untestable: no learned model
+passed the synthetic harness; section 10.)
+
+Since 2026-11-10 the confirmatory question is narrower: does the isotherm of an unseen sorbent
+predict the effective rate constant k″ of Bezrukov's equation better than one value shared by all
+training sorbents (H4a′)? And, descriptively, how much of the published model's error would a
+correct per-sorbent k″, or a correct end point, remove (H4b, section 8)?
 
 The data are milligram powder layers on a dynamic vapour sorption (DVS) balance: 8 sorbents
 from Bezrukov et al. 2023 and 2 MOFs from Gao et al. 2026, all from one laboratory. All
@@ -28,28 +36,46 @@ the results.
 - **H4a, primary.** A learned model, given only the held-out sorbent's isotherms, predicts its
   uptake trajectories more accurately than the best per-fold refitted isotherm-only physics
   model (B0, B0-b or B1, chosen on the training sorbents; section 5), by more than the
-  measured noise floor and by a practically relevant margin. L1 (grey box) is the primary
-  learned model and L2 (black box) the secondary one; only L1 can support the headline claim.
+  measured noise floor and by a practically relevant margin. L1 (grey box) was the primary
+  learned model and L2 (black box) the secondary one; only L1 could have supported the original
+  headline claim.
   L2 failed the synthetic harness and is dropped from H4a under the rule in section 5 (section
   10, round 4); its harness results are reported. **Outcome before the freeze (2026-11-10):** L1
   failed criterion 2 of the harness in its last allowed round (section 10, round 7), so under the
   stopping rule H4a is reported as "not tested: no learned model passed the synthetic harness",
   and no learned model is fitted to the real data for a verdict.
-- **H4a′, primary from 2026-11-10.** The isotherm predicts a held-out sorbent's rate constant
-  better than the material-independent pooled k″ does: B2 (log k″ = a + b·RH₅₀/30 per
-  temperature and direction, section 5) beats the comparator by the section 7 rule, on the same
-  folds, with the same 7-of-8 count, the same R1/R2 agreement and the same falsifier. H4a′ tests
-  the assumption at the centre of Bezrukov's model ("k″ is the same for every material") against
-  the simplest alternative an isotherm allows. It replaces criterion 4 of the null study by its
-  own null worlds (section 10b).
-  - *When and why it was added.* After L1 failed the harness and before any fit of B2 to held-out
-    real data. B2 has been run only inside synthetic null worlds. Before this was written, two
-    things were on record that bear on it: each sorbent's in-sample k″ (section 12) and its
-    RH₅₀ (an isotherm feature, an input). Their relation was not computed. H4b's in-sample
-    numbers also bound what any single per-sorbent k″ can gain (10 % to 42 % of the gap between
-    B0 and the noise floor), so B2 can reach r ≥ 10 % only if it captures most of that on almost
-    every sorbent. "Falsified" is the more likely outcome; the test was not chosen because it is
-    winnable.
+- **H4a′, the confirmatory hypothesis from 2026-11-10.** The isotherm of a held-out sorbent
+  predicts the effective k″ of Bezrukov's equation better than one value shared by the training
+  sorbents: B2 (log k″ = a + b·(RH₅₀/30 − mean), per temperature and direction, section 5) beats
+  the pooled B0 of the same form (the fold's B0 variant, so that only k″ differs) by the section 7
+  rule, on the same folds, with the same 7-of-8 count, the same R1/R2 agreement and the same
+  falsifier. Its own synthetic harness (section 10b) takes the place of criterion 4; if that
+  harness fails, H4a′ is "not tested", as H4a was.
+  - *What a verdict means.* B2 is B0 with an isotherm-dependent effective k″. A rate law shared by
+    all materials but not of B0's form also makes the best effective k″ depend on the isotherm,
+    because sorbents of different shape spend their time at different bed RH. So a B2 win shows
+    that the isotherm predicts the effective k″ of this equation, not that the true rate
+    constant depends on the material; world C3 of section 10b measures the size of that confound.
+    A falsification says that the simplest isotherm descriptor does not improve on one shared
+    effective k″ at this noise and error level; the realistic-power worlds K2 of section 10b set
+    how strongly that can be worded.
+  - *When and why it was added, and what was known.* After L1 failed the harness (round 7) and
+    before any fit of B2 to held-out real data. B2's functional form had been fixed on 2026-11-08
+    as a reported comparator (repository commit 127ab6d), before L1 failed. Before H4a′ was
+    written, the following bore on it: (1) each sorbent's in-sample k″ (section 12), in which
+    CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled) and, computed the same
+    day as H4a′ (`results/rh50.json`, first committed with this text), the largest RH₅₀ (28.7 %);
+    no correlation over the sorbents was computed; (2) H4b's in-sample ceilings: a sorbent's own
+    k″ closes 10 % to 42 % of the gap between B0 and F (Syloid 0.10, Al-fumarate 0.11, MOF-303
+    0.13), so a B2 beat with r ≥ 10 % on 7 of 8 folds needs B2 to capture most of the reachable
+    gain almost everywhere, and "supported" was foreseeably hard to reach; (3) in the archived
+    synthetic null replicate `results/null_rep0_preD`, B2's median E was below B0's in 3 of 5
+    folds by small margins. The paper reports H4a as the original primary hypothesis, "not
+    tested", in its abstract, and H4a′ with this timeline.
+  - *Reported with the verdict (descriptive).* Per held-out sorbent, the share of the oracle's gain
+    that B2 achieves out of sample, (E_B0 − E_B2)/(E_B0 − E_B0\*) (`share_of_oracle_gain` in
+    `p4.decide`). Folds whose held-out RH₅₀ lies outside the training range (Al-fumarate at
+    27 °C, CAU-10-H at 60 °C) are flagged as extrapolations.
 - **H4b, descriptive.** How much of B0's error on a held-out sorbent comes from the assumption
   that the rate constant is the same for every material. Measured as the fraction of the gap
   between B0 and the noise floor that the oracle B0* closes (B0 with k″ fitted on the held-out
@@ -144,8 +170,8 @@ series; they use the standard flow and stay in P. The other flow levels stay exc
       after the review pointed out that agreement with the isotherm moves the target toward the
       baseline's own input (section 13).
     - R2 is worse on the supporting check for Al-fumarate at 60 °C and for MOF-303, so every
-      confirmatory result is also computed under R1, and the H4a verdict must agree under both
-      (section 7).
+      confirmatory result is also computed under R1, and the H4a′ verdict (H4a's until
+      2026-11-10) must agree under both (section 7).
     - A third rule, R3 (the end of the first desorption step), was measured by mistake (section
       13): median 0.61 wt%. It is not used.
   - Exception, measured 2026-11-04: the two composites' 27 °C step runs were dried only at
@@ -177,8 +203,8 @@ series; they use the standard flow and stay in P. The other flow levels stay exc
 ### 3.4 Gao 2026 (bnn-1-Co, bnn-1-Ni): external test only
 
 Gao's flow rate is not reported, and the Source Data step curves give set-point RH, not
-measured RH. The two MOFs are therefore never used for training or tuning. All models are
-trained on the full P, then evaluated on:
+measured RH. The two MOFs are therefore never used for training or tuning. All physics models
+(no learned model is fitted; section 10) are fitted on the full P, then evaluated on:
 
 - the Fig. 3c/d step curves, driven by set-point RH and flagged;
 - the 128-cycle 27 °C runs, which have logged RH.
@@ -258,7 +284,8 @@ In every fold, everything that is fitted is fitted on the training sorbents only
   - Why the scored metric and not least squares (review finding N5): the learned models are
     validated and early-stopped on median E, and L1 = B0·exp(g) can learn a constant g, which is
     just a refit of k″ to that metric. Fitting the comparators by least squares would hand the
-    learned models that refit as a "win". In sample, the metric fit alone lowers B0's E from
+    learned models that refit as a "win". The same holds for B2, whose constant term a is such a
+    refit. In sample, the metric fit alone lowers B0's E from
     0.022–0.237 to 0.018–0.236 (section 12). Every physics model (B0, B0-b, B1, B2, B0\*) is fitted
     the same way.
   - The published code can rescale the isotherm to match a kinetic run ("scale_isotherm"). That
@@ -266,22 +293,27 @@ In every fold, everything that is fitted is fitted on the training sorbents only
   - Variant B0-b: the same, but reading the desorption branch during release.
 - **B1, the second baseline: linear driving force.**
   - Equation: dw/dt = k_LDF(T, m)·(w*(RH_flow) − w), with k_LDF = k‴(T)/m, fitted the same way.
-- **The comparator for H4a** is whichever of B0, B0-b and B1 does best across the fold's
+- **The comparator for H4a** (and, for the wording of H4a′, section 7) is whichever of B0, B0-b and B1 does best across the fold's
   training sorbents (review finding O2): each candidate is fitted on all training sorbents, and
   the one with the lowest median, over those sorbents, of its per-sorbent median E is chosen.
   The three have the same four parameters (one k″ per temperature and direction), so an
   in-sample comparison does not favour a more flexible one, and six or seven sorbents make it far
   less noisy than the single validation sorbent of the earlier draft. Inner leave-one-sorbent-out
-  was costed: on this machine it would add about 17 to 28 hours of physics fits to every run (main,
-  R1 and each null replicate), and it was rejected for that reason. The choice uses no outer
-  held-out data. A learned model that beat B0 but not B1 would not have beaten "the isotherm".
+  was costed: on this machine it would add about 17 to 28 hours of physics fits to every run (main
+  and R1; the null replicates are no longer run), and it was rejected for that reason. The choice
+  uses no outer held-out data. A learned model that beat B0 but not B1 would not have beaten "the
+  isotherm"; for B2 the same contrast decides only the wording (section 7).
 - **B2, the model tested by H4a′ (section 2; until 2026-11-10 a reported comparator).** B0 with k″ made material-dependent
   in the simplest way an isotherm allows: log k″ = a + b·(RH₅₀/30 %), where RH₅₀ is the RH at
-  which the adsorption branch reaches half its uptake at 30 % RH. a and b are fitted per
-  temperature and direction on the training sorbents (by the scored metric, Nelder–Mead from
-  the pooled fit). B2 has eight parameters per fold (a and b for each temperature and direction)
-  against the comparator's four, and is judged on held-out sorbents only, so the extra
-  parameters cannot win in sample. Its predictions are flagged for physical violations like any
+  which the adsorption branch reaches half its uptake at 30 % RH. The full form is
+  log k″ = a + b·(RH₅₀/30 − mean), the mean of RH₅₀/30 over the training groups, so that a and b
+  are not correlated through an uncentred descriptor. a and b are fitted per temperature and
+  direction on the training sorbents by the scored metric, Nelder–Mead from the pooled fit with an
+  explicit starting simplex whose step in b is 0.5 (`p4.physics.fit_b2`; SciPy's default step for
+  a zero entry, 0.00025, could leave b at 0; red-team M10). B2 is built on the fold's B0 variant:
+  in a fold whose B0 variant is B0-b, B2 uses the desorption branch during release. B2 has eight
+  parameters per fold against B0's four and is judged out of sample only, where the extra
+  parameters add variance and make a beat harder. Its predictions are flagged for physical violations like any
   model (`viol_B2`). RH₅₀ per sorbent and temperature (`results/rh50.json`) spans 7.4 % to 24.3 %
   RH at 27 °C and 10.5 % to 28.7 % at 60 °C.
 - **B0\*, the oracle.** B0 with k″ fitted on the held-out sorbent's own data by minimising the
@@ -338,7 +370,7 @@ Implementation and training rules:
 - **A model that fails the synthetic harness (section 10) is dropped from H4a**, and the paper
   says so. A failed model may be redesigned before the freeze only if it is then judged on a
   world not used during the redesign. L1 failed rounds 4 to 6 and was revised each time; round 7
-  is its last chance (section 10, stopping rule).
+  was its last chance (section 10, stopping rule), and it failed.
   - The validation sorbent is Syloid AL-1, except in folds that hold Syloid out, where it is
     ROS-040. If ROS-040 is held out too, it is CAU-10-H.
   - The same validation sorbent serves for early stopping.
@@ -442,7 +474,7 @@ and before any learned model was fitted to real data. It exists because F alone 
 almost any improvement as real. It is the author's to confirm or change at the freeze.
 
 **Physical admissibility (review finding O3).** A segment counts as a violation against a
-learned model only if the model violates (section 6) and neither the measured data nor the
+learned model (or B2, under H4a′) only if the model violates (section 6) and neither the measured data nor the
 comparator does on that segment: an isotherm-driven model can move against the step where the
 measured start lies off the isotherm, and L1 shares B0's driving force. If such excess
 violations exceed 5 % of a fold's segments, the model does not beat the comparator in that fold,
@@ -491,27 +523,34 @@ LOFO beats out of 2):
 |---|---|---|---|
 | 7 or 8 (null study passed; for H4a′ the B2 harness) | (not used) | 2 | supported, transfers across families |
 | 7 or 8 (null study passed; for H4a′ the B2 harness) | (not used) | 0 or 1 | supported within families; does not transfer across families |
-| 7 or 8 (null study failed; for H4a′ the B2 harness) | (not used) | any | not established; the paper reports the null study's failure |
+| 7 or 8 (null study failed) | (not used) | any | not established; the paper reports the null study's failure |
+| any (H4a′ only: B2 harness failed) | any | any | not tested |
 | 0 to 6 | 0 or 1 | any | falsified |
 | 0 to 6 | 2 or more | any | not established |
 
 **H4a′ (from 2026-11-10)** is decided exactly as H4a above, with B2 in place of the learned
-model: the same comparator (chosen on the training sorbents), the same four conditions per
-material, admissibility from B2's own violation flags, the same 7-of-8 count, falsifier, R1/R2
-agreement, comparator-robustness wording and LOFO transfer. `p4.decide` scores B2 from each
-fold's physics row (kind "B2"), and `p4/final_verdict.py` combines R2, R1 and the B2 harness. The
-role of criterion 4 is taken by the B2 harness (section 10b): "supported" needs all three of its
-criteria passed before the freeze. If B2 is supported, the paper says that the isotherm's
-position predicts a new sorbent's rate constant better than one shared value; if falsified, that
-on these data the shared k″ is not improved on by the simplest isotherm descriptor, and H4b says
-how much any per-sorbent k″ could have gained.
+model and the pooled B0 of the fold's variant (row field `E["B0"]`) in place of the chosen
+comparator, so that the contrast changes k″ and nothing else (red-team B2): the same four
+conditions per material, admissibility from B2's own violation flags, the same 7-of-8 count,
+falsifier, R1/R2 agreement and LOFO transfer. `p4.decide` scores B2 from each fold's physics row
+(kind "B2"), and `p4/final_verdict.py` combines R2, R1 and the B2 harness:
+- if the B2 harness (section 10b) did not pass all three of its criteria, H4a′ is "not tested",
+  whatever R1 and R2 give;
+- otherwise the verdict table below applies, with the B2 harness in the place of the null study.
+Wording: if supported, the claim is "beats the shared-k″ model of the same form", strengthened to
+"and every shared-k″ candidate" only if B2 also beats the held-out-best of B0, B0-b and B1 in at
+least 7 of 8 folds. If falsified, and B2 was not "supported" in all three realistic-power worlds
+K2a–c of section 10b, the paper words it as "no isotherm-predicted rate constant was detectable at
+this noise and error level", and states in how many of the three worlds an effect of the measured
+size was missed.
 
 **H4b and H4c** are estimates with bootstrap intervals and carry no verdict (section 2).
 
-**Negative results.** If L1 fails H4a, the paper reports that, on these data, a
-learned dynamic model adds nothing measurable to the isotherm. (L1 is not tested on real data;
-section 10, round 7. The same applies to B2 under H4a′.) Section 8's analyses are then
-used only to say where the residual error lives, not to rescue the claim.
+**Negative results.** L1 is not tested on real data (section 10, round 7). The paper says that no
+learned model passed the synthetic harness, and makes no statement that learning cannot help on
+these data. If B2 is falsified under H4a′, the paper says that the simplest isotherm descriptor
+does not improve on one shared effective k″ here, worded as above. In either case section 8's
+analyses are used only to say where the residual error lives, not to rescue a claim.
 
 ## 8. Secondary and exploratory analyses (labelled as such in the paper)
 
@@ -551,11 +590,17 @@ used only to say where the residual error lives, not to rescue the claim.
   physical violations (`audit/prefreeze_checks2.py`, `audit/violation_floor.py`).
 - A synthetic test of the harness (section 10), including the size calibration of the null
   world (`audit/null_calibration.py`) and the null study through the confirmatory code.
+- The synthetic harness for H4a′ (section 10b), and isotherm features such as RH₅₀ (inputs, not
+  outcomes; `results/rh50.json`).
 - Timing runs of L1 and L2 on synthetic data to fix the compute budget.
 
-Not allowed before the freeze: fitting L1 or L2 on real data, and any held-out evaluation.
+Not allowed before the freeze: fitting L1 or L2 on real data; fitting B2 on real data in or out of
+sample; computing the relation between RH₅₀ and any real k″; and any held-out evaluation.
 
-## 10. Synthetic harness test (must pass before the freeze)
+## 10. Synthetic harness test for H4a (failed in round 7; see the stopping rule)
+
+The freeze now needs section 10b to pass, not this section. This section is the record of the
+learned models' harness, kept in full.
 
 Synthetic trajectories are generated on the real forcing and real isotherms of P from a known
 truth, and the fold pipeline is run on them (`audit/synthetic_harness.py`). Three worlds:
@@ -641,7 +686,8 @@ The harness passes if:
    Two procedures:
    - **Before the freeze**: 3 null worlds of the same design (24 fold-fits per model) with a reduced
      procedure, one configuration and one seed per fit. This tests the decision machinery and
-     the models in a realistic null; it must pass for the draft to be frozen.
+     the models in a realistic null; it had to pass for the draft to be frozen (moot since round
+     7: the L1 null study is not run).
    - **With the confirmatory runs**: one further null world (replicate 3; the pre-freeze worlds
      are replicates 0 to 2) with the full confirmatory procedure for L1 (4 configurations tuned on the validation sorbent, then 5 seeds; 72 fits).
      Selection on a validation sorbent and ensembling change how often a spurious correction
@@ -812,33 +858,54 @@ effect. The outcome above stands.
 
 ## 10b. Synthetic harness for H4a′ (B2), must pass before the freeze
 
-Added on 2026-11-10 with H4a′; the script and its pass criteria (`audit/harness_b2.py`) were
-committed (repository da52584) before it was first run. It uses the real forcing, isotherms and
-dry masses of the primary set, the truth integrated by the B0 integrator, and AR(1) noise
+Added on 2026-11-10 with H4a′. Version 1 of the script (repository da52584) was revised after an
+independent red-team review the same day; its only run was stopped before any result was read
+and its output is archived unread (`results/harness_b2_aborted_unread/`). Version 2
+(`audit/harness_b2.py`, repository 78accf6, committed before its first run) is the one that
+counts. It uses the real forcing, isotherms and dry masses of the primary set and the two
+composites, the truth integrated by the B0 integrator unless stated, and AR(1) noise
 (σ = 0.01 wt%, φ = 0.9). Each world runs the 8 LOSO folds; per fold, B0 and B2 are fitted on the
-training sorbents by the scored metric and the section 7 rule is applied with F = 0.003.
+training sorbents by the scored metric and the section 7 rule is applied with each material's
+real F (`results/prefreeze/checks2.json`) and the admissibility check.
 
 - **N**: the truth is B0 with the pooled k″ of the real data.
-- **K**: log k″ of each sorbent is shifted by 1.5·(RH₅₀ − mean RH₅₀)/30, the means over the 8
-  primary sorbents at each temperature. The across-sorbent SD of log k″ is then 0.27 at 27 °C and
-  0.33 at 60 °C (real in-sample SD 0.089 and 0.30): an effect of the measured size that the
-  isotherm carries by construction.
-- **S0 to S2, structure-free null worlds** (cs T-P4-5 R1 without its shape term): log k″ of each
-  sorbent and temperature is shifted by b ~ N(0, σ_b(T)²), σ_b = 0.089 and 0.300 as in section
-  10, drawn independently of the isotherm; the equilibrium is the isotherm scaled by (1 + ε),
-  with |ε| resampled from the 18 measured group offsets, a random sign, and |ε·w₃₀| ≤ 3.128 wt%.
-  Nothing any model sees predicts these draws, and no component is shared by all sorbents, so
-  any beat is a false positive.
+- **K** (plumbing): log k″ of each sorbent is shifted by 1.5·(RH₅₀/30 − mean), the means over the
+  8 primary sorbents at each temperature (across-sorbent SD of log k″ 0.27 at 27 °C, 0.33 at
+  60 °C; no end-point offsets). The truth lies inside B2's class, so this checks the machinery,
+  not power.
+- **K2a, K2b, K2c** (realistic power; reported, and they set the wording of a real "falsified",
+  section 7): the same form with the slope at each temperature chosen so that the across-sorbent
+  SD of the shift equals the real in-sample SD of log k″ (0.089 at 27 °C, slope 0.50; 0.300 at
+  60 °C, slope 1.38), plus end-point offsets drawn as in the S worlds. This is the largest effect
+  of the measured size that the isotherm could carry, with end-point error on top.
+- **S0 to S5, structure-free null worlds** (cs T-P4-5 R1 without its shape term): log k″ of each
+  sorbent and temperature is shifted by b ~ N(0, σ_b(T)²), σ_b = 0.089 and 0.300, independent of
+  the isotherm, one b for both directions; the equilibrium is the isotherm scaled by (1 + ε), with
+  |ε| resampled from the 18 measured group offsets, a random sign, and |ε·w₃₀| ≤ 3.128 wt% (the
+  observed offsets reach −1.16 wt% on the negative side, so the symmetric cap is generous there).
+  Nothing any model sees predicts these draws and no component is shared by all sorbents, so any
+  beat is a false positive of a null without model-form error.
+- **C3** (form error; reported only): world C3 of the L1 harness (section 10), a rate law shared by
+  every material but not of B0's form. A B2 beat there would come from the isotherm shape changing
+  B0's best effective k″, the confound of section 2.
 
-It passes if (1) no fold is beaten in N; (2) at least 7 of 8 folds are beaten in K and the
-median over folds and strata of |b_fit/1.5 − 1| is at most 0.25; (3) over the 24 null fold-fits,
-the one-sided 95 % Clopper–Pearson upper bound on the per-fold beat rate is at most 0.40, no world
-has 5 or more of its 8 folds beaten, and the median of r is below 2.5 %. Criterion 3 follows cs
-T-P4-5: the 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation
-ρ ≤ 0.12 (a model assumption, from cs's stylised simulation, ρ 0.03 to 0.12 without a shared
-component), and the median of r replaces the mean, which one catastrophic fold can pull down.
-If the harness fails, H4a′ is reported as not tested, like H4a, and no further hypothesis is
-added.
+Draws: b and ε come from `default_rng([2000 + j, crc32("sorbent|T")])` for null world j, the K2
+offsets from `[3000 + j, ...]`; noise from `default_rng(seed + 10)` with seeds N 1, K 1, K2a–c
+21–23, S0–S5 0–5 (S1 shares its noise seed with N and K; the truths differ). Composites get their
+own draws and their own RH₅₀.
+
+It passes if (1) no fold is beaten in N; (2) at least 7 of 8 folds are beaten in K and the median
+over folds and strata of |b_fit/1.5 − 1| is at most 0.25; (3) over the 48 null fold-fits of
+S0–S5, the one-sided 95 % Clopper–Pearson upper bound on the per-fold beat rate is at most 0.40,
+no world has 5 or more of its 8 folds beaten, and the median of r is below 2.5 %. The 0.40 bound
+keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12, a model
+assumption taken from cs T-P4-5's stylised simulation (ρ 0.03 to 0.12 without a shared
+component; the simulation and its output are archived in `audit/cs_T-P4-5/`); the within-world
+correlation of beats over the six worlds is reported. The
+median of r replaces the mean, which one catastrophic fold can pull down. Criterion 3 tests a null
+without model-form error; world C3 reports the form-error case. If the harness fails, H4a′ is
+"not tested" (section 7), and no further hypothesis is added. The K2 and C3 results are reported
+whatever happens.
 
 ROUNDB2
 
@@ -864,7 +931,7 @@ the chosen one, so 9 fits. That gave 90 L1 fits (L2 was dropped; section 10):
 |---|---|---|
 | L1, primary rule R2 | 90 | about 68 |
 | R1 sensitivity, reusing each fold's R2 configuration (5 seeds only) | 50 | about 38 |
-| Null study before the freeze, 2 replicates × 8 folds, 1 configuration, 1 seed | 16 | about 12 |
+| Null study before the freeze, 2 replicates × 8 folds, 1 configuration, 1 seed (3 replicates, 24 fits, in the last plan) | 16 | about 12 |
 | Null study with the confirmatory runs, 1 replicate × 8 folds, full procedure (4 + 5 fits) | 72 | about 55 |
 | Physics in every run (10 folds for R2 and R1, 8 per null replicate; about 64 min per fold) | — | about 47 |
 | **Total** | 228 | **about 220** |
@@ -945,7 +1012,8 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   three ROS sorbents, Syloid and both composites; 0.04 for MIL-160, 0.06 for CAU-10-H, 0.15 for
   Al-fumarate and 0.28 for MOF-303.
 - **Null-world size** (section 10; `results/null_calibration.json`, recomputed for the revised
-  null world): B0's median E over the eight sorbents is 0.057, 0.070 and 0.045 for replicates
+  null world of 2026-11-08, before the per-sorbent draws and offset cap of 2026-11-09; not
+  recomputed after them, because the L1 null study is not run): B0's median E over the eight sorbents is 0.057, 0.070 and 0.045 for replicates
   0 to 2, against 0.067 on the real data; the null world's F per group is 0.0014 to 0.0140,
   against the real 0.0009 to 0.0126.
 - Commit hash, date and compute budget: to be filled at the freeze.
@@ -1049,3 +1117,15 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   section 2. Title changed. Compute is physics only (section 11). The end-point oracle added to
   section 8. cs T-P4-5's null recommendations (structure-free worlds, 0.40 bound with a stated
   fold-correlation assumption, median r) are used in section 10b; the L1 null study is not run.
+- 2026-11-10 (independent red-team of H4a′, a fresh read-only reviewer while cs is out of usage;
+  22 findings, 4 blocking; all addressed before any B2 harness result was read). B2 is judged
+  against the pooled B0 of the same variant, and built on that variant (B2); a failed B2 harness
+  gives "not tested" in text and code (B3); section 10 no longer gates the freeze, section 10b
+  does (B4); harness version 2 adds realistic-power worlds K2a–c that set the wording of a
+  falsification (B1), six null worlds (M9), the real per-sorbent F and admissibility (M11, m15),
+  and the form-error world C3 (M5, M8); fit_b2 centred with an explicit simplex (M10); end-point
+  oracle per direction, missing offsets reported (M13, m14); title, section 1, the H4a′ wording
+  ("effective k″"), the disclosure (form fixed on 2026-11-08, CAU-10-H visible, null-replicate B2
+  behaviour, RH₅₀ computed the same day) and the descriptive share of the oracle gain (M5–M7);
+  negative-results paragraph (M12); stale statements (m19). The version 1 harness run was
+  stopped and archived unread.
