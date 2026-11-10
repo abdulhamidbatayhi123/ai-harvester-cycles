@@ -1,0 +1,25 @@
+{
+ "figure": "fig_harness_l1",
+ "size_mm": [
+  183.0,
+  70.0
+ ],
+ "font_pt": [
+  6.0,
+  8.0
+ ],
+ "made": "2026-11-10 23:49:52",
+ "style_sha256": "dbf5f9820d55cc2655e2292f46105549c2bbe059734791e3b08929487d1b97e9",
+ "script": "fig_harness_l1.py",
+ "script_sha256": "cb233f1ec58634589c69c287c6dcefcb49bb20cbcc06568c5c3ca595153864ad",
+ "inputs": {
+  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round1\\harness.json": "58ccd2e3affad32e51198cb3f25e75ed3e702660ef8775078c38277715e8fba6",
+  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round2\\harness.json": "314dc39966b4c73046abb902980b4a7cc824cb445bddbc883f3f65b1b63645c1",
+  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round3\\harness.json": "49e9426079815f63b890c9a78cd4674154e985fb8b48f9903a1658fddd163bd3",
+  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round4\\harness.json": "1772a07cf20236b80fa2afb5f8475998c6f22399f0a384e4d690e68d613c7d89",
+  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round5\\harness.json": "a4c9006905e9c1d006626fad567677dc4183a31cbf77e9c35c56b6a9c4c7c7cd",
+  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round6\\harness.json": "53da86aa7121d6726ae351a305cb7764526017f27d815a64c9d905b6de7711de",
+  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round7\\harness.json": "802bc5f9384f8c78b2e1fd2fadf7852100738b25d9d10ef1e7a8678a966541fc",
+  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_alfu\\harness.json": "a521b5e0e9a56cd4ec2792103f3dfb4cd72cd5232f8a79cca2f872367c3cd345"
+ }
+}
