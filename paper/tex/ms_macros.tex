@@ -1,0 +1,16 @@
+% Macros shared by main.tex and si.tex. The build gates (paper/tex/build_ms.py) read these names.
+% \V{key}{value}  a number (math mode); key -> paper/tex/bindings.json; G1 compares value with the source
+% \W{key}{word}   a count written as a word (text); same binding rules (fmt word / Word)
+% \C{...}         a mathematical constant inside a formula (2 in 2 pi, 0 in p -> 0); no data
+% \ID{...}        an identifier that contains digits (hash, date, version, DOI, ORCID, model-cell names); no data
+% \snote{n}       a Supplementary Note number; G2 checks that si.tex defines it
+% \pending{name}{text}  a result not yet available; G7 lists it and a --final build refuses it
+\newcommand{\V}[2]{\ensuremath{#2}}
+\newcommand{\W}[2]{#2}
+\newcommand{\C}[1]{#1}
+\newcommand{\ID}[1]{#1}
+\newcommand{\snote}[1]{#1}
+\newcommand{\pending}[2]{\par\noindent\fbox{\parbox{0.95\linewidth}{\textit{Pending result (#1).} #2}}\par}
+\newcommand{\pss}{p/p_{\mathrm{sat}}}
+\newcommand{\qref}{q_{\mathrm{ref}}}
+\newcommand{\Qst}{Q_{\mathrm{st}}}
