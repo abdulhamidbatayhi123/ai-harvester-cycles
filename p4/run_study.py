@@ -14,7 +14,7 @@ on restart. Seed predictions are cached in <out>/pred/.
 
 usage: python -E -s -m p4.run_study <data_derived/bezrukov2023> <out_dir> [--synthetic [N|null] [--rep k]]
        [--fast] [--rule R1|R2] [--seeds n] [--grid n] [--loso-only] [--configs-from rows.jsonl]
-       [--kinds L1[,L2]]  (default L1; L2 was dropped after harness round 4)
+       [--kinds L1[,L2]|none]  (default L1; L2 was dropped after harness round 4; none = physics only)
 (--rule R1 runs the pre-registered dry-mass sensitivity analysis into a separate out_dir)
 """
 from __future__ import annotations
@@ -115,22 +115,26 @@ def seg_dw(groups):
     return out
 
 
-def b2_E(train, te):
+def b2_E(train, te, return_pred=False):
     """B2: log k'' = a + b * rh50/30 per temperature and direction, fitted on `train` by the
-    scored metric."""
+    scored metric. With return_pred, also the predictions per held-out group (for the violation
+    flags of H4a', PREREG section 7)."""
     ab = {}
     for T in ("27C", "60C"):
         for d in ("ads", "des"):
             gs = [{**g, "des": None} for g in sub(train, T, d)]
             if gs:
                 ab[(T, d)] = fit_b2(gs, d, dt=DT_MIN, metric=True)
-    E = []
+    E, preds = [], []
     for g in te:
         x = rh50(g["ads"]) / 30.0
         ka = np.exp(ab[(g["temp"], "ads")][0] + ab[(g["temp"], "ads")][1] * x) / g["m"]
         kd = np.exp(ab[(g["temp"], "des")][0] + ab[(g["temp"], "des")][1] * x) / g["m"]
-        E += seg_E(simulate_b0(g["rh"], g["w"][:, 0], ka, kd, g["ads"], None, dt=DT_MIN), g["w"])
-    return E, {f"{a}|{b}": v for (a, b), v in ab.items()}
+        pr = simulate_b0(g["rh"], g["w"][:, 0], ka, kd, g["ads"], None, dt=DT_MIN)
+        preds.append(pr)
+        E += seg_E(pr, g["w"])
+    ab = {f"{a}|{b}": v for (a, b), v in ab.items()}
+    return (E, ab, preds) if return_pred else (E, ab)
 
 
 CANDIDATES = {"B0": (simulate_b0, False), "B0-b": (simulate_b0, True), "B1": (simulate_b1, False)}
@@ -206,7 +210,10 @@ def main():
     rep, n_seeds, n_grid = arg("--rep", 0), arg("--seeds", None), arg("--grid", None)
     loso_only = "--loso-only" in sys.argv
     # L2 failed the synthetic harness and was dropped from H4a (PREREG section 10, round 4)
+    # "--kinds none": physics only (B0, B0-b, B1, B2, B0*), the confirmatory run after L1 failed the
+    # harness (PREREG section 10, round 7 and the stopping rule)
     kinds = tuple(sys.argv[sys.argv.index("--kinds") + 1].split(",")) if "--kinds" in sys.argv else ("L1",)
+    kinds = () if kinds == ("none",) else kinds
     # R1 sensitivity run (PREREG section 11): reuse each fold's configuration chosen under R2
     cfg_from = {}
     if "--configs-from" in sys.argv:
@@ -272,11 +279,11 @@ def main():
                     oracle[s] = physics_E(own, simulate_b0, k_own, use_des)
             tm["oracle"] = time.time() - t1
             t1 = time.time()
-            E_b2, ab2 = b2_E(fit_on, te)
+            E_b2, ab2, pred_b2 = b2_E(fit_on, te, return_pred=True)
             tm["B2"] = time.time() - t1
             rows.put({"key": key, "fold": fold, "held": held, "val": vs, "B0_variant": b0v,
                       "B2_ab": ab2, "viol_data": viol(te, [g["w"] for g in te]),
-                      "viol_base": viol(te, pred[base]), "dw": seg_dw(te),
+                      "viol_base": viol(te, pred[base]), "viol_B2": viol(te, pred_b2), "dw": seg_dw(te),
                       "comparator": base, "k2": {f"{a}|{b}": v for (a, b), v in k_fit[b0v].items()},
                       "k2_all": {c: {f"{a}|{b}": v for (a, b), v in k.items()} for c, k in k_fit.items()},
                       "choice_score": inner_score, "choice_per_sorbent": inner_per, "seg": ids,

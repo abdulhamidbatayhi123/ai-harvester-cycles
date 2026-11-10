@@ -182,3 +182,26 @@ def test_held_composite_without_segments_fails(tmp_path):
     f = out["folds"]["LOSO:S0|L1"]
     assert f["per_material"]["S0"]["rule_met"] and not f["per_material"]["S0_composite"]["rule_met"]
     assert not f["beats_B0"]
+
+
+def _b2_rows(gain, viol_b2=0.0):
+    rows = _rows(0.0)
+    for r in rows:
+        if r["key"].endswith("|physics"):
+            r["E"]["B2"] = [e - gain for e in r["E"]["base"]]
+            r["viol_B2"] = [i < viol_b2 * len(r["seg"]) for i in range(len(r["seg"]))]
+    return rows
+
+
+def test_b2_is_judged_from_the_physics_row(tmp_path):
+    """H4a' (2026-11-10): B2 is scored by the same rule as a learned model, from the physics row."""
+    out = _run(tmp_path, _b2_rows(0.03))
+    assert out["H4a"]["B2"]["verdict"] == "supported" and out["H4a"]["B2"]["LOSO_beats"] == 8
+    assert out["H4a"]["L1"]["verdict"] == "falsified"          # the learned rows are untouched
+    out = _run(tmp_path, _b2_rows(0.0))
+    assert out["H4a"]["B2"]["verdict"] == "falsified"
+
+
+def test_b2_violations_block_a_beat(tmp_path):
+    out = _run(tmp_path, _b2_rows(0.03, viol_b2=0.5))
+    assert out["H4a"]["B2"]["LOSO_beats"] == 0

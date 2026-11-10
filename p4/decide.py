@@ -129,6 +129,11 @@ def main():
     F = sorbent_F(json.load(open(sys.argv[2], encoding="utf-8")))
     phys = {r["fold"]: r for r in rows if r["key"].endswith("|physics")}
     ens = {(r["fold"], r["kind"]): r for r in rows if r["key"].endswith("|ensemble")}
+    # H4a' (PREREG section 2, added 2026-11-10 after L1 failed the harness): B2 is judged by the same
+    # rule as a learned model, against the same comparator, from the physics row of each fold
+    for fold, p in phys.items():
+        if p["E"].get("B2") is not None:
+            ens[(fold, "B2")] = {"seg": p["seg"], "E": p["E"]["B2"], "viol": p.get("viol_B2")}
     out = {"folds": {}, "H4a": {}, "H4b": {}}
     for (fold, kind), r in sorted(ens.items()):
         p = phys[fold]
@@ -182,7 +187,7 @@ def main():
             "r_fold": r_fold, "r_pooled": info["r"],
             "candidates": cand, "heldout_best_candidate": best,
             "beats_heldout_best": bool(best is not None and cand[best]["rule_met"] and admissible), **info}
-    for kind in ("L1", "L2"):
+    for kind in ("L1", "L2", "B2"):
         loso_v = [v for k, v in out["folds"].items() if k.startswith("LOSO") and k.endswith(kind)]
         loso = [v["beats_B0"] for v in loso_v]
         lofo = [v["beats_B0"] for k, v in out["folds"].items() if k.startswith("LOFO") and k.endswith(kind)
@@ -194,7 +199,11 @@ def main():
         n_best = sum(v["beats_heldout_best"] for v in loso_v)
         n_rel = int(np.sum(rel >= REL))
         verdict = ("supported" if n >= 7 else "falsified" if n_rel <= 1 else "not established") if len(loso) == 8 else "incomplete"
-        out["H4a"][kind] = {"role": "primary" if kind == "L1" else "secondary", "LOSO_beats": n,
+        if not loso_v:
+            continue
+        role = {"L1": "learned (not tested: failed the synthetic harness, section 10)",
+                "L2": "learned (dropped after harness round 4)", "B2": "H4a' (primary from 2026-11-10)"}[kind]
+        out["H4a"][kind] = {"role": role, "LOSO_beats": n,
                             "LOSO_folds": len(loso), "verdict": verdict,
                             "rel_improvement_mean": float(rel.mean()) if len(rel) else None,
                             "rel_improvement_folds": rel.tolist(), "n_folds_rel_ge_10pct": n_rel,

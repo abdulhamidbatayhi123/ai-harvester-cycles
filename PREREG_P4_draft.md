@@ -759,7 +759,12 @@ since criterion 2 needs all three sorbents. What follows from sections 5, 7 and 
   this size at the noise floor of these measurements. No statement is made that learning cannot
   help on the real data.
 
-ALFU
+**The untouched fold, Al-fumarate** (`results/harness_alfu/harness.json`, same code and seed,
+finished 2026-11-10 07:48). World N: no beat (L1 0.00035 against B0 0.00034, p = 0.88; k″
+recovered within 0.15 %), so criterion 3 holds on all three sorbents. World C3: a beat, with
+median E 0.028 against 0.067 (ratio 0.42, gain 0.031, p = 7.6 × 10⁻⁶). L1 thus met criterion 2
+on two of the three judged sorbents and failed it on MOF-303, the one with the smallest injected
+effect. The outcome above stands.
 
 ## 11. Compute
 
