@@ -12,6 +12,7 @@ plus the full-procedure replicate).
 Transfer across families is reported for a supported model (both non-trivial LOFO folds).
 
 usage: python -E -s -m p4.final_verdict <decide_R2.json> <decide_R1.json> <null_summary.json> <out.json> [kind=L1]
+       for H4a' (kind B2) the third file is results/harness_b2/harness_b2.json
 """
 from __future__ import annotations
 
@@ -21,7 +22,12 @@ import sys
 
 def combine(r2, r1, null, kind="L1"):
     a, b = r2["H4a"][kind], r1["H4a"][kind]
-    c4 = bool(null.get(kind, {}).get("criterion_4_pass", False))
+    if kind == "B2":
+        # H4a' (section 2): the null calibration is the B2 harness (section 10b), which must pass
+        # all three of its criteria (audit/harness_b2.py writes them under "pass")
+        c4 = bool(null.get("pass")) and all(null["pass"].values())
+    else:
+        c4 = bool(null.get(kind, {}).get("criterion_4_pass", False))
     out = {"kind": kind, "verdict_R2": a["verdict"], "verdict_R1": b["verdict"], "criterion_4_pass": c4,
            "robust_to_dry_mass_rule": a["verdict"] == b["verdict"]}
     if "incomplete" in (a["verdict"], b["verdict"]):

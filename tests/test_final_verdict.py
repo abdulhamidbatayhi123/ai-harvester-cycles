@@ -37,3 +37,18 @@ def test_every_combination():
 def test_missing_null_summary_is_not_a_pass():
     res = combine(_d("supported", W[0], True), _d("supported", W[0], True), {})
     assert res["verdict"] == "not established"
+
+
+def _b2(v):
+    return {"H4a": {"B2": {"verdict": v, "claim_wording": "beats the isotherm-driven models" if v == "supported" else None,
+                           "transfers_across_families": True}}}
+
+
+def test_b2_needs_every_harness_criterion():
+    ok = {"pass": {"1_no_beat_in_N": True, "2_K_found": True, "3_null_S": True}}
+    assert combine(_b2("supported"), _b2("supported"), ok, "B2")["verdict"] == "supported"
+    for k in ok["pass"]:
+        bad = {"pass": {**ok["pass"], k: False}}
+        assert combine(_b2("supported"), _b2("supported"), bad, "B2")["verdict"] == "not established"
+    assert combine(_b2("supported"), _b2("supported"), {}, "B2")["verdict"] == "not established"
+    assert combine(_b2("falsified"), _b2("falsified"), ok, "B2")["verdict"] == "falsified"

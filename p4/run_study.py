@@ -28,7 +28,7 @@ import numpy as np
 import torch
 
 from p4.dataset import build_groups
-from p4.physics import fit_b2, fit_scale, fit_scale_metric, rh50, simulate_b0, simulate_b1, violations
+from p4.physics import Branch, fit_b2, fit_scale, fit_scale_metric, rh50, simulate_b0, simulate_b1, violations
 from p4.segments import DT_MIN, normalised_rms
 from p4.train import isotherms_by_material, predict, train_two_stage
 
@@ -98,6 +98,49 @@ def physics_pred(groups, simulate, k2, use_des):
         ka, kd = k2[(g["temp"], "ads")] / g["m"], k2[(g["temp"], "des")] / g["m"]
         out.append(simulate(g["rh"], g["w"][:, 0], ka, kd, g["ads"], g["des"] if use_des else None, dt=DT_MIN))
     return out
+
+
+def endpoint_eps(groups):
+    """Relative end-point offset of the held-out sorbent's own data, per (sorbent, temperature):
+    the median over its equilibrated segments of w_end / w_ads(RH_end) - 1, the factor by which the
+    isotherm would have to be scaled, over segments that end where w_ads(RH_end) >= 0.2 w30 (a step
+    that ends near 0 % RH carries no information on a scale factor), where a segment is
+    equilibrated if it moved at least 0.5 wt% and the slope of its last tenth, extrapolated over the
+    segment, is below 2 % of the move (the rule of audit/compare_dry_rules.py), RH_end is the median
+    RH over that tenth, and w_ads is the adsorption branch that B0 equilibrates on in both
+    directions. Uses held-out data: an oracle diagnostic (PREREG section 8, cs T-P4-5 R5a)."""
+    by = {}
+    for g in groups:
+        w30 = float(g["ads"].w_of_rh(30.0))
+        for w, rh in zip(g["w"], g["rh"]):
+            n = int(np.isfinite(w).sum())
+            w, rh = w[:n], rh[:n]
+            if n < 10:
+                continue
+            n10 = max(5, n // 10)
+            dw = abs(w[-1] - w[0])
+            tail = np.polyfit(np.arange(n10) * DT_MIN, w[-n10:], 1)[0] * n * DT_MIN
+            if dw < 0.5 or abs(tail) > 0.02 * dw:
+                continue
+            w_eq = float(g["ads"].w_of_rh(float(np.median(rh[-n10:]))))
+            if w_eq < 0.2 * w30:
+                continue
+            by.setdefault((g["sorbent"], g["temp"]), []).append(w[-1] / w_eq - 1.0)
+    return {k: float(np.median(v)) for k, v in by.items()}
+
+
+def endpoint_oracle_E(groups, k2, use_des, eps):
+    """B0 (the fold's variant, pooled k'' of the training sorbents) re-scored with the isotherm
+    scaled by (1 + eps) of the held-out sorbent's own end-points (endpoint_eps): how much of B0's
+    error is the end point and how much the rate (PREREG section 8). No refit."""
+    E = []
+    for g in groups:
+        e = eps.get((g["sorbent"], g["temp"]), 0.0)
+        ads = Branch.from_points(g["ads"].rh, g["ads"].w * (1.0 + e))
+        des = Branch.from_points(g["des"].rh, g["des"].w * (1.0 + e)) if use_des and g.get("des") is not None else None
+        ka, kd = k2[(g["temp"], "ads")] / g["m"], k2[(g["temp"], "des")] / g["m"]
+        E += seg_E(simulate_b0(g["rh"], g["w"][:, 0], ka, kd, ads, des, dt=DT_MIN), g["w"])
+    return E
 
 
 def physics_E(groups, simulate, k2, use_des, preds=None):
@@ -281,14 +324,17 @@ def main():
             t1 = time.time()
             E_b2, ab2, pred_b2 = b2_E(fit_on, te, return_pred=True)
             tm["B2"] = time.time() - t1
+            eps_hat = endpoint_eps(te)
+            E_eq = endpoint_oracle_E(te, k_fit[b0v], use_des, eps_hat)
             rows.put({"key": key, "fold": fold, "held": held, "val": vs, "B0_variant": b0v,
                       "B2_ab": ab2, "viol_data": viol(te, [g["w"] for g in te]),
                       "viol_base": viol(te, pred[base]), "viol_B2": viol(te, pred_b2), "dw": seg_dw(te),
+                      "eps_hat": {f"{a}|{b}": v for (a, b), v in eps_hat.items()},
                       "comparator": base, "k2": {f"{a}|{b}": v for (a, b), v in k_fit[b0v].items()},
                       "k2_all": {c: {f"{a}|{b}": v for (a, b), v in k.items()} for c, k in k_fit.items()},
                       "choice_score": inner_score, "choice_per_sorbent": inner_per, "seg": ids,
                       "E": {"B0": E[b0v], "B0-b_or_B0_other": E["B0" if use_des else "B0-b"], "B1": E["B1"],
-                            "base": E[base], "B2": E_b2,
+                            "base": E[base], "B2": E_b2, "B0_endpoint_oracle": E_eq,
                             "B0star": sum((oracle[s] for s in held if s in oracle), [])},
                       "s": time.time() - t0, "s_parts": tm})
             log(f"{fold}: physics done ({b0v}; comparator {base}; {time.time() - t0:.0f}s)")

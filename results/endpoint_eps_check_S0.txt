@@ -1,0 +1,19 @@
+Al-fumarate          27C true +0.0120 est +0.0121
+Al-fumarate          60C true +0.0070 est +0.0070
+CAU-10               27C true +0.0070 est +0.0070
+CAU-10               60C true -0.0360 est -0.0361
+MIL-160              27C true -0.0000 est -0.0001
+MIL-160              60C true -0.0370 est -0.0371
+MOF-303              27C true +0.0060 est +0.0057
+MOF-303              60C true +0.0590 est +0.0589
+ROS-037              27C true -0.0230 est -0.0227
+ROS-037              60C true +0.0600 est +0.0602
+ROS-037_composite    60C true +0.0590 est +0.0586
+ROS-039              27C true -0.0110 est -0.0110
+ROS-039              60C true -0.0070 est -0.0070
+ROS-039_composite    60C true -0.0240 est -0.0240
+ROS-040              27C true +0.0110 est +0.0110
+ROS-040              60C true -0.0380 est -0.0380
+Syloid               27C true -0.0050 est -0.0054
+Syloid               60C true +0.0050 est +0.0060
+E_B0 0.05284583756644935 E_eq 0.03184828828687475
