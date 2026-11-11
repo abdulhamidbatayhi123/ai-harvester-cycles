@@ -37,13 +37,7 @@
    "main text 3633 outside 4,500-5,500"
   ],
   "G6_n_figures": 6,
-  "G7_pending": [
-   {
-    "doc": "main.tex",
-    "name": "availability",
-    "text": "Repository and Zenodo DOI of the code, pre-registration, harness records and every results file; the raw data stay at their source (Zenodo, doi:10.5281/zenodo.6"
-   }
-  ]
+  "G7_pending": []
  },
  "G1_bindings_checked": [
   {
