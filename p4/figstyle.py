@@ -145,8 +145,14 @@ def _git_dirty(paths):
 
 def small_scripts(fig):
     """Visible mathtext with a sub- or superscript whose script would print below SUB_MIN_PT."""
+    import warnings
     from matplotlib.text import Text
-    fig.canvas.draw()   # tick labels exist only after a draw
+    with warnings.catch_warnings(record=True) as caught:
+        warnings.simplefilter("always")
+        fig.canvas.draw()   # tick labels exist only after a draw
+    # a glyph the font lacks prints as an empty box and only warns; refuse it (Fig. S1, 2026-11-11)
+    missing = [str(w.message)[:80] for w in caught if "missing" in str(w.message).lower() and "glyph" in str(w.message).lower()]
+    assert not missing, f"glyphs missing from the font: {missing}"
     out = []
     for t in fig.findobj(Text):
         s = t.get_text()
