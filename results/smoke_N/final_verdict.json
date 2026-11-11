@@ -1,0 +1,8 @@
+{
+ "kind": "B2",
+ "verdict_R2": "incomplete",
+ "verdict_R1": "incomplete",
+ "criterion_4_pass": true,
+ "robust_to_dry_mass_rule": true,
+ "verdict": "incomplete"
+}

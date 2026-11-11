@@ -1,0 +1,163 @@
+{
+ "folds": {
+  "LOSO:ROS-037|B2": {
+   "beats_B0": false,
+   "rule_met": false,
+   "per_material": {
+    "ROS-037": {
+     "rule_met": false,
+     "median_gain": 1.6828501483286086e-06,
+     "r": 0.0014784287562948748,
+     "p_signflip": 0.026259541511535645,
+     "E_B0": 0.001138269356006061,
+     "E_model": 0.0011238249361527923,
+     "F": 0.003972375960272201,
+     "n_clusters": 26,
+     "min_attainable_p": 1.4901161193847656e-08
+    },
+    "ROS-037_composite": {
+     "rule_met": false,
+     "median_gain": 1.998311711093116e-06,
+     "r": 0.0012875002993854357,
+     "p_signflip": 6.139252284448338e-05,
+     "E_B0": 0.0015520864049872241,
+     "E_model": 0.0015461188877548444,
+     "F": 0.006151471913883388,
+     "n_clusters": 54,
+     "min_attainable_p": 5.551115123125783e-17
+    }
+   },
+   "violation_rate": 0.013888888888888888,
+   "violation_rate_data": 0.020833333333333332,
+   "violation_rate_comparator": 0.013888888888888888,
+   "violation_excess": 0.0,
+   "admissible": true,
+   "comparator": "B0, same variant (B0)",
+   "chosen_comparator_rule_met": false,
+   "share_of_oracle_gain": 6.206145811802292,
+   "E_B2": 0.0012564347778956835,
+   "r_fold": 0.0012875002993854357,
+   "r_pooled": 0.0012786115110348922,
+   "candidates": {
+    "B0": {
+     "rule_met": false,
+     "E_heldout": 0.0012755225968500553
+    },
+    "B0-b_or_B0_other": {
+     "rule_met": false,
+     "E_heldout": 0.005206811659347324
+    },
+    "B1": {
+     "rule_met": true,
+     "E_heldout": 0.1282480308637934
+    }
+   },
+   "heldout_best_candidate": "B0",
+   "beats_heldout_best": false,
+   "median_gain": 1.8519317318605355e-06,
+   "r": 0.0012786115110348922,
+   "p_signflip": 1.483244210108769e-05,
+   "E_B0": 0.0014483928197718205,
+   "E_model": 0.001444874621665294,
+   "F": 0.006151471913883388,
+   "n_clusters": 80,
+   "min_attainable_p": 8.271806125530277e-25
+  },
+  "LOSO:ROS-039|B2": {
+   "beats_B0": false,
+   "rule_met": false,
+   "per_material": {
+    "ROS-039": {
+     "rule_met": false,
+     "median_gain": -3.868002190116621e-05,
+     "r": -0.07670122613251082,
+     "p_signflip": 0.9999999552965164,
+     "E_B0": 0.0005042947010304856,
+     "E_model": 0.0005791414455920298,
+     "F": 0.002332715434601723,
+     "n_clusters": 26,
+     "min_attainable_p": 1.4901161193847656e-08
+    },
+    "ROS-039_composite": {
+     "rule_met": false,
+     "median_gain": -6.584264419248124e-06,
+     "r": -0.008785891396844188,
+     "p_signflip": 0.9999999998594105,
+     "E_B0": 0.0007494133630667381,
+     "E_model": 0.0007876737020960867,
+     "F": 0.006187836934634464,
+     "n_clusters": 54,
+     "min_attainable_p": 5.551115123125783e-17
+    }
+   },
+   "violation_rate": 0.0,
+   "violation_rate_data": 0.008368200836820083,
+   "violation_rate_comparator": 0.0,
+   "violation_excess": 0.0,
+   "admissible": true,
+   "comparator": "B0, same variant (B0)",
+   "chosen_comparator_rule_met": false,
+   "share_of_oracle_gain": 0.3008859694547865,
+   "E_B2": 0.0007184036005041345,
+   "r_fold": -0.07670122613251082,
+   "r_pooled": -0.025785062098028864,
+   "candidates": {
+    "B0": {
+     "rule_met": false,
+     "E_heldout": 0.000676888521237502
+    },
+    "B0-b_or_B0_other": {
+     "rule_met": true,
+     "E_heldout": 0.010623797442352475
+    },
+    "B1": {
+     "rule_met": true,
+     "E_heldout": 0.1211572875095179
+    }
+   },
+   "heldout_best_candidate": "B0",
+   "beats_heldout_best": false,
+   "median_gain": -1.816989489038341e-05,
+   "r": -0.025785062098028864,
+   "p_signflip": 1.0,
+   "E_B0": 0.0007046674862098705,
+   "E_model": 0.0007423263366120869,
+   "F": 0.006187836934634464,
+   "n_clusters": 80,
+   "min_attainable_p": 8.271806125530277e-25
+  }
+ },
+ "H4a": {
+  "B2": {
+   "role": "H4a' (primary from 2026-11-10)",
+   "LOSO_beats": 0,
+   "LOSO_folds": 2,
+   "verdict": "incomplete",
+   "rel_improvement_mean": -0.037706862916562695,
+   "rel_improvement_folds": [
+    0.0012875002993854357,
+    -0.07670122613251082
+   ],
+   "n_folds_rel_ge_10pct": 0,
+   "rel_improvement_order7": null,
+   "LOSO_beats_vs_heldout_best_candidate": 0,
+   "claim_wording": null,
+   "LOFO_beats_nontrivial": 0,
+   "LOFO_folds_nontrivial": 0,
+   "transfers_across_families": null
+  }
+ },
+ "H4b": {
+  "ROS-037": {
+   "E_B0": 0.0012755225968500553,
+   "E_B0star": 0.0012724469651241503,
+   "fraction_of_gap_closed": 3075631.725905047
+  },
+  "ROS-039": {
+   "E_B0": 0.000676888521237502,
+   "E_B0star": 0.0008148646433606405,
+   "fraction_of_gap_closed": -137976122.1231385
+  },
+  "n_closing_more_than_half": 1
+ }
+}

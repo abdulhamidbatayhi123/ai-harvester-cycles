@@ -1,0 +1,35 @@
+2026-11-11 12:08:00 dry-mass rule R2; 1187 segments in 18 groups
+2026-11-11 12:39:05 LOSO:ROS-037: physics done (B0; comparator B0; 1621s)
+2026-11-11 13:04:48 LOSO:ROS-039: physics done (B0; comparator B0; 1543s)
+2026-11-11 13:04:48 done
+{
+ "H4a": {
+  "B2": {
+   "role": "H4a' (primary from 2026-11-10)",
+   "LOSO_beats": 0,
+   "LOSO_folds": 2,
+   "verdict": "incomplete",
+   "rel_improvement_mean": -0.037706862916562695,
+   "rel_improvement_folds": [
+    0.0012875002993854357,
+    -0.07670122613251082
+   ],
+   "n_folds_rel_ge_10pct": 0,
+   "rel_improvement_order7": null,
+   "LOSO_beats_vs_heldout_best_candidate": 0,
+   "claim_wording": null,
+   "LOFO_beats_nontrivial": 0,
+   "LOFO_folds_nontrivial": 0,
+   "transfers_across_families": null
+  }
+ },
+ "H4b_n_closing_more_than_half": 1
+}
+{
+ "kind": "B2",
+ "verdict_R2": "incomplete",
+ "verdict_R1": "incomplete",
+ "criterion_4_pass": true,
+ "robust_to_dry_mass_rule": true,
+ "verdict": "incomplete"
+}
