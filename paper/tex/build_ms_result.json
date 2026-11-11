@@ -1,6 +1,6 @@
 {
  "gate": "manuscript/build_ms.py",
- "final": false,
+ "final": true,
  "status": "PASS",
  "failures": [],
  "report": {
