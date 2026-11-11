@@ -8,10 +8,10 @@
   6.0,
   8.0
  ],
- "made": "2026-11-11 20:10:34",
+ "made": "2026-11-11 20:48:30",
  "hash": "sha256, text files LF-normalised",
  "style": "p4/figstyle.py",
- "style_sha256": "067d313ddb710199d9b5c274faee7ed5f0e2e5a3113fbbb431411bbd1b3ec870",
+ "style_sha256": "3eb79a88688941e8515edcf18147f9e3aeea45aca5fabc4c4f95111c2b68dc99",
  "script": "figures/fig_results.py",
  "script_sha256": "b5b9458e19acf4c26f9f00a0ef5cdf07bf3711993012fbc63a971d9775edd1b0",
  "inputs": {
