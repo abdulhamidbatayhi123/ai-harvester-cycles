@@ -93,8 +93,37 @@ seed.}\label{tab:harness}
 
 \section*{Supplementary Note~\snote{2}: The B2 harness}
 
-\pending{note2}{Worlds N, K, K2a--c, S0--S5 and C3, the three pass criteria and their results (PREREG section 10b),
-per-world beats and median $r$, the within-world correlation of null beats.}
+\paragraph{Design.} The harness of H4a$'$ (version~\ID{2}, committed before its first run; an earlier version was
+revised after an independent review, and its only run was stopped before any result was read) uses the real forcing,
+isotherms and dry masses of the primary set and the two composites, and the same autocorrelated noise as the harness
+of Note~\snote{1}. Each world runs the \V{si2_nfold}{8} LOSO folds; in each fold B0 and B2 are fitted on the training
+sorbents by the scored metric, and the decision rule of the main text is applied with each material's real noise
+floor and the admissibility check. In world N the truth is B0 with the pooled $\kpp$ of the real data. In world K
+(plumbing) the log rate constant of each sorbent is shifted by $\V{si2_bK}{1.5}\,(x - \bar{x})$, with $x = \mathrm{RH}_{50}/\V{si2_x30}{30}\,\%$,
+so the truth lies inside B2's class; K checks the machinery, not power. Worlds K2a, K2b and K2c (realistic power) use
+the same form with the slope at each temperature chosen so that the across-sorbent spread of the shift equals the
+measured in-sample spread of $\log\kpp$ (\V{si2_sd27}{0.089} at \V{si2_T27}{27}~\textdegree C, slope
+\V{si2_b27}{0.50}; \V{si2_sd60}{0.300} at \V{si2_T60}{60}~\textdegree C, slope \V{si2_b60}{1.38}), plus end-point
+offsets drawn as in the null worlds: the largest effect of the measured size that the isotherm could carry, with
+end-point error on top. In the six structure-free null worlds S0 to S5 the log rate constant of each sorbent and
+temperature is shifted by a normal draw with the same spreads, independent of the isotherm, and the equilibrium is the
+isotherm scaled by $(\C{1} + \varepsilon)$, with $|\varepsilon|$ resampled from the \V{si2_ngroups}{18} measured group
+offsets, a random sign and $|\varepsilon\, w_{30}|$ capped at \V{si2_cap}{3.128}~wt\%; nothing any model sees predicts
+these draws, so any beat is a false positive. World C3 (form error, reported only) is world C3 of Note~\snote{1}, a
+rate law shared by every material but not of B0's form.
+
+The harness passes if (\C{1}) no fold is beaten in N; (\C{2}) at least \V{si2_need}{7} of \V{si2_nfold2}{8} folds are
+beaten in K and the median over folds and strata of $|b_{\mathrm{fit}}/\V{si2_bK2}{1.5} - \C{1}|$ is at most \V{si2_btol}{0.25}; and
+(\C{3}) over the \V{si2_nnull}{48} null fold-fits, the one-sided \V{si2_cp}{95}\,\% Clopper--Pearson upper bound on the
+per-fold beat rate is at most \V{si2_cpmax}{0.40}, no world has \V{si2_wmax}{5} or more of its folds beaten, and the
+median of $r$ is below \V{si2_rmax}{2.5}\,\%. The bound of \V{si2_cpmax2}{0.40} keeps the probability of at least
+\V{si2_need2}{7} beaten folds under the null at or below \V{si2_p7}{0.05} for a within-world fold correlation up to
+\V{si2_rho}{0.12}; the observed within-world correlation of null beats is reported. If the harness fails, H4a$'$ is
+not tested. The K2 and C3 results are reported whatever happens; if H4a$'$ is falsified, the K2 worlds set its
+wording.
+
+\pending{note2}{Results: pass criteria, per-world beats, median $r$, median fitted slope, $E$ of B0 per world, the
+within-world correlation of null beats (\texttt{results/harness\_b2/report.json}).}
 
 \input{refs_si.tex}
 

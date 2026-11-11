@@ -9,8 +9,8 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 63,
-  "G1_n_keys": 63,
+  "G1_n_uses": 87,
+  "G1_n_keys": 87,
   "G2_main.tex_n_refs": 31,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 2,
@@ -22,7 +22,7 @@
    "abstract": 32,
    "main_text": 1014,
    "methods": 1447,
-   "si": 922
+   "si": 1373
   },
   "G5_targets": {
    "abstract": "<= 200",
@@ -68,7 +68,7 @@
    {
     "doc": "si.tex",
     "name": "note2",
-    "text": "Worlds N, K, K2a--c, S0--S5 and C3, the three pass criteria and their results (PREREG section 10b), per-world beats and median $r$, the within-world correlation"
+    "text": "Results: pass criteria, per-world beats, median $r$, median fitted slope, $E$ of B0 per world, the within-world correlation of null beats (\\texttt{results/harne"
    }
   ]
  },
@@ -512,6 +512,174 @@
    "doc": "si.tex",
    "text": "0.42",
    "source": "0.42",
+   "ok": true
+  },
+  {
+   "key": "si2_nfold",
+   "doc": "si.tex",
+   "text": "8",
+   "source": "PREREG_P4_draft.md: Each world runs the 8 LOSO folds",
+   "ok": true
+  },
+  {
+   "key": "si2_bK",
+   "doc": "si.tex",
+   "text": "1.5",
+   "source": "PREREG_P4_draft.md: log k″ of each sorbent is shifted by 1.5·(RH₅₀/30 − mean)",
+   "ok": true
+  },
+  {
+   "key": "si2_x30",
+   "doc": "si.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: log k″ of each sorbent is shifted by 1.5·(RH₅₀/30 − mean)",
+   "ok": true
+  },
+  {
+   "key": "si2_sd27",
+   "doc": "si.tex",
+   "text": "0.089",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si2_T27",
+   "doc": "si.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si2_b27",
+   "doc": "si.tex",
+   "text": "0.50",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si2_sd60",
+   "doc": "si.tex",
+   "text": "0.300",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si2_T60",
+   "doc": "si.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si2_b60",
+   "doc": "si.tex",
+   "text": "1.38",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si2_ngroups",
+   "doc": "si.tex",
+   "text": "18",
+   "source": "PREREG_P4_draft.md: |ε| resampled from the 18 measured group offsets",
+   "ok": true
+  },
+  {
+   "key": "si2_cap",
+   "doc": "si.tex",
+   "text": "3.128",
+   "source": "PREREG_P4_draft.md: |ε·w₃₀| ≤ 3.128 wt%",
+   "ok": true
+  },
+  {
+   "key": "si2_need",
+   "doc": "si.tex",
+   "text": "7",
+   "source": "PREREG_P4_draft.md: at least 7 of 8 folds are beaten in K",
+   "ok": true
+  },
+  {
+   "key": "si2_nfold2",
+   "doc": "si.tex",
+   "text": "8",
+   "source": "PREREG_P4_draft.md: at least 7 of 8 folds are beaten in K",
+   "ok": true
+  },
+  {
+   "key": "si2_bK2",
+   "doc": "si.tex",
+   "text": "1.5",
+   "source": "PREREG_P4_draft.md: |b_fit/1.5 − 1| is at most 0.25",
+   "ok": true
+  },
+  {
+   "key": "si2_btol",
+   "doc": "si.tex",
+   "text": "0.25",
+   "source": "PREREG_P4_draft.md: |b_fit/1.5 − 1| is at most 0.25",
+   "ok": true
+  },
+  {
+   "key": "si2_nnull",
+   "doc": "si.tex",
+   "text": "48",
+   "source": "PREREG_P4_draft.md: over the 48 null fold-fits of S0–S5",
+   "ok": true
+  },
+  {
+   "key": "si2_cp",
+   "doc": "si.tex",
+   "text": "95",
+   "source": "PREREG_P4_draft.md: the one-sided 95 % Clopper–Pearson upper bound on the per-fold beat rate is at most 0.40",
+   "ok": true
+  },
+  {
+   "key": "si2_cpmax",
+   "doc": "si.tex",
+   "text": "0.40",
+   "source": "PREREG_P4_draft.md: the one-sided 95 % Clopper–Pearson upper bound on the per-fold beat rate is at most 0.40",
+   "ok": true
+  },
+  {
+   "key": "si2_wmax",
+   "doc": "si.tex",
+   "text": "5",
+   "source": "PREREG_P4_draft.md: no world has 5 or more of its 8 folds beaten",
+   "ok": true
+  },
+  {
+   "key": "si2_rmax",
+   "doc": "si.tex",
+   "text": "2.5",
+   "source": "PREREG_P4_draft.md: the median of r is below 2.5 %",
+   "ok": true
+  },
+  {
+   "key": "si2_cpmax2",
+   "doc": "si.tex",
+   "text": "0.40",
+   "source": "PREREG_P4_draft.md: The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12",
+   "ok": true
+  },
+  {
+   "key": "si2_need2",
+   "doc": "si.tex",
+   "text": "7",
+   "source": "PREREG_P4_draft.md: The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12",
+   "ok": true
+  },
+  {
+   "key": "si2_p7",
+   "doc": "si.tex",
+   "text": "0.05",
+   "source": "PREREG_P4_draft.md: The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12",
+   "ok": true
+  },
+  {
+   "key": "si2_rho",
+   "doc": "si.tex",
+   "text": "0.12",
+   "source": "PREREG_P4_draft.md: The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12",
    "ok": true
   }
  ]
