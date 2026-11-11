@@ -1,0 +1,21 @@
+{
+ "figure": "fig_trajectories",
+ "size_mm": [
+  183.0,
+  58.0
+ ],
+ "font_pt": [
+  6.0,
+  8.0
+ ],
+ "made": "2026-11-11 20:40:03",
+ "hash": "sha256, text files LF-normalised",
+ "style": "p4/figstyle.py",
+ "style_sha256": "067d313ddb710199d9b5c274faee7ed5f0e2e5a3113fbbb431411bbd1b3ec870",
+ "script": "figures/fig_trajectories.py",
+ "script_sha256": "1e29a48619f76c36bacfd87a074febb68349e17471bb5401171f77c9b725591c",
+ "inputs": {
+  "results/confirm_R2/rows.jsonl": "0ca9839801fcc02125fbcba53c4dc2a2e7c24a674abd2d1fa02f508ba0372eef"
+ },
+ "git_dirty_files": []
+}

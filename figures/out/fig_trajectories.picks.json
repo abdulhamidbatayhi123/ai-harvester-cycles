@@ -1,0 +1,26 @@
+[
+ {
+  "sorbent": "Al-fumarate",
+  "temp": "60C",
+  "segment_index_in_group": 17,
+  "rh_from": 48.28333333329942,
+  "rh_to": 0.45500000000004265,
+  "median_E_B0_sorbent": 0.055140675684020216
+ },
+ {
+  "sorbent": "ROS-040",
+  "temp": "27C",
+  "segment_index_in_group": 43,
+  "rh_from": 28.954999999998304,
+  "rh_to": 0.97,
+  "median_E_B0_sorbent": 0.06206709278445549
+ },
+ {
+  "sorbent": "ROS-037",
+  "temp": "60C",
+  "segment_index_in_group": 73,
+  "rh_from": 31.13,
+  "rh_to": 0.3,
+  "median_E_B0_sorbent": 0.09959866661965902
+ }
+]
