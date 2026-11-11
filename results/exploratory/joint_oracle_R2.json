@@ -1,0 +1,88 @@
+{
+ "about": "EXPLORATORY (post hoc, after the confirmatory result; not pre-registered). Asked by the internal referee review of\n2026-11-11 (finding M5): the two oracles of PREREG sections 2 and 8 are applied one at a time, so their effects need\nnot add. This applies both at once: B0 with the held-out sorbent's own end points (the eps_hat of the confirmatory\nrows, unchanged) AND its own k'' fitted on those scaled isotherms by the scored metric, exactly as B0* is fitted\n(p4.run_study.fit_physics). Uses held-out data: an oracle, never a prediction.",
+ "rule": "R2",
+ "folds": {
+  "LOSO:ROS-037": {
+   "held": [
+    "ROS-037",
+    "ROS-037_composite"
+   ],
+   "E_B0": 0.09959866661965902,
+   "E_endpoint": 0.09372365174688953,
+   "E_B0star": 0.08517427718052073,
+   "E_joint": 0.0742031728325783,
+   "n_nan_joint": 0
+  },
+  "LOSO:ROS-039": {
+   "held": [
+    "ROS-039",
+    "ROS-039_composite"
+   ],
+   "E_B0": 0.09030855325383873,
+   "E_endpoint": 0.07625561799614944,
+   "E_B0star": 0.07641427991149585,
+   "E_joint": 0.07480175462880201,
+   "n_nan_joint": 0
+  },
+  "LOSO:ROS-040": {
+   "held": [
+    "ROS-040"
+   ],
+   "E_B0": 0.06206709278445549,
+   "E_endpoint": 0.053299492618142194,
+   "E_B0star": 0.05240979053873946,
+   "E_joint": 0.045947355312693325,
+   "n_nan_joint": 0
+  },
+  "LOSO:MOF-303": {
+   "held": [
+    "MOF-303"
+   ],
+   "E_B0": 0.057623047595315294,
+   "E_endpoint": 0.05261341542215378,
+   "E_B0star": 0.04632362215956211,
+   "E_joint": 0.03522505053749769,
+   "n_nan_joint": 0
+  },
+  "LOSO:MIL-160": {
+   "held": [
+    "MIL-160"
+   ],
+   "E_B0": 0.0789654064800768,
+   "E_endpoint": 0.06466721425142533,
+   "E_B0star": 0.04491006401716844,
+   "E_joint": 0.038479660912066505,
+   "n_nan_joint": 0
+  },
+  "LOSO:CAU-10": {
+   "held": [
+    "CAU-10"
+   ],
+   "E_B0": 0.06359625447754362,
+   "E_endpoint": 0.06153115313288915,
+   "E_B0star": 0.0580960278689539,
+   "E_joint": 0.05520482825893901,
+   "n_nan_joint": 0
+  },
+  "LOSO:Al-fumarate": {
+   "held": [
+    "Al-fumarate"
+   ],
+   "E_B0": 0.055140675684020216,
+   "E_endpoint": 0.04363719916190269,
+   "E_B0star": 0.054875645133908954,
+   "E_joint": 0.05581306129265448,
+   "n_nan_joint": 0
+  },
+  "LOSO:Syloid": {
+   "held": [
+    "Syloid"
+   ],
+   "E_B0": 0.0608722802171503,
+   "E_endpoint": 0.050066378229606426,
+   "E_B0star": 0.06124293094257649,
+   "E_joint": 0.04101708348122715,
+   "n_nan_joint": 0
+  }
+ }
+}
