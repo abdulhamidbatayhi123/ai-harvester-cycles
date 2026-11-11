@@ -1,0 +1,9 @@
+08:40:16 S5 LOSO:ROS-037: beats=False r=-0.013 E_B0=0.0491 E_B2=0.0492 b={'27C|ads': 0.555, '27C|des': 0.326, '60C|ads': 0.396, '60C|des': 0.418} (2019s)
+09:08:58 S5 LOSO:ROS-039: beats=False r=-0.095 E_B0=0.0510 E_B2=0.0512 b={'27C|ads': 0.228, '27C|des': 0.454, '60C|ads': -0.51, '60C|des': 0.104} (1721s)
+09:36:20 S5 LOSO:ROS-040: beats=False r=-0.165 E_B0=0.0222 E_B2=0.0237 b={'27C|ads': 0.555, '27C|des': 0.454, '60C|ads': 0.213, '60C|des': 0.392} (1643s)
+10:06:23 S5 LOSO:MOF-303: beats=False r=-0.025 E_B0=0.0249 E_B2=0.0164 b={'27C|ads': 0.198, '27C|des': 0.291, '60C|ads': 0.603, '60C|des': 0.408} (1803s)
+10:33:32 S5 LOSO:MIL-160: beats=True r=0.222 E_B0=0.0793 E_B2=0.0533 b={'27C|ads': 0.216, '27C|des': 0.342, '60C|ads': 0.12, '60C|des': 0.472} (1629s)
+10:55:49 S5 LOSO:CAU-10: beats=False r=0.445 E_B0=0.0285 E_B2=0.0328 b={'27C|ads': 0.273, '27C|des': 0.302, '60C|ads': 0.346, '60C|des': 0.583} (1336s)
+11:23:17 S5 LOSO:Al-fumarate: beats=False r=-0.151 E_B0=0.0272 E_B2=0.0412 b={'27C|ads': 0.55, '27C|des': 0.45, '60C|ads': 0.666, '60C|des': 1.217} (1648s)
+11:52:36 S5 LOSO:Syloid: beats=False r=-0.012 E_B0=0.1230 E_B2=0.1103 b={'27C|ads': 0.274, '27C|des': 0.35, '60C|ads': 0.631, '60C|des': 0.464} (1759s)
+11:52:36 done

@@ -907,7 +907,51 @@ without model-form error; world C3 reports the form-error case. If the harness f
 "not tested" (section 7), and no further hypothesis is added. The K2 and C3 results are reported
 whatever happens.
 
-ROUNDB2
+**Result (2026-11-11; `results/harness_b2/harness_b2.json` from the four part files, summary in
+`results/harness_b2/report.json`, written by `audit/b2_harness_report.py`). The harness passed all
+three criteria.**
+
+| World | Folds beaten (of 8) | Median r | Median E, B0 | Median E, B2 | Median fitted b (27 °C ads, des; 60 °C ads, des) |
+|---|---|---|---|---|---|
+| N | 0 | −0.002 | 0.0005 | 0.0005 | 0.000, 0.000, 0.001, 0.000 |
+| K | 8 | 0.993 | 0.072 | 0.0006 | 1.500, 1.500, 1.501, 1.502 |
+| K2a | 7 | 0.602 | 0.060 | 0.014 | 0.560, 0.178, 1.372, 1.324 |
+| K2b | 7 | 0.425 | 0.055 | 0.016 | 0.446, 0.541, 1.400, 1.305 |
+| K2c | 5 | 0.327 | 0.083 | 0.017 | 0.510, 0.504, 1.178, 1.228 |
+| S0 | 0 | −0.064 | 0.054 | 0.050 | −0.072, −0.108, 0.117, 0.161 |
+| S1 | 0 | −0.041 | 0.044 | 0.050 | −0.251, −0.057, −0.146, 0.061 |
+| S2 | 2 | 0.024 | 0.043 | 0.042 | 0.180, 0.062, −0.269, −0.117 |
+| S3 | 0 | −0.021 | 0.043 | 0.051 | −0.128, −0.020, −0.007, 0.901 |
+| S4 | 0 | −0.014 | 0.042 | 0.050 | 0.241, 0.143, −0.057, −0.209 |
+| S5 | 1 | −0.019 | 0.039 | 0.045 | 0.273, 0.346, 0.371, 0.441 |
+| C3 (form error) | 6 | 0.523 | 0.031 | 0.011 | −0.541, −0.628, −0.650, −0.638 |
+
+(Median E: median over the 8 folds of each fold's median E over its held-out segments. True slopes: K 1.5 everywhere; K2 0.50 at
+27 °C and 1.38 at 60 °C.)
+
+- Criterion 1: no fold beaten in N.
+- Criterion 2: 8 of 8 folds beaten in K; median |b_fit/1.5 − 1| = 0.0005.
+- Criterion 3: 3 of the 48 null fold-fits beaten (S2: CAU-10-H and Syloid; S5: MIL-160);
+  one-sided 95 % Clopper–Pearson upper bound 0.154 (limit 0.40); at most 2 of 8 in any world
+  (limit 5); median r over the null folds −0.027 (limit 0.025; 90th percentile 0.091). The
+  within-world correlation of null beats (moment estimator over the six worlds) is 0.064, inside
+  the ρ ≤ 0.12 that the 0.40 bound assumes.
+- No B2 fit in any world had excess physical violations above 0.007 of a fold's segments.
+
+What follows, from sections 2 and 7 as already written (nothing is changed by this result):
+- H4a′ is testable; its verdict will be decided by section 7.
+- **Realistic power.** B2 was "supported" in K2a and K2b (7 of 8 each) and "not established" in
+  K2c (5 of 8). An effect of the measured size is therefore found in two of three realistic
+  worlds, not all three, so if H4a′ is falsified on the real data the paper must use the weaker
+  wording of section 7, "no isotherm-predicted rate constant was detectable at this noise and
+  error level", and state that an effect of the measured size was missed in one of three
+  realistic-power worlds.
+- **Form error (C3).** A rate law shared by every material but not of B0's form made B2 beat B0 in
+  6 of 8 folds, with median r 0.52 and a negative fitted slope at both temperatures. This is the
+  confound named in section 2 and it is large: a "supported" verdict on the real data shows only
+  that the isotherm predicts the effective k″ of Bezrukov's equation, which a shared form error
+  alone can produce, and the paper must say so beside the verdict. The fitted slopes on the real
+  data are reported with it (row field `B2_ab`).
 
 ## 11. Compute
 
@@ -1129,3 +1173,10 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   behaviour, RH₅₀ computed the same day) and the descriptive share of the oracle gain (M5–M7);
   negative-results paragraph (M12); stale statements (m19). The version 1 harness run was
   stopped and archived unread.
+- 2026-11-11 (B2 harness result, section 10b). Version 2 passed all three criteria. It was run in
+  four parts because of memory (a cmd quoting bug first made each part stop after its first
+  world; relaunched with the same code and seeds; world S5 moved to a fourth part and the first
+  part stopped after K2b, so no world was computed twice). Consequences, from the rules already
+  in sections 2 and 7: H4a′ is testable; a falsification takes the weaker wording, since K2c was
+  "not established"; a support must be reported with C3's form-error result (6 of 8 folds).
+  Nothing in the rule or the wording rules was changed after the result.

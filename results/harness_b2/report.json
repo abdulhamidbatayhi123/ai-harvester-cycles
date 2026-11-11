@@ -1,0 +1,268 @@
+{
+ "pass": {
+  "1_no_beat_in_N": true,
+  "2_K_found": true,
+  "3_null_S": true
+ },
+ "summary": {
+  "N_beats": 0,
+  "K_beats": 8,
+  "K_median_rel_err_b": 0.0004921105156939221,
+  "S_beats_per_world": [
+   0,
+   0,
+   2,
+   0,
+   0,
+   1
+  ],
+  "S_cp95_upper": 0.1536889988733396,
+  "S_median_r": -0.027041970972051965,
+  "S_r_q90": 0.09131654280311405,
+  "power_K2": {
+   "K2a": {
+    "beats": 7,
+    "verdict": "supported"
+   },
+   "K2b": {
+    "beats": 7,
+    "verdict": "supported"
+   },
+   "K2c": {
+    "beats": 5,
+    "verdict": "not established"
+   }
+  },
+  "C3_reported": {
+   "beats": 6,
+   "verdict": "not established"
+  },
+  "missing_reported_worlds": []
+ },
+ "worlds": {
+  "C3": {
+   "beats": 6,
+   "folds": 8,
+   "median_r": 0.5230965622526511,
+   "median_E_B0": 0.03104068275768014,
+   "median_E_B2": 0.01073548821316973,
+   "median_b": {
+    "27C|ads": -0.5410226954809332,
+    "27C|des": -0.6279852573233626,
+    "60C|ads": -0.6500658455261146,
+    "60C|des": -0.6380249820536505
+   },
+   "beaten_folds": [
+    "LOSO:Al-fumarate",
+    "LOSO:CAU-10",
+    "LOSO:MIL-160",
+    "LOSO:ROS-037",
+    "LOSO:ROS-039",
+    "LOSO:ROS-040"
+   ],
+   "max_violation_excess": 0.006944444444444444
+  },
+  "K": {
+   "beats": 8,
+   "folds": 8,
+   "median_r": 0.9927899187499758,
+   "median_E_B0": 0.07165916120878227,
+   "median_E_B2": 0.0005516045561711246,
+   "median_b": {
+    "27C|ads": 1.4995545579804457,
+    "27C|des": 1.5003372443792387,
+    "60C|ads": 1.5005460622196551,
+    "60C|des": 1.5015653199941852
+   },
+   "beaten_folds": [
+    "LOSO:Al-fumarate",
+    "LOSO:CAU-10",
+    "LOSO:MIL-160",
+    "LOSO:MOF-303",
+    "LOSO:ROS-037",
+    "LOSO:ROS-039",
+    "LOSO:ROS-040",
+    "LOSO:Syloid"
+   ],
+   "max_violation_excess": 0.003472222222222222
+  },
+  "K2a": {
+   "beats": 7,
+   "folds": 8,
+   "median_r": 0.6023469521979707,
+   "median_E_B0": 0.060264580825690556,
+   "median_E_B2": 0.014092279187209737,
+   "median_b": {
+    "27C|ads": 0.5603697487104,
+    "27C|des": 0.1784621070837602,
+    "60C|ads": 1.3716327079203605,
+    "60C|des": 1.3239419487858868
+   },
+   "beaten_folds": [
+    "LOSO:Al-fumarate",
+    "LOSO:CAU-10",
+    "LOSO:MIL-160",
+    "LOSO:MOF-303",
+    "LOSO:ROS-039",
+    "LOSO:ROS-040",
+    "LOSO:Syloid"
+   ],
+   "max_violation_excess": 0.0
+  },
+  "K2b": {
+   "beats": 7,
+   "folds": 8,
+   "median_r": 0.4250084163088884,
+   "median_E_B0": 0.05509871997881443,
+   "median_E_B2": 0.01640291271993208,
+   "median_b": {
+    "27C|ads": 0.4464279486851339,
+    "27C|des": 0.5412419554718468,
+    "60C|ads": 1.4004828073600493,
+    "60C|des": 1.3045486529307533
+   },
+   "beaten_folds": [
+    "LOSO:Al-fumarate",
+    "LOSO:CAU-10",
+    "LOSO:MIL-160",
+    "LOSO:MOF-303",
+    "LOSO:ROS-039",
+    "LOSO:ROS-040",
+    "LOSO:Syloid"
+   ],
+   "max_violation_excess": 0.006944444444444444
+  },
+  "K2c": {
+   "beats": 5,
+   "folds": 8,
+   "median_r": 0.3268513349442136,
+   "median_E_B0": 0.08313755642957509,
+   "median_E_B2": 0.016923383645255412,
+   "median_b": {
+    "27C|ads": 0.5101939694723114,
+    "27C|des": 0.5041419020752329,
+    "60C|ads": 1.1784547337326492,
+    "60C|des": 1.2277779948783163
+   },
+   "beaten_folds": [
+    "LOSO:Al-fumarate",
+    "LOSO:CAU-10",
+    "LOSO:MIL-160",
+    "LOSO:MOF-303",
+    "LOSO:ROS-040"
+   ],
+   "max_violation_excess": 0.0
+  },
+  "N": {
+   "beats": 0,
+   "folds": 8,
+   "median_r": -0.0023218008838538457,
+   "median_E_B0": 0.0005302650200559606,
+   "median_E_B2": 0.000547590940806314,
+   "median_b": {
+    "27C|ads": 0.00011830200149631764,
+    "27C|des": 0.0002509857004042715,
+    "60C|ads": 0.0009191948920488358,
+    "60C|des": 0.0
+   },
+   "beaten_folds": [],
+   "max_violation_excess": 0.0
+  },
+  "S0": {
+   "beats": 0,
+   "folds": 8,
+   "median_r": -0.06439901054135731,
+   "median_E_B0": 0.05361782681010283,
+   "median_E_B2": 0.0497705244062278,
+   "median_b": {
+    "27C|ads": -0.07215298736628029,
+    "27C|des": -0.10809154062502557,
+    "60C|ads": 0.11660937045380224,
+    "60C|des": 0.16129578354743046
+   },
+   "beaten_folds": [],
+   "max_violation_excess": 0.0
+  },
+  "S1": {
+   "beats": 0,
+   "folds": 8,
+   "median_r": -0.04097161468927106,
+   "median_E_B0": 0.043809115544398265,
+   "median_E_B2": 0.049867380368878514,
+   "median_b": {
+    "27C|ads": -0.2506798328894426,
+    "27C|des": -0.05712920929761367,
+    "60C|ads": -0.14563572931877644,
+    "60C|des": 0.06120617981741816
+   },
+   "beaten_folds": [],
+   "max_violation_excess": 0.0
+  },
+  "S2": {
+   "beats": 2,
+   "folds": 8,
+   "median_r": 0.024439743197144537,
+   "median_E_B0": 0.04262022435634531,
+   "median_E_B2": 0.04231898153180499,
+   "median_b": {
+    "27C|ads": 0.18045132038332667,
+    "27C|des": 0.06226897920637953,
+    "60C|ads": -0.26869139200425707,
+    "60C|des": -0.11747719827519632
+   },
+   "beaten_folds": [
+    "LOSO:CAU-10",
+    "LOSO:Syloid"
+   ],
+   "max_violation_excess": 0.0
+  },
+  "S3": {
+   "beats": 0,
+   "folds": 8,
+   "median_r": -0.020488742807013908,
+   "median_E_B0": 0.04273235261917297,
+   "median_E_B2": 0.05140985978335957,
+   "median_b": {
+    "27C|ads": -0.12813622247904277,
+    "27C|des": -0.019883739892975427,
+    "60C|ads": -0.007288406326551922,
+    "60C|des": 0.9007497801448849
+   },
+   "beaten_folds": [],
+   "max_violation_excess": 0.0
+  },
+  "S4": {
+   "beats": 0,
+   "folds": 8,
+   "median_r": -0.014202743496880625,
+   "median_E_B0": 0.04229444885884334,
+   "median_E_B2": 0.05027335211257304,
+   "median_b": {
+    "27C|ads": 0.2406438640804243,
+    "27C|des": 0.14329618121155363,
+    "60C|ads": -0.05651674084219849,
+    "60C|des": -0.20859164681217823
+   },
+   "beaten_folds": [],
+   "max_violation_excess": 0.0
+  },
+  "S5": {
+   "beats": 1,
+   "folds": 8,
+   "median_r": -0.01920806468581677,
+   "median_E_B0": 0.038804709828956827,
+   "median_E_B2": 0.0451968334634605,
+   "median_b": {
+    "27C|ads": 0.2734978905919263,
+    "27C|des": 0.3458546900586299,
+    "60C|ads": 0.3711564103656824,
+    "60C|des": 0.4409123972081579
+   },
+   "beaten_folds": [
+    "LOSO:MIL-160"
+   ],
+   "max_violation_excess": 0.0
+  }
+ },
+ "null_within_world_rho": 0.06403940886699507
+}
