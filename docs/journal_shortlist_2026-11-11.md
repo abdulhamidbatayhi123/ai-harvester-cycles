@@ -24,3 +24,18 @@ submission (PAPER_WORKFLOW_LESSONS; verify-live rule).
 
 No candidate states a policy on negative results or registered reports. Programme context: Paper 1 went to
 Digital Discovery (with a faculty co-author), Paper 3A to J. Chem. Inf. Model.
+
+## AIChE Journal author guidelines, read live 2026-11-11 (aiche.onlinelibrary.wiley.com/hub/journal/15475905/homepage/forauthors.html)
+
+- Scope sentence: significant research in all areas of chemical engineering; "highest standards in rigor, novelty, and
+  innovation". Topical areas include "Separations: Materials, Devices and Processes" and "Thermodynamics and
+  Molecular-Scale Phenomena".
+- Research article: 12 pt, double spaced, 1 inch margins; below 35 pages with figures inline (40 with separate files).
+- Title fewer than 120 letters and spaces; abstract at most 150 words; topical heading and five key words.
+- SI units for all dimensional quantities; Notation section optional (only if symbols are not all defined in the text).
+- Plain Language Summary, one paragraph of at most 250 characters; graphical abstract fitting 50 mm x 60 mm.
+- References numbered in citation order, AMA style, all authors listed; eLocators.
+- Appendices go to the Supplementary Material. Colour figures free; figures as TIFF or EPS; LaTeX accepted with a PDF.
+- No page or submission charge is listed; open access optional (paid). Data sharing expected (Wiley policy).
+- Cover letter; 4-6 suggested reviewers (not colleagues or collaborators within 10 years), at least two with AIChE J
+  papers in the past 10 years, each with a stated justification; international spread encouraged.
