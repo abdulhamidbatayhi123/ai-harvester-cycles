@@ -103,13 +103,107 @@ def tab_harness_b2():
     return "\n".join(out)
 
 
-TABLES = {"tab_harness_l1.tex": tab_harness_l1, "tab_harness_b2.tex": tab_harness_b2}
+CONFIRM = os.environ.get("P4_CONFIRM_DIR", os.path.join(ROOT, "results"))   # smoke tests point this elsewhere
+ORDER = ["MOF-303", "MIL-160", "CAU-10", "Al-fumarate", "ROS-039", "ROS-040", "ROS-037", "Syloid"]
+LABEL = {"CAU-10": "CAU-10-H", "Syloid": "Syloid AL-1"}
+
+
+def _dec(rule):
+    return json.load(open(os.path.join(CONFIRM, f"confirm_{rule}", "decide.json"), encoding="utf-8"))
+
+
+def _rows(rule):
+    p = os.path.join(CONFIRM, f"confirm_{rule}", "rows.jsonl")
+    return {r["fold"]: r for r in map(json.loads, open(p, encoding="utf-8")) if r["key"].endswith("|physics")}
+
+
+def _r(v):
+    import math
+    r = v["r_fold"]
+    return "--" if r is None else (num(f"{100 * r:.1f}") if math.isfinite(r) else "$-" + BS + "infty$")
+
+
+def share(v, p):
+    """Share of the oracle's gain that B2 achieves (decide field share_of_oracle_gain; descriptive). Printed only
+    where the oracle gains at all (median E of B0* below B0's); otherwise the ratio has no meaning and '--' is shown
+    (the caption says so)."""
+    import numpy as np
+    x = v.get("share_of_oracle_gain")
+    e0, es = (float(np.nanmedian(np.asarray(p["E"][k], float))) for k in ("B0", "B0star"))
+    return "--" if x is None or not es < e0 else num(f"{x:.2f}")
+
+
+def tab_h4a():
+    """H4a' per LOSO fold under R2 and R1 (PREREG section 7), from the confirmatory decide outputs."""
+    import numpy as np
+    d2, d1, rows = _dec("R2"), _dec("R1"), _rows("R2")
+    ext = json.load(open(os.path.join(ROOT, "results", "extrapolation_flags.json"), encoding="utf-8"))["flags"]
+    out = ["% written by paper/tex/make_tables.py from results/confirm_R2|R1/decide.json and rows.jsonl; do not edit",
+           BS + "begin{tabular}{llccccccccc}", BS + "toprule",
+           " & & " + BS + "multicolumn{2}{c}{$r$ (" + BS + "%)} & " + BS + "multicolumn{2}{c}{Beaten} & "
+           + BS + "multicolumn{3}{c}{Median $E$ (R2)} & & " + BS + BS,
+           BS + "cmidrule(lr){3-4}" + BS + "cmidrule(lr){5-6}" + BS + "cmidrule(lr){7-9}",
+           "Held out & Variant & R2 & R1 & R2 & R1 & B0 & B2 & B0* & Share & Extrap." + BS + BS, BS + "midrule"]
+    for s in ORDER:
+        k = f"LOSO:{s}"
+        a, b, p = d2["folds"].get(k + "|B2"), d1["folds"].get(k + "|B2"), rows.get(k)
+        if a is None or b is None or p is None:
+            continue
+        med = lambda key: sig(float(np.nanmedian(np.asarray(p["E"][key], float))))
+        fl = ", ".join(f"{x['temp'][:2]}" for x in ext.get(k, []))
+        out.append(f"{LABEL.get(s, s)} & {p['B0_variant']} & {_r(a)} & {_r(b)} & {'yes' if a['beats_B0'] else 'no'} & "
+                   f"{'yes' if b['beats_B0'] else 'no'} & {med('B0')} & {med('B2')} & {med('B0star')} & {share(a, p)} & {fl or '--'}"
+                   + BS + BS)
+    out += [BS + "bottomrule", BS + "end{tabular}", ""]
+    return "\n".join(out)
+
+
+def tab_h4c():
+    """H4c (PREREG section 7): for each sorbent of the two non-trivial LOFO folds, median E of B0 and B2 in its
+    LOFO fold against its LOSO fold (R2; pooled over the sorbent's own segments; descriptive, no test)."""
+    import numpy as np
+    rows = _rows("R2")
+    out = ["% written by paper/tex/make_tables.py from results/confirm_R2/rows.jsonl; do not edit",
+           BS + "begin{tabular}{llcccc}", BS + "toprule",
+           " & & " + BS + "multicolumn{2}{c}{B0} & " + BS + "multicolumn{2}{c}{B2}" + BS + BS,
+           BS + "cmidrule(lr){3-4}" + BS + "cmidrule(lr){5-6}",
+           "Family fold & Sorbent & LOSO & LOFO & LOSO & LOFO" + BS + BS, BS + "midrule"]
+
+    def own(p, s, key):
+        seg = [x.split("|")[0] for x in p["seg"]]
+        e = np.asarray(p["E"][key], float)
+        sel = np.array([x == s for x in seg])
+        return float(np.nanmedian(e[sel])) if sel.any() else None
+
+    for fam in ("LOFO:Al-rod", "LOFO:Zn-triazolate-F"):
+        pf = rows.get(fam)
+        if pf is None:
+            continue
+        for s in pf["held"]:
+            parent = s.replace("_composite", "")
+            pl = rows.get(f"LOSO:{parent}")
+            if pl is None:
+                continue
+            name = LABEL.get(parent, parent) + (" composite" if s.endswith("_composite") else "")
+            vals = [own(pl, s, "B0"), own(pf, s, "B0"), own(pl, s, "B2"), own(pf, s, "B2")]
+            out.append(f"{fam.split(':')[1]} & {name} & " + " & ".join(sig(v) for v in vals) + BS + BS)
+    out += [BS + "bottomrule", BS + "end{tabular}", ""]
+    return "\n".join(out)
+
+
+TABLES = {"tab_harness_l1.tex": tab_harness_l1, "tab_harness_b2.tex": tab_harness_b2,
+          "tab_h4a.tex": tab_h4a, "tab_h4c.tex": tab_h4c}
 
 
 def main():
     for name, fn in TABLES.items():
+        try:
+            text = fn()
+        except FileNotFoundError as e:          # confirmatory results not there yet
+            print("skipped", name, "(missing input:", os.path.relpath(e.filename, ROOT) + ")")
+            continue
         with open(os.path.join(HERE, name), "w", encoding="utf-8", newline="\n") as f:
-            f.write(fn())
+            f.write(text)
         print("wrote", name)
 
 
