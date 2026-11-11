@@ -39,3 +39,16 @@ Digital Discovery (with a faculty co-author), Paper 3A to J. Chem. Inf. Model.
 - No page or submission charge is listed; open access optional (paid). Data sharing expected (Wiley policy).
 - Cover letter; 4-6 suggested reviewers (not colleagues or collaborators within 10 years), at least two with AIChE J
   papers in the past 10 years, each with a stated justification; international spread encouraged.
+
+## Decision (2026-11-11, after the confirmatory result and two internal review rounds)
+
+First target: **AIChE Journal**, research article, topical area "Separations: Materials, Devices and Processes".
+Reasons: Q1 chemical-engineering flagship (quartile itself to be re-checked live before submission), free on the
+subscription route, fast first decision (10 days median), editor and board in adsorption and MOFs, and its stated
+standard of rigour fits a pre-registered falsification. Main risk: the "novelty" criterion for a negative result,
+handled by framing (a validated negative answer to a screening question, with the error decomposition and the cycle-time
+consequence) and by the cover letter. Fallback: Ind. Eng. Chem. Res. (ACS, modelling scope, free subscription route;
+its live facts must be read from a browser because pubs.acs.org blocks automated access).
+Format work implied (see the guidelines above): title < 120 characters (now 112), abstract <= 150 words (now 150),
+topical heading and five key words, plain-language summary <= 250 characters, graphical abstract 50 x 60 mm, AMA
+references, SI units, double-spaced 12 pt submission layout, 4-6 justified suggested reviewers.
