@@ -1218,3 +1218,14 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   in sections 2 and 7: H4a′ is testable; a falsification takes the weaker wording, since K2c was
   "not established"; a support must be reported with C3's form-error result (6 of 8 folds).
   Nothing in the rule or the wording rules was changed after the result.
+- 2026-11-11 (independent read-only pre-freeze consistency review, text against code; after the
+  B2 harness result, before any real-data B2 fit). Code: B2's admissibility was counted against
+  the chosen comparator's violation flags, not the pooled B0 of the fold's variant that section 7
+  and the harness use; fixed (`viol_B0`, with a test). `p4.final_verdict` defaulted to kind L1,
+  which `--kinds none` does not produce; it now defaults to B2 and writes the wording rules of
+  sections 7 and 10b. Text: the fold's B0 variant defined (section 5); the extrapolation flag
+  given a rule, which adds ROS-039 at both temperatures (section 2); section 8 made to match the
+  end-point code (per direction, equilibration rule); bootstrap intervals for H4b and H4c, never
+  defined, dropped (section 7); exact confirmatory commands and a synthetic end-to-end run
+  (section 11); the harness's B0-b limitation (section 10b); stale statements corrected. The
+  decision rule, its thresholds and the wording rules are unchanged.
