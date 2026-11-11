@@ -28,12 +28,11 @@ def main():
             comp = s.endswith("_composite")
             ax.plot(x, y, ls="none", marker="o", ms=3.2, mec=fs.OI["dark"],
                     mfc="white" if comp else fs.OI["dark"])
-        ax.set_title(TITLE[key], fontsize=fs.SMALL_PT)
-        ax.text(0.04, 0.96, f"ρ = {st['rho']:.2f}, p = {st['p_exact']:.2f}", transform=ax.transAxes,
-                fontsize=fs.SMALL_PT, va="top")
-        ax.set_xlabel("RH₅₀ (% RH)")
-        fs.letter(ax, letter, x=-0.32)
-    axes[0].set_ylabel("Own k″ (wt% mg min⁻¹ %RH⁻¹)")
+        rho = f"{st['rho']:.2f}".replace("-", "−")
+        ax.set_title(f"{TITLE[key]}; ρ = {rho}, p = {st['p_exact']:.2f}", fontsize=fs.SMALL_PT)
+        ax.set_xlabel("RH50 (% RH)")
+        fs.letter(ax, letter, x=-0.3, y=1.1)
+    axes[0].set_ylabel("Own k″")
     fig.subplots_adjust(left=0.08, right=0.99, bottom=0.24, top=0.85, wspace=0.45)
     fs.save(fig, stem, inputs=[src])
 
