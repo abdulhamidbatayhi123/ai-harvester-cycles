@@ -64,7 +64,10 @@ def initials(given):
 
 
 def tex_escape(s):
-    return s.replace("&", BS + "&").replace("%", BS + "%").replace("_", BS + "_").replace("#", BS + "#")
+    """Escape the TeX specials the Crossref strings can contain; leave ones the .bib already escaped."""
+    for c in "&%_#":
+        s = re.sub(r"(?<!\\)" + re.escape(c), lambda m: BS + m.group(0), s)
+    return s
 
 
 def authors(field):

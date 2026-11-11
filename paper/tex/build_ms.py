@@ -531,6 +531,8 @@ def gate_tables(texts, fails, report):
     for doc, tex in texts.items():
         inputs |= set(re.findall(re.escape(BS) + r"input\{(tab_[^}]+)\}", strip_comments(body_of(tex))))
     report["G8_tables"] = sorted(inputs)
+    if not inputs:
+        return
     sys.path.insert(0, HERE)
     import make_tables
     for name in sorted(inputs):

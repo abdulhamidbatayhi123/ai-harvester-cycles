@@ -1,0 +1,444 @@
+{
+ "gate": "manuscript/build_ms.py",
+ "final": false,
+ "status": "PASS",
+ "failures": [],
+ "report": {
+  "G8_tables": [],
+  "G1_main.tex_unbound": 0,
+  "G1_si.tex_unbound": 0,
+  "G1_n_uses": 52,
+  "G1_n_keys": 52,
+  "G2_main.tex_n_refs": 31,
+  "G2_si.tex_n_refs": 0,
+  "G2_si_notes": 2,
+  "G2_si_figures": 0,
+  "G3_main.tex_em_dashes": 0,
+  "G3_si.tex_em_dashes": 0,
+  "G4_n_phrases": 35,
+  "G5_words": {
+   "abstract": 32,
+   "main_text": 1014,
+   "methods": 1447,
+   "si": 84
+  },
+  "G5_targets": {
+   "abstract": "<= 200",
+   "main_text": "4500-5500",
+   "methods": "about 2500"
+  },
+  "G5_flags": [
+   "main text 1014 outside 4,500-5,500",
+   "Methods 1447 outside about 2,500 (2,000-3,000)"
+  ],
+  "G6_n_figures": 3,
+  "G7_pending": [
+   {
+    "doc": "main.tex",
+    "name": "abstract",
+    "text": "Written after the confirmatory runs: question, design (pre-registered, held-out sorbents, synthetic harnesses), the H4a$'$ verdict in its pre-registered wording"
+   },
+   {
+    "doc": "main.tex",
+    "name": "novelty",
+    "text": "Sentence on Xia et al.\\ 2025 (structure--kinetics relationships of MOF water adsorption, doi:10.1016/j.colsurfa.2025.137168) and the closing ``none asks whether"
+   },
+   {
+    "doc": "main.tex",
+    "name": "results",
+    "text": "Four subsections after the confirmatory runs: (i) data, noise floor and the workflow (Fig.~\\ref{fig:workflow}, Fig.~\\ref{fig:data}); (ii) the learned model's ha"
+   },
+   {
+    "doc": "main.tex",
+    "name": "discussion",
+    "text": "After the results: what the verdict means for screening by isotherm, the error decomposition, limits (powder layers in one instrument, eight sorbents, effective"
+   },
+   {
+    "doc": "main.tex",
+    "name": "freeze",
+    "text": "freeze commit hash"
+   },
+   {
+    "doc": "main.tex",
+    "name": "availability",
+    "text": "Repository and Zenodo DOI of the code, pre-registration, harness records and every results file; the raw data stay at their source (Zenodo, doi:10.5281/zenodo.6"
+   },
+   {
+    "doc": "si.tex",
+    "name": "note1",
+    "text": "L1 and L2 in full (PREREG section 5), the seven harness rounds with the change made after each and its cause (PREREG section 10, round tables), the stopping rul"
+   },
+   {
+    "doc": "si.tex",
+    "name": "note2",
+    "text": "Worlds N, K, K2a--c, S0--S5 and C3, the three pass criteria and their results (PREREG section 10b), per-world beats and median $r$, the within-world correlation"
+   }
+  ]
+ },
+ "G1_bindings_checked": [
+  {
+   "key": "T_lo",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
+   "key": "rh_lo",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "rh_hi",
+   "doc": "main.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "T_lo2",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "T_a",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
+   "key": "T_b",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
+   "key": "cyc_lo",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "cyc_hi",
+   "doc": "main.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "T_cyc",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "rh_dry",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
+   "ok": true
+  },
+  {
+   "key": "r2_lo",
+   "doc": "main.tex",
+   "text": "70",
+   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
+   "ok": true
+  },
+  {
+   "key": "r2_hi",
+   "doc": "main.tex",
+   "text": "229",
+   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
+   "ok": true
+  },
+  {
+   "key": "r2_med",
+   "doc": "main.tex",
+   "text": "90",
+   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
+   "ok": true
+  },
+  {
+   "key": "drift_win",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "results/prefreeze/checks2.md: Slope of a linear fit over the last 10 min of each window",
+   "ok": true
+  },
+  {
+   "key": "drift_r2",
+   "doc": "main.tex",
+   "text": "0.023",
+   "source": "results/prefreeze/checks2.md: All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).",
+   "ok": true
+  },
+  {
+   "key": "drift_r1",
+   "doc": "main.tex",
+   "text": "0.106",
+   "source": "results/prefreeze/checks2.md: All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).",
+   "ok": true
+  },
+  {
+   "key": "drift_n",
+   "doc": "main.tex",
+   "text": "80",
+   "source": "results/prefreeze/checks2.md: All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).",
+   "ok": true
+  },
+  {
+   "key": "T_comp",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: 27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour",
+   "ok": true
+  },
+  {
+   "key": "comp_lo",
+   "doc": "main.tex",
+   "text": "0.3",
+   "source": "PREREG_P4_draft.md: 27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour",
+   "ok": true
+  },
+  {
+   "key": "comp_hi",
+   "doc": "main.tex",
+   "text": "0.9",
+   "source": "PREREG_P4_draft.md: 27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour",
+   "ok": true
+  },
+  {
+   "key": "grid",
+   "doc": "main.tex",
+   "text": "6",
+   "source": "PREREG_P4_draft.md: Trajectories are linearly resampled to a uniform 6 s grid.",
+   "ok": true
+  },
+  {
+   "key": "grid_pts",
+   "doc": "main.tex",
+   "text": "11",
+   "source": "PREREG_P4_draft.md: time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant.",
+   "ok": true
+  },
+  {
+   "key": "t63",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant.",
+   "ok": true
+  },
+  {
+   "key": "t63_min",
+   "doc": "main.tex",
+   "text": "1.1",
+   "source": "PREREG_P4_draft.md: time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant.",
+   "ok": true
+  },
+  {
+   "key": "clu_lo",
+   "doc": "main.tex",
+   "text": "13",
+   "source": "13",
+   "ok": true
+  },
+  {
+   "key": "clu_hi",
+   "doc": "main.tex",
+   "text": "54",
+   "source": "54",
+   "ok": true
+  },
+  {
+   "key": "rh50_ref",
+   "doc": "main.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: which the adsorption branch reaches half its uptake at 30 % RH.",
+   "ok": true
+  },
+  {
+   "key": "rh50_27_lo",
+   "doc": "main.tex",
+   "text": "7.4",
+   "source": "7.4",
+   "ok": true
+  },
+  {
+   "key": "rh50_27_hi",
+   "doc": "main.tex",
+   "text": "24.3",
+   "source": "24.3",
+   "ok": true
+  },
+  {
+   "key": "T_r1",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: RH at 27 °C and 10.5 % to 28.7 % at 60 °C.",
+   "ok": true
+  },
+  {
+   "key": "rh50_60_lo",
+   "doc": "main.tex",
+   "text": "10.5",
+   "source": "10.5",
+   "ok": true
+  },
+  {
+   "key": "rh50_60_hi",
+   "doc": "main.tex",
+   "text": "28.7",
+   "source": "28.7",
+   "ok": true
+  },
+  {
+   "key": "T_r2",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: RH at 27 °C and 10.5 % to 28.7 % at 60 °C.",
+   "ok": true
+  },
+  {
+   "key": "F_lo",
+   "doc": "main.tex",
+   "text": "0.0021",
+   "source": "0.0021",
+   "ok": true
+  },
+  {
+   "key": "F_hi",
+   "doc": "main.tex",
+   "text": "0.0078",
+   "source": "0.0078",
+   "ok": true
+  },
+  {
+   "key": "margin",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "alpha",
+   "doc": "main.tex",
+   "text": "0.025",
+   "source": "PREREG_P4_draft.md: a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025",
+   "ok": true
+  },
+  {
+   "key": "viol_w",
+   "doc": "main.tex",
+   "text": "0.05",
+   "source": "PREREG_P4_draft.md: by more than 0.05 wt% over any 1-minute window",
+   "ok": true
+  },
+  {
+   "key": "viol_frac",
+   "doc": "main.tex",
+   "text": "5",
+   "source": "PREREG_P4_draft.md: violations exceed 5 % of a fold's segments",
+   "ok": true
+  },
+  {
+   "key": "need",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "PREREG_P4_draft.md: if the model beats the comparator in at least 7 of 8 folds",
+   "ok": true
+  },
+  {
+   "key": "nfold",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "PREREG_P4_draft.md: if the model beats the comparator in at least 7 of 8 folds",
+   "ok": true
+  },
+  {
+   "key": "margin2",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "ub",
+   "doc": "main.tex",
+   "text": "96.5",
+   "source": "PREREG_P4_draft.md: it is a one-sided 96.5 % upper bound on the median",
+   "ok": true
+  },
+  {
+   "key": "margin3",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "margin4",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "sigma",
+   "doc": "main.tex",
+   "text": "0.01",
+   "source": "PREREG_P4_draft.md: AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9.",
+   "ok": true
+  },
+  {
+   "key": "phi",
+   "doc": "main.tex",
+   "text": "0.9",
+   "source": "PREREG_P4_draft.md: AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9.",
+   "ok": true
+  },
+  {
+   "key": "eps_thr",
+   "doc": "main.tex",
+   "text": "0.2",
+   "source": "PREREG_P4_draft.md: w_ads ≥ 0.2·w₃₀",
+   "ok": true
+  },
+  {
+   "key": "eps_rh",
+   "doc": "main.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: z holds: w normalised by the isotherm's uptake at 30 % RH",
+   "ok": true
+  },
+  {
+   "key": "n_sorbents",
+   "doc": "main.tex",
+   "text": "eight",
+   "source": "eight",
+   "ok": true
+  },
+  {
+   "key": "n_dup",
+   "doc": "main.tex",
+   "text": "Eight",
+   "source": "PREREG_P4_draft.md: Eight files in the archive repeat another file's mass",
+   "ok": true
+  },
+  {
+   "key": "n_loso",
+   "doc": "main.tex",
+   "text": "Eight",
+   "source": "Eight",
+   "ok": true
+  }
+ ]
+}
