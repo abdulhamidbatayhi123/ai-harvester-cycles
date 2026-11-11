@@ -1,4 +1,4 @@
-# Pre-registration (DRAFT, not frozen): Paper 4
+# Pre-registration (FROZEN 2026-11-11, git tag prereg-p4-freeze): Paper 4
 
 **Working title.** Does the isotherm predict an unseen sorbent's rate constant? A pre-registered
 held-out-sorbent test of isotherm-driven water-uptake dynamics for ten sorbents. (Until
@@ -7,9 +7,10 @@ synthetic harness, section 10. A title asking whether the rate constant is mater
 was considered and dropped the same day: section 12 already shows in sample that it is not at
 60 °C, and a B2 verdict cannot answer that question; red-team M5.)
 
-**Status.** Draft written 2026-11-03 for the author's review. Nothing in it has been run on
-real data except what section 9 lists as allowed before the freeze. When frozen, the commit
-hash goes in section 12 and no confirmatory number exists before that commit.
+**Status.** Frozen on 2026-11-11 with the author's approval, at the commit tagged
+`prereg-p4-freeze` (section 12). Written from 2026-11-03; nothing in it was run on real data
+except what section 9 lists as allowed before the freeze, and no confirmatory number exists
+before that commit. Any later change is a deviation and is reported as one.
 
 ---
 
@@ -69,8 +70,10 @@ the results.
     k″ closes 10 % to 42 % of the gap between B0 and F (Syloid 0.10, Al-fumarate 0.11, MOF-303
     0.13), so a B2 beat with r ≥ 10 % on 7 of 8 folds needs B2 to capture most of the reachable
     gain almost everywhere, and "supported" was foreseeably hard to reach; (3) in the archived
-    synthetic null replicate `results/null_rep0_preD`, B2's median E was below B0's in 3 of 5
-    folds by small margins. The paper reports H4a as the original primary hypothesis, "not
+    synthetic null replicate `results/null_rep0_preD`, B2's median E over segments was below
+    B0's in 2 of the 6 folds it ran (MOF-303 by 0.00003, CAU-10-H by 0.00016), within 0.00001
+    of it in three, and above it by 0.0175 in the MIL-160 fold. (An earlier draft said "3 of 5";
+    recounted from the file at the freeze.) The paper reports H4a as the original primary hypothesis, "not
     tested", in its abstract, and H4a′ with this timeline.
   - *Reported with the verdict (descriptive).* Per held-out sorbent, the share of the oracle's gain
     that B2 achieves out of sample, (E_B0 − E_B2)/(E_B0 − E_B0\*) (`share_of_oracle_gain` in
@@ -481,7 +484,8 @@ condition 4 asks that its typical error be lower too. It can only make a beat ha
 The order of events matters for condition 2. The 10 % threshold was proposed on 2026-11-04,
 after the noise floor (F medians 0.001 to 0.013) and the in-sample B0 reproduction were seen,
 and before any learned model was fitted to real data. It exists because F alone would count
-almost any improvement as real. It is the author's to confirm or change at the freeze.
+almost any improvement as real. The author confirmed it unchanged at the freeze (2026-11-11), after
+the B2 harness had been scored with it.
 
 **Physical admissibility (review finding O3).** A segment counts as a violation against a
 learned model (or B2, under H4a′) only if the model violates (section 6) and neither the measured data nor the
@@ -1039,7 +1043,14 @@ completed. The final run times are reported.
 
 ## 12. Freeze record
 
-Not frozen. Pre-freeze measurements, recomputed on 2026-11-08 after the duplicate exports were
+**Frozen 2026-11-11** with the author's approval (the 10 % margin of section 7 confirmed
+unchanged), at the commit tagged `prereg-p4-freeze`. Its hash and the SHA-256 of this file and
+of the code that runs the confirmatory analysis are recorded in `FREEZE_MANIFEST.json`, written
+by the commit that follows the tagged one (a commit cannot contain its own hash). Compute budget:
+the five commands of section 11, physics only, about 26 minutes per fold in the synthetic
+end-to-end run (`results/smoke_N.log`), so about 4.5 hours per dry-mass rule; nothing reduced.
+
+Pre-freeze measurements, recomputed on 2026-11-08 after the duplicate exports were
 dropped (section 13). All are data-only or in-sample; none evaluates a learned model on real data.
 
 - **Noise floor F** (within-file test-retest: median normalised RMS between repeats of the same
@@ -1096,7 +1107,7 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   recomputed after them, because the L1 null study is not run): B0's median E over the eight sorbents is 0.057, 0.070 and 0.045 for replicates
   0 to 2, against 0.067 on the real data; the null world's F per group is 0.0014 to 0.0140,
   against the real 0.0009 to 0.0126.
-- Commit hash, date and compute budget: to be filled at the freeze.
+- Commit hash, date and compute budget: see the freeze paragraph at the top of this section.
 
 ## 13. Corrections to this draft
 

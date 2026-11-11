@@ -60,7 +60,7 @@
   "ub": {"doc": "PREREG_P4_draft.md", "contains": "it is a one-sided 96.5 % upper bound on the median"},
   "sigma": {"doc": "PREREG_P4_draft.md", "contains": "AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9."},
   "phi": {"doc": "PREREG_P4_draft.md", "contains": "AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9."},
-  "eps_thr": {"doc": "PREREG_P4_draft.md", "contains": "w_ads ≥ 0.2·w₃₀"},
+  "eps_thr": {"doc": "PREREG_P4_draft.md", "contains": "(median RH of that tenth) is at least 0.2·w₃₀"},
   "eps_rh": {"doc": "PREREG_P4_draft.md", "contains": "z holds: w normalised by the isotherm's uptake at 30 % RH"},
   "si_w30": {"doc": "PREREG_P4_draft.md", "contains": "z holds: w normalised by the isotherm's uptake at 30 % RH"},
   "si_kerr": {"doc": "PREREG_P4_draft.md", "contains": "in world N, B0 refitted on the training sorbents recovers k″ within 2 %;"},

@@ -402,7 +402,7 @@
    "key": "eps_thr",
    "doc": "main.tex",
    "text": "0.2",
-   "source": "PREREG_P4_draft.md: w_ads ≥ 0.2·w₃₀",
+   "source": "PREREG_P4_draft.md: (median RH of that tenth) is at least 0.2·w₃₀",
    "ok": true
   },
   {
