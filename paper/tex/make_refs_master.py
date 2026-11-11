@@ -179,6 +179,10 @@ def build():
         entries[k] = ama_entry(f) if STYLE == "ama" else entry(f)
         m = re.search(r"status\s+([ABC])", f.get("note", ""))
         status[k] = m.group(1) if m else "?"
+    # entries whose full text has since been read (status raised to A; the citing sentence rests on the full text)
+    READ_FULL = {"Xia2025Relationship": "full text read 2026-11-12 (PDF supplied by the author; data_raw/papers, not in git)"}
+    for k in READ_FULL:
+        status[k] = "A"
     data = json.load(open(DATA, encoding="utf-8"))
     for k, r in data["records"].items():
         entries[k] = ama_data(r) if STYLE == "ama" else data_entry(r)

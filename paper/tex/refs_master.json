@@ -74,7 +74,7 @@
   "Chambers2013Registered": "C",
   "Wang2020Machine": "C",
   "Jablonka2022Making": "A",
-  "Xia2025Relationship": "C",
+  "Xia2025Relationship": "A",
   "Nikolenko2026Modality": "A",
   "Bezrukov2023Data": "A"
  },
@@ -97,8 +97,7 @@
   "Santana2023Efficient": "status C: read the paper before citing a specific claim",
   "Nadeau2003Inference": "status C: read the paper before citing a specific claim",
   "Chambers2013Registered": "status C: read the paper before citing a specific claim",
-  "Wang2020Machine": "status C: read the paper before citing a specific claim",
-  "Xia2025Relationship": "status C: read the paper before citing a specific claim"
+  "Wang2020Machine": "status C: read the paper before citing a specific claim"
  },
  "entries": {
   "Bezrukov2023Regeneration": "Bezrukov AA, O’Hearn DJ, Gascón-Pérez V, Darwish S, Kumar A, Sanda S, Kumar N, Francis K, Zaworotko MJ. Metal-organic frameworks as regeneration optimized sorbents for atmospheric water harvesting. \\textit{Cell Reports Physical Science}. 2023;4(2):101252. doi:10.1016/j.xcrp.2023.101252",

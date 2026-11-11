@@ -15,7 +15,7 @@
   "G1_si.tex_unbound": 0,
   "G1_n_uses": 210,
   "G1_n_keys": 210,
-  "G2_main.tex_n_refs": 31,
+  "G2_main.tex_n_refs": 32,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 4,
   "G2_si_figures": 1,
@@ -24,7 +24,7 @@
   "G4_n_phrases": 35,
   "G5_words": {
    "abstract": 150,
-   "main_text": 3606,
+   "main_text": 3633,
    "methods": 2080,
    "si": 2012
   },
@@ -34,15 +34,10 @@
    "methods": "about 2500"
   },
   "G5_flags": [
-   "main text 3606 outside 4,500-5,500"
+   "main text 3633 outside 4,500-5,500"
   ],
   "G6_n_figures": 6,
   "G7_pending": [
-   {
-    "doc": "main.tex",
-    "name": "novelty",
-    "text": "Sentence on Xia et al.\\ 2025 (structure--kinetics relationships of MOF water adsorption, doi:10.1016/j.colsurfa.2025.137168) and the closing ``none asks whether"
-   },
    {
     "doc": "main.tex",
     "name": "availability",
