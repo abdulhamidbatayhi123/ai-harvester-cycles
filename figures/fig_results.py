@@ -13,7 +13,8 @@ b  Where B0's error lies (H4b and the end-point oracle, descriptive), R2: per he
 
 Changes after the results (presentation only; no model, point or line added or removed): panel a starts 5 points
 below the lowest r instead of at the clipping floor (the floor stays the clipping threshold); panel b's upper
-limit has headroom above the highest point, which the decade rule had put on the axis edge (ROS-037, 0.0996).
+limit has headroom above the highest point, which the decade rule had put on the axis edge (ROS-037, 0.0996); the
+noise floor in panel b is the larger of parent and composite where both are held out, as for the pooled medians.
 
 usage: python -I figures/fig_results.py results/confirm_R2/decide.json results/confirm_R1/decide.json \
            results/confirm_R2/rows.jsonl results/prefreeze/checks2.json figures/out/fig_results
@@ -102,8 +103,10 @@ def main():
                 v = float(np.nanmedian(np.asarray(e, float)))
                 vals.append(v)
                 b.plot(x[i] + (k - 1) * 0.2, v, **kw)
-        b.plot([x[i] - 0.32, x[i] + 0.32], [F[s]] * 2, color=fs.OI["grey"], lw=1.2, solid_capstyle="butt")
-        vals.append(F[s])
+        # the medians pool a parent with its composite, so the floor shown is the larger of the two (PREREG section 6)
+        Fp = max(F[m] for m in p["held"])
+        b.plot([x[i] - 0.32, x[i] + 0.32], [Fp] * 2, color=fs.OI["grey"], lw=1.2, solid_capstyle="butt")
+        vals.append(Fp)
     b.set_yscale("log")
     if vals:
         lo, hi = min(vals), max(vals)
