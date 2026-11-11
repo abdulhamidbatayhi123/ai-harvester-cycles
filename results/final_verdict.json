@@ -1,0 +1,9 @@
+{
+ "kind": "B2",
+ "verdict_R2": "falsified",
+ "verdict_R1": "falsified",
+ "criterion_4_pass": true,
+ "robust_to_dry_mass_rule": true,
+ "verdict": "falsified",
+ "wording": "no isotherm-predicted rate constant was detectable at this noise and error level; an effect of the measured size was missed in 1 of 3 realistic-power worlds"
+}

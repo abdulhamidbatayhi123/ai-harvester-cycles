@@ -1,0 +1,43 @@
+2026-11-11 15:07:06 dry-mass rule R2; 1187 segments in 18 groups
+2026-11-11 15:40:43 LOSO:ROS-037: physics done (B0; comparator B0; 2017s)
+2026-11-11 16:05:23 LOSO:ROS-039: physics done (B0; comparator B0; 1480s)
+2026-11-11 16:31:41 LOSO:ROS-040: physics done (B0; comparator B0; 1579s)
+2026-11-11 16:56:49 LOSO:MOF-303: physics done (B0; comparator B0; 1507s)
+2026-11-11 17:21:53 LOSO:MIL-160: physics done (B0; comparator B0; 1504s)
+2026-11-11 17:45:35 LOSO:CAU-10: physics done (B0; comparator B0; 1423s)
+2026-11-11 18:11:45 LOSO:Al-fumarate: physics done (B0; comparator B0; 1570s)
+2026-11-11 18:37:24 LOSO:Syloid: physics done (B0; comparator B0; 1539s)
+2026-11-11 18:53:14 LOFO:Al-rod: physics done (B0; comparator B0; 950s)
+2026-11-11 19:12:17 RESUMED after the processes were killed with the previous session (9 of 10 folds complete in rows.jsonl; same code, completed folds skipped)
+2026-11-11 19:15:37 dry-mass rule R2; 1187 segments in 18 groups
+2026-11-11 20:05:15 LOFO:Zn-triazolate-F: physics done (B0; comparator B0; 2978s)
+2026-11-11 20:05:15 done
+{
+ "H4a": {
+  "B2": {
+   "role": "H4a' (primary from 2026-11-10)",
+   "LOSO_beats": 0,
+   "LOSO_folds": 8,
+   "verdict": "falsified",
+   "rel_improvement_mean": -0.026788082256518173,
+   "rel_improvement_folds": [
+    -0.03365232874560572,
+    -0.03265244524615201,
+    -0.10936185774071389,
+    -0.0034259897569689983,
+    0.0009264787960828895,
+    -0.049698478267001925,
+    0.01613829078759858,
+    -0.002578327879384333
+   ],
+   "n_folds_rel_ge_10pct": 0,
+   "rel_improvement_order7": 0.0009264787960828895,
+   "LOSO_beats_vs_heldout_best_candidate": 0,
+   "claim_wording": null,
+   "LOFO_beats_nontrivial": 0,
+   "LOFO_folds_nontrivial": 2,
+   "transfers_across_families": false
+  }
+ },
+ "H4b_n_closing_more_than_half": 0
+}
