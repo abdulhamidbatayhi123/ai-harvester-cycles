@@ -90,6 +90,15 @@ def per_rule(rule, F):
             st[key]["B0"].append(e0)
             st[key]["B2"].append(e2)
     out["strata"] = {k: {"n_seg": len(v["B0"]), "E_B0": med(v["B0"]), "E_B2": med(v["B2"])} for k, v in sorted(st.items())}
+    # per-pan diagnostic (PREREG section 4: d is also reported per pan): median d = E_B0 - E_B2 per run file
+    pans = {}
+    for s in PARENTS:
+        p = rows[f"LOSO:{s}"]
+        for sid, e0, e2 in zip(p["seg"], p["E"]["B0"], p["E"]["B2"]):
+            pans.setdefault(sid.split("#")[1], []).append(e0 - e2)
+    dp = [med(v) for v in pans.values()]
+    out["per_pan"] = {"n_pans": len(dp), "n_positive_median_d": sum(x > 0 for x in dp),
+                      "median_of_pan_medians": float(np.median(dp))}
     return out
 
 
@@ -105,6 +114,27 @@ def main():
     # realistic-power worlds of the B2 harness: folds with r >= 10 % (exploratory count; the falsifier needs <= 1)
     hb = json.load(open(os.path.join(ROOT, "results", "harness_b2", "harness_b2.json"), encoding="utf-8"))["worlds"]
     res["K2_folds_r_ge_10pct"] = {w: sum(f["r"] >= 0.10 for f in hb[w]["folds"].values()) for w in ("K2a", "K2b", "K2c")}
+    # EXPLORATORY (post hoc; labelled so in the paper): joint oracle and RH50 against own k''
+    ex = {}
+    for rule in ("R2", "R1"):
+        p = os.path.join(ROOT, "results", "exploratory", f"joint_oracle_{rule}.json")
+        if os.path.exists(p):
+            d = json.load(open(p, encoding="utf-8"))["folds"]
+            red = [(v["E_B0"] - v["E_joint"]) / v["E_B0"] for v in d.values()]
+            Fp = {k: max(F[m] for m in v["held"]) for k, v in d.items()}
+            ex[f"joint_{rule}"] = {"rel_reduction_median": float(np.median(red)), "rel_reduction_min": min(red),
+                                   "rel_reduction_max": max(red),
+                                   "joint_over_F_min": min(v["E_joint"] / Fp[k] for k, v in d.items())}
+    p = os.path.join(ROOT, "results", "exploratory", "rh50_vs_k.json")
+    if os.path.exists(p):
+        st = json.load(open(p, encoding="utf-8"))["strata"]
+        ex["rh50_vs_k"] = {"rho_min": min(v["rho"] for v in st.values()), "rho_max": max(v["rho"] for v in st.values()),
+                           "p_min": min(v["p_exact"] for v in st.values())}
+    for rule in ("R2", "R1"):
+        p = os.path.join(ROOT, "results", f"secondary_metrics_{rule}.json")
+        if os.path.exists(p):
+            ex[f"secondary_{rule}"] = json.load(open(p, encoding="utf-8"))["all"]
+    res["exploratory_and_secondary"] = ex
     with open(sys.argv[1], "w", encoding="utf-8", newline="\n") as f:
         json.dump(res, f, indent=1)
     for r in ("R2", "R1"):

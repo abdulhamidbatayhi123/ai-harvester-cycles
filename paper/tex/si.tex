@@ -160,6 +160,39 @@ descriptive and carries no test, as pre-registered.
 \input{tab_h4c.tex}
 \end{table}
 
+\section*{Supplementary Note~\snote{4}: Strata, secondary metrics, exploratory checks}
+
+The protocol reports the temperature and direction strata separately and names two secondary metrics: the relative
+error in the time to \V{si4_t63}{63}\,\% of a segment's change, and the error truncated at five times the measured
+time to \V{si4_t63b}{63}\,\%, so that long equilibrium tails do not dilute the transient (Table~\ref{tab:secondary}).
+They were computed after the confirmatory runs with the parameters stored in them (no refit of B0 or B2), and the
+recomputed predictions reproduce the confirmatory errors exactly. B2 improves on B0 in none of them, except by
+\V{si4_st}{0.3}\,\% in one stratum under R1.
+
+Two further checks were added after the result and are exploratory. First, a joint oracle applies both oracles at once:
+B0 with the held-out sorbent's own end points and its own rate constant fitted on those scaled isotherms. It lowered
+B0's median error by \V{si4_j2}{26}\,\% (R2) and \V{si4_j1}{25}\,\% (R1) at the median over held-out sorbents, about
+the sum of the two separate effects. Second, Fig.~\ref{fig:s1} plots each sorbent's own rate constant, fitted in
+sample before the freeze, against its half-loading humidity; no stratum shows a rank correlation.
+
+\begin{table}[h]
+\centering
+\small
+\caption{Median held-out error per temperature and direction stratum (B0 and B2; the oracle B0$^{*}$ is not
+stratified), and the two pre-registered secondary metrics, under both dry-mass rules, over the eight single-sorbent
+folds.}\label{tab:secondary}
+\input{tab_secondary.tex}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\makebox[\linewidth]{\includegraphics{../../figures/out/fig_s1.pdf}}
+\caption{Each sorbent's own rate constant $\kpp$ (wt\% mg min$^{-1}$ per \% RH; in-sample fit by the scored metric,
+R2) against its half-loading humidity, per temperature and direction. Filled: the eight sorbents, over which the
+Spearman rank correlation and its exact two-sided $p$ are computed; open: the two composites (not counted).
+Exploratory.}\label{fig:s1}
+\end{figure}
+
 \input{refs_si.tex}
 
 \end{document}

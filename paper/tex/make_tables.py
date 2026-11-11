@@ -198,8 +198,33 @@ def tab_h4c():
     return "\n".join(out)
 
 
+def tab_secondary():
+    """Strata (PREREG section 6) and secondary metrics (time-to-63 % error, E truncated at 5 t63), B0, B2 and B0*,
+    under R2 and R1, from results/confirm_summary.json (secondary_metrics_<rule>.json via the summary)."""
+    s = json.load(open(os.path.join(ROOT, "results", "confirm_summary.json"), encoding="utf-8"))
+    sec = s["exploratory_and_secondary"]
+    out = ["% written by paper/tex/make_tables.py from results/confirm_summary.json; do not edit",
+           BS + "begin{tabular}{llcccccc}", BS + "toprule",
+           " & & " + BS + "multicolumn{3}{c}{R2} & " + BS + "multicolumn{3}{c}{R1}" + BS + BS,
+           BS + "cmidrule(lr){3-5}" + BS + "cmidrule(lr){6-8}",
+           "Quantity & Subset & B0 & B2 & B0* & B0 & B2 & B0*" + BS + BS, BS + "midrule"]
+    names = {"27C|ads": "27 \\textdegree C, uptake", "27C|des": "27 \\textdegree C, release",
+             "60C|ads": "60 \\textdegree C, uptake", "60C|des": "60 \\textdegree C, release"}
+    for k, lab in names.items():
+        a, b = s["R2"]["strata"][k], s["R1"]["strata"][k]
+        out.append(f"Median $E$ & {lab} (n = {a['n_seg']}) & {sig(a['E_B0'])} & {sig(a['E_B2'])} & -- & "
+                   f"{sig(b['E_B0'])} & {sig(b['E_B2'])} & --" + BS + BS)
+    a, b = sec["secondary_R2"], sec["secondary_R1"]
+    out.append(f"$t_{{63}}$ relative error & all held-out segments & {a['t63_B0']:.3f} & {a['t63_B2']:.3f} & "
+               f"{a['t63_B0star']:.3f} & {b['t63_B0']:.3f} & {b['t63_B2']:.3f} & {b['t63_B0star']:.3f}" + BS + BS)
+    out.append(f"$E$ to $5\\,t_{{63}}$ & all held-out segments & {sig(a['Etr_B0'])} & {sig(a['Etr_B2'])} & "
+               f"{sig(a['Etr_B0star'])} & {sig(b['Etr_B0'])} & {sig(b['Etr_B2'])} & {sig(b['Etr_B0star'])}" + BS + BS)
+    out += [BS + "bottomrule", BS + "end{tabular}", ""]
+    return "\n".join(out).replace("\\\\textdegree", BS + "textdegree")
+
+
 TABLES = {"tab_harness_l1.tex": tab_harness_l1, "tab_harness_b2.tex": tab_harness_b2,
-          "tab_h4a.tex": tab_h4a, "tab_h4c.tex": tab_h4c}
+          "tab_h4a.tex": tab_h4a, "tab_h4c.tex": tab_h4c, "tab_secondary.tex": tab_secondary}
 
 
 def main():

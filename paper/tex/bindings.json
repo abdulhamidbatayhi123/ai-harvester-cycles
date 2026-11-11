@@ -8,176 +8,837 @@
   "HA": "results/harness_alfu/harness.json",
   "HB": "results/harness_b2/harness_b2.json",
   "HR": "results/harness_b2/report.json",
-  "CS": "results/confirm_summary.json"
+  "CS": "results/confirm_summary.json",
+  "R2ROWS": "results/confirm_R2/rows.jsonl"
  },
  "bindings": {
-  "n_sorbents": {"expr": "len([k for k in CH['F_within_segment_weighted'] if 'composite' not in k])", "fmt": "word"},
-  "n_loso": {"expr": "len([k for k in CH['F_within_segment_weighted'] if 'composite' not in k])", "fmt": "Word"},
-  "T_a": {"doc": "PREREG_P4_draft.md", "contains": "all step-run files at 27 and 60 °C;"},
-  "T_b": {"doc": "PREREG_P4_draft.md", "contains": "all step-run files at 27 and 60 °C;"},
-  "T_lo": {"doc": "PREREG_P4_draft.md", "contains": "all step-run files at 27 and 60 °C;"},
-  "T_lo2": {"doc": "PREREG_P4_draft.md", "contains": "all 0↔30 % cycling files at 27 °C;"},
-  "rh_lo": {"doc": "PREREG_P4_draft.md", "contains": "all 0↔30 % cycling files at 27 °C;"},
-  "rh_hi": {"doc": "PREREG_P4_draft.md", "contains": "all 0↔30 % cycling files at 27 °C;"},
-  "cyc_lo": {"doc": "PREREG_P4_draft.md", "contains": "all 0↔30 % cycling files at 27 °C;"},
-  "cyc_hi": {"doc": "PREREG_P4_draft.md", "contains": "all 0↔30 % cycling files at 27 °C;"},
-  "T_cyc": {"doc": "PREREG_P4_draft.md", "contains": "all 0↔30 % cycling files at 27 °C;"},
-  "n_dup": {"doc": "PREREG_P4_draft.md", "contains": "Eight files in the archive repeat another file's mass"},
-  "rh_dry": {"doc": "PREREG_P4_draft.md", "contains": "the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)"},
-  "r2_lo": {"doc": "PREREG_P4_draft.md", "contains": "the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)"},
-  "r2_hi": {"doc": "PREREG_P4_draft.md", "contains": "the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)"},
-  "r2_med": {"doc": "PREREG_P4_draft.md", "contains": "the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)"},
-  "drift_win": {"doc": "results/prefreeze/checks2.md", "contains": "Slope of a linear fit over the last 10 min of each window"},
-  "drift_r1": {"doc": "results/prefreeze/checks2.md", "contains": "All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845)."},
-  "drift_r2": {"doc": "results/prefreeze/checks2.md", "contains": "All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845)."},
-  "drift_n": {"doc": "results/prefreeze/checks2.md", "contains": "All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845)."},
-  "T_comp": {"doc": "PREREG_P4_draft.md", "contains": "27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour"},
-  "comp_lo": {"doc": "PREREG_P4_draft.md", "contains": "27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour"},
-  "comp_hi": {"doc": "PREREG_P4_draft.md", "contains": "27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour"},
-  "grid": {"doc": "PREREG_P4_draft.md", "contains": "Trajectories are linearly resampled to a uniform 6 s grid."},
-  "grid_pts": {"doc": "PREREG_P4_draft.md", "contains": "time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant."},
-  "t63": {"doc": "PREREG_P4_draft.md", "contains": "time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant."},
-  "t63_min": {"doc": "PREREG_P4_draft.md", "contains": "time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant."},
-  "clu_lo": {"expr": "min(v['clusters'] for v in CC['counts']['R2'].values())", "fmt": "d"},
-  "clu_hi": {"expr": "max(v['clusters'] for v in CC['counts']['R2'].values())", "fmt": "d"},
-  "rh50_ref": {"doc": "PREREG_P4_draft.md", "contains": "which the adsorption branch reaches half its uptake at 30 % RH."},
-  "rh50_27_lo": {"expr": "min(v['27C'] for v in RH['rh50'].values() if '27C' in v)", "fmt": "f1"},
-  "rh50_27_hi": {"expr": "max(v['27C'] for v in RH['rh50'].values() if '27C' in v)", "fmt": "f1"},
-  "rh50_60_lo": {"expr": "min(v['60C'] for v in RH['rh50'].values() if '60C' in v)", "fmt": "f1"},
-  "rh50_60_hi": {"expr": "max(v['60C'] for v in RH['rh50'].values() if '60C' in v)", "fmt": "f1"},
-  "T_r1": {"doc": "PREREG_P4_draft.md", "contains": "RH at 27 °C and 10.5 % to 28.7 % at 60 °C."},
-  "T_r2": {"doc": "PREREG_P4_draft.md", "contains": "RH at 27 °C and 10.5 % to 28.7 % at 60 °C."},
-  "F_lo": {"expr": "min(CH['F_within_segment_weighted'].values())", "fmt": "f4"},
-  "F_hi": {"expr": "max(CH['F_within_segment_weighted'].values())", "fmt": "f4"},
-  "margin": {"doc": "PREREG_P4_draft.md", "contains": "is at least 10 % (practical significance)"},
-  "margin2": {"doc": "PREREG_P4_draft.md", "contains": "is at least 10 % (practical significance)"},
-  "margin3": {"doc": "PREREG_P4_draft.md", "contains": "is at least 10 % (practical significance)"},
-  "margin4": {"doc": "PREREG_P4_draft.md", "contains": "is at least 10 % (practical significance)"},
-  "alpha": {"doc": "PREREG_P4_draft.md", "contains": "a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025"},
-  "viol_w": {"doc": "PREREG_P4_draft.md", "contains": "by more than 0.05 wt% over any 1-minute window"},
-  "viol_frac": {"doc": "PREREG_P4_draft.md", "contains": "violations exceed 5 % of a fold's segments"},
-  "need": {"doc": "PREREG_P4_draft.md", "contains": "if the model beats the comparator in at least 7 of 8 folds"},
-  "nfold": {"doc": "PREREG_P4_draft.md", "contains": "if the model beats the comparator in at least 7 of 8 folds"},
-  "ub": {"doc": "PREREG_P4_draft.md", "contains": "it is a one-sided 96.5 % upper bound on the median"},
-  "sigma": {"doc": "PREREG_P4_draft.md", "contains": "AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9."},
-  "phi": {"doc": "PREREG_P4_draft.md", "contains": "AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9."},
-  "eps_thr": {"doc": "PREREG_P4_draft.md", "contains": "(median RH of that tenth) is at least 0.2·w₃₀"},
-  "eps_rh": {"doc": "PREREG_P4_draft.md", "contains": "z holds: w normalised by the isotherm's uptake at 30 % RH"},
-  "si_w30": {"doc": "PREREG_P4_draft.md", "contains": "z holds: w normalised by the isotherm's uptake at 30 % RH"},
-  "si_kerr": {"doc": "PREREG_P4_draft.md", "contains": "in world N, B0 refitted on the training sorbents recovers k″ within 2 %;"},
-  "si_alpha": {"doc": "PREREG_P4_draft.md", "contains": "a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025"},
-  "si_mof_b0": {"expr": "H7['cases']['C3|MOF-303']['L1']['E_B0']", "fmt": "f4"},
-  "si_mof_l1": {"expr": "H7['cases']['C3|MOF-303']['L1']['E_model']", "fmt": "f4"},
-  "si_mof_gain": {"expr": "H7['cases']['C3|MOF-303']['L1']['median_gain']", "fmt": "f4"},
-  "si_mof_F": {"expr": "H7['cases']['C3|MOF-303']['L1']['F']", "fmt": "f3"},
-  "si_mof_p": {"expr": "H7['cases']['C3|MOF-303']['L1']['p_signflip']", "fmt": "f3"},
-  "si_mof_ratio": {"expr": "H7['cases']['C3|MOF-303']['L1']['E_model'] / H7['cases']['C3|MOF-303']['L1']['E_B0']", "fmt": "f2"},
-  "si_ros_ratio": {"expr": "H7['cases']['C3|ROS-039']['L1']['E_model'] / H7['cases']['C3|ROS-039']['L1']['E_B0']", "fmt": "f2"},
-  "si2_nfold": {"doc": "PREREG_P4_draft.md", "contains": "Each world runs the 8 LOSO folds"},
-  "si2_sd27": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "si2_T27": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "si2_b27": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "si2_sd60": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "si2_T60": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "si2_b60": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "si2_ngroups": {"doc": "PREREG_P4_draft.md", "contains": "|ε| resampled from the 18 measured group offsets"},
-  "si2_cap": {"doc": "PREREG_P4_draft.md", "contains": "|ε·w₃₀| ≤ 3.128 wt%"},
-  "si2_need": {"doc": "PREREG_P4_draft.md", "contains": "at least 7 of 8 folds are beaten in K"},
-  "si2_nfold2": {"doc": "PREREG_P4_draft.md", "contains": "at least 7 of 8 folds are beaten in K"},
-  "si2_btol": {"doc": "PREREG_P4_draft.md", "contains": "|b_fit/1.5 − 1| is at most 0.25"},
-  "si2_nnull": {"doc": "PREREG_P4_draft.md", "contains": "over the 48 null fold-fits of S0–S5"},
-  "si2_cp": {"doc": "PREREG_P4_draft.md", "contains": "the one-sided 95 % Clopper–Pearson upper bound on the per-fold beat rate is at most 0.40"},
-  "si2_cpmax": {"doc": "PREREG_P4_draft.md", "contains": "the one-sided 95 % Clopper–Pearson upper bound on the per-fold beat rate is at most 0.40"},
-  "si2_wmax": {"doc": "PREREG_P4_draft.md", "contains": "no world has 5 or more of its 8 folds beaten"},
-  "si2_rmax": {"doc": "PREREG_P4_draft.md", "contains": "the median of r is below 2.5 %"},
-  "si2_cpmax2": {"doc": "PREREG_P4_draft.md", "contains": "The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12"},
-  "si2_need2": {"doc": "PREREG_P4_draft.md", "contains": "The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12"},
-  "si2_p7": {"doc": "PREREG_P4_draft.md", "contains": "The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12"},
-  "si2_rho": {"doc": "PREREG_P4_draft.md", "contains": "The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12"},
-  "si2_bK": {"doc": "PREREG_P4_draft.md", "contains": "log k″ of each sorbent is shifted by 1.5·(RH₅₀/30 − mean)"},
-  "si2_bK2": {"doc": "PREREG_P4_draft.md", "contains": "|b_fit/1.5 − 1| is at most 0.25"},
-  "si2_x30": {"doc": "PREREG_P4_draft.md", "contains": "log k″ of each sorbent is shifted by 1.5·(RH₅₀/30 − mean)"},
-  "si2_Kbeats": {"expr": "HB['summary']['K_beats']", "fmt": "d"},
-  "si2_Kerr": {"expr": "100 * HB['summary']['K_median_rel_err_b']", "fmt": "f2"},
-  "si2_nnull2": {"expr": "sum(HR['worlds'][w]['folds'] for w in HR['worlds'] if w.startswith('S'))", "fmt": "d"},
-  "si2_Sbeats": {"expr": "sum(HB['summary']['S_beats_per_world'])", "fmt": "d"},
-  "si2_Smax": {"expr": "max(HB['summary']['S_beats_per_world'])", "fmt": "d"},
-  "si2_cpobs": {"expr": "HB['summary']['S_cp95_upper']", "fmt": "f3"},
-  "si2_rmed": {"expr": "HB['summary']['S_median_r']", "fmt": "f3"},
-  "si2_rhoobs": {"expr": "HR['null_within_world_rho']", "fmt": "f3"},
-  "si2_K2a": {"expr": "HB['summary']['power_K2']['K2a']['beats']", "fmt": "d"},
-  "si2_K2b": {"expr": "HB['summary']['power_K2']['K2b']['beats']", "fmt": "d"},
-  "si2_K2c": {"expr": "HB['summary']['power_K2']['K2c']['beats']", "fmt": "d"},
-  "si2_C3": {"expr": "HB['summary']['C3_reported']['beats']", "fmt": "d"},
-  "si2_C3r": {"expr": "HR['worlds']['C3']['median_r']", "fmt": "f2"},
-  "si2_bK3": {"doc": "PREREG_P4_draft.md", "contains": "|b_fit/1.5 − 1| is at most 0.25"},
-  "si2_b27b": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "si2_T27b": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "si2_b60b": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "si2_T60b": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
-  "n_seg": {"doc": "results/confirm_R2.log", "contains": "dry-mass rule R2; 1187 segments in 18 groups"},
-  "n_groups": {"doc": "results/confirm_R2.log", "contains": "dry-mass rule R2; 1187 segments in 18 groups"},
-  "res_b0_lo": {"expr": "CS['R2']['summary']['E_B0_min']", "fmt": "f3"},
-  "res_b0_hi": {"expr": "CS['R2']['summary']['E_B0_max']", "fmt": "f3"},
-  "res_b0F_lo": {"expr": "round(CS['R2']['summary']['B0_over_F_min'])", "fmt": "d"},
-  "res_b0F_hi": {"expr": "round(CS['R2']['summary']['B0_over_F_max'])", "fmt": "d"},
-  "res_ncomp": {"expr": "CS['R2']['summary']['n_comparator_B0']", "fmt": "d"},
-  "res_b1_lo": {"expr": "CS['R2']['summary']['E_B1_min']", "fmt": "f2"},
-  "res_b1_hi": {"expr": "CS['R2']['summary']['E_B1_max']", "fmt": "f2"},
-  "res_ros_ratio": {"expr": "H7['cases']['C3|ROS-039']['L1']['E_model'] / H7['cases']['C3|ROS-039']['L1']['E_B0']", "fmt": "f2"},
-  "res_alfu_ratio": {"expr": "HA['cases']['C3|Al-fumarate']['L1']['E_model'] / HA['cases']['C3|Al-fumarate']['L1']['E_B0']", "fmt": "f2"},
-  "res_mof_b0": {"expr": "H7['cases']['C3|MOF-303']['L1']['E_B0']", "fmt": "f4"},
-  "res_mof_l1": {"expr": "H7['cases']['C3|MOF-303']['L1']['E_model']", "fmt": "f4"},
-  "res_mof_p": {"expr": "H7['cases']['C3|MOF-303']['L1']['p_signflip']", "fmt": "f3"},
-  "res_mof_ratio": {"expr": "H7['cases']['C3|MOF-303']['L1']['E_model'] / H7['cases']['C3|MOF-303']['L1']['E_B0']", "fmt": "f2"},
-  "res_Kbeats": {"expr": "HB['summary']['K_beats']", "fmt": "d"},
-  "res_Sbeats": {"expr": "sum(HB['summary']['S_beats_per_world'])", "fmt": "d"},
-  "res_nnull": {"expr": "sum(HR['worlds'][w]['folds'] for w in HR['worlds'] if w.startswith('S'))", "fmt": "d"},
-  "res_beats_r2": {"expr": "CS['R2']['loso_beats']", "fmt": "d"},
-  "res_beats_r1": {"expr": "CS['R1']['loso_beats']", "fmt": "d"},
-  "res_folds": {"expr": "CS['R2']['loso_folds']", "fmt": "d"},
-  "res_rmin_r2": {"expr": "100 * CS['R2']['r_min']", "fmt": "f1"},
-  "res_rmax_r2": {"expr": "100 * CS['R2']['r_max']", "fmt": "f1"},
-  "res_rmin_r1": {"expr": "100 * CS['R1']['r_min']", "fmt": "f1"},
-  "res_rmax_r1": {"expr": "100 * CS['R1']['r_max']", "fmt": "f1"},
-  "res_ub": {"doc": "PREREG_P4_draft.md", "contains": "it is a one-sided 96.5 % upper bound on the median"},
-  "res_o7_r2": {"expr": "100 * CS['R2']['r_order7']", "fmt": "f1"},
-  "res_o7_r1": {"expr": "100 * CS['R1']['r_order7']", "fmt": "f1"},
-  "res_worse_r2": {"expr": "CS['R2']['summary']['n_B2_worse_median']", "fmt": "d"},
-  "res_worse_r1": {"expr": "CS['R1']['summary']['n_B2_worse_median']", "fmt": "d"},
-  "res_bmin": {"expr": "CS['R2']['summary']['b_min']", "fmt": "f2"},
-  "res_bmax": {"expr": "CS['R2']['summary']['b_max']", "fmt": "f2"},
-  "res_gap_lo": {"expr": "100 * CS['R2']['summary']['gap_closed_min']", "fmt": "f1"},
-  "res_gap_hi": {"expr": "round(100 * CS['R2']['summary']['gap_closed_max'])", "fmt": "d"},
-  "res_ownk_med": {"expr": "round(100 * CS['R2']['summary']['own_k_rel_reduction_median'])", "fmt": "d"},
-  "res_ep_n": {"expr": "CS['R2']['summary']['n_endpoint_better']", "fmt": "d"},
-  "res_ep_of": {"expr": "len(CS['R2']['sorbents'])", "fmt": "d"},
-  "res_ep_lo": {"expr": "round(100 * CS['R2']['summary']['endpoint_rel_reduction_min'])", "fmt": "d"},
-  "res_ep_hi": {"expr": "round(100 * CS['R2']['summary']['endpoint_rel_reduction_max'])", "fmt": "d"},
-  "res_ep_med": {"expr": "round(100 * CS['R2']['summary']['endpoint_rel_reduction_median'])", "fmt": "d"},
-  "res_ep_beats": {"expr": "CS['R2']['summary']['n_endpoint_beats_own_k']", "fmt": "d"},
-  "res_ep_n_r1": {"expr": "CS['R1']['summary']['n_endpoint_better']", "fmt": "d"},
-  "res_ep_med_r1": {"expr": "round(100 * CS['R1']['summary']['endpoint_rel_reduction_median'])", "fmt": "d"},
-  "res_gap_hi_r1": {"expr": "round(100 * CS['R1']['summary']['gap_closed_max'])", "fmt": "d"},
-  "res_orF": {"expr": "CS['R2']['summary']['best_oracle_over_F_min']", "fmt": "f1"},
-  "res_h4c_r2": {"expr": "CS['R2']['H4c_summary']['n_B0_worse_lofo']", "fmt": "d"},
-  "res_h4c_n": {"expr": "CS['R2']['H4c_summary']['n']", "fmt": "d"},
-  "res_h4c_r1": {"expr": "CS['R1']['H4c_summary']['n_B0_worse_lofo']", "fmt": "d"},
-  "res_b0F_lo2": {"expr": "round(CS['R2']['summary']['B0_over_F_min'])", "fmt": "d"},
-  "res_b0F_hi2": {"expr": "round(CS['R2']['summary']['B0_over_F_max'])", "fmt": "d"},
-  "res_ownk_med2": {"expr": "round(100 * CS['R2']['summary']['own_k_rel_reduction_median'])", "fmt": "d"},
-  "res_ep_med2": {"expr": "round(100 * CS['R2']['summary']['endpoint_rel_reduction_median'])", "fmt": "d"},
-  "res_orF2": {"expr": "CS['R2']['summary']['best_oracle_over_F_min']", "fmt": "f1"},
-  "res_margin2": {"doc": "PREREG_P4_draft.md", "contains": "is at least 10 % (practical significance)"},
-  "res_ownk_med_r1": {"expr": "round(100 * CS['R1']['summary']['own_k_rel_reduction_median'])", "fmt": "d"},
-  "res_ep_med_r1b": {"expr": "round(100 * CS['R1']['summary']['endpoint_rel_reduction_median'])", "fmt": "d"},
-  "abs_n": {"expr": "len(CS['R2']['sorbents'])", "fmt": "word"},
-  "abs_beats": {"expr": "max(CS['R2']['loso_beats'], CS['R1']['loso_beats'])", "fmt": "d"},
-  "abs_folds": {"expr": "CS['R2']['loso_folds']", "fmt": "d"},
-  "abs_lo": {"expr": "round(CS['R2']['summary']['B0_over_F_min'])", "fmt": "d"},
-  "abs_hi": {"expr": "round(CS['R2']['summary']['B0_over_F_max'])", "fmt": "d"},
-  "abs_med": {"expr": "round(100 * CS['R2']['summary']['own_k_rel_reduction_median']) if round(100 * CS['R2']['summary']['own_k_rel_reduction_median']) == round(100 * CS['R2']['summary']['endpoint_rel_reduction_median']) else -1", "fmt": "d"},
-  "fig_margin": {"doc": "PREREG_P4_draft.md", "contains": "is at least 10 % (practical significance)"},
-  "si_alfu_ratio": {"expr": "HA['cases']['C3|Al-fumarate']['L1']['E_model'] / HA['cases']['C3|Al-fumarate']['L1']['E_B0']", "fmt": "f2"}
+  "n_sorbents": {
+   "expr": "len([k for k in CH['F_within_segment_weighted'] if 'composite' not in k])",
+   "fmt": "word"
+  },
+  "n_loso": {
+   "expr": "len([k for k in CH['F_within_segment_weighted'] if 'composite' not in k])",
+   "fmt": "Word"
+  },
+  "T_a": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all step-run files at 27 and 60 °C;"
+  },
+  "T_b": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all step-run files at 27 and 60 °C;"
+  },
+  "T_lo": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all step-run files at 27 and 60 °C;"
+  },
+  "T_lo2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all 0↔30 % cycling files at 27 °C;"
+  },
+  "rh_lo": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all 0↔30 % cycling files at 27 °C;"
+  },
+  "rh_hi": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all 0↔30 % cycling files at 27 °C;"
+  },
+  "cyc_lo": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all 0↔30 % cycling files at 27 °C;"
+  },
+  "cyc_hi": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all 0↔30 % cycling files at 27 °C;"
+  },
+  "T_cyc": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all 0↔30 % cycling files at 27 °C;"
+  },
+  "n_dup": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "Eight files in the archive repeat another file's mass"
+  },
+  "rh_dry": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)"
+  },
+  "r2_lo": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)"
+  },
+  "r2_hi": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)"
+  },
+  "r2_med": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)"
+  },
+  "drift_win": {
+   "doc": "results/prefreeze/checks2.md",
+   "contains": "Slope of a linear fit over the last 10 min of each window"
+  },
+  "drift_r1": {
+   "doc": "results/prefreeze/checks2.md",
+   "contains": "All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845)."
+  },
+  "drift_r2": {
+   "doc": "results/prefreeze/checks2.md",
+   "contains": "All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845)."
+  },
+  "drift_n": {
+   "doc": "results/prefreeze/checks2.md",
+   "contains": "All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845)."
+  },
+  "T_comp": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour"
+  },
+  "comp_lo": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour"
+  },
+  "comp_hi": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour"
+  },
+  "grid": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "Trajectories are linearly resampled to a uniform 6 s grid."
+  },
+  "grid_pts": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant."
+  },
+  "t63": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant."
+  },
+  "t63_min": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant."
+  },
+  "clu_lo": {
+   "expr": "min(v['clusters'] for v in CC['counts']['R2'].values())",
+   "fmt": "d"
+  },
+  "clu_hi": {
+   "expr": "max(v['clusters'] for v in CC['counts']['R2'].values())",
+   "fmt": "d"
+  },
+  "rh50_ref": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "which the adsorption branch reaches half its uptake at 30 % RH."
+  },
+  "rh50_27_lo": {
+   "expr": "min(v['27C'] for v in RH['rh50'].values() if '27C' in v)",
+   "fmt": "f1"
+  },
+  "rh50_27_hi": {
+   "expr": "max(v['27C'] for v in RH['rh50'].values() if '27C' in v)",
+   "fmt": "f1"
+  },
+  "rh50_60_lo": {
+   "expr": "min(v['60C'] for v in RH['rh50'].values() if '60C' in v)",
+   "fmt": "f1"
+  },
+  "rh50_60_hi": {
+   "expr": "max(v['60C'] for v in RH['rh50'].values() if '60C' in v)",
+   "fmt": "f1"
+  },
+  "T_r1": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "RH at 27 °C and 10.5 % to 28.7 % at 60 °C."
+  },
+  "T_r2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "RH at 27 °C and 10.5 % to 28.7 % at 60 °C."
+  },
+  "F_lo": {
+   "expr": "min(CH['F_within_segment_weighted'].values())",
+   "fmt": "f4"
+  },
+  "F_hi": {
+   "expr": "max(CH['F_within_segment_weighted'].values())",
+   "fmt": "f4"
+  },
+  "margin": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "margin2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "margin3": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "margin4": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "alpha": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025"
+  },
+  "viol_w": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "by more than 0.05 wt% over any 1-minute window"
+  },
+  "viol_frac": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "violations exceed 5 % of a fold's segments"
+  },
+  "need": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "if the model beats the comparator in at least 7 of 8 folds"
+  },
+  "nfold": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "if the model beats the comparator in at least 7 of 8 folds"
+  },
+  "ub": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "it is a one-sided 96.5 % upper bound on the median"
+  },
+  "sigma": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9."
+  },
+  "phi": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9."
+  },
+  "eps_thr": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(median RH of that tenth) is at least 0.2·w₃₀"
+  },
+  "eps_rh": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "z holds: w normalised by the isotherm's uptake at 30 % RH"
+  },
+  "si_w30": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "z holds: w normalised by the isotherm's uptake at 30 % RH"
+  },
+  "si_kerr": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "in world N, B0 refitted on the training sorbents recovers k″ within 2 %;"
+  },
+  "si_alpha": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025"
+  },
+  "si_mof_b0": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['E_B0']",
+   "fmt": "f4"
+  },
+  "si_mof_l1": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['E_model']",
+   "fmt": "f4"
+  },
+  "si_mof_gain": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['median_gain']",
+   "fmt": "f4"
+  },
+  "si_mof_F": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['F']",
+   "fmt": "f3"
+  },
+  "si_mof_p": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['p_signflip']",
+   "fmt": "f3"
+  },
+  "si_mof_ratio": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['E_model'] / H7['cases']['C3|MOF-303']['L1']['E_B0']",
+   "fmt": "f2"
+  },
+  "si_ros_ratio": {
+   "expr": "H7['cases']['C3|ROS-039']['L1']['E_model'] / H7['cases']['C3|ROS-039']['L1']['E_B0']",
+   "fmt": "f2"
+  },
+  "si2_nfold": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "Each world runs the 8 LOSO folds"
+  },
+  "si2_sd27": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "si2_T27": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "si2_b27": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "si2_sd60": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "si2_T60": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "si2_b60": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "si2_ngroups": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "|ε| resampled from the 18 measured group offsets"
+  },
+  "si2_cap": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "|ε·w₃₀| ≤ 3.128 wt%"
+  },
+  "si2_need": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "at least 7 of 8 folds are beaten in K"
+  },
+  "si2_nfold2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "at least 7 of 8 folds are beaten in K"
+  },
+  "si2_btol": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "|b_fit/1.5 − 1| is at most 0.25"
+  },
+  "si2_nnull": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "over the 48 null fold-fits of S0–S5"
+  },
+  "si2_cp": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "the one-sided 95 % Clopper–Pearson upper bound on the per-fold beat rate is at most 0.40"
+  },
+  "si2_cpmax": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "the one-sided 95 % Clopper–Pearson upper bound on the per-fold beat rate is at most 0.40"
+  },
+  "si2_wmax": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "no world has 5 or more of its 8 folds beaten"
+  },
+  "si2_rmax": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "the median of r is below 2.5 %"
+  },
+  "si2_cpmax2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12"
+  },
+  "si2_need2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12"
+  },
+  "si2_p7": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12"
+  },
+  "si2_rho": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12"
+  },
+  "si2_bK": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "log k″ of each sorbent is shifted by 1.5·(RH₅₀/30 − mean)"
+  },
+  "si2_bK2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "|b_fit/1.5 − 1| is at most 0.25"
+  },
+  "si2_x30": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "log k″ of each sorbent is shifted by 1.5·(RH₅₀/30 − mean)"
+  },
+  "si2_Kbeats": {
+   "expr": "HB['summary']['K_beats']",
+   "fmt": "d"
+  },
+  "si2_Kerr": {
+   "expr": "100 * HB['summary']['K_median_rel_err_b']",
+   "fmt": "f2"
+  },
+  "si2_nnull2": {
+   "expr": "sum(HR['worlds'][w]['folds'] for w in HR['worlds'] if w.startswith('S'))",
+   "fmt": "d"
+  },
+  "si2_Sbeats": {
+   "expr": "sum(HB['summary']['S_beats_per_world'])",
+   "fmt": "d"
+  },
+  "si2_Smax": {
+   "expr": "max(HB['summary']['S_beats_per_world'])",
+   "fmt": "d"
+  },
+  "si2_cpobs": {
+   "expr": "HB['summary']['S_cp95_upper']",
+   "fmt": "f3"
+  },
+  "si2_rmed": {
+   "expr": "HB['summary']['S_median_r']",
+   "fmt": "f3"
+  },
+  "si2_rhoobs": {
+   "expr": "HR['null_within_world_rho']",
+   "fmt": "f3"
+  },
+  "si2_K2a": {
+   "expr": "HB['summary']['power_K2']['K2a']['beats']",
+   "fmt": "d"
+  },
+  "si2_K2b": {
+   "expr": "HB['summary']['power_K2']['K2b']['beats']",
+   "fmt": "d"
+  },
+  "si2_K2c": {
+   "expr": "HB['summary']['power_K2']['K2c']['beats']",
+   "fmt": "d"
+  },
+  "si2_C3": {
+   "expr": "HB['summary']['C3_reported']['beats']",
+   "fmt": "d"
+  },
+  "si2_C3r": {
+   "expr": "HR['worlds']['C3']['median_r']",
+   "fmt": "f2"
+  },
+  "si2_bK3": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "|b_fit/1.5 − 1| is at most 0.25"
+  },
+  "si2_b27b": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "si2_T27b": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "si2_b60b": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "si2_T60b": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"
+  },
+  "n_seg": {
+   "doc": "results/confirm_R2.log",
+   "contains": "dry-mass rule R2; 1187 segments in 18 groups"
+  },
+  "n_groups": {
+   "doc": "results/confirm_R2.log",
+   "contains": "dry-mass rule R2; 1187 segments in 18 groups"
+  },
+  "res_b0_lo": {
+   "expr": "CS['R2']['summary']['E_B0_min']",
+   "fmt": "f3"
+  },
+  "res_b0_hi": {
+   "expr": "CS['R2']['summary']['E_B0_max']",
+   "fmt": "f3"
+  },
+  "res_b0F_lo": {
+   "expr": "round(CS['R2']['summary']['B0_over_F_min'])",
+   "fmt": "d"
+  },
+  "res_b0F_hi": {
+   "expr": "round(CS['R2']['summary']['B0_over_F_max'])",
+   "fmt": "d"
+  },
+  "res_ncomp": {
+   "expr": "CS['R2']['summary']['n_comparator_B0']",
+   "fmt": "d"
+  },
+  "res_b1_lo": {
+   "expr": "CS['R2']['summary']['E_B1_min']",
+   "fmt": "f2"
+  },
+  "res_b1_hi": {
+   "expr": "CS['R2']['summary']['E_B1_max']",
+   "fmt": "f2"
+  },
+  "res_ros_ratio": {
+   "expr": "H7['cases']['C3|ROS-039']['L1']['E_model'] / H7['cases']['C3|ROS-039']['L1']['E_B0']",
+   "fmt": "f2"
+  },
+  "res_alfu_ratio": {
+   "expr": "HA['cases']['C3|Al-fumarate']['L1']['E_model'] / HA['cases']['C3|Al-fumarate']['L1']['E_B0']",
+   "fmt": "f2"
+  },
+  "res_mof_b0": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['E_B0']",
+   "fmt": "f4"
+  },
+  "res_mof_l1": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['E_model']",
+   "fmt": "f4"
+  },
+  "res_mof_p": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['p_signflip']",
+   "fmt": "f3"
+  },
+  "res_mof_ratio": {
+   "expr": "H7['cases']['C3|MOF-303']['L1']['E_model'] / H7['cases']['C3|MOF-303']['L1']['E_B0']",
+   "fmt": "f2"
+  },
+  "res_Kbeats": {
+   "expr": "HB['summary']['K_beats']",
+   "fmt": "d"
+  },
+  "res_Sbeats": {
+   "expr": "sum(HB['summary']['S_beats_per_world'])",
+   "fmt": "d"
+  },
+  "res_nnull": {
+   "expr": "sum(HR['worlds'][w]['folds'] for w in HR['worlds'] if w.startswith('S'))",
+   "fmt": "d"
+  },
+  "res_beats_r2": {
+   "expr": "CS['R2']['loso_beats']",
+   "fmt": "d"
+  },
+  "res_beats_r1": {
+   "expr": "CS['R1']['loso_beats']",
+   "fmt": "d"
+  },
+  "res_folds": {
+   "expr": "CS['R2']['loso_folds']",
+   "fmt": "d"
+  },
+  "res_rmin_r2": {
+   "expr": "100 * CS['R2']['r_min']",
+   "fmt": "f1"
+  },
+  "res_rmax_r2": {
+   "expr": "100 * CS['R2']['r_max']",
+   "fmt": "f1"
+  },
+  "res_rmin_r1": {
+   "expr": "100 * CS['R1']['r_min']",
+   "fmt": "f1"
+  },
+  "res_rmax_r1": {
+   "expr": "100 * CS['R1']['r_max']",
+   "fmt": "f1"
+  },
+  "res_ub": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "it is a one-sided 96.5 % upper bound on the median"
+  },
+  "res_o7_r2": {
+   "expr": "100 * CS['R2']['r_order7']",
+   "fmt": "f1"
+  },
+  "res_o7_r1": {
+   "expr": "100 * CS['R1']['r_order7']",
+   "fmt": "f1"
+  },
+  "res_bmin": {
+   "expr": "CS['R2']['summary']['b_min']",
+   "fmt": "f2"
+  },
+  "res_bmax": {
+   "expr": "CS['R2']['summary']['b_max']",
+   "fmt": "f2"
+  },
+  "res_gap_lo": {
+   "expr": "100 * CS['R2']['summary']['gap_closed_min']",
+   "fmt": "f1"
+  },
+  "res_gap_hi": {
+   "expr": "round(100 * CS['R2']['summary']['gap_closed_max'])",
+   "fmt": "d"
+  },
+  "res_ownk_med": {
+   "expr": "round(100 * CS['R2']['summary']['own_k_rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "res_ep_n": {
+   "expr": "CS['R2']['summary']['n_endpoint_better']",
+   "fmt": "d"
+  },
+  "res_ep_of": {
+   "expr": "len(CS['R2']['sorbents'])",
+   "fmt": "d"
+  },
+  "res_ep_lo": {
+   "expr": "round(100 * CS['R2']['summary']['endpoint_rel_reduction_min'])",
+   "fmt": "d"
+  },
+  "res_ep_hi": {
+   "expr": "round(100 * CS['R2']['summary']['endpoint_rel_reduction_max'])",
+   "fmt": "d"
+  },
+  "res_ep_med": {
+   "expr": "round(100 * CS['R2']['summary']['endpoint_rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "res_ep_beats": {
+   "expr": "CS['R2']['summary']['n_endpoint_beats_own_k']",
+   "fmt": "d"
+  },
+  "res_ep_n_r1": {
+   "expr": "CS['R1']['summary']['n_endpoint_better']",
+   "fmt": "d"
+  },
+  "res_ep_med_r1": {
+   "expr": "round(100 * CS['R1']['summary']['endpoint_rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "res_gap_hi_r1": {
+   "expr": "round(100 * CS['R1']['summary']['gap_closed_max'])",
+   "fmt": "d"
+  },
+  "res_h4c_r2": {
+   "expr": "CS['R2']['H4c_summary']['n_B0_worse_lofo']",
+   "fmt": "d"
+  },
+  "res_h4c_n": {
+   "expr": "CS['R2']['H4c_summary']['n']",
+   "fmt": "d"
+  },
+  "res_h4c_r1": {
+   "expr": "CS['R1']['H4c_summary']['n_B0_worse_lofo']",
+   "fmt": "d"
+  },
+  "abs_n": {
+   "expr": "len(CS['R2']['sorbents'])",
+   "fmt": "word"
+  },
+  "abs_beats": {
+   "expr": "max(CS['R2']['loso_beats'], CS['R1']['loso_beats'])",
+   "fmt": "d"
+  },
+  "abs_folds": {
+   "expr": "CS['R2']['loso_folds']",
+   "fmt": "d"
+  },
+  "abs_lo": {
+   "expr": "round(CS['R2']['summary']['B0_over_F_min'])",
+   "fmt": "d"
+  },
+  "abs_hi": {
+   "expr": "round(CS['R2']['summary']['B0_over_F_max'])",
+   "fmt": "d"
+  },
+  "abs_t63": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['secondary_R2']['t63_B0'])",
+   "fmt": "d"
+  },
+  "abs_joint": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['joint_R2']['rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "res_fb_lo": {
+   "expr": "CS['F_between']['session_min']",
+   "fmt": "f3"
+  },
+  "res_fb_hi": {
+   "expr": "max(CS['F_between']['session_max'], CS['F_between']['pan_max'])",
+   "fmt": "f2"
+  },
+  "res_t63pct": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The relative error in time-to-63 % per segment."
+  },
+  "res_t63pct2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The relative error in time-to-63 % per segment."
+  },
+  "res_t63": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['secondary_R2']['t63_B0'])",
+   "fmt": "d"
+  },
+  "res_t63_b0": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['secondary_R2']['t63_B0'])",
+   "fmt": "d"
+  },
+  "res_t63_b2": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['secondary_R2']['t63_B2'])",
+   "fmt": "d"
+  },
+  "res_st_r1": {
+   "expr": "100 * (CS['R1']['strata']['60C|ads']['E_B0'] - CS['R1']['strata']['60C|ads']['E_B2']) / CS['R1']['strata']['60C|ads']['E_B0']",
+   "fmt": "f1"
+  },
+  "res_k2a": {
+   "expr": "CS['K2_folds_r_ge_10pct']['K2a']",
+   "fmt": "d"
+  },
+  "res_k2b": {
+   "expr": "CS['K2_folds_r_ge_10pct']['K2b']",
+   "fmt": "d"
+  },
+  "res_k2c": {
+   "expr": "CS['K2_folds_r_ge_10pct']['K2c']",
+   "fmt": "d"
+  },
+  "res_marg3": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "res_rho_lo": {
+   "expr": "CS['exploratory_and_secondary']['rh50_vs_k']['rho_min']",
+   "fmt": "f2"
+  },
+  "res_rho_hi": {
+   "expr": "CS['exploratory_and_secondary']['rh50_vs_k']['rho_max']",
+   "fmt": "f2"
+  },
+  "res_rho_p": {
+   "expr": "CS['exploratory_and_secondary']['rh50_vs_k']['p_min']",
+   "fmt": "f2"
+  },
+  "res_ownk_med_r1b": {
+   "expr": "round(100 * CS['R1']['summary']['own_k_rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "res_joint_r2": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['joint_R2']['rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "res_joint_r1": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['joint_R1']['rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "res_jointF": {
+   "expr": "min(CS['exploratory_and_secondary']['joint_R2']['joint_over_F_min'], CS['exploratory_and_secondary']['joint_R1']['joint_over_F_min'])",
+   "fmt": "f1"
+  },
+  "res_h4c_b2": {
+   "expr": "CS['R2']['H4c_summary']['n_B2_worse_lofo']",
+   "fmt": "d"
+  },
+  "si4_t63": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The relative error in time-to-63 % per segment."
+  },
+  "si4_t63b": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The relative error in time-to-63 % per segment."
+  },
+  "si4_st": {
+   "expr": "100 * (CS['R1']['strata']['60C|ads']['E_B0'] - CS['R1']['strata']['60C|ads']['E_B2']) / CS['R1']['strata']['60C|ads']['E_B0']",
+   "fmt": "f1"
+  },
+  "si4_j2": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['joint_R2']['rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "si4_j1": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['joint_R1']['rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "dis_T": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)"
+  },
+  "dis_k": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)"
+  },
+  "dis_kp": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)"
+  },
+  "dis_g1": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "k″ closes 10 % to 42 % of the gap between B0 and F"
+  },
+  "dis_g2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "k″ closes 10 % to 42 % of the gap between B0 and F"
+  },
+  "dis_m": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "kp27": {
+   "expr": "round(median([r['k2']['27C|ads'] for r in R2ROWS if r['fold'].startswith('LOSO')]), 2)",
+   "fmt": "f2"
+  },
+  "kp60": {
+   "expr": "round(median([r['k2']['60C|ads'] for r in R2ROWS if r['fold'].startswith('LOSO')]), 1)",
+   "fmt": "f1"
+  },
+  "kpT1": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all step-run files at 27 and 60 °C;"
+  },
+  "kpT2": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "all step-run files at 27 and 60 °C;"
+  },
+  "t63b": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The relative error in time-to-63 % per segment."
+  },
+  "pan_pos": {
+   "expr": "CS['R2']['per_pan']['n_positive_median_d']",
+   "fmt": "d"
+  },
+  "pan_n": {
+   "expr": "CS['R2']['per_pan']['n_pans']",
+   "fmt": "d"
+  },
+  "marg5": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "dis2_n": {
+   "expr": "CS['R2']['loso_folds']",
+   "fmt": "d"
+  },
+  "dis2_ownk": {
+   "expr": "round(100 * CS['R2']['summary']['own_k_rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "dis2_joint": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['joint_R2']['rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "dis2_jF": {
+   "expr": "min(CS['exploratory_and_secondary']['joint_R2']['joint_over_F_min'], CS['exploratory_and_secondary']['joint_R1']['joint_over_F_min'])",
+   "fmt": "f1"
+  },
+  "dis2_fb1": {
+   "expr": "CS['F_between']['session_min']",
+   "fmt": "f3"
+  },
+  "dis2_fb2": {
+   "expr": "max(CS['F_between']['session_max'], CS['F_between']['pan_max'])",
+   "fmt": "f2"
+  },
+  "dis2_m": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "dis2_t63p": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The relative error in time-to-63 % per segment."
+  },
+  "dis2_t63": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['secondary_R2']['t63_B0'])",
+   "fmt": "d"
+  },
+  "fig_margin": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "si_alfu_ratio": {
+   "expr": "HA['cases']['C3|Al-fumarate']['L1']['E_model'] / HA['cases']['C3|Al-fumarate']['L1']['E_B0']",
+   "fmt": "f2"
+  },
+  "abs_63": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The relative error in time-to-63 % per segment."
+  }
  }
 }

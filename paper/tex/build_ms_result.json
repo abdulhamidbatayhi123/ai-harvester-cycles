@@ -8,24 +8,25 @@
    "tab_h4a.tex",
    "tab_h4c.tex",
    "tab_harness_b2.tex",
-   "tab_harness_l1.tex"
+   "tab_harness_l1.tex",
+   "tab_secondary.tex"
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 169,
-  "G1_n_keys": 168,
+  "G1_n_uses": 207,
+  "G1_n_keys": 207,
   "G2_main.tex_n_refs": 31,
   "G2_si.tex_n_refs": 0,
-  "G2_si_notes": 3,
-  "G2_si_figures": 0,
+  "G2_si_notes": 4,
+  "G2_si_figures": 1,
   "G3_main.tex_em_dashes": 0,
   "G3_si.tex_em_dashes": 0,
   "G4_n_phrases": 35,
   "G5_words": {
-   "abstract": 155,
-   "main_text": 2531,
-   "methods": 1460,
-   "si": 1701
+   "abstract": 154,
+   "main_text": 3320,
+   "methods": 1980,
+   "si": 1985
   },
   "G5_targets": {
    "abstract": "<= 200",
@@ -33,10 +34,10 @@
    "methods": "about 2500"
   },
   "G5_flags": [
-   "main text 2531 outside 4,500-5,500",
-   "Methods 1460 outside about 2,500 (2,000-3,000)"
+   "main text 3320 outside 4,500-5,500",
+   "Methods 1980 outside about 2,500 (2,000-3,000)"
   ],
-  "G6_n_figures": 4,
+  "G6_n_figures": 6,
   "G7_pending": [
    {
     "doc": "main.tex",
@@ -75,15 +76,29 @@
   {
    "key": "abs_hi",
    "doc": "main.tex",
-   "text": "39",
-   "source": "39",
+   "text": "31",
+   "source": "31",
    "ok": true
   },
   {
-   "key": "abs_med",
+   "key": "abs_63",
    "doc": "main.tex",
-   "text": "15",
-   "source": "15",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "abs_t63",
+   "doc": "main.tex",
+   "text": "17",
+   "source": "17",
+   "ok": true
+  },
+  {
+   "key": "abs_joint",
+   "doc": "main.tex",
+   "text": "26",
+   "source": "26",
    "ok": true
   },
   {
@@ -124,8 +139,36 @@
   {
    "key": "res_b0F_hi",
    "doc": "main.tex",
-   "text": "39",
-   "source": "39",
+   "text": "31",
+   "source": "31",
+   "ok": true
+  },
+  {
+   "key": "res_fb_lo",
+   "doc": "main.tex",
+   "text": "0.034",
+   "source": "0.034",
+   "ok": true
+  },
+  {
+   "key": "res_fb_hi",
+   "doc": "main.tex",
+   "text": "0.37",
+   "source": "0.37",
+   "ok": true
+  },
+  {
+   "key": "res_t63pct",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "res_t63",
+   "doc": "main.tex",
+   "text": "17",
+   "source": "17",
    "ok": true
   },
   {
@@ -227,13 +270,6 @@
    "ok": true
   },
   {
-   "key": "res_folds",
-   "doc": "main.tex",
-   "text": "8",
-   "source": "8",
-   "ok": true
-  },
-  {
    "key": "res_beats_r1",
    "doc": "main.tex",
    "text": "0",
@@ -290,17 +326,59 @@
    "ok": true
   },
   {
-   "key": "res_worse_r2",
+   "key": "res_st_r1",
+   "doc": "main.tex",
+   "text": "0.3",
+   "source": "0.3",
+   "ok": true
+  },
+  {
+   "key": "res_t63pct2",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "res_t63_b2",
+   "doc": "main.tex",
+   "text": "18",
+   "source": "18",
+   "ok": true
+  },
+  {
+   "key": "res_t63_b0",
+   "doc": "main.tex",
+   "text": "17",
+   "source": "17",
+   "ok": true
+  },
+  {
+   "key": "res_k2a",
    "doc": "main.tex",
    "text": "7",
    "source": "7",
    "ok": true
   },
   {
-   "key": "res_worse_r1",
+   "key": "res_k2b",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "res_k2c",
    "doc": "main.tex",
    "text": "5",
    "source": "5",
+   "ok": true
+  },
+  {
+   "key": "res_marg3",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
    "ok": true
   },
   {
@@ -315,6 +393,27 @@
    "doc": "main.tex",
    "text": "0.30",
    "source": "0.30",
+   "ok": true
+  },
+  {
+   "key": "res_rho_lo",
+   "doc": "main.tex",
+   "text": "-0.50",
+   "source": "-0.50",
+   "ok": true
+  },
+  {
+   "key": "res_rho_hi",
+   "doc": "main.tex",
+   "text": "0.10",
+   "source": "0.10",
+   "ok": true
+  },
+  {
+   "key": "res_rho_p",
+   "doc": "main.tex",
+   "text": "0.22",
+   "source": "0.22",
    "ok": true
   },
   {
@@ -402,10 +501,31 @@
    "ok": true
   },
   {
-   "key": "res_orF",
+   "key": "res_ownk_med_r1b",
    "doc": "main.tex",
-   "text": "5.6",
-   "source": "5.6",
+   "text": "22",
+   "source": "22",
+   "ok": true
+  },
+  {
+   "key": "res_joint_r2",
+   "doc": "main.tex",
+   "text": "26",
+   "source": "26",
+   "ok": true
+  },
+  {
+   "key": "res_joint_r1",
+   "doc": "main.tex",
+   "text": "25",
+   "source": "25",
+   "ok": true
+  },
+  {
+   "key": "res_jointF",
+   "doc": "main.tex",
+   "text": "7.2",
+   "source": "7.2",
    "ok": true
   },
   {
@@ -427,6 +547,13 @@
    "doc": "main.tex",
    "text": "3",
    "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_h4c_b2",
+   "doc": "main.tex",
+   "text": "4",
+   "source": "4",
    "ok": true
   },
   {
@@ -465,56 +592,105 @@
    "ok": true
   },
   {
-   "key": "res_b0F_lo2",
+   "key": "dis2_n",
    "doc": "main.tex",
-   "text": "7",
-   "source": "7",
+   "text": "8",
+   "source": "8",
    "ok": true
   },
   {
-   "key": "res_b0F_hi2",
-   "doc": "main.tex",
-   "text": "39",
-   "source": "39",
-   "ok": true
-  },
-  {
-   "key": "res_ownk_med2",
+   "key": "dis2_ownk",
    "doc": "main.tex",
    "text": "15",
    "source": "15",
    "ok": true
   },
   {
-   "key": "res_ep_med2",
+   "key": "dis2_joint",
    "doc": "main.tex",
-   "text": "15",
-   "source": "15",
+   "text": "26",
+   "source": "26",
    "ok": true
   },
   {
-   "key": "res_orF2",
+   "key": "dis2_jF",
    "doc": "main.tex",
-   "text": "5.6",
-   "source": "5.6",
+   "text": "7.2",
+   "source": "7.2",
    "ok": true
   },
   {
-   "key": "res_ownk_med_r1",
+   "key": "dis2_fb1",
    "doc": "main.tex",
-   "text": "22",
-   "source": "22",
+   "text": "0.034",
+   "source": "0.034",
    "ok": true
   },
   {
-   "key": "res_ep_med_r1b",
+   "key": "dis2_fb2",
    "doc": "main.tex",
-   "text": "7",
-   "source": "7",
+   "text": "0.37",
+   "source": "0.37",
    "ok": true
   },
   {
-   "key": "res_margin2",
+   "key": "dis2_m",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "dis2_t63p",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "dis2_t63",
+   "doc": "main.tex",
+   "text": "17",
+   "source": "17",
+   "ok": true
+  },
+  {
+   "key": "dis_T",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_k",
+   "doc": "main.tex",
+   "text": "3.16",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_kp",
+   "doc": "main.tex",
+   "text": "1.59",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_g1",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
+   "ok": true
+  },
+  {
+   "key": "dis_g2",
+   "doc": "main.tex",
+   "text": "42",
+   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
+   "ok": true
+  },
+  {
+   "key": "dis_m",
    "doc": "main.tex",
    "text": "10",
    "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
@@ -672,6 +848,34 @@
    "doc": "main.tex",
    "text": "54",
    "source": "54",
+   "ok": true
+  },
+  {
+   "key": "kp27",
+   "doc": "main.tex",
+   "text": "0.32",
+   "source": "0.32",
+   "ok": true
+  },
+  {
+   "key": "kpT1",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
+   "key": "kp60",
+   "doc": "main.tex",
+   "text": "1.2",
+   "source": "1.2",
+   "ok": true
+  },
+  {
+   "key": "kpT2",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
    "ok": true
   },
   {
@@ -833,6 +1037,34 @@
    "doc": "main.tex",
    "text": "30",
    "source": "PREREG_P4_draft.md: z holds: w normalised by the isotherm's uptake at 30 % RH",
+   "ok": true
+  },
+  {
+   "key": "t63b",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "pan_pos",
+   "doc": "main.tex",
+   "text": "19",
+   "source": "19",
+   "ok": true
+  },
+  {
+   "key": "pan_n",
+   "doc": "main.tex",
+   "text": "64",
+   "source": "64",
+   "ok": true
+  },
+  {
+   "key": "marg5",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
    "ok": true
   },
   {
@@ -1232,6 +1464,41 @@
    "doc": "si.tex",
    "text": "60",
    "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si4_t63",
+   "doc": "si.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "si4_t63b",
+   "doc": "si.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "si4_st",
+   "doc": "si.tex",
+   "text": "0.3",
+   "source": "0.3",
+   "ok": true
+  },
+  {
+   "key": "si4_j2",
+   "doc": "si.tex",
+   "text": "26",
+   "source": "26",
+   "ok": true
+  },
+  {
+   "key": "si4_j1",
+   "doc": "si.tex",
+   "text": "25",
+   "source": "25",
    "ok": true
   }
  ]
