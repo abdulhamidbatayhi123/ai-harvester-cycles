@@ -10,7 +10,9 @@ is, re-read its artwork rules live and change the constants below if they differ
   or marker, so figures survive greyscale;
 - vector PDF with embedded TrueType fonts (fonttype 42) plus a 600 dpi PNG for review;
 - save() ASSERTS the size, the font range and the absence of coloured text, and writes a
-  provenance file with the SHA-256 of the drawing script, this module and every input.
+  provenance file with the SHA-256 of the drawing script, this module and every input
+  (repository-relative paths, text LF-normalised) and the list of those files that git sees as
+  uncommitted (the manuscript build refuses a figure drawn from uncommitted files).
 
 Fixed meanings in every Paper 4 figure:
   measured data      light grey markers (open circles)
@@ -24,6 +26,7 @@ Fixed meanings in every Paper 4 figure:
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 
@@ -103,12 +106,52 @@ def coloured_text(fig):
             if t.get_visible() and t.get_text().strip() and to_hex(t.get_color()).lower() not in ok]
 
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEXT_EXT = (".py", ".json", ".jsonl", ".csv", ".md", ".txt", ".tex")
+SUB_MIN_PT = 4.5   # mathtext prints sub- and superscripts at 70 % of the text size
+
+
 def _sha(path):
-    h = hashlib.sha256()
+    """SHA-256 of a file; text files with line endings normalised to LF, so a Windows checkout
+    (CRLF) and the repository blob give the same hash (lessons file, section 10)."""
     with open(path, "rb") as f:
-        for b in iter(lambda: f.read(1 << 20), b""):
-            h.update(b)
-    return h.hexdigest()
+        b = f.read()
+    if path.lower().endswith(TEXT_EXT):
+        b = b.replace(b"\r\n", b"\n")
+    return hashlib.sha256(b).hexdigest()
+
+
+def _rel(path):
+    """Repository-relative path with forward slashes (the provenance must not name the machine)."""
+    p = os.path.abspath(path)
+    try:
+        return os.path.relpath(p, ROOT).replace(os.sep, "/")
+    except ValueError:
+        return p.replace(os.sep, "/")
+
+
+def _git_dirty(paths):
+    """Files among `paths` with uncommitted changes or untracked (None if git is unavailable)."""
+    import subprocess
+    try:
+        r = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--"] + [_rel(p) for p in paths],
+                           capture_output=True, text=True, timeout=60)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if r.returncode:
+        return None
+    return sorted(ln[3:].strip() for ln in r.stdout.splitlines() if ln.strip())
+
+
+def small_scripts(fig):
+    """Visible mathtext with a sub- or superscript whose script would print below SUB_MIN_PT."""
+    from matplotlib.text import Text
+    out = []
+    for t in fig.findobj(Text):
+        s = t.get_text()
+        if t.get_visible() and "$" in s and re.search(r"[_^]", s) and 0.7 * t.get_fontsize() < SUB_MIN_PT - 1e-9:
+            out.append(s[:30])
+    return out
 
 
 def save(fig, stem, inputs=()):
@@ -121,6 +164,8 @@ def save(fig, stem, inputs=()):
     assert hi is None or hi <= MAX_PT + 1e-9, f"{stem}: text at {hi} pt > {MAX_PT} pt"
     bad = coloured_text(fig)
     assert not bad, f"{stem}: coloured text {bad}"
+    small = small_scripts(fig)
+    assert not small, f"{stem}: sub- or superscripts below {SUB_MIN_PT} pt {small}"
     for ax in fig.axes:
         assert not ax.xaxis._major_tick_kw.get("gridOn", False) and not ax.yaxis._major_tick_kw.get("gridOn", False), \
             f"{stem}: gridlines"
@@ -129,12 +174,20 @@ def save(fig, stem, inputs=()):
     fig.savefig(stem + ".pdf", metadata=meta)
     fig.savefig(stem + ".png", dpi=PNG_DPI)
     script = os.path.abspath(sys.argv[0]) if sys.argv and sys.argv[0] else None
+    have = bool(script and os.path.exists(script))
+    missing = [p for p in inputs if not os.path.exists(p)]
+    assert not missing, f"{stem}: inputs not found {missing}"
+    # data_raw/ and data_derived/ are third-party data kept out of git by design: hashed, not git-checked
+    tracked = [__file__] + ([script] if have else []) + [
+        p for p in inputs if not _rel(p).startswith(("data_raw/", "data_derived/"))]
     prov = {"figure": os.path.basename(stem), "size_mm": [round(w / MM, 1), round(h / MM, 1)],
             "font_pt": [lo, hi], "made": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "style_sha256": _sha(__file__),
-            "script": os.path.basename(script) if script and os.path.exists(script) else None,
-            "script_sha256": _sha(script) if script and os.path.exists(script) else None,
-            "inputs": {p: _sha(p) for p in inputs if os.path.exists(p)}}
+            "hash": "sha256, text files LF-normalised",
+            "style": _rel(__file__), "style_sha256": _sha(__file__),
+            "script": _rel(script) if have else None,
+            "script_sha256": _sha(script) if have else None,
+            "inputs": {_rel(p): _sha(p) for p in inputs},
+            "git_dirty_files": _git_dirty(tracked)}
     with open(stem + ".prov.json", "w", encoding="utf-8") as f:
         json.dump(prov, f, indent=1)
     plt.close(fig)
