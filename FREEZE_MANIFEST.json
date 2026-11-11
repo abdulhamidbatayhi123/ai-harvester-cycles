@@ -1,0 +1,31 @@
+{
+ "about": "Freeze manifest of the Paper 4 pre-registration. Hashes: SHA-256, text files LF-normalised. data_derived is not in git (derived from Zenodo 6631711, md5 in DATA_SOURCES.md); its files are hashed individually and combined in path order.",
+ "frozen": "2026-11-11",
+ "approved_by": "the author (Abdulhamid Batayhi), 10 % margin confirmed unchanged",
+ "tag": "prereg-p4-freeze",
+ "commit": "bf0b2cfe0cac81123b2c7c644b2385c3a4165671",
+ "files": {
+  "PREREG_P4_draft.md": "467aadd753c1281801e024c921b988a4ff164412de42654f5de7f96e28a598c6",
+  "requirements-lock.txt": "bfe5b9c551c51e18916d641f87d5582f0c22087a23c310e63d2a989c2745bba6",
+  "results/prefreeze/checks2.json": "fd100fd2dd5337b5562d6f7b60496da5144b87838d2691f4d47ec13edf3f1f38",
+  "results/harness_b2/harness_b2.json": "da7b9d09b885e3bd3acb5640039344e433a4a49e45dbf3256122216068e711be",
+  "results/rh50.json": "93dacf2b6ac07731b15dbc45f03254913e56fc0644190f8d478cf10e4e741a67",
+  "audit/harness_b2.py": "84b65cbaf8a56ee5f12d148b21d39c9ca69fd0fc2df7e03db54a0a5ba31de97b",
+  "audit/synthetic_harness.py": "c58aaa51aaff11d8eab46ab4362173095ba09bbb99d5fc3bc76f58d3bd0529ea",
+  "p4\\__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "p4\\data.py": "dedc6810f5b0d3cf9fdcba8160e87c03ad54c1b098de2a60203cee7ab042fb66",
+  "p4\\dataset.py": "e946c6976c7dff7a88c34d7dcedf9af5f550eb606eb8e91d49f0278b6a416ace",
+  "p4\\decide.py": "1265aacffcac28619c36bb3bb7e7c033e79e7f3a4ff1abdecc160067c4d051d1",
+  "p4\\figstyle.py": "067d313ddb710199d9b5c274faee7ed5f0e2e5a3113fbbb431411bbd1b3ec870",
+  "p4\\final_verdict.py": "00e97d9cf550bae0707bbfe5930027d032e4ea68887ab87e6e28a600da297e34",
+  "p4\\learned.py": "9c4e7755382682748ea00b6d58848bc8f440be43a273180c4cee213b27f1808f",
+  "p4\\physics.py": "b5729178921ae5cf7e4b1b1baea05ff6094dbddc828953b8f4cf8ba07b907608",
+  "p4\\run_study.py": "1992d537a50104ecdccc1b4a519c906d75e7ac8356856919587e1070edb04cd9",
+  "p4\\segments.py": "67e5cbcf6154e545c8c589c718a56a18b350c2eb643e13b565bc0d20fa441e53",
+  "p4\\train.py": "cf60a3e85b9356470126716f46f4886af6c5c0dfe4667bc6e557ec51670d877a"
+ },
+ "data_derived": {
+  "n_files": 174,
+  "combined_sha256": "5ef55e6f95ee3b1f15864ba9152153089f3784b7bd56fc3b87578e9f7754774c"
+ }
+}
