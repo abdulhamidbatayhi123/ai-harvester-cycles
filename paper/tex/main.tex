@@ -30,9 +30,15 @@ Technical University, \ID{34220} Istanbul, T\"urkiye\\ E-mail: abdulhamid.batayh
 \maketitle
 
 \begin{abstract}
-\pending{abstract}{Written after the confirmatory runs: question, design (pre-registered, held-out sorbents,
-synthetic harnesses), the H4a$'$ verdict in its pre-registered wording, the harness record of the learned model, and
-the error decomposition.}
+How fast a sorbent takes up water sets how often a harvester or heat pump can cycle, yet sorbents are screened on
+isotherms. The working model of uptake dynamics reads the driving force from the isotherm and shares one rate constant
+across materials. In a pre-registered test on \W{abs_n}{eight} sorbents, each held out in turn, we asked whether a
+sorbent's isotherm predicts its rate constant. A learned grey-box correction failed a synthetic ground-truth check and
+was not tested on real data. A rate constant predicted from the
+isotherm beat the shared constant for \V{abs_beats}{0} of \V{abs_folds}{8} held-out sorbents under both dry-mass
+definitions: no isotherm-predicted rate constant was detectable at this noise and error level. On unseen sorbents the
+shared model's error was \V{abs_lo}{7} to \V{abs_hi}{39} times the noise; a sorbent's own rate constant or own end
+points each removed a median \V{abs_med}{15}\,\%, leaving most of the error in the rate law or the isotherm input.
 \end{abstract}
 
 \section*{Introduction}
@@ -203,9 +209,53 @@ point, and of B0 with its own rate constant (B0$^{*}$), with the sorbent's noise
 
 \section*{Discussion}
 
-\pending{discussion}{After the results: what the verdict means for screening by isotherm, the error decomposition,
-limits (powder layers in one instrument, eight sorbents, effective rate constant only), and what a test of a
-learned model would need.}
+The isotherm-driven model assumes that, once the driving force is read from the isotherm, one rate constant serves
+every material~\cite{Bezrukov2023Regeneration}. Our confirmatory test asked whether the simplest isotherm descriptor,
+the humidity of half loading, predicts how a new sorbent departs from that shared value. It did not: an
+isotherm-predicted rate constant beat the shared one in none of the \V{res_folds}{8} held-out folds, under either
+definition of the dry mass, and its fitted dependence on the descriptor changed sign from one training set to the
+next. The statement has a stated reach. The same pipeline found an effect of the measured size in two of three
+realistic synthetic worlds, so an isotherm effect of that size could still be present and missed; what the data rule
+out is an effect large and consistent enough to be detected at this noise floor with eight sorbents. For screening
+this means that an isotherm alone, used through this model, gives no better estimate of a new sorbent's rate
+constant than the average of the sorbents already measured.
+
+The decomposition shows why a better rate constant would not have helped much anyway. On sorbents the model had not
+seen, its error was \V{res_b0F_lo2}{7} to \V{res_b0F_hi2}{39} times the measurement noise (primary dry-mass rule).
+Giving each sorbent its own rate constant removed a median \V{res_ownk_med2}{15}\,\% of that error, and giving it its
+own measured end points, with the shared rate constant, removed about as much (median \V{res_ep_med2}{15}\,\%); even
+the better of the two left at least \V{res_orF2}{5.6} times the noise. Most of the error of the isotherm-driven model
+on new sorbents therefore lies in what neither oracle corrects: the form of the rate law, or how well the isotherm
+describes the state of a sorbent during a step, or both; the two oracles cannot tell these apart. That agrees with the known limits of the
+linear-driving-force approximation~\cite{Raymond2011Intraparticle} and with the dependence of the measured rate on how
+the sorbent is held~\cite{Solovyeva2023Water,Li2025Atmospheric}, and it locates part of the gain: under the primary
+dry-mass rule, an isotherm whose end points agree with the kinetic runs is worth about as much as a sorbent-specific
+rate constant, although under the sensitivity rule the rate constant gains more (median \V{res_ownk_med_r1}{22}\,\%
+against \V{res_ep_med_r1b}{7}\,\%).
+
+The learned model's record is a result about what can be validated, not about what learning could do. A grey-box
+correction given only the isotherms recovered large injected effects, and in the final round it recovered a new one
+on two of three held-out sorbents. It failed where the metric-fitted comparator left the smallest effect, at a margin
+close to the noise floor. A learned correction of the size that remains to be explained here could only be confirmed
+with more sorbents, lower noise, or both, and testing on simulated data with a known truth before real data is what
+showed this~\cite{Cook2006Validation,Talts2018Validating}. With eight sorbents, each held-out score is uncertain
+however it is computed~\cite{Varoquaux2018Cross}, and the claim about unseen materials rests on whole held-out
+materials~\cite{Meredig2018Can}; we report the failed attempts in full because leaving them out biases what later
+models learn from the record~\cite{StriethKalthoff2022Machine}.
+
+The study has limits beyond those of power. All measurements are of milligram powder layers in one instrument and one
+laboratory, so the rate constant is an effective one for this geometry, not an intrinsic property, and how it
+transfers to beds, coatings or devices is untested. The composites extend the set only within their families. B2 used
+one descriptor in one functional form, fixed before the test; other isotherm features were not tried, and trying them
+now would be exploratory. Every fold used the plain variant of B0, so the B2 built on the desorption branch, which the
+harness did not exercise, was never needed. The \V{res_margin2}{10}\,\% practical margin was set after the noise floor
+had been seen, though before any model met held-out real data. Both runs were interrupted once in their last fold and
+resumed with the same code, keeping the completed folds.
+
+Two practical points follow. A screening study that ranks sorbents by cycle rate from isotherms should treat the rate
+constant as unknown to within the spread of the measured materials, not as predicted. And a model of uptake dynamics
+that is to transfer between sorbents needs, first, a rate law whose form is validated across materials and, second,
+isotherms and kinetics measured on the same sample under the same conditions.
 
 \section*{Methods}
 

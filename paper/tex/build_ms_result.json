@@ -12,8 +12,8 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 154,
-  "G1_n_keys": 154,
+  "G1_n_uses": 169,
+  "G1_n_keys": 168,
   "G2_main.tex_n_refs": 31,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 3,
@@ -22,8 +22,8 @@
   "G3_si.tex_em_dashes": 0,
   "G4_n_phrases": 35,
   "G5_words": {
-   "abstract": 32,
-   "main_text": 1837,
+   "abstract": 155,
+   "main_text": 2531,
    "methods": 1460,
    "si": 1701
   },
@@ -33,25 +33,15 @@
    "methods": "about 2500"
   },
   "G5_flags": [
-   "main text 1837 outside 4,500-5,500",
+   "main text 2531 outside 4,500-5,500",
    "Methods 1460 outside about 2,500 (2,000-3,000)"
   ],
   "G6_n_figures": 4,
   "G7_pending": [
    {
     "doc": "main.tex",
-    "name": "abstract",
-    "text": "Written after the confirmatory runs: question, design (pre-registered, held-out sorbents, synthetic harnesses), the H4a$'$ verdict in its pre-registered wording"
-   },
-   {
-    "doc": "main.tex",
     "name": "novelty",
     "text": "Sentence on Xia et al.\\ 2025 (structure--kinetics relationships of MOF water adsorption, doi:10.1016/j.colsurfa.2025.137168) and the closing ``none asks whether"
-   },
-   {
-    "doc": "main.tex",
-    "name": "discussion",
-    "text": "After the results: what the verdict means for screening by isotherm, the error decomposition, limits (powder layers in one instrument, eight sorbents, effective"
    },
    {
     "doc": "main.tex",
@@ -61,6 +51,41 @@
   ]
  },
  "G1_bindings_checked": [
+  {
+   "key": "abs_beats",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "0",
+   "ok": true
+  },
+  {
+   "key": "abs_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "abs_lo",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "abs_hi",
+   "doc": "main.tex",
+   "text": "39",
+   "source": "39",
+   "ok": true
+  },
+  {
+   "key": "abs_med",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
+   "ok": true
+  },
   {
    "key": "n_seg",
    "doc": "main.tex",
@@ -192,6 +217,13 @@
    "doc": "main.tex",
    "text": "0",
    "source": "0",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
    "ok": true
   },
   {
@@ -427,6 +459,62 @@
   },
   {
    "key": "fig_margin",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "res_b0F_lo2",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "res_b0F_hi2",
+   "doc": "main.tex",
+   "text": "39",
+   "source": "39",
+   "ok": true
+  },
+  {
+   "key": "res_ownk_med2",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
+   "ok": true
+  },
+  {
+   "key": "res_ep_med2",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
+   "ok": true
+  },
+  {
+   "key": "res_orF2",
+   "doc": "main.tex",
+   "text": "5.6",
+   "source": "5.6",
+   "ok": true
+  },
+  {
+   "key": "res_ownk_med_r1",
+   "doc": "main.tex",
+   "text": "22",
+   "source": "22",
+   "ok": true
+  },
+  {
+   "key": "res_ep_med_r1b",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "res_margin2",
    "doc": "main.tex",
    "text": "10",
    "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
@@ -745,6 +833,13 @@
    "doc": "main.tex",
    "text": "30",
    "source": "PREREG_P4_draft.md: z holds: w normalised by the isotherm's uptake at 30 % RH",
+   "ok": true
+  },
+  {
+   "key": "abs_n",
+   "doc": "main.tex",
+   "text": "eight",
+   "source": "eight",
    "ok": true
   },
   {
