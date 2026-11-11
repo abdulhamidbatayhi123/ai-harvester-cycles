@@ -51,15 +51,17 @@ all the more important that the analysis is fixed before the data are seen
 [Nosek2018Preregistration].
 
 Here we test the isotherm-driven model on sorbents it has not seen, under a pre-registered
-protocol. We first asked whether a learned grey-box correction, given only a held-out sorbent's
-isotherms, predicts its uptake better than the published model. A learned model could enter that
-test only after recovering a known correction in synthetic data generated on the real humidity
-records and isotherms; the grey-box model did so on two of three held-out sorbents but not the
-third in its last allowed round, so under a stopping rule fixed in advance it was not tested on
-real data. We then test, with its own synthetic harness, whether the isotherm of a held-out
-sorbent predicts its rate constant better than one value shared by the training sorbents, and we
-measure how much of the published model's error a correct per-sorbent rate constant or a correct
-end point would remove. RESULT: one sentence per outcome (H4a′ verdict and its wording from the
-K2 worlds; H4b share; end-point split; family hold-out). We report the learned model's harness
-record in full: leaving failed attempts out of the record biases what later models learn from
-it [StriethKalthoff2022Machine].
+protocol, and make three contributions.
+(1) A held-out-sorbent test of whether a learned grey-box correction, given only a sorbent's
+isotherms, can be validated at all on data of this kind. Before real data, the model had to
+recover a known correction in synthetic trajectories generated on the real humidity records and
+isotherms. It did so for two of three held-out sorbents but not the third in its last allowed
+round, so under a stopping rule fixed in advance it was not tested on real data, and we report its
+full record: leaving failed attempts out of the record biases what later models learn from it
+[StriethKalthoff2022Machine].
+(2) A confirmatory test, with its own synthetic harness and a realistic-power check, of whether
+the isotherm of a held-out sorbent predicts the effective rate constant of the published model
+better than one value shared by the training sorbents. RESULT: verdict and wording.
+(3) A decomposition of the published model's error on unseen sorbents into the parts a correct
+per-sorbent rate constant and a correct end point would remove, and the cost of holding out a
+whole family. RESULT: shares.
