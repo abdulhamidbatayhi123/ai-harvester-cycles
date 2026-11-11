@@ -146,6 +146,7 @@ def _git_dirty(paths):
 def small_scripts(fig):
     """Visible mathtext with a sub- or superscript whose script would print below SUB_MIN_PT."""
     from matplotlib.text import Text
+    fig.canvas.draw()   # tick labels exist only after a draw
     out = []
     for t in fig.findobj(Text):
         s = t.get_text()

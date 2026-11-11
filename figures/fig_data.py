@@ -72,6 +72,11 @@ def main():
     c.set_xticklabels([LABEL.get(s, s) for s in names], rotation=60, ha="right")
     c.set_ylabel("noise floor F (normalised RMS)")
     c.set_yscale("log")
+    # plain tick labels: the superscripts of 10^-3 would print below 5 pt at 6 pt tick size
+    from matplotlib.ticker import FixedLocator, NullLocator
+    c.yaxis.set_major_locator(FixedLocator([0.001, 0.002, 0.005, 0.01]))
+    c.yaxis.set_minor_locator(NullLocator())
+    c.set_yticklabels(["0.001", "0.002", "0.005", "0.01"])
     c.legend(loc="upper left")
     for ax, l in zip(axs, "abc"):
         fs.letter(ax, l)
