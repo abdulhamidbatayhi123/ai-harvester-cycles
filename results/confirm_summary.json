@@ -191,7 +191,9 @@
    "n_endpoint_beats_own_k": 3,
    "b_min": -0.6145973228312869,
    "b_max": 0.30175205108605496,
-   "n_variant_B0": 8
+   "n_variant_B0": 8,
+   "n_comparator_B0": 8,
+   "best_oracle_over_F_min": 5.592232327256027
   },
   "H4c": {
    "MOF-303": {
@@ -425,7 +427,9 @@
    "n_endpoint_beats_own_k": 2,
    "b_min": -1.9877242583461339,
    "b_max": 0.18490801871666918,
-   "n_variant_B0": 8
+   "n_variant_B0": 8,
+   "n_comparator_B0": 8,
+   "best_oracle_over_F_min": 7.2563561248134185
   },
   "H4c": {
    "MOF-303": {

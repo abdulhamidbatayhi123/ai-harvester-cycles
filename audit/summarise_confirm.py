@@ -60,6 +60,9 @@ def per_rule(rule, F):
         "n_endpoint_beats_own_k": sum(x["B0_endpoint_oracle"] < x["B0star"] for x in S),
         "b_min": min(v for x in S for v in x["b"].values()), "b_max": max(v for x in S for v in x["b"].values()),
         "n_variant_B0": sum(x["variant"] == "B0" for x in S),
+        "n_comparator_B0": sum(rows[f"LOSO:{s}"]["comparator"] == "B0" for s in PARENTS),
+        # the better of the two oracles, over the noise floor: how far even a correct k'' or end point stays above F
+        "best_oracle_over_F_min": min(min(x["B0star"], x["B0_endpoint_oracle"]) / x["F"] for x in S),
     }
     # H4c: each sorbent of the two non-trivial family folds, median E of B0 in its LOFO against its LOSO fold
     fam = {}

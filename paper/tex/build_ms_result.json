@@ -5,25 +5,27 @@
  "failures": [],
  "report": {
   "G8_tables": [
+   "tab_h4a.tex",
+   "tab_h4c.tex",
    "tab_harness_b2.tex",
    "tab_harness_l1.tex"
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 105,
-  "G1_n_keys": 105,
+  "G1_n_uses": 154,
+  "G1_n_keys": 154,
   "G2_main.tex_n_refs": 31,
   "G2_si.tex_n_refs": 0,
-  "G2_si_notes": 2,
+  "G2_si_notes": 3,
   "G2_si_figures": 0,
   "G3_main.tex_em_dashes": 0,
   "G3_si.tex_em_dashes": 0,
   "G4_n_phrases": 35,
   "G5_words": {
    "abstract": 32,
-   "main_text": 1014,
-   "methods": 1447,
-   "si": 1595
+   "main_text": 1837,
+   "methods": 1460,
+   "si": 1701
   },
   "G5_targets": {
    "abstract": "<= 200",
@@ -31,10 +33,10 @@
    "methods": "about 2500"
   },
   "G5_flags": [
-   "main text 1014 outside 4,500-5,500",
-   "Methods 1447 outside about 2,500 (2,000-3,000)"
+   "main text 1837 outside 4,500-5,500",
+   "Methods 1460 outside about 2,500 (2,000-3,000)"
   ],
-  "G6_n_figures": 3,
+  "G6_n_figures": 4,
   "G7_pending": [
    {
     "doc": "main.tex",
@@ -48,18 +50,8 @@
    },
    {
     "doc": "main.tex",
-    "name": "results",
-    "text": "Four subsections after the confirmatory runs: (i) data, noise floor and the workflow (Fig.~\\ref{fig:workflow}, Fig.~\\ref{fig:data}); (ii) the learned model's ha"
-   },
-   {
-    "doc": "main.tex",
     "name": "discussion",
     "text": "After the results: what the verdict means for screening by isotherm, the error decomposition, limits (powder layers in one instrument, eight sorbents, effective"
-   },
-   {
-    "doc": "main.tex",
-    "name": "freeze",
-    "text": "freeze commit hash"
    },
    {
     "doc": "main.tex",
@@ -69,6 +61,342 @@
   ]
  },
  "G1_bindings_checked": [
+  {
+   "key": "n_seg",
+   "doc": "main.tex",
+   "text": "1187",
+   "source": "results/confirm_R2.log: dry-mass rule R2; 1187 segments in 18 groups",
+   "ok": true
+  },
+  {
+   "key": "n_groups",
+   "doc": "main.tex",
+   "text": "18",
+   "source": "results/confirm_R2.log: dry-mass rule R2; 1187 segments in 18 groups",
+   "ok": true
+  },
+  {
+   "key": "res_b0_lo",
+   "doc": "main.tex",
+   "text": "0.055",
+   "source": "0.055",
+   "ok": true
+  },
+  {
+   "key": "res_b0_hi",
+   "doc": "main.tex",
+   "text": "0.100",
+   "source": "0.100",
+   "ok": true
+  },
+  {
+   "key": "res_b0F_lo",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "res_b0F_hi",
+   "doc": "main.tex",
+   "text": "39",
+   "source": "39",
+   "ok": true
+  },
+  {
+   "key": "res_ncomp",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_b1_lo",
+   "doc": "main.tex",
+   "text": "0.12",
+   "source": "0.12",
+   "ok": true
+  },
+  {
+   "key": "res_b1_hi",
+   "doc": "main.tex",
+   "text": "0.16",
+   "source": "0.16",
+   "ok": true
+  },
+  {
+   "key": "res_ros_ratio",
+   "doc": "main.tex",
+   "text": "0.36",
+   "source": "0.36",
+   "ok": true
+  },
+  {
+   "key": "res_alfu_ratio",
+   "doc": "main.tex",
+   "text": "0.42",
+   "source": "0.42",
+   "ok": true
+  },
+  {
+   "key": "res_mof_b0",
+   "doc": "main.tex",
+   "text": "0.0128",
+   "source": "0.0128",
+   "ok": true
+  },
+  {
+   "key": "res_mof_l1",
+   "doc": "main.tex",
+   "text": "0.0070",
+   "source": "0.0070",
+   "ok": true
+  },
+  {
+   "key": "res_mof_p",
+   "doc": "main.tex",
+   "text": "0.034",
+   "source": "0.034",
+   "ok": true
+  },
+  {
+   "key": "res_mof_ratio",
+   "doc": "main.tex",
+   "text": "0.55",
+   "source": "0.55",
+   "ok": true
+  },
+  {
+   "key": "res_Kbeats",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_Sbeats",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_nnull",
+   "doc": "main.tex",
+   "text": "48",
+   "source": "48",
+   "ok": true
+  },
+  {
+   "key": "res_beats_r2",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "0",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_beats_r1",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "0",
+   "ok": true
+  },
+  {
+   "key": "res_rmin_r2",
+   "doc": "main.tex",
+   "text": "-10.9",
+   "source": "-10.9",
+   "ok": true
+  },
+  {
+   "key": "res_rmax_r2",
+   "doc": "main.tex",
+   "text": "1.6",
+   "source": "1.6",
+   "ok": true
+  },
+  {
+   "key": "res_rmin_r1",
+   "doc": "main.tex",
+   "text": "-10.6",
+   "source": "-10.6",
+   "ok": true
+  },
+  {
+   "key": "res_rmax_r1",
+   "doc": "main.tex",
+   "text": "3.9",
+   "source": "3.9",
+   "ok": true
+  },
+  {
+   "key": "res_ub",
+   "doc": "main.tex",
+   "text": "96.5",
+   "source": "PREREG_P4_draft.md: it is a one-sided 96.5 % upper bound on the median",
+   "ok": true
+  },
+  {
+   "key": "res_o7_r2",
+   "doc": "main.tex",
+   "text": "0.1",
+   "source": "0.1",
+   "ok": true
+  },
+  {
+   "key": "res_o7_r1",
+   "doc": "main.tex",
+   "text": "2.0",
+   "source": "2.0",
+   "ok": true
+  },
+  {
+   "key": "res_worse_r2",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "res_worse_r1",
+   "doc": "main.tex",
+   "text": "5",
+   "source": "5",
+   "ok": true
+  },
+  {
+   "key": "res_bmin",
+   "doc": "main.tex",
+   "text": "-0.61",
+   "source": "-0.61",
+   "ok": true
+  },
+  {
+   "key": "res_bmax",
+   "doc": "main.tex",
+   "text": "0.30",
+   "source": "0.30",
+   "ok": true
+  },
+  {
+   "key": "res_gap_lo",
+   "doc": "main.tex",
+   "text": "-0.7",
+   "source": "-0.7",
+   "ok": true
+  },
+  {
+   "key": "res_gap_hi",
+   "doc": "main.tex",
+   "text": "45",
+   "source": "45",
+   "ok": true
+  },
+  {
+   "key": "res_ownk_med",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
+   "ok": true
+  },
+  {
+   "key": "res_ep_n",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_ep_of",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_ep_lo",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_ep_hi",
+   "doc": "main.tex",
+   "text": "21",
+   "source": "21",
+   "ok": true
+  },
+  {
+   "key": "res_ep_med",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
+   "ok": true
+  },
+  {
+   "key": "res_ep_beats",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_ep_n_r1",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "res_ep_med_r1",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "res_gap_hi_r1",
+   "doc": "main.tex",
+   "text": "50",
+   "source": "50",
+   "ok": true
+  },
+  {
+   "key": "res_orF",
+   "doc": "main.tex",
+   "text": "5.6",
+   "source": "5.6",
+   "ok": true
+  },
+  {
+   "key": "res_h4c_r2",
+   "doc": "main.tex",
+   "text": "5",
+   "source": "5",
+   "ok": true
+  },
+  {
+   "key": "res_h4c_n",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "res_h4c_r1",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
   {
    "key": "T_lo",
    "doc": "main.tex",
@@ -95,6 +423,13 @@
    "doc": "main.tex",
    "text": "27",
    "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "fig_margin",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
    "ok": true
   },
   {

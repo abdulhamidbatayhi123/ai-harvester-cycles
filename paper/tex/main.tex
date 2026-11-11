@@ -92,10 +92,72 @@ would remove, and the cost of holding out a whole family.
 
 \section*{Results}
 
-\pending{results}{Four subsections after the confirmatory runs: (i) data, noise floor and the workflow
-(Fig.~\ref{fig:workflow}, Fig.~\ref{fig:data}); (ii) the learned model's harness record (Fig.~\ref{fig:harness});
-(iii) the B2 harness (section 10b) and the H4a$'$ verdict under R2 and R1 with its wording; (iv) where B0's error lies
-(H4b, end-point oracle) and whole families (H4c).}
+\subsection*{The isotherm-driven model on unseen sorbents}
+
+The study followed the order of Fig.~\ref{fig:workflow}. The primary set holds \V{n_seg}{1187} step segments in
+\V{n_groups}{18} sorbent--temperature groups of eight sorbents and two composites, whose isotherms and step responses
+differ widely (Fig.~\ref{fig:data}). Fitted on the training sorbents and evaluated on the held-out one, B0 left a
+median error of \V{res_b0_lo}{0.055} to \V{res_b0_hi}{0.100} per fold under the primary dry-mass rule (Table~\ref{tab:h4a}),
+\V{res_b0F_lo}{7} to \V{res_b0F_hi}{39} times the held-out sorbent's noise floor. In all \V{res_ncomp}{8} folds the
+comparator chosen on the training sorbents was B0 with the adsorption branch in both directions; the
+linear-driving-force model B1 was worse in every fold (median error \V{res_b1_lo}{0.12} to \V{res_b1_hi}{0.16}).
+
+\subsection*{A learned correction could not be validated}
+
+Before it could meet real data, the grey-box model L1 had to recover known corrections in synthetic trajectories
+generated on the real humidity records and isotherms (Fig.~\ref{fig:harness}; Supplementary Table~S1). Over seven
+rounds it came to recover $\kpp$ where no correction was present, with no false beat, and to beat B0 in the
+correction worlds used during its development. In world C3, defined and committed before any run on it, it met every
+condition on ROS-039 and on Al-fumarate (error ratios \V{res_ros_ratio}{0.36} and \V{res_alfu_ratio}{0.42}) but not
+on MOF-303, where the injected effect was smallest: the median error fell from \V{res_mof_b0}{0.0128} to
+\V{res_mof_l1}{0.0070}, but the gain was below the noise floor, the signed-rank $p$ was \V{res_mof_p}{0.034} and the
+ratio \V{res_mof_ratio}{0.55} missed the required halving. Under the stopping rule written before that round, no
+learned model passed the harness; H4a is therefore not tested, and no learned model was fitted to the real data. The
+black-box model L2 had failed earlier, even without any correction to find, because an unconstrained flux network did
+not hold the equilibrium over long plateaus (Supplementary Note~\snote{1}).
+
+\subsection*{The isotherm does not predict the rate constant}
+
+The harness of B2 passed all three of its criteria (Supplementary Note~\snote{2}): no fold was beaten without an
+effect, all \V{res_Kbeats}{8} folds were beaten when the truth lay in B2's class, and \V{res_Sbeats}{3} of the
+\V{res_nnull}{48} null fold-fits were beaten. On the real data B2 beat the pooled B0 in \V{res_beats_r2}{0} of the
+\V{res_folds}{8} held-out folds under the primary rule and in \V{res_beats_r1}{0} under the sensitivity rule
+(Fig.~\ref{fig:results}a, Table~\ref{tab:h4a}). No fold came near the practical margin: $r$ ranged from
+\V{res_rmin_r2}{-10.9} to \V{res_rmax_r2}{1.6}\,\% under R2 and from \V{res_rmin_r1}{-10.6} to \V{res_rmax_r1}{3.9}\,\%
+under R1, so the seventh order statistic of $r$, a one-sided \V{res_ub}{96.5}\,\% upper bound on its median, was
+\V{res_o7_r2}{0.1}\,\% and \V{res_o7_r1}{2.0}\,\%. B2's median error was higher than B0's in
+\V{res_worse_r2}{7} of the folds under R2 and \V{res_worse_r1}{5} under R1, and it beat B0 in neither non-trivial
+family fold. H4a$'$ is falsified under both rules. Because B2 was supported in two of the three realistic-power worlds
+of its harness, not all three, the pre-registered wording applies: no isotherm-predicted rate constant was detectable
+at this noise and error level. The slopes fitted on the training sorbents also changed sign from fold to fold
+(\V{res_bmin}{-0.61} to \V{res_bmax}{0.30} under R2), unlike the consistent slopes of the realistic-power and
+form-error worlds (Supplementary Table~S2).
+
+\subsection*{Where the error of the isotherm-driven model lies}
+
+Fitting B0's rate constant on the held-out sorbent itself (B0$^{*}$, an oracle) closed \V{res_gap_lo}{-0.7} to
+\V{res_gap_hi}{45}\,\% of the gap between B0 and the noise floor under R2, in no sorbent more than half, and lowered
+B0's median error by \V{res_ownk_med}{15}\,\% at the median over sorbents (Fig.~\ref{fig:results}b). Scaling the
+isotherm to the sorbent's own measured end points instead, with the pooled $\kpp$ unchanged, lowered B0's error in
+\V{res_ep_n}{8} of the \V{res_ep_of}{8} folds, by \V{res_ep_lo}{3} to \V{res_ep_hi}{21}\,\% (median
+\V{res_ep_med}{15}\,\%), and by more than a correct $\kpp$ did in \V{res_ep_beats}{3} of them. Under R1 the end point
+helped in \V{res_ep_n_r1}{7} folds (median \V{res_ep_med_r1}{7}\,\%) and the oracle $\kpp$ closed up to
+\V{res_gap_hi_r1}{50}\,\% of the gap. Neither oracle came close to the noise floor: the better of the two still left
+at least \V{res_orF}{5.6} times $F$. Holding out a whole family raised B0's error for \V{res_h4c_r2}{5} of the
+\V{res_h4c_n}{7} materials concerned under R2 (\V{res_h4c_r1}{3} under R1; Supplementary Table~S3).
+
+\begin{table}[tbp]
+\centering
+\small
+\caption{\textbf{H4a$'$ per held-out sorbent.} Relative improvement $r$ of B2 over the pooled B0 of the same variant
+(the smaller per-material value in folds holding out a parent and its composite) under the primary (R2) and
+sensitivity (R1) dry-mass rules, whether the fold was beaten by the pre-registered rule, the median held-out error of
+B0, B2 and the oracle B0$^{*}$ (own $\kpp$) under R2, the share of the oracle's gain that B2 achieved (shown only where
+the oracle improves on B0), and the temperatures (\textdegree C) at which the held-out descriptor lies outside the
+training range.}
+\label{tab:h4a}
+\input{tab_h4a.tex}
+\end{table}
 
 \begin{figure}[tbp]
 \centering
@@ -128,6 +190,17 @@ box L2, rounds \ID{1} to \ID{4}, dropped after round~\ID{4}.}
 \label{fig:harness}
 \end{figure}
 
+\begin{figure}[tbp]
+\centering
+\makebox[\linewidth]{\includegraphics{../../figures/out/fig_results.pdf}}
+\caption{\textbf{Confirmatory result.} \textbf{a}, Relative improvement $r$ of B2, the isotherm-predicted rate
+constant, over the pooled B0 per held-out sorbent under the primary (R2, circles) and sensitivity (R1, squares)
+dry-mass rules; a filled marker would mark a fold beaten by the pre-registered rule (none was). The dashed line is the
+\V{fig_margin}{10}\,\% practical margin. \textbf{b}, Median held-out error of B0, of B0 with the sorbent's own end
+point, and of B0 with its own rate constant (B0$^{*}$), with the sorbent's noise floor $F$ (bar), under R2.}
+\label{fig:results}
+\end{figure}
+
 \section*{Discussion}
 
 \pending{discussion}{After the results: what the verdict means for screening by isotherm, the error decomposition,
@@ -138,8 +211,9 @@ learned model would need.}
 
 \subsection*{Pre-registration and order of events}
 
-The protocol was written before any model was fitted to held-out real data and frozen at commit
-\pending{freeze}{freeze commit hash}; every change before the freeze is listed with its cause in the protocol's
+The protocol was written before any model was fitted to held-out real data and frozen on \ID{2026-11-11} at commit
+\ID{bf0b2cf} (tag \texttt{prereg-p4-freeze}; hashes of the protocol, code and derived data in its freeze manifest);
+every change before the freeze is listed with its cause in the protocol's
 corrections section. The order of events matters for how the results may be read. The original primary hypothesis,
 H4a, asked whether a learned model, given only an unseen sorbent's isotherms, predicts its uptake trajectories better
 than the published isotherm-driven model. A learned model could enter that test only after passing a synthetic
