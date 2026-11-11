@@ -3,7 +3,7 @@
  "frozen": "2026-11-11",
  "approved_by": "the author (Abdulhamid Batayhi), 10 % margin confirmed unchanged",
  "tag": "prereg-p4-freeze",
- "commit": "bf0b2cfe0cac81123b2c7c644b2385c3a4165671",
+ "commit": "84d8e8c184455571983c27e7e2a333b0280b1596",
  "files": {
   "PREREG_P4_draft.md": "467aadd753c1281801e024c921b988a4ff164412de42654f5de7f96e28a598c6",
   "requirements-lock.txt": "bfe5b9c551c51e18916d641f87d5582f0c22087a23c310e63d2a989c2745bba6",
@@ -27,5 +27,7 @@
  "data_derived": {
   "n_files": 174,
   "combined_sha256": "5ef55e6f95ee3b1f15864ba9152153089f3784b7bd56fc3b87578e9f7754774c"
- }
+ },
+ "commit_before_history_filter": "bf0b2cfe0cac81123b2c7c644b2385c3a4165671",
+ "history_filter": "2026-11-12, before the repository was made public: three private documents (an unsent letter and two submission documents meant for the journal only) were removed from the whole history with git filter-branch; no other file changed, so every hash in files below is unchanged and PREREG_P4_draft.md is byte-identical at both commits. Every commit hash changed; COMMIT_MAP.tsv maps old to new (commit hashes cited in PREREG_P4_draft.md are the old ones)."
 }

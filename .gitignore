@@ -7,3 +7,4 @@ data_derived/
 paper/tex/*.aux
 paper/tex/*.log
 paper/tex/*.out
+private/

@@ -339,7 +339,7 @@ under the same conditions as the kinetics.
 \subsection*{Pre-registration and order of events}
 
 The protocol was written before any model was fitted to held-out real data and frozen on \ID{2026-11-11} at commit
-\ID{bf0b2cf} (tag \texttt{prereg-p4-freeze}; hashes of the protocol, code and derived data in its freeze manifest);
+\ID{84d8e8c} (tag \texttt{prereg-p4-freeze}; hashes of the protocol, code and derived data in its freeze manifest);
 every change before the freeze is listed with its cause in the protocol's
 corrections section. The freeze is recorded in the project's version history, published with this article; it was
 not deposited with a third-party registry before the confirmatory runs, so its timing rests on that history. The order of events matters for how the results may be read. The original primary hypothesis,
@@ -349,7 +349,7 @@ ground-truth harness. The grey-box model L1 failed the harness in its last allow
 written before that round's judged result existed, so H4a is reported as not tested and no learned model was fitted
 to the real data. The confirmatory hypothesis H4a$'$ was then added, before any fit of its model to held-out real
 data; that model's form had been fixed two days earlier, on \ID{2026-11-08}, as a reported comparator (commit
-\ID{127ab6d}). H4a$'$ has its own harness, which had to pass before the freeze.
+\ID{d12fadd}). H4a$'$ has its own harness, which had to pass before the freeze.
 
 Three things bearing on H4a$'$ were known when it was written, and the protocol records them. Each sorbent's in-sample
 rate constant had been fitted: CAU-10-H at \V{dis_T}{60}~\textdegree C had both the largest uptake constant
@@ -468,7 +468,7 @@ autocorrelated noise ($\sigma = \V{sigma}{0.01}$~wt\%, $\varphi = \V{phi}{0.9}$)
 For L1 the harness required recovery of $\kpp$ in a world without correction, a beat and a halving of B0's error in a
 correction world not used during development, and no false positive; it ran in seven rounds, with the judging world
 replaced whenever a world had been used for diagnosis, and stopped by rule after round~\ID{7}. For B2 the harness
-(version~\ID{2}, commit \ID{78accf6}) has a world without effect, a plumbing world whose truth lies in B2's class,
+(version~\ID{2}, commit \ID{c78a3bb}) has a world without effect, a plumbing world whose truth lies in B2's class,
 three realistic-power worlds with the effect at the measured size of the across-sorbent spread of $\kpp$ plus
 end-point offsets, six structure-free null worlds with sorbent-level rate and end-point deviations independent of the
 isotherm, and a form-error world. Its pass criteria and the role of each world are given in the Supplementary

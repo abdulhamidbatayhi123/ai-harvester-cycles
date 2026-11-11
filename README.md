@@ -9,7 +9,7 @@ The paper tests, on the open dynamic-vapour-sorption archive of Bezrukov et al. 
 [10.5281/zenodo.6631711](https://doi.org/10.5281/zenodo.6631711), CC BY 4.0; seven MOFs and a silica gel), whether an
 unseen sorbent's isotherm predicts the rate constant of the isotherm-driven uptake model better than one value shared
 by the other sorbents. The protocol was frozen before any confirmatory fit (git tag `prereg-p4-freeze`, commit
-bf0b2cf; hashes in `FREEZE_MANIFEST.json`). Result: falsified under both dry-mass rules (`results/final_verdict.json`).
+84d8e8c; hashes in `FREEZE_MANIFEST.json`; the history was filtered once before publication, see below). Result: falsified under both dry-mass rules (`results/final_verdict.json`).
 
 ## Where things are
 
@@ -59,6 +59,15 @@ Python 3.12; exact package versions in `requirements-lock.txt` (`pip install -r 
   cluster error, the smaller value over the materials of a fold); table medians in the manuscript are over segments.
 - Learned-model code (`p4/train.py`) is kept because its harness record is reported; no learned model was fitted to
   the real data (H4a not tested).
+
+## History of this repository
+
+The project was kept in a local git repository from the first data audit (October 2026) to submission. Before it was
+made public (2026-11-12), three private documents (an unsent letter and two documents meant for the journal only)
+were removed from the whole history; nothing else changed. This changed every commit hash: `COMMIT_MAP.tsv` maps old
+to new, and the commit hashes quoted inside `PREREG_P4_draft.md` are the old ones. The frozen protocol is
+byte-identical before and after (its SHA-256 is in `FREEZE_MANIFEST.json`). The freeze is recorded only in this
+history; it was not deposited with a third-party registry before the confirmatory runs.
 
 ## Licence
 
