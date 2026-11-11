@@ -4,8 +4,11 @@
 % frozen; section numbers below refer to it). Journal not chosen yet (chosen after the results; criteria in the
 % project HANDOFF): neutral article layout and source-style references until then. Results, Discussion and
 % Abstract are \pending until the confirmatory runs (after the freeze).
-\documentclass[11pt]{article}
-\usepackage[a4paper,margin=25mm]{geometry}
+% AIChE Journal submission layout (author guidelines read 2026-11-11): 12 pt, double spaced, 1 inch margins.
+\documentclass[12pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{setspace}
+\doublespacing
 \usepackage{fontspec}   % XeTeX (tectonic): Latin Modern OpenType, covers the Unicode in the reference strings
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -22,8 +25,8 @@
 
 \title{No detectable gain from predicting water-uptake rate constants from half-loading humidity: a pre-registered
 test}
-\author{Abdulhamid Batayhi\\ Department of Mechatronics Engineering, Faculty of Mechanical Engineering,\\ Yildiz
-Technical University, \ID{34220} Istanbul, T\"urkiye\\ E-mail: abdulhamid.batayhi@std.yildiz.edu.tr}
+\author{Abdulhamid Batayhi\\ Department of Mechatronics Engineering,\\ Faculty of Mechanical Engineering, Yildiz
+Technical University,\\ \ID{34220} Istanbul, T\"urkiye\\ E-mail: abdulhamid.batayhi@std.yildiz.edu.tr}
 \date{}
 
 \begin{document}
@@ -41,6 +44,10 @@ median \V{abs_t63}{17}\,\%; its error was \V{abs_lo}{7} to \V{abs_hi}{31} times 
 the scatter between sessions. Own rate constants and end points together removed a median \V{abs_joint}{26}\,\%
 (exploratory).
 \end{abstract}
+
+\noindent\textbf{Topical heading:} Separations: Materials, Devices and Processes\\
+\textbf{Keywords:} water sorption kinetics; metal--organic frameworks; linear driving force; held-out validation;
+pre-registration
 
 \section*{Introduction}
 
