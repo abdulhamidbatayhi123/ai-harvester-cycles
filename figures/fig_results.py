@@ -11,6 +11,10 @@ b  Where B0's error lies (H4b and the end-point oracle, descriptive), R2: per he
    k'' (B0*), and the sorbent's noise floor F (horizontal bar). Medians are over every segment of the fold, as in
    p4/decide.py H4b.
 
+Changes after the results (presentation only; no model, point or line added or removed): panel a starts 5 points
+below the lowest r instead of at the clipping floor (the floor stays the clipping threshold); panel b's upper
+limit has headroom above the highest point, which the decade rule had put on the axis edge (ROS-037, 0.0996).
+
 usage: python -I figures/fig_results.py results/confirm_R2/decide.json results/confirm_R1/decide.json \
            results/confirm_R2/rows.jsonl results/prefreeze/checks2.json figures/out/fig_results
 """
@@ -69,7 +73,9 @@ def main():
                                 "r_percent": r if math.isfinite(r) else "-inf (a held material without scored segments)"})
             a.plot(x[i] + dx, y, ls="none", marker=m, ms=4, mec=col, mfc=col if beat else "white", mew=0.8)
     top = max([MARGIN + 10.0] + [y + 5.0 for y in ys if math.isfinite(y)])
-    a.set_ylim(R_FLOOR - 3.0, top)
+    fin = [y for y in ys if math.isfinite(y) and y >= R_FLOOR]
+    bottom = R_FLOOR - 3.0 if clipped or not fin else max(R_FLOOR - 3.0, min(fin) - 5.0)
+    a.set_ylim(bottom, top)
     a.set_xlim(-0.6, len(ORDER) - 0.4)
     a.set_xticks(x)
     a.set_xticklabels([LABEL.get(s, s) for s in ORDER], rotation=60, ha="right")
@@ -101,7 +107,7 @@ def main():
     b.set_yscale("log")
     if vals:
         lo, hi = min(vals), max(vals)
-        b.set_ylim(10 ** math.floor(math.log10(lo)), 10 ** math.ceil(math.log10(hi)))
+        b.set_ylim(10 ** math.floor(math.log10(lo)), max(10 ** math.ceil(math.log10(hi)), 1.6 * hi))
     from matplotlib.ticker import FixedLocator, NullLocator
     lo_e, hi_e = (int(round(math.log10(t))) for t in b.get_ylim())
     tv = [10.0 ** e for e in range(lo_e, hi_e + 1)]
