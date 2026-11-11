@@ -44,7 +44,9 @@ def main():
     ax.set_xlim(-0.6, len(ORDER) - 0.4)
     fig.text(0.5, 0.97, "Does the isotherm predict", fontsize=fs.BODY_PT, ha="center", va="top", fontweight="bold")
     fig.text(0.5, 0.905, "a sorbent's uptake rate?", fontsize=fs.BODY_PT, ha="center", va="top", fontweight="bold")
-    fig.text(0.5, 0.80, "Pre-registered test: 0 of 8 beaten", fontsize=fs.SMALL_PT, ha="center", va="top")
+    beaten = max(d["H4a"]["B2"]["LOSO_beats"] for d in (d2, d1))      # from the decide outputs, not typed
+    folds = d2["H4a"]["B2"]["LOSO_folds"]
+    fig.text(0.5, 0.80, f"Pre-registered test: {beaten} of {folds} beaten", fontsize=fs.SMALL_PT, ha="center", va="top")
     fig.text(0.5, 0.025, "circles, squares: two dry-mass rules", fontsize=fs.SMALL_PT, ha="center", va="bottom")
     fs.save(fig, stem, inputs=sys.argv[1:3])
 
