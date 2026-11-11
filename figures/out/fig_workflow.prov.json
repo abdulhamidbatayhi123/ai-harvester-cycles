@@ -1,0 +1,16 @@
+{
+ "figure": "fig_workflow",
+ "size_mm": [
+  183.0,
+  92.0
+ ],
+ "font_pt": [
+  6.0,
+  7.0
+ ],
+ "made": "2026-11-11 07:37:41",
+ "style_sha256": "dbf5f9820d55cc2655e2292f46105549c2bbe059734791e3b08929487d1b97e9",
+ "script": "fig_workflow.py",
+ "script_sha256": "6bd27b509818d3dbd87621ef438435ec85c790282cfc1142656b3c9977b5ed01",
+ "inputs": {}
+}
