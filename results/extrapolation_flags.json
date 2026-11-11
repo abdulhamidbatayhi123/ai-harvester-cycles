@@ -1,0 +1,44 @@
+{
+ "rule": "in each LOSO fold, a held-out material's RH50 at temperature T is an extrapolation if it lies outside [min, max] of RH50 at T over every group B2 is fitted on (all non-held materials, the validation sorbent and the composites of non-held parents included; p4.run_study fits B2 on train + validation).",
+ "flags": {
+  "LOSO:ROS-037": [],
+  "LOSO:ROS-039": [
+   {
+    "material": "ROS-039",
+    "temp": "27C",
+    "rh50": 7.412405691860845,
+    "train_min": 8.147551905577219,
+    "train_max": 24.307508621618094
+   },
+   {
+    "material": "ROS-039",
+    "temp": "60C",
+    "rh50": 10.46737123324267,
+    "train_min": 10.499068121035114,
+    "train_max": 28.684478308123477
+   }
+  ],
+  "LOSO:ROS-040": [],
+  "LOSO:MOF-303": [],
+  "LOSO:MIL-160": [],
+  "LOSO:CAU-10": [
+   {
+    "material": "CAU-10",
+    "temp": "60C",
+    "rh50": 28.684478308123477,
+    "train_min": 10.46737123324267,
+    "train_max": 24.589419336253073
+   }
+  ],
+  "LOSO:Al-fumarate": [
+   {
+    "material": "Al-fumarate",
+    "temp": "27C",
+    "rh50": 24.307508621618094,
+    "train_min": 7.412405691860845,
+    "train_max": 17.70108336468193
+   }
+  ],
+  "LOSO:Syloid": []
+ }
+}

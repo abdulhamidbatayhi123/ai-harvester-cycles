@@ -74,8 +74,12 @@ the results.
     tested", in its abstract, and H4a′ with this timeline.
   - *Reported with the verdict (descriptive).* Per held-out sorbent, the share of the oracle's gain
     that B2 achieves out of sample, (E_B0 − E_B2)/(E_B0 − E_B0\*) (`share_of_oracle_gain` in
-    `p4.decide`). Folds whose held-out RH₅₀ lies outside the training range (Al-fumarate at
-    27 °C, CAU-10-H at 60 °C) are flagged as extrapolations.
+    `p4.decide`). A held-out group is flagged as an extrapolation if its RH₅₀ at that temperature
+    lies outside [min, max] of RH₅₀ over every group B2 is fitted on (validation sorbent and
+    composites of non-held parents included); `audit/extrapolation_flags.py` gives Al-fumarate at
+    27 °C, CAU-10-H at 60 °C, and ROS-039 at both temperatures (7.41 against a training minimum of
+    8.15 at 27 °C; 10.47 against 10.50 at 60 °C; `results/extrapolation_flags.json`). An earlier
+    draft listed only the first two.
 - **H4b, descriptive.** How much of B0's error on a held-out sorbent comes from the assumption
   that the rate constant is the same for every material. Measured as the fraction of the gap
   between B0 and the noise floor that the oracle B0* closes (B0 with k″ fitted on the held-out
@@ -90,7 +94,8 @@ the results.
   this is reported descriptively, without a significance test.
 
 H4a′ has a decision rule and a falsifier in section 7 (H4a's machinery, applied to B2); H4b and
-H4c are estimates with intervals and no verdict.
+H4c are descriptive point estimates, reported per sorbent, with no interval and no verdict
+(section 7).
 
 ## 3. Data
 
@@ -209,7 +214,7 @@ measured RH. The two MOFs are therefore never used for training or tuning. All p
 - the Fig. 3c/d step curves, driven by set-point RH and flagged;
 - the 128-cycle 27 °C runs, which have logged RH.
 
-These results are reported separately from H4a. If the authors confirm the protocol (flow and
+These results are reported separately from H4a′. If the authors confirm the protocol (flow and
 pan identical to Bezrukov's), the bnn MOFs become a fifth family in H4c. That decision has to
 be made and recorded before any model is evaluated on them.
 
@@ -291,6 +296,11 @@ In every fold, everything that is fitted is fitted on the training sorbents only
   - The published code can rescale the isotherm to match a kinetic run ("scale_isotherm"). That
     uses the held-out sorbent's own kinetics, so it is forbidden here for every model.
   - Variant B0-b: the same, but reading the desorption branch during release.
+  - **The fold's B0 variant** is B0-b if B0-b has the lower comparator-choice score on the
+    training sorbents (the median over them of their per-sorbent median E, as for the comparator
+    below), and B0 otherwise, whichever candidate is chosen as comparator (`p4.run_study`,
+    `use_des`). It is the model that H4a′ contrasts B2 with, the model B2 is built on, and the
+    model of the oracle B0\* and the end-point oracle.
 - **B1, the second baseline: linear driving force.**
   - Equation: dw/dt = k_LDF(T, m)·(w*(RH_flow) − w), with k_LDF = k‴(T)/m, fitted the same way.
 - **The comparator for H4a** (and, for the wording of H4a′, section 7) is whichever of B0, B0-b and B1 does best across the fold's
@@ -536,7 +546,7 @@ falsifier, R1/R2 agreement and LOFO transfer. `p4.decide` scores B2 from each fo
 (kind "B2"), and `p4/final_verdict.py` combines R2, R1 and the B2 harness:
 - if the B2 harness (section 10b) did not pass all three of its criteria, H4a′ is "not tested",
   whatever R1 and R2 give;
-- otherwise the verdict table below applies, with the B2 harness in the place of the null study.
+- otherwise the verdict table above applies, with the B2 harness in the place of the null study.
 Wording: if supported, the claim is "beats the shared-k″ model of the same form", strengthened to
 "and every shared-k″ candidate" only if B2 also beats the held-out-best of B0, B0-b and B1 in at
 least 7 of 8 folds. If falsified, and B2 was not "supported" in all three realistic-power worlds
@@ -544,7 +554,12 @@ K2a–c of section 10b, the paper words it as "no isotherm-predicted rate consta
 this noise and error level", and states in how many of the three worlds an effect of the measured
 size was missed.
 
-**H4b and H4c** are estimates with bootstrap intervals and carry no verdict (section 2).
+**H4b and H4c** are descriptive point estimates and carry no verdict (section 2). An earlier draft
+promised bootstrap intervals without a resampling unit or code; they were dropped before the
+freeze rather than defined after it. H4b: per LOSO fold, the fraction of the gap between B0 and
+F that B0\* closes (`p4.decide`, field `H4b`). H4c: for each sorbent of the two non-trivial LOFO
+folds, the median E of B0 and of B2 in its LOFO fold against the same in its LOSO fold, from the
+physics rows (reported as a table, no test).
 
 **Negative results.** L1 is not tested on real data (section 10, round 7). The paper says that no
 learned model passed the synthetic harness, and makes no statement that learning cannot help on
@@ -560,10 +575,16 @@ analyses are used only to say where the residual error lives, not to rescue a cl
 - The Gao bnn external test (section 3.4).
 - **End point or rate? (added 2026-11-10, cs T-P4-5 R5a; descriptive, an oracle like B0\*).** In
   each fold, B0 (the fold's variant, pooled k″ of the training sorbents, no refit) is re-scored
-  with the isotherm scaled by (1 + ε̂), where ε̂ per held-out sorbent and temperature is the
-  median of w_end/w_ads(RH_end) − 1 over its own equilibrated segments that end where
-  w_ads ≥ 0.2·w₃₀ (`p4.run_study.endpoint_eps`, `endpoint_oracle_E`; row field
-  `E["B0_endpoint_oracle"]`). Reported per held-out sorbent: B0's median E, the end-point
+  with its branches scaled by the held-out sorbent's own end-point offsets, per temperature and
+  direction. The adsorption branch is scaled by (1 + ε̂_ads), with ε̂_ads the median of
+  w_end/w_ads(RH_end) − 1 over the sorbent's equilibrated uptake segments; in a fold whose variant
+  is B0-b, the desorption branch is scaled by (1 + ε̂_des), the same over its release segments
+  against the desorption branch (uptake and release are kept apart so that hysteresis is not read
+  as a scale error). A segment counts if it moved at least 0.5 wt%, the slope of its last tenth
+  extrapolated over the segment is below 2 % of its move, and the branch value at its end RH
+  (median RH of that tenth) is at least 0.2·w₃₀. A group with a missing offset is scored NaN and
+  reported as missing (`p4.run_study.endpoint_eps`, `endpoint_oracle_E`; row fields `eps_hat`
+  and `E["B0_endpoint_oracle"]`). Reported per held-out sorbent: B0's median E, the end-point
   oracle's, and the k″ oracle B0\*'s, so B0's error is split into a part a correct end point
   removes and a part a correct rate constant removes. On a synthetic null world with known
   offsets the estimator recovers every ε within 0.001 (`results/endpoint_eps_check_S0.txt`).
@@ -688,7 +709,7 @@ The harness passes if:
      procedure, one configuration and one seed per fit. This tests the decision machinery and
      the models in a realistic null; it had to pass for the draft to be frozen (moot since round
      7: the L1 null study is not run).
-   - **With the confirmatory runs**: one further null world (replicate 3; the pre-freeze worlds
+   - **With the confirmatory runs** (not run: L1 is not tested, see the round 7 outcome below): one further null world (replicate 3; the pre-freeze worlds
      are replicates 0 to 2) with the full confirmatory procedure for L1 (4 configurations tuned on the validation sorbent, then 5 seeds; 72 fits).
      Selection on a validation sorbent and ensembling change how often a spurious correction
      survives, in an unknown direction, so the reduced replicates alone would test a different
@@ -952,6 +973,11 @@ What follows, from sections 2 and 7 as already written (nothing is changed by th
   that the isotherm predicts the effective k″ of Bezrukov's equation, which a shared form error
   alone can produce, and the paper must say so beside the verdict. The fitted slopes on the real
   data are reported with it (row field `B2_ab`).
+- **Limitation of the harness.** Every harness fit used the plain B0 variant (adsorption branch in
+  both directions); B2 built on B0-b was not exercised. In the archived null replicate
+  `results/null_rep0_preD` all six folds it ran chose B0 (B0-b's training score higher in each),
+  so the untested path may not be used; the variant
+  of each real fold is reported with the verdict.
 
 ## 11. Compute
 
@@ -962,6 +988,16 @@ choosing the comparator, and fitting B2 and the oracle B0* by the scored metric.
 took about 64 minutes in the end-to-end dry run (`results/dryrun_null.log`) and 29 to 43 minutes
 in the six folds of the archived null replicate (`results/null_rep0_preD/rows.jsonl`, field `s`),
 on the shared laptop: 5 to 11 hours per rule, at most about 22 hours in all. Nothing is reduced.
+
+The confirmatory commands, in this order (Python 3.12 venv of the repository, `requirements-lock.txt`):
+
+    python -E -s -m p4.run_study data_derived/bezrukov2023 results/confirm_R2 --kinds none
+    python -E -s -m p4.run_study data_derived/bezrukov2023 results/confirm_R1 --kinds none --rule R1
+    python -E -s -m p4.decide results/confirm_R2/rows.jsonl results/prefreeze/checks2.json results/confirm_R2/decide.json
+    python -E -s -m p4.decide results/confirm_R1/rows.jsonl results/prefreeze/checks2.json results/confirm_R1/decide.json
+    python -E -s -m p4.final_verdict results/confirm_R2/decide.json results/confirm_R1/decide.json results/harness_b2/harness_b2.json results/final_verdict.json B2
+
+Before the freeze the same chain was run end to end on a synthetic world (section 9).
 
 The plan below was the one for the learned models and is kept for the record.
 
@@ -1136,8 +1172,9 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
     (F-5 and the sorbent-level-luck diagnostic). A null replicate with the old L1 (before the d
     input) is archived in `results/null_rep0_preD/` and does not count.
   - Null draws are keyed per sorbent, and |ε·w₃₀| is capped at 3.13 wt% (F-8, F-9). The null
-    calibration numbers in section 10 were computed before this change and will be recomputed
-    with it before the freeze.
+    calibration numbers in section 10 were computed before this change and were to be recomputed
+    with it before the freeze; after round 7 they were not, because the L1 null study is not run
+    (section 12).
 - 2026-11-10 (independent re-implementation of the decision rule from this text alone,
   `audit/independent_decide.py`, compared with `p4/decide.py` on the archived null replicate and
   240 random cases; `results/independent_decide_check*.json`). Five places in the text were
@@ -1157,7 +1194,8 @@ dropped (section 13). All are data-only or in-sample; none evaluates a learned m
   cannot change the outcome.
 - 2026-11-10 (after round 7; written before any real-data fit). H4a′ added (section 2): B2 judged
   by H4a's rule, with its own synthetic harness (section 10b; script and criteria committed in
-  da52584 before the first run) in place of criterion 4. Reason and what was on record are in
+  da52584 before the first run; that was version 1, replaced the same day by version 2, 78accf6,
+  the one that counts) in place of criterion 4. Reason and what was on record are in
   section 2. Title changed. Compute is physics only (section 11). The end-point oracle added to
   section 8. cs T-P4-5's null recommendations (structure-free worlds, 0.40 bound with a stated
   fold-correlation assumption, median r) are used in section 10b; the L1 null study is not run.

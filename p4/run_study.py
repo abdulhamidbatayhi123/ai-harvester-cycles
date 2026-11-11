@@ -343,6 +343,9 @@ def main():
             rows.put({"key": key, "fold": fold, "held": held, "val": vs, "B0_variant": b0v,
                       "B2_ab": ab2, "viol_data": viol(te, [g["w"] for g in te]),
                       "viol_base": viol(te, pred[base]), "viol_B2": viol(te, pred_b2), "dw": seg_dw(te),
+                      # B2's admissibility is judged against the pooled B0 of the fold's variant, its
+                      # comparator (PREREG section 7; as in the B2 harness), not the chosen comparator
+                      "viol_B0": viol(te, pred[b0v]),
                       "eps_hat": {f"{a}|{b}": list(v) for (a, b), v in eps_hat.items()},
                       "comparator": base, "k2": {f"{a}|{b}": v for (a, b), v in k_fit[b0v].items()},
                       "k2_all": {c: {f"{a}|{b}": v for (a, b), v in k.items()} for c, k in k_fit.items()},

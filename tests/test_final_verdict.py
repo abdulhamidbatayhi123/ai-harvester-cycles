@@ -53,3 +53,19 @@ def test_b2_needs_every_harness_criterion():
             assert combine(_b2(v), _b2(v), bad, "B2")["verdict"] == "not tested"
     assert combine(_b2("falsified"), _b2("falsified"), {}, "B2")["verdict"] == "not tested"
     assert combine(_b2("falsified"), _b2("falsified"), ok, "B2")["verdict"] == "falsified"
+
+
+def test_b2_wording_rules_from_the_harness_summary():
+    """Sections 7 and 10b (pre-freeze review 2026-11-11): a falsification takes the weaker wording when B2
+    was not supported in every realistic-power world; a support carries the C3 form-error caveat."""
+    summ = {"power_K2": {"K2a": {"verdict": "supported"}, "K2b": {"verdict": "supported"},
+                         "K2c": {"verdict": "not established"}}, "C3_reported": {"beats": 6}}
+    ok = {"pass": {"1_no_beat_in_N": True, "2_K_found": True, "3_null_S": True}, "summary": summ}
+    f = combine(_b2("falsified"), _b2("falsified"), ok, "B2")
+    assert f["verdict"] == "falsified" and "missed in 1 of 3" in f["wording"]
+    s = combine(_b2("supported"), _b2("supported"), ok, "B2")
+    assert s["verdict"] == "supported" and "6 of 8" in s["form_error_caveat"] and "wording" not in s
+    all_k2 = {**ok, "summary": {**summ, "power_K2": {k: {"verdict": "supported"} for k in ("K2a", "K2b", "K2c")}}}
+    assert "wording" not in combine(_b2("falsified"), _b2("falsified"), all_k2, "B2")
+    n = combine(_b2("not established"), _b2("not established"), ok, "B2")
+    assert "wording" not in n and "form_error_caveat" not in n

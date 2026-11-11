@@ -11,8 +11,9 @@ plus the full-procedure replicate).
 - Otherwise the common verdict of R1 and R2 (falsified or not established).
 Transfer across families is reported for a supported model (both non-trivial LOFO folds).
 
-usage: python -E -s -m p4.final_verdict <decide_R2.json> <decide_R1.json> <null_summary.json> <out.json> [kind=L1]
-       for H4a' (kind B2) the third file is results/harness_b2/harness_b2.json
+usage: python -E -s -m p4.final_verdict <decide_R2.json> <decide_R1.json> <harness_or_null.json> <out.json> [kind=B2]
+       for H4a' (kind B2, the default) the third file is results/harness_b2/harness_b2.json; for B2 the
+       wording rules of sections 7 and 10b are written as "wording" (falsified) or "form_error_caveat" (supported)
 """
 from __future__ import annotations
 
@@ -45,6 +46,18 @@ def combine(r2, r1, null, kind="L1"):
         # whatever R1 and R2 say, as for L1 (section 10b; red-team B3, 2026-11-10)
         out["verdict"] = "not tested"
         out["note"] = "the B2 harness (section 10b) did not pass all three criteria"
+    if kind == "B2" and c4:
+        # wording rules of sections 7 and 10b, from the harness summary (pre-freeze review 2026-11-11)
+        k2 = null.get("summary", {}).get("power_K2", {})
+        missed = sum(v.get("verdict") != "supported" for v in k2.values())
+        if out["verdict"] == "falsified" and missed:
+            out["wording"] = ("no isotherm-predicted rate constant was detectable at this noise and error level; "
+                              f"an effect of the measured size was missed in {missed} of {len(k2)} realistic-power worlds")
+        c3 = null.get("summary", {}).get("C3_reported", {})
+        if out["verdict"] == "supported" and c3:
+            out["form_error_caveat"] = (f"in the form-error world C3, B2 beat B0 in {c3.get('beats')} of 8 folds: the "
+                                        "isotherm predicts the effective k'' of this equation, which a rate law shared "
+                                        "by all materials but not of B0's form can produce (section 2)")
     if out["verdict"] == "supported":
         out["claim_wording"] = a.get("claim_wording")
         out["transfers_across_families"] = bool(a.get("transfers_across_families")) and bool(b.get("transfers_across_families"))
@@ -53,7 +66,8 @@ def combine(r2, r1, null, kind="L1"):
 
 def main():
     r2, r1, null = (json.load(open(f, encoding="utf-8")) for f in sys.argv[1:4])
-    kind = sys.argv[5] if len(sys.argv) > 5 else "L1"
+    # B2 by default: since 2026-11-10 H4a' is the only confirmatory hypothesis (L1 not tested)
+    kind = sys.argv[5] if len(sys.argv) > 5 else "B2"
     res = combine(r2, r1, null, kind)
     json.dump(res, open(sys.argv[4], "w", encoding="utf-8"), indent=1)
     print(json.dumps(res, indent=1))

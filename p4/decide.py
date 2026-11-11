@@ -192,7 +192,13 @@ def main():
         # both the data and the comparator on the same segment
         vm = np.asarray(r.get("viol") or [], bool)
         vd = np.asarray(p.get("viol_data") or [False] * len(vm), bool)
-        vb = np.asarray(p.get("viol_base") or [False] * len(vm), bool)
+        if kind == "B2":
+            # B2's comparator is the pooled B0 of the fold's variant, so its excess violations are
+            # counted against that model's flags (PREREG section 7; audit/harness_b2.py does the same)
+            assert "viol_B0" in p, f"{fold}: physics row without the B0 violation flags needed for B2"
+            vb = np.asarray(p["viol_B0"], bool)
+        else:
+            vb = np.asarray(p.get("viol_base") or [False] * len(vm), bool)
         excess = float(np.mean(vm & ~vd & ~vb)) if len(vm) else None
         admissible = excess is None or excess <= VIOL_MARGIN
         b2 = p["E"].get("B2")
