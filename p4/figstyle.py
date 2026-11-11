@@ -108,7 +108,7 @@ def coloured_text(fig):
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEXT_EXT = (".py", ".json", ".jsonl", ".csv", ".md", ".txt", ".tex")
-SUB_MIN_PT = 4.5   # mathtext prints sub- and superscripts at 70 % of the text size
+SUB_MIN_PT = 5.0   # mathtext prints sub- and superscripts at 70 % of the text size; the manuscript build (G2c) refuses printed text below 5 pt
 
 
 def _sha(path):
