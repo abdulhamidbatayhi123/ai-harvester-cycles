@@ -8,18 +8,21 @@
   6.0,
   8.0
  ],
- "made": "2026-11-10 23:49:52",
- "style_sha256": "dbf5f9820d55cc2655e2292f46105549c2bbe059734791e3b08929487d1b97e9",
- "script": "fig_harness_l1.py",
+ "made": "2026-11-11 09:12:11",
+ "hash": "sha256, text files LF-normalised",
+ "style": "p4/figstyle.py",
+ "style_sha256": "17f990ca45d12a123e9b7bccbadd953d40aa6161506af24039d5e8edeffa7d87",
+ "script": "figures/fig_harness_l1.py",
  "script_sha256": "cb233f1ec58634589c69c287c6dcefcb49bb20cbcc06568c5c3ca595153864ad",
  "inputs": {
-  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round1\\harness.json": "58ccd2e3affad32e51198cb3f25e75ed3e702660ef8775078c38277715e8fba6",
-  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round2\\harness.json": "314dc39966b4c73046abb902980b4a7cc824cb445bddbc883f3f65b1b63645c1",
-  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round3\\harness.json": "49e9426079815f63b890c9a78cd4674154e985fb8b48f9903a1658fddd163bd3",
-  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round4\\harness.json": "1772a07cf20236b80fa2afb5f8475998c6f22399f0a384e4d690e68d613c7d89",
-  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round5\\harness.json": "a4c9006905e9c1d006626fad567677dc4183a31cbf77e9c35c56b6a9c4c7c7cd",
-  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round6\\harness.json": "53da86aa7121d6726ae351a305cb7764526017f27d815a64c9d905b6de7711de",
-  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_round7\\harness.json": "802bc5f9384f8c78b2e1fd2fadf7852100738b25d9d10ef1e7a8678a966541fc",
-  "C:\\Users\\abdulhamid batayhi\\Desktop\\ai-harvester-cycles\\results\\harness_alfu\\harness.json": "a521b5e0e9a56cd4ec2792103f3dfb4cd72cd5232f8a79cca2f872367c3cd345"
- }
+  "results/harness_round1/harness.json": "22bed5bb67405bbbc9d0497dcc2412880fedd536f2b6551c587cfa3e811cda63",
+  "results/harness_round2/harness.json": "2d8ce7b94b0414d7b9b0a3aa569cf7c62adfc38ad96356fb33c8253bb8ef1387",
+  "results/harness_round3/harness.json": "acb17b23291f8c420d819d714fc5fb4e05a3cece5a91a07a8888f020c3bddd40",
+  "results/harness_round4/harness.json": "b96252e151ac947dc9080ab600f404aa8fd8669c454ec89a5ff1a2bf3f40342a",
+  "results/harness_round5/harness.json": "e441ece893eb6dfe73d5c653c958da115791010e25854d80c497ee6634c52d21",
+  "results/harness_round6/harness.json": "5644ad36970a77a8638182949d9e02086f0b2a6bab2650fa9b209b4fed40bcbe",
+  "results/harness_round7/harness.json": "3d4da166ddc4a7ac99ce5907adca0a55c0e89be54e73ced848660a161563c404",
+  "results/harness_alfu/harness.json": "8977e67e032adb45038309a63ae8b85a03b5412a2b7c8d2a8769420e975a9b99"
+ },
+ "git_dirty_files": []
 }
