@@ -120,7 +120,12 @@ def _rows(rule):
 def _r(v):
     import math
     r = v["r_fold"]
-    return "--" if r is None else (num(f"{100 * r:.1f}") if math.isfinite(r) else "$-" + BS + "infty$")
+    if r is None:
+        return "--"
+    if not math.isfinite(r):
+        return "$-" + BS + "infty$"
+    s = f"{100 * r:.1f}"
+    return num("0.0" if s == "-0.0" else s)          # a value that rounds to zero carries no sign
 
 
 def share(v, p):

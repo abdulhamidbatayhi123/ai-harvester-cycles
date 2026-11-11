@@ -1,0 +1,24 @@
+{
+ "figure": "fig_results",
+ "size_mm": [
+  183.0,
+  68.0
+ ],
+ "font_pt": [
+  6.0,
+  8.0
+ ],
+ "made": "2026-11-11 20:10:34",
+ "hash": "sha256, text files LF-normalised",
+ "style": "p4/figstyle.py",
+ "style_sha256": "067d313ddb710199d9b5c274faee7ed5f0e2e5a3113fbbb431411bbd1b3ec870",
+ "script": "figures/fig_results.py",
+ "script_sha256": "b5b9458e19acf4c26f9f00a0ef5cdf07bf3711993012fbc63a971d9775edd1b0",
+ "inputs": {
+  "results/confirm_R2/decide.json": "7df2d7c54738410524d9e94e3316b7c073378cfa426d98f055e8adc605770f4f",
+  "results/confirm_R1/decide.json": "f396009e1ec1327a6b4f25ca3d8fa82fa2cec6ad22f3e2ac2233ad2de66b18f7",
+  "results/confirm_R2/rows.jsonl": "0ca9839801fcc02125fbcba53c4dc2a2e7c24a674abd2d1fa02f508ba0372eef",
+  "results/prefreeze/checks2.json": "fd100fd2dd5337b5562d6f7b60496da5144b87838d2691f4d47ec13edf3f1f38"
+ },
+ "git_dirty_files": []
+}
