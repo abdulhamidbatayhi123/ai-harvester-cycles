@@ -144,11 +144,13 @@ def tab_h4a():
     d2, d1, rows = _dec("R2"), _dec("R1"), _rows("R2")
     ext = json.load(open(os.path.join(ROOT, "results", "extrapolation_flags.json"), encoding="utf-8"))["flags"]
     out = ["% written by paper/tex/make_tables.py from results/confirm_R2|R1/decide.json and rows.jsonl; do not edit",
-           BS + "begin{tabular}{llccccccccc}", BS + "toprule",
-           " & & " + BS + "multicolumn{2}{c}{$r$ (" + BS + "%)} & " + BS + "multicolumn{2}{c}{Beaten} & "
+           BS + "begin{tabular}{lcccccccccc}", BS + "toprule",
+           " & " + BS + "multicolumn{2}{c}{$r$ (" + BS + "%)} & " + BS + "multicolumn{2}{c}{Beaten} & "
            + BS + "multicolumn{3}{c}{Median $E$ (R2)} & & " + BS + BS,
-           BS + "cmidrule(lr){3-4}" + BS + "cmidrule(lr){5-6}" + BS + "cmidrule(lr){7-9}",
-           "Held out & Variant & R2 & R1 & R2 & R1 & B0 & B2 & B0* & Share & Extrap." + BS + BS, BS + "midrule"]
+           BS + "cmidrule(lr){2-3}" + BS + "cmidrule(lr){4-5}" + BS + "cmidrule(lr){6-8}",
+           "Held out & R2 & R1 & R2 & R1 & B0 & B2 & B0* & Share & Extrap." + BS + BS, BS + "midrule"]
+    # every fold used the plain variant (asserted, so the caption's statement stays true)
+    assert all(rows[f"LOSO:{s}"]["B0_variant"] == "B0" for s in ORDER if f"LOSO:{s}" in rows)
     for s in ORDER:
         k = f"LOSO:{s}"
         a, b, p = d2["folds"].get(k + "|B2"), d1["folds"].get(k + "|B2"), rows.get(k)
@@ -156,7 +158,7 @@ def tab_h4a():
             continue
         med = lambda key: sig(float(np.nanmedian(np.asarray(p["E"][key], float))))
         fl = ", ".join(f"{x['temp'][:2]}" for x in ext.get(k, []))
-        out.append(f"{LABEL.get(s, s)} & {p['B0_variant']} & {_r(a)} & {_r(b)} & {'yes' if a['beats_B0'] else 'no'} & "
+        out.append(f"{LABEL.get(s, s)} & {_r(a)} & {_r(b)} & {'yes' if a['beats_B0'] else 'no'} & "
                    f"{'yes' if b['beats_B0'] else 'no'} & {med('B0')} & {med('B2')} & {med('B0star')} & {share(a, p)} & {fl or '--'}"
                    + BS + BS)
     out += [BS + "bottomrule", BS + "end{tabular}", ""]
