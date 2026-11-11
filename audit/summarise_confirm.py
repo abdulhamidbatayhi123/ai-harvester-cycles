@@ -38,7 +38,9 @@ def per_rule(rule, F):
     for s in PARENTS:
         p = rows[f"LOSO:{s}"]
         e = {k: med(p["E"][k]) for k in ("B0", "B2", "B0star", "B0_endpoint_oracle", "B1")}
-        out["sorbents"][s] = {**e, "variant": p["B0_variant"], "F": F[s], "B0_over_F": e["B0"] / F[s],
+        # pooled figures of a parent + composite fold use the larger of the two floors (PREREG section 6)
+        Fp = max(F[m] for m in p["held"])
+        out["sorbents"][s] = {**e, "variant": p["B0_variant"], "F": Fp, "B0_over_F": e["B0"] / Fp,
                               "gap_closed_by_own_k": d["H4b"][s]["fraction_of_gap_closed"],
                               "endpoint_rel_reduction": (e["B0"] - e["B0_endpoint_oracle"]) / e["B0"],
                               "own_k_rel_reduction": (e["B0"] - e["B0star"]) / e["B0"],
@@ -73,7 +75,21 @@ def per_rule(rule, F):
             own = lambda p, key: med([e for e, sid in zip(p["E"][key], p["seg"]) if sid.split("|")[0] == s])
             fam[s] = {"B0_loso": own(pl, "B0"), "B0_lofo": own(pf, "B0"), "B2_loso": own(pl, "B2"), "B2_lofo": own(pf, "B2")}
     out["H4c"] = fam
-    out["H4c_summary"] = {"n": len(fam), "n_B0_worse_lofo": sum(v["B0_lofo"] > v["B0_loso"] for v in fam.values())}
+    out["H4c_summary"] = {"n": len(fam), "n_B0_worse_lofo": sum(v["B0_lofo"] > v["B0_loso"] for v in fam.values()),
+                          "n_B2_worse_lofo": sum(v["B2_lofo"] > v["B2_loso"] for v in fam.values())}
+    # strata (PREREG section 6: temperature and direction reported separately): median over all LOSO held-out
+    # segments of each stratum, B0 and B2; direction from the segment's from>to humidity
+    st = {}
+    for s in PARENTS:
+        p = rows[f"LOSO:{s}"]
+        for sid, e0, e2 in zip(p["seg"], p["E"]["B0"], p["E"]["B2"]):
+            T = sid.split("|")[1]
+            a, b = sid.split("|")[4].split("#")[0].split(">")
+            key = f"{T}|{'ads' if float(b) > float(a) else 'des'}"
+            st.setdefault(key, {"B0": [], "B2": []})
+            st[key]["B0"].append(e0)
+            st[key]["B2"].append(e2)
+    out["strata"] = {k: {"n_seg": len(v["B0"]), "E_B0": med(v["B0"]), "E_B2": med(v["B2"])} for k, v in sorted(st.items())}
     return out
 
 
@@ -81,6 +97,14 @@ def main():
     F = json.load(open(os.path.join(ROOT, "results", "prefreeze", "checks2.json"), encoding="utf-8"))["F_within_segment_weighted"]
     fv = json.load(open(os.path.join(ROOT, "results", "final_verdict.json"), encoding="utf-8"))
     res = {"final_verdict": fv, "R2": per_rule("R2", F), "R1": per_rule("R1", F)}
+    # between-pan and between-session agreement, reported beside F as a ceiling (PREREG section 6)
+    fb = json.load(open(os.path.join(ROOT, "results", "prefreeze", "checks2.json"), encoding="utf-8"))["F_between"]
+    pan = [v["F_between_pan"] for v in fb.values() if v.get("F_between_pan") is not None]
+    ses = [v["F_between_session"] for v in fb.values() if v.get("F_between_session") is not None]
+    res["F_between"] = {"pan_min": min(pan), "pan_max": max(pan), "session_min": min(ses), "session_max": max(ses)}
+    # realistic-power worlds of the B2 harness: folds with r >= 10 % (exploratory count; the falsifier needs <= 1)
+    hb = json.load(open(os.path.join(ROOT, "results", "harness_b2", "harness_b2.json"), encoding="utf-8"))["worlds"]
+    res["K2_folds_r_ge_10pct"] = {w: sum(f["r"] >= 0.10 for f in hb[w]["folds"].values()) for w in ("K2a", "K2b", "K2c")}
     with open(sys.argv[1], "w", encoding="utf-8", newline="\n") as f:
         json.dump(res, f, indent=1)
     for r in ("R2", "R1"):
