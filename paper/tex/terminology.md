@@ -1,30 +1,31 @@
-# Terminology of the Paper 3A manuscript (each term defined once; use it only with the evidence named)
+# Terminology of the Paper 4 manuscript (each term defined once; use it only with the evidence named)
 
-Pattern: Bio-Inspired Photovoltaics `manuscript/terminology.md`. `paper/tex/build_ms.py` gate G4 parses the
-banned-phrase table below and fails on any match in `main.tex` or `si.tex` (comments stripped). Edit the table,
-not the gate.
+Pattern: Paper 3A `paper/tex/terminology.md` (from Bio-Inspired Photovoltaics). `paper/tex/build_ms.py` gate G4
+parses the banned-phrase table below and fails on any match in `main.tex` or `si.tex` (comments stripped). Edit the
+table, not the gate. Section numbers refer to PREREG_P4_draft.md (the frozen pre-registration after the freeze).
 
 ## Terms
 
 | Term | Meaning in this paper | Evidence required before using it |
 |---|---|---|
-| potential model, P | the learned reduced spreading pressure psi(s, T) with hard shape constraints (softplus mixture, capacities > 0, Henry g = 1 and cooperative g >= 1.5 terms) and van't Hoff positions; the isotherm is d psi / d s | PREREG 4; src/p3a/models.py |
-| hard constraint | holds for every parameter value by construction (monotone in p, finite Henry slope, defined heat) | the architecture, not the fit |
-| penalty model (F-pen, V-pen, A-pen) | the same function class without the hard constraint, with monotonicity and Henry penalties in the loss | PREREG 4 |
-| unconstrained twin (F-none, V-none, A-none) | the same function class, no constraint and no penalty | PREREG 4 |
-| temperature structure F / V / A | free network in 1/T / van't Hoff position per term / temperature-invariant characteristic curve in A = RT ln(p_sat/p) | PREREG 4 |
-| C1 | dual-site Sips with van't Hoff affinities, the classical comparator | PREREG 4 |
-| E-high, E-low | train on all but the highest (lowest) temperature, predict it; the extrapolation tasks | PREREG 5.1 |
-| I-mid | interpolation task, secondary | PREREG 5.1 |
-| held-out error E | RMSE of the held-out isotherm divided by q_ref | PREREG 6.1 |
-| error ratio R | 10^d with d the Hodges-Lehmann estimate of the paired difference of per-material mean log10 E | PREREG 7.2 |
-| violation, violating fit | a fit whose isotherm on the dense grid falls more than 2 % of q_ref below its running maximum, or below -2 % of q_ref, inside the penalty domain | PREREG 6.2; study.VIOL_TOL |
-| confirmatory | a verdict of the frozen rule (H1b-H1e, H3) | analyse.py output on the confirmatory runs |
-| primary claim | H1b non-inferiority only (upper exact 95 % bound of R below 1.25) | PREREG 7.3 |
-| descriptive | reported without a hypothesis (H1a, F-rel, P-K, MLP) | must be labelled wherever used |
+| isotherm-driven model, B0 | Bezrukov's model as published: dw/dt = (k″/m)(RH_flow − RH_bed(w)), RH_bed read from the measured isotherm, one k″ per temperature and direction shared by the training sorbents; variant B0-b uses the desorption branch for release | PREREG 5; p4/physics.py |
+| B1 | linear driving force: dw/dt = (k‴/m)(w*(RH_flow) − w); a comparator candidate | PREREG 5 |
+| B2 | B0 with log k″ = a + b·(RH50/30 − x̄) per temperature and direction, fitted on the training sorbents; the isotherm-predicted rate constant | PREREG 2 (H4a′), 5 |
+| oracle k″ (B0*) | B0 with the held-out sorbent's own fitted k″; an upper bound, never a prediction | PREREG 8 |
+| end-point oracle | B0 with the held-out sorbent's measured end point ε̂ in place of the isotherm's; descriptive | PREREG 8 |
+| L1 (grey box), L2 (black box) | learned models; L1 = B0 times exp(2 tanh g_θ), a bounded positive correction (zero rate at equilibrium kept); L2 = neural ODE given the same local isotherm features, no physics imposed | PREREG 5 |
+| harness | synthetic trajectories generated from a known truth on the real humidity records and isotherms; a model must pass it before it meets real data | PREREG 10 (L1), 10b (B2) |
+| world (N, K, K2a–c, S0–S5, C3) | one synthetic truth of the harness: no effect, known effect, realistic-power effect, structure-free null, form error | PREREG 10b |
+| held-out error E | RMS(w_pred − w_meas)/\|Δw\| of a step segment; a sorbent's score is the median over its segments | PREREG 6 |
+| noise floor F | median normalised RMS between consecutive repeats of the same step in one file; one segment-weighted value per sorbent | PREREG 6; results/prefreeze/checks2.json |
+| practical margin r | median d divided by the comparator's median cluster E; at least 10 % for a beat | PREREG 7 |
+| beat | all four conditions of PREREG 7 on every held-out material of the fold, and physically admissible | p4/decide.py output |
+| LOSO, LOFO | leave one sorbent out (8 folds; a composite goes with its parent), leave one family out | PREREG 4 |
+| supported / falsified / not established / not tested | the verdict words of the PREREG 7 table, only from p4/final_verdict.py; never paraphrased | p4/final_verdict.py output on the confirmatory runs |
+| confirmatory | a verdict of the frozen rule (H4a′) | final_verdict output |
+| descriptive | reported without a decision rule (H4b, H4c, harness record) | must be labelled wherever used |
 | exploratory (post hoc) | computed after the confirmatory results were known | must be labelled wherever used |
-| inconclusive | the exact test is not significant and the interval does not fit "equivalent"; never "no difference" | PREREG 8 |
-| equivalent within 25 % | the frozen verdict word: exact 90 % interval inside 0.8-1.25 | PREREG 8 |
+| dry-mass rule R2 (primary), R1 (sensitivity) | the two pre-registered definitions of the dry mass; a verdict stands only if both give it | PREREG 3.3, 7 |
 
 ## Banned phrases (with replacements)
 
@@ -55,10 +56,13 @@ not the gate.
 | it is worth noting | delete; state the point |
 | interestingly | delete; state the point |
 | notably | delete; state the point |
-| universal | name the tested scope |
+| universal law | name the tested scope |
 | robustly | say what was varied and what did not change |
-| no difference | "inconclusive at this sample size" (PREREG 8) |
-| physics-informed | say "with penalties" or "with hard constraints" |
-| thermodynamically consistent | name the property that holds (monotone, finite Henry slope, defined heat) |
-| outperforms | give R and its interval |
+| no difference | "not established at this noise and error level" (PREREG 7) |
+| physics-informed | say "grey box" and name the structure |
+| outperforms | give r, the fold count and the verdict word |
 | white box | name the structure |
+| failed to learn | "was not tested on real data: it did not pass the harness" (PREREG 10) |
+| L1 was falsified | "not tested" (PREREG 10 stopping rule) |
+| intrinsic kinetics | "effective rate constant of this model on these powder layers" |
+| diffusion coefficient | "effective rate constant k″" (no transport mechanism was identified) |
