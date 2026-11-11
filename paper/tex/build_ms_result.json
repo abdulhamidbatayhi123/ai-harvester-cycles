@@ -13,8 +13,8 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 207,
-  "G1_n_keys": 207,
+  "G1_n_uses": 210,
+  "G1_n_keys": 210,
   "G2_main.tex_n_refs": 31,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 4,
@@ -23,10 +23,10 @@
   "G3_si.tex_em_dashes": 0,
   "G4_n_phrases": 35,
   "G5_words": {
-   "abstract": 154,
-   "main_text": 3320,
-   "methods": 1980,
-   "si": 1985
+   "abstract": 150,
+   "main_text": 3606,
+   "methods": 2048,
+   "si": 2012
   },
   "G5_targets": {
    "abstract": "<= 200",
@@ -34,8 +34,7 @@
    "methods": "about 2500"
   },
   "G5_flags": [
-   "main text 3320 outside 4,500-5,500",
-   "Methods 1980 outside about 2,500 (2,000-3,000)"
+   "main text 3606 outside 4,500-5,500"
   ],
   "G6_n_figures": 6,
   "G7_pending": [
@@ -67,20 +66,6 @@
    "ok": true
   },
   {
-   "key": "abs_lo",
-   "doc": "main.tex",
-   "text": "7",
-   "source": "7",
-   "ok": true
-  },
-  {
-   "key": "abs_hi",
-   "doc": "main.tex",
-   "text": "31",
-   "source": "31",
-   "ok": true
-  },
-  {
    "key": "abs_63",
    "doc": "main.tex",
    "text": "63",
@@ -92,6 +77,20 @@
    "doc": "main.tex",
    "text": "17",
    "source": "17",
+   "ok": true
+  },
+  {
+   "key": "abs_lo",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "abs_hi",
+   "doc": "main.tex",
+   "text": "31",
+   "source": "31",
    "ok": true
   },
   {
@@ -382,6 +381,27 @@
    "ok": true
   },
   {
+   "key": "res_marg6",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "res_cap_r2",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_cap_r1",
+   "doc": "main.tex",
+   "text": "2",
+   "source": "2",
+   "ok": true
+  },
+  {
    "key": "res_bmin",
    "doc": "main.tex",
    "text": "-0.61",
@@ -524,8 +544,8 @@
   {
    "key": "res_jointF",
    "doc": "main.tex",
-   "text": "7.2",
-   "source": "7.2",
+   "text": "7.1",
+   "source": "7.1",
    "ok": true
   },
   {
@@ -615,8 +635,8 @@
   {
    "key": "dis2_jF",
    "doc": "main.tex",
-   "text": "7.2",
-   "source": "7.2",
+   "text": "7.1",
+   "source": "7.1",
    "ok": true
   },
   {
@@ -694,6 +714,13 @@
    "doc": "main.tex",
    "text": "10",
    "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "dis_cap",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
    "ok": true
   },
   {
@@ -1065,13 +1092,6 @@
    "doc": "main.tex",
    "text": "10",
    "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
-   "ok": true
-  },
-  {
-   "key": "abs_n",
-   "doc": "main.tex",
-   "text": "eight",
-   "source": "eight",
    "ok": true
   },
   {

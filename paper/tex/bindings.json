@@ -608,10 +608,6 @@
    "expr": "CS['R1']['H4c_summary']['n_B0_worse_lofo']",
    "fmt": "d"
   },
-  "abs_n": {
-   "expr": "len(CS['R2']['sorbents'])",
-   "fmt": "word"
-  },
   "abs_beats": {
    "expr": "max(CS['R2']['loso_beats'], CS['R1']['loso_beats'])",
    "fmt": "d"
@@ -709,7 +705,7 @@
    "fmt": "d"
   },
   "res_jointF": {
-   "expr": "min(CS['exploratory_and_secondary']['joint_R2']['joint_over_F_min'], CS['exploratory_and_secondary']['joint_R1']['joint_over_F_min'])",
+   "expr": "math.floor(10 * min(CS['exploratory_and_secondary']['joint_R2']['joint_over_F_min'], CS['exploratory_and_secondary']['joint_R1']['joint_over_F_min'])) / 10",
    "fmt": "f1"
   },
   "res_h4c_b2": {
@@ -805,7 +801,7 @@
    "fmt": "d"
   },
   "dis2_jF": {
-   "expr": "min(CS['exploratory_and_secondary']['joint_R2']['joint_over_F_min'], CS['exploratory_and_secondary']['joint_R1']['joint_over_F_min'])",
+   "expr": "math.floor(10 * min(CS['exploratory_and_secondary']['joint_R2']['joint_over_F_min'], CS['exploratory_and_secondary']['joint_R1']['joint_over_F_min'])) / 10",
    "fmt": "f1"
   },
   "dis2_fb1": {
@@ -839,6 +835,22 @@
   "abs_63": {
    "doc": "PREREG_P4_draft.md",
    "contains": "The relative error in time-to-63 % per segment."
+  },
+  "res_marg6": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "res_cap_r2": {
+   "expr": "sum(v['own_k_rel_reduction'] < 0.10 for v in CS['R2']['sorbents'].values())",
+   "fmt": "d"
+  },
+  "res_cap_r1": {
+   "expr": "sum(v['own_k_rel_reduction'] < 0.10 for v in CS['R1']['sorbents'].values())",
+   "fmt": "d"
+  },
+  "dis_cap": {
+   "expr": "sum(v['own_k_rel_reduction'] < 0.10 for v in CS['R2']['sorbents'].values())",
+   "fmt": "d"
   }
  }
 }

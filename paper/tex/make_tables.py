@@ -135,7 +135,8 @@ def share(v, p):
     import numpy as np
     x = v.get("share_of_oracle_gain")
     e0, es = (float(np.nanmedian(np.asarray(p["E"][k], float))) for k in ("B0", "B0star"))
-    return "--" if x is None or not es < e0 else num(f"{x:.2f}")
+    # below a 5 % oracle gain the ratio's denominator is near zero and the share means nothing (review round 2)
+    return "--" if x is None or not es < 0.95 * e0 else num(f"{x:.2f}")
 
 
 def tab_h4a():
