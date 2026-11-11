@@ -70,7 +70,7 @@ def main():
                markerfacecolor="none" if T == "27C" else fs.OI["dark"], label=T.replace("C", " °C"))
     c.set_xticks(x)
     c.set_xticklabels([LABEL.get(s, s) for s in names], rotation=60, ha="right")
-    c.set_ylabel("noise floor F (normalised RMS)")
+    c.set_ylabel("noise floor F (normalized RMS)")
     c.set_yscale("log")
     # plain tick labels: the superscripts of 10^-3 would print below 5 pt at 6 pt tick size
     from matplotlib.ticker import FixedLocator, NullLocator

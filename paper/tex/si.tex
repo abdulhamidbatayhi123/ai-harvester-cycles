@@ -27,12 +27,12 @@ Technical University, \ID{34220} Istanbul, T\"urkiye}
 
 \section*{Supplementary Note~\snote{1}: The learned models and their harness record}
 
-\paragraph{Models.} The grey box L1 multiplies the rate of B0 by a bounded positive factor,
+\paragraph{Models.} The gray box L1 multiplies the rate of B0 by a bounded positive factor,
 \begin{equation}
 \frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\kpp}{m}\,\bigl(\RHf - \RHb(w)\bigr)\,\exp\!\bigl(2\tanh g_\theta(z)\bigr),
 \end{equation}
 so the rate is still zero at equilibrium and uptake cannot move against the driving force. The input $z$ holds the
-uptake normalised by the isotherm's uptake at \V{si_w30}{30}\,\% RH, $\RHf$, $\RHb$, the local isotherm slope, the
+uptake normalized by the isotherm's uptake at \V{si_w30}{30}\,\% RH, $\RHf$, $\RHb$, the local isotherm slope, the
 branch flag, the temperature, $\C{1}/m$, and the driving force $\RHf - \RHb$ itself (added after round~\ID{6}, below). The
 black box L2 is a neural ODE, $\mathrm{d}w/\mathrm{d}t = (S/m)\,f_\theta(z)$ with a fixed unit scale $S$, given the
 same local isotherm features and no physics: no sign constraint and no zero rate at equilibrium. Both are small
@@ -57,7 +57,7 @@ round~\ID{7}, because there was no positive result for it to protect.
 
 \paragraph{Record.} Table~\ref{tab:harness} lists every case. In round~\ID{1} L1 missed the injected correction and L2 failed even
 on correction-free data. In round~\ID{2}, with two-stage training, L1 found the correction, but L2 fitted the
-training sorbents and not an unseen one: a global encoding of the isotherm let it memorise material identity, so it
+training sorbents and not an unseen one: a global encoding of the isotherm let it memorize material identity, so it
 was rebuilt on local isotherm features. In round~\ID{3} the rebuilt L2 still did not transfer, because its output was
 scaled by a per-sorbent number the network never saw; its output became a water mass flux. In round~\ID{4} the
 comparator was fitted by the scored metric and absorbed part of the injected slow-down, and L1 no longer beat it; L2
@@ -77,7 +77,7 @@ cluster gain, \V{si_mof_gain}{0.0022}, was below $F = \V{si_mof_F}{0.003}$, the 
 \V{si_mof_p}{0.034}, was above \V{si_alpha}{0.025}, and the ratio, \V{si_mof_ratio}{0.55}, missed the halving. On
 ROS-039 and on Al-fumarate L1 met every condition (ratios \V{si_ros_ratio}{0.36} and \V{si_alfu_ratio}{0.42}). Under
 the stopping rule no learned model passed the harness, so H4a is reported as not tested and no learned model was
-fitted to the real data. The result concerns the method, not the data: a grey-box learner given only isotherms did not
+fitted to the real data. The result concerns the method, not the data: a gray-box learner given only isotherms did not
 reliably recover a known, injected, isotherm-dependent rate correction of this size at the noise floor of these
 measurements. No statement is made about whether learning could help on the real data.
 

@@ -38,7 +38,7 @@ isotherms. A common uptake model reads the driving force from the isotherm and s
 materials. In a pre-registered test on seven metal--organic frameworks and a silica gel, each held out in turn,
 a rate constant predicted from half-loading humidity beat the shared constant for \V{abs_beats}{0} of
 \V{abs_folds}{8} sorbents under both dry-mass definitions: no rate constant predicted from this descriptor was
-detectable at this noise and error level. A learned grey-box correction failed its synthetic check and was not
+detectable at this noise and error level. A learned gray-box correction failed its synthetic check and was not
 tested. On unseen sorbents the shared model mispredicted the time to \V{abs_63}{63}\,\% of a step's change by a
 median \V{abs_t63}{17}\,\%; its error was \V{abs_lo}{7} to \V{abs_hi}{31} times the within-run repeatability but within
 the scatter between sessions. Own rate constants and end points together removed a median \V{abs_joint}{26}\,\%
@@ -68,7 +68,7 @@ tradition~\cite{Glueckauf1955Theory,Sircar2000Why} that adsorption-cooling and c
 used~\cite{Sakoda1984Fundamental,Chua2004Transient}. The approximation has known limits~\cite{Raymond2011Intraparticle},
 and the measured rate depends on how the sorbent is held, as loose grains, glued grains or coatings, powder or
 monolith~\cite{Solovyeva2023Water,Li2025Atmospheric}, and on loading within one framework~\cite{Hossain2019Kinetics}.
-Bezrukov et al.\ measured the water uptake dynamics of seven MOFs and a silica gel by dynamic vapour sorption on
+Bezrukov et al.\ measured the water uptake dynamics of seven MOFs and a silica gel by dynamic vapor sorption on
 milligram powder layers and described them with one such model, in which the rate is proportional to the difference
 between the humidity of the gas and the humidity in equilibrium with the current uptake, read from the isotherm,
 with one rate constant for all materials~\cite{Bezrukov2023Regeneration}. If that holds, an unseen sorbent's
@@ -95,7 +95,7 @@ is large~\cite{Varoquaux2018Cross}, which makes it all the more important that t
 are seen~\cite{Nosek2018Preregistration}.
 
 Here we test the isotherm-driven model on sorbents it has not seen, under a pre-registered protocol, and make three
-contributions. First, the full record of a learned grey-box correction, given only a sorbent's isotherms, that had to
+contributions. First, the full record of a learned gray-box correction, given only a sorbent's isotherms, that had to
 recover known corrections in synthetic trajectories (generated on the real humidity records and isotherms) before it
 could meet real data. In its last allowed round it did so for two of three held-out sorbents but not the third, so
 under a stopping rule fixed in advance this architecture was not tested on real data; we report every round, because
@@ -108,7 +108,7 @@ correct per-sorbent rate constant and a correct end point would remove, and the 
 Four models recur. B0 is the published isotherm-driven model with one rate constant $\kpp$ shared by the training
 sorbents. B2 is the same model with $\kpp$ predicted from the held-out sorbent's isotherm. B0$^{*}$ is B0 with $\kpp$
 fitted on the held-out sorbent itself: an oracle that shows what any per-sorbent rate constant could gain, not a
-prediction. L1 is the learned grey box. The original primary hypothesis, H4a, concerned L1; the confirmatory one,
+prediction. L1 is the learned gray box. The original primary hypothesis, H4a, concerned L1; the confirmatory one,
 H4a$'$, asks whether B2 beats B0. Each test holds out one sorbent (leave-one-sorbent-out, LOSO, one fold per sorbent)
 or one family (LOFO); a synthetic test with a known truth is called a harness, and each synthetic truth a world.
 
@@ -133,7 +133,7 @@ with the adsorption branch in both directions; the linear-driving-force model B1
 
 \subsection*{A learned correction could not be validated}
 
-Before it could meet real data, the grey-box model L1 had to recover known corrections in synthetic trajectories
+Before it could meet real data, the gray-box model L1 had to recover known corrections in synthetic trajectories
 generated on the real humidity records and isotherms (Fig.~\ref{fig:harness}; Supplementary Table~S1). In every
 round the pipeline recovered $\kpp$ where no correction was present and L1 made no false beat in that world; over
 seven rounds and four revisions, L1 came to beat B0 in the correction worlds used during its development. In world C3, defined and committed before any run on it, it met every
@@ -225,8 +225,8 @@ analysis. Bottom: the question the results answer. Schematic; no data.}
 \centering
 \makebox[\linewidth]{\includegraphics{../../figures/out/fig1_data.pdf}}
 \caption{\textbf{The data.} \textbf{a}, Adsorption isotherms of the eight sorbents at \V{T_lo}{27}~\textdegree C.
-\textbf{b}, Normalised uptake after the step from \V{rh_lo}{0} to \V{rh_hi}{30}\,\% RH at \V{T_lo2}{27}~\textdegree C.
-\textbf{c}, Noise floor $F$, the normalised RMS difference between consecutive repeats of the same step, per sorbent
+\textbf{b}, Normalized uptake after the step from \V{rh_lo}{0} to \V{rh_hi}{30}\,\% RH at \V{T_lo2}{27}~\textdegree C.
+\textbf{c}, Noise floor $F$, the normalized RMS difference between consecutive repeats of the same step, per sorbent
 and temperature.}
 \label{fig:data}
 \end{figure}
@@ -234,7 +234,7 @@ and temperature.}
 \begin{figure}[tbp]
 \centering
 \makebox[\linewidth]{\includegraphics{../../figures/out/fig_harness_l1.pdf}}
-\caption{\textbf{Synthetic harness record of the learned models} (synthetic data only). \textbf{a}, Grey box L1:
+\caption{\textbf{Synthetic harness record of the learned models} (synthetic data only). \textbf{a}, Gray box L1:
 median held-out error of L1 over that of B0 refitted on the training sorbents, per harness round, world and held-out
 sorbent; marker shape gives the world (N, no correction; C, C2, C3, correction worlds), a filled marker a beat by
 the rule in force in that round. Lines mark no change and the halving required from round~\ID{3}. \textbf{b}, Black
@@ -259,7 +259,7 @@ ROS-039 the medians pool the parent with its composite and the bar is the larger
 \makebox[\linewidth]{\includegraphics{../../figures/out/fig_trajectories.pdf}}
 \caption{\textbf{Held-out predictions against the measurements} (R2). The panels show the held-out sorbents with the
 lowest, the middle and the highest median error of B0, each in the segment whose B0 error is closest to that sorbent's
-median (a fixed rule, so the segments are typical, not chosen by eye). Grey circles: measured uptake (every fifth
+median (a fixed rule, so the segments are typical, not chosen by eye). Gray circles: measured uptake (every fifth
 point); solid: B0 with the rate constant shared by the training sorbents; dashed: B2 with the rate constant predicted
 from the isotherm; dotted: the oracle B0$^{*}$ with the sorbent's own rate constant. The rule happened to select three
 release steps. The measured end point below zero in \textbf{a} reflects the dry mass and the isotherm's end point, not
@@ -303,7 +303,7 @@ was simulated, built into the form-error world of the harness, made the isotherm
 folds with a consistent negative slope, and nothing like that appeared in the real data. A shared form error of
 another shape need not leave that signature, so this argues only against errors of the simulated kind.
 
-The learned model's record concerns one architecture and its training. A grey-box correction given only the isotherms
+The learned model's record concerns one architecture and its training. A gray-box correction given only the isotherms
 recovered large injected effects, and in the final round it recovered a new one on two of three held-out sorbents; it
 failed on the sorbent where the metric-fitted comparator left the smallest effect, at a margin close to the noise
 floor. Whether another design would pass, or whether a correction of the size that remains here can only be confirmed
@@ -319,14 +319,14 @@ so the rate constant is an effective one for this geometry, not an intrinsic pro
 coatings or devices is untested. The two composites extend the set only within their families. The \V{dis2_m}{10}\,\%
 practical margin was set after the noise floor had been seen, though before any model met held-out real data, and was
 confirmed at the freeze after the harness had been scored with it. Several secondary analyses of the protocol were not
-run (Methods), and all analyses added after the result are labelled exploratory.
+run (Methods), and all analyses added after the result are labeled exploratory.
 
 \section*{Conclusions}
 
 In a pre-registered test on seven metal--organic frameworks and a silica gel, a water-uptake rate constant predicted
 from the isotherm's half-loading humidity did not improve on one rate constant shared across materials, under either
 definition of the dry mass, and no rate constant predicted from this descriptor was detectable at this noise and error
-level. A learned grey-box correction did not pass its synthetic ground-truth check and was not tested. The
+level. A learned gray-box correction did not pass its synthetic ground-truth check and was not tested. The
 shared-constant model mispredicted the time to \V{dis2_t63p}{63}\,\% of a step's change on unseen sorbents by a median
 \V{dis2_t63}{17}\,\%, and even a sorbent's own rate constant and end points together removed only about a quarter of
 its error, the rest lying in the rate law, the isotherm input or the scatter between samples and sessions. For
@@ -346,7 +346,7 @@ corrections section. The freeze is recorded in the project's version history, pu
 not deposited with a third-party registry before the confirmatory runs, so its timing rests on that history. The order of events matters for how the results may be read. The original primary hypothesis,
 H4a, asked whether a learned model, given only an unseen sorbent's isotherms, predicts its uptake trajectories better
 than the published isotherm-driven model. A learned model could enter that test only after passing a synthetic
-ground-truth harness. The grey-box model L1 failed the harness in its last allowed round, under a stopping rule
+ground-truth harness. The gray-box model L1 failed the harness in its last allowed round, under a stopping rule
 written before that round's judged result existed, so H4a is reported as not tested and no learned model was fitted
 to the real data. The confirmatory hypothesis H4a$'$ was then added, before any fit of its model to held-out real
 data; that model's form had been fixed two days earlier, on \ID{2026-11-08}, as a reported comparator (commit
@@ -366,7 +366,7 @@ of B0's in five of the six folds that replicate ran, and clearly worse in the si
 
 \subsection*{Data}
 
-We used the dynamic vapour sorption (DVS) archive of Bezrukov et al.~\cite{Bezrukov2023Regeneration,Bezrukov2023Data},
+We used the dynamic vapor sorption (DVS) archive of Bezrukov et al.~\cite{Bezrukov2023Regeneration,Bezrukov2023Data},
 deposited under a CC~BY~\ID{4.0} licence. It holds step runs, cycling runs and isotherms of \W{n_sorbents}{eight}
 sorbents: MOF-303, MIL-160, CAU-10-H and Al-fumarate (aluminium carboxylate rods), ROS-039 and ROS-040 (zinc
 triazolate fluorides), ROS-037 (a copper framework) and the silica gel Syloid AL-1, plus composites of ROS-037 and
@@ -418,7 +418,7 @@ temperature, shared by all training sorbents (for uptake, the median over folds 
 metric is about \V{kp27}{0.32} at \V{kpT1}{27}~\textdegree C and \V{kp60}{1.2} at \V{kpT2}{60}~\textdegree C; a
 least-squares fit pools higher at the higher temperature). B0-b reads the desorption branch during release, and
 B1 is a linear-driving-force model, $\mathrm{d}w/\mathrm{d}t = (k'''/m)\,(w^{*}(\RHf) - w)$. The comparator
-candidates have the same four parameters. All physics models are fitted by the scored metric (the median normalised
+candidates have the same four parameters. All physics models are fitted by the scored metric (the median normalized
 error over segments, below) rather than by least squares, so that no model gains merely from being fitted to the
 metric it is scored on.
 
@@ -433,7 +433,7 @@ $\RHh$ spans \V{rh50_27_lo}{7.4} to \V{rh50_27_hi}{24.3}\,\% RH at \V{T_r1}{27}~
 variant, so that it differs from the pooled model in $\kpp$ alone. The oracle B0$^{*}$ is B0 with $\kpp$ fitted on
 the held-out sorbent's own data; it is not a competitor but measures what any single per-sorbent $\kpp$ could gain.
 
-The learned grey-box model L1 multiplied B0's rate by a bounded positive factor, $\exp(\C{2}\tanh g_\theta(z))$,
+The learned gray-box model L1 multiplied B0's rate by a bounded positive factor, $\exp(\C{2}\tanh g_\theta(z))$,
 from a small network of local isotherm features and the driving force, so that the rate stays zero at equilibrium.
 It is described in full with its harness record in the Supplementary Information.
 
@@ -496,7 +496,7 @@ The confirmatory runs were interrupted once, during their last fold, when the co
 resumed with the same code, keeping the nine completed folds of ten (eight LOSO, two LOFO), which are stored row by
 row. The rationale of the
 falsifier was corrected as stated above. Several secondary analyses named in the protocol were not run for this paper:
-generalisation to the protocol variations reserved from the primary set (carrier-gas flow, particle size, pan and
+generalization to the protocol variations reserved from the primary set (carrier-gas flow, particle size, pan and
 packing, and the long cycling runs), the external test on two further MOFs from another study, the error in
 steady-state cycling productivity, and the device illustrations. They concern transfer beyond the primary set and do
 not bear on the confirmatory verdict, and they are listed here so that their absence is visible.

@@ -13,7 +13,7 @@ table, not the gate. Section numbers refer to PREREG_P4_draft.md (the frozen pre
 | B2 | B0 with log k″ = a + b·(RH50/30 − x̄) per temperature and direction, fitted on the training sorbents; the isotherm-predicted rate constant | PREREG 2 (H4a′), 5 |
 | oracle k″ (B0*) | B0 with the held-out sorbent's own fitted k″; an upper bound, never a prediction | PREREG 8 |
 | end-point oracle | B0 with the held-out sorbent's measured end point ε̂ in place of the isotherm's; descriptive | PREREG 8 |
-| L1 (grey box), L2 (black box) | learned models; L1 = B0 times exp(2 tanh g_θ), a bounded positive correction (zero rate at equilibrium kept); L2 = neural ODE given the same local isotherm features, no physics imposed | PREREG 5 |
+| L1 (gray box), L2 (black box) | learned models; L1 = B0 times exp(2 tanh g_θ), a bounded positive correction (zero rate at equilibrium kept); L2 = neural ODE given the same local isotherm features, no physics imposed | PREREG 5 |
 | harness | synthetic trajectories generated from a known truth on the real humidity records and isotherms; a model must pass it before it meets real data | PREREG 10 (L1), 10b (B2) |
 | world (N, K, K2a–c, S0–S5, C3) | one synthetic truth of the harness: no effect, known effect, realistic-power effect, structure-free null, form error | PREREG 10b |
 | held-out error E | RMS(w_pred − w_meas)/\|Δw\| of a step segment; a sorbent's score is the median over its segments | PREREG 6 |
@@ -59,10 +59,17 @@ table, not the gate. Section numbers refer to PREREG_P4_draft.md (the frozen pre
 | universal law | name the tested scope |
 | robustly | say what was varied and what did not change |
 | no difference | "not established at this noise and error level" (PREREG 7) |
-| physics-informed | say "grey box" and name the structure |
+| physics-informed | say "gray box" and name the structure |
 | outperforms | give r, the fold count and the verdict word |
 | white box | name the structure |
 | failed to learn | "was not tested on real data: it did not pass the harness" (PREREG 10) |
 | L1 was falsified | "not tested" (PREREG 10 stopping rule) |
 | intrinsic kinetics | "effective rate constant of this model on these powder layers" |
 | diffusion coefficient | "effective rate constant k″" (no transport mechanism was identified) |
+| normalised | normalized (AIChE J., American spelling) |
+| modelling | modeling (American spelling) |
+| vapour | vapor (American spelling) |
+| behaviour | behavior (American spelling) |
+| grey | gray (American spelling) |
+| colour | color (American spelling) |
+| analyse | analyze (American spelling) |

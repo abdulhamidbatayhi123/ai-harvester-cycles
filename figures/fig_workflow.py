@@ -20,13 +20,13 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch  # noqa: E402
 
 W, H = 183.0, 92.0
-ROW1 = [("Data", ["dynamic vapour sorption archive:", "eight sorbents, two composites,",
+ROW1 = [("Data", ["dynamic vapor sorption archive:", "eight sorbents, two composites,",
                   "step runs and isotherms", "at two temperatures"], "Methods: data", "sky"),
         ("Isotherm-driven model", ["rate set by the humidity gap", "to the isotherm; one rate",
                                    "constant shared by all", "training sorbents (B0)"], "Methods: models", "orange"),
         ("Held-out tests", ["leave one sorbent out (8 folds),", "leave one family out;", "noise floor, practical margin,",
                             "signed-rank test, 7 of 8 folds"], "Methods: decision rule", "blue")]
-ROW2 = [("Learned correction", ["grey-box network on", "the rate; synthetic", "harness, seven rounds"], "H4a: not tested", True),
+ROW2 = [("Learned correction", ["gray-box network on", "the rate; synthetic", "harness, seven rounds"], "H4a: not tested", True),
         ("Harness for B2", ["known truths: no effect,", "realistic effect, nulls,", "form error"], "gate", False),
         ("Isotherm-predicted k″", ["rate constant from", "the isotherm (B2)", "against shared k″"], "H4a′", True),
         ("Where B0's error lies", ["own k″ (oracle) and", "own end point:", "share of B0's error"], "descriptive", False),
