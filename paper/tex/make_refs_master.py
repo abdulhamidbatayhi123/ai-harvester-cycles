@@ -120,21 +120,73 @@ def data_entry(r):
     return f"{a} {title(r['title'])} \\textit{{{tex_escape(r['publisher'])}}} ({r['year']}). doi:{r['doi']}"
 
 
+# Journal style. "ama" for AIChE Journal (author guidelines read live 2026-11-11: AMA style, references numbered in
+# citation order, all authors listed); "source" is the neutral style used before the venue was chosen.
+STYLE = "ama"
+
+
+def ama_initials(given):
+    """AMA initials: no periods or spaces; hyphenated names keep the hyphen ('Mei-Yan' -> 'M-Y', 'Ricky T. Q.' -> 'RTQ')."""
+    out = ""
+    for w in given.replace(".", " ").split():
+        sub = [s for s in w.split("-") if s]
+        out += "-".join(s[0] for s in sub)
+    return out
+
+
+def ama_names(pairs):
+    names = [tex_escape(f"{fam} {ama_initials(giv)}".strip()) for fam, giv in pairs]
+    return ", ".join(names) + "."
+
+
+def bib_pairs(field):
+    out = []
+    for a in [x.strip() for x in field.split(" and ")]:
+        if "," in a:
+            last, given = [x.strip() for x in a.split(",", 1)]
+            out.append((last, given))
+        else:
+            out.append((a, ""))
+    return out
+
+
+def ama_entry(f):
+    a, t, y = ama_names(bib_pairs(f["author"])), title(f["title"]), f["year"]
+    if f["type"] == "misc" and f.get("eprint"):
+        return f"{a} {t} \\textit{{arXiv}}. Preprint posted online {y}. doi:{f['doi']}"
+    vol = f.get("volume", "")
+    iss = f"({f['number']})" if f.get("number") else ""
+    page = (f.get("pages") or f.get("eid") or "").replace("--", "-").replace("-", "--")
+    loc = f"{vol}{iss}" + (f":{page}" if page else "")
+    return f"{a} {t} \\textit{{{tex_escape(f['journal'])}}}. {y};{loc}. doi:{f['doi']}"
+
+
+def ama_data(r):
+    pairs = []
+    for c in r["creators"]:
+        if c.get("given"):
+            pairs.append((c["family"], c["given"]))
+        else:
+            full = (c.get("name") or c["family"]).split()
+            pairs.append((full[-1], " ".join(full[:-1])))
+    return f"{ama_names(pairs)} {title(r['title'])} {tex_escape(r['publisher'])}; {r['year']}. doi:{r['doi']}"
+
+
 def build():
     bib = parse_bib(open(BIB, encoding="utf-8").read())
     entries, status = {}, {}
     for k, f in bib.items():
-        entries[k] = entry(f)
+        entries[k] = ama_entry(f) if STYLE == "ama" else entry(f)
         m = re.search(r"status\s+([ABC])", f.get("note", ""))
         status[k] = m.group(1) if m else "?"
     data = json.load(open(DATA, encoding="utf-8"))
     for k, r in data["records"].items():
-        entries[k] = data_entry(r)
+        entries[k] = ama_data(r) if STYLE == "ama" else data_entry(r)
         status[k] = "A"   # DataCite record read live; the deposit itself downloaded and checksummed (DATA_SOURCES.md)
     return {"about": ("Master reference list of the Paper 4 manuscript (paper/tex/main.tex, si.tex), written by "
                       "paper/tex/make_refs_master.py from docs/literature/T-P4-6_references.bib (live Crossref / "
                       "DataCite records, 2026-11-10). Status C entries: metadata only; read before citing a "
-                      "specific claim. Journal style applied after the venue is chosen."),
+                      "specific claim. Style: " + STYLE + " (AMA for AIChE Journal, chosen 2026-11-11)."),
             "status": status, "open": {k: "status C: read the paper before citing a specific claim"
                                        for k, s in status.items() if s == "C"},
             "entries": entries}
