@@ -4,3 +4,6 @@ __pycache__/
 .venv/
 data_derived/
 *.wait
+paper/tex/*.aux
+paper/tex/*.log
+paper/tex/*.out
