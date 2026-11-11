@@ -75,7 +75,8 @@
   "Wang2020Machine": "C",
   "Jablonka2022Making": "A",
   "Xia2025Relationship": "C",
-  "Nikolenko2026Modality": "A"
+  "Nikolenko2026Modality": "A",
+  "Bezrukov2023Data": "A"
  },
  "open": {
   "Aristov2012Optimization": "status C: read the paper before citing a specific claim",
@@ -174,6 +175,7 @@
   "Wang2020Machine": "Wang, A. Y.-T., Murdock, R. J., Kauwe, S. K., Oliynyk, A. O., Gurlo, A., Brgoch, J., Persson, K. A. \\& Sparks, T. D. Machine Learning for Materials Scientists: An Introductory Guide toward Best Practices. \\textit{Chemistry of Materials} \\textbf{32}, 4954 (2020). doi:10.1021/acs.chemmater.0c01907",
   "Jablonka2022Making": "Jablonka, K. M., Patiny, L. \\& Smit, B. Making the collective knowledge of chemistry open and machine actionable. \\textit{Nature Chemistry} \\textbf{14}, 365 (2022). doi:10.1038/s41557-022-00910-7",
   "Xia2025Relationship": "Xia, X., Li, K., Chen, G. \\& Li, S. Relationship between water adsorption kinetics and structure property of metal-organic frameworks for adsorption cooling. \\textit{Colloids and Surfaces A: Physicochemical and Engineering Aspects} \\textbf{720}, 137168 (2025). doi:10.1016/j.colsurfa.2025.137168",
-  "Nikolenko2026Modality": "Nikolenko, S. I. Modality Graphs Predict Cross-Modal Reconstructability But Not Fusion Gain: A Preregistered Study in Machine Fault Diagnosis. \\textit{IEEE Access} \\textbf{14}, 158836 (2026). doi:10.1109/access.2026.3741122"
+  "Nikolenko2026Modality": "Nikolenko, S. I. Modality Graphs Predict Cross-Modal Reconstructability But Not Fusion Gain: A Preregistered Study in Machine Fault Diagnosis. \\textit{IEEE Access} \\textbf{14}, 158836 (2026). doi:10.1109/access.2026.3741122",
+  "Bezrukov2023Data": "Bezrukov, A. A., O'Hearn, D. J., Gascón-Pérez, V., Darwish, S., Kumar, A., Sanda, S., Kumar, N., Francis, K. \\& Zaworotko, M. J. Metal-organic frameworks as regeneration optimized sorbents for atmospheric water harvesting. \\textit{Zenodo} (2023). doi:10.5281/zenodo.6631711"
  }
 }

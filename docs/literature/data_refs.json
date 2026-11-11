@@ -1,0 +1,63 @@
+{
+ "fetched": "2026-11-11",
+ "source": "api.datacite.org/dois/<doi>",
+ "records": {
+  "Bezrukov2023Data": {
+   "doi": "10.5281/zenodo.6631711",
+   "creators": [
+    {
+     "family": "Andrey A. Bezrukov",
+     "given": null,
+     "name": "Andrey A. Bezrukov"
+    },
+    {
+     "family": "Daniel J. O'Hearn",
+     "given": null,
+     "name": "Daniel J. O'Hearn"
+    },
+    {
+     "family": "Victoria Gascón-Pérez",
+     "given": null,
+     "name": "Victoria Gascón-Pérez"
+    },
+    {
+     "family": "Shaza Darwish",
+     "given": null,
+     "name": "Shaza Darwish"
+    },
+    {
+     "family": "Amrit Kumar",
+     "given": null,
+     "name": "Amrit Kumar"
+    },
+    {
+     "family": "Suresh Sanda",
+     "given": null,
+     "name": "Suresh Sanda"
+    },
+    {
+     "family": "Naveen Kumar",
+     "given": null,
+     "name": "Naveen Kumar"
+    },
+    {
+     "family": "Kurt Francis",
+     "given": null,
+     "name": "Kurt Francis"
+    },
+    {
+     "family": "Michael J. Zaworotko",
+     "given": null,
+     "name": "Michael J. Zaworotko"
+    }
+   ],
+   "title": "Metal-organic frameworks as regeneration optimized sorbents for atmospheric water harvesting",
+   "publisher": "Zenodo",
+   "year": 2023,
+   "version": null,
+   "rights": [
+    "cc-by-4.0"
+   ]
+  }
+ }
+}

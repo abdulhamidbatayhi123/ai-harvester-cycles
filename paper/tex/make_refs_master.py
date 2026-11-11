@@ -18,6 +18,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 BIB = os.path.join(ROOT, "docs", "literature", "T-P4-6_references.bib")
+DATA = os.path.join(ROOT, "docs", "literature", "data_refs.json")
 OUT = os.path.join(HERE, "refs_master.json")
 BS = chr(92)
 
@@ -100,6 +101,22 @@ def entry(f):
     return f"{a} {t} {src} {mid} ({y}). doi:{f['doi']}".replace("  ", " ")
 
 
+def data_entry(r):
+    """Dataset reference from a DataCite record (docs/literature/data_refs.json). DataCite may give the whole
+    name in one field; the family name is then the last word."""
+    names = []
+    for c in r["creators"]:
+        if c.get("given"):
+            fam, giv = c["family"], c["given"]
+        else:
+            full = (c.get("name") or c["family"]).split()
+            fam, giv = full[-1], " ".join(full[:-1])
+        names.append(f"{fam}, {initials(giv)}" if giv else fam)
+    names = [tex_escape(n) for n in names]
+    a = names[0] if len(names) == 1 else ", ".join(names[:-1]) + " " + BS + "& " + names[-1]
+    return f"{a} {title(r['title'])} \\textit{{{tex_escape(r['publisher'])}}} ({r['year']}). doi:{r['doi']}"
+
+
 def build():
     bib = parse_bib(open(BIB, encoding="utf-8").read())
     entries, status = {}, {}
@@ -107,6 +124,10 @@ def build():
         entries[k] = entry(f)
         m = re.search(r"status\s+([ABC])", f.get("note", ""))
         status[k] = m.group(1) if m else "?"
+    data = json.load(open(DATA, encoding="utf-8"))
+    for k, r in data["records"].items():
+        entries[k] = data_entry(r)
+        status[k] = "A"   # DataCite record read live; the deposit itself downloaded and checksummed (DATA_SOURCES.md)
     return {"about": ("Master reference list of the Paper 4 manuscript (paper/tex/main.tex, si.tex), written by "
                       "paper/tex/make_refs_master.py from docs/literature/T-P4-6_references.bib (live Crossref / "
                       "DataCite records, 2026-11-10). Status C entries: metadata only; read before citing a "
