@@ -4,11 +4,13 @@
  "status": "PASS",
  "failures": [],
  "report": {
-  "G8_tables": [],
+  "G8_tables": [
+   "tab_harness_l1.tex"
+  ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 52,
-  "G1_n_keys": 52,
+  "G1_n_uses": 63,
+  "G1_n_keys": 63,
   "G2_main.tex_n_refs": 31,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 2,
@@ -20,7 +22,7 @@
    "abstract": 32,
    "main_text": 1014,
    "methods": 1447,
-   "si": 84
+   "si": 922
   },
   "G5_targets": {
    "abstract": "<= 200",
@@ -62,11 +64,6 @@
     "doc": "main.tex",
     "name": "availability",
     "text": "Repository and Zenodo DOI of the code, pre-registration, harness records and every results file; the raw data stay at their source (Zenodo, doi:10.5281/zenodo.6"
-   },
-   {
-    "doc": "si.tex",
-    "name": "note1",
-    "text": "L1 and L2 in full (PREREG section 5), the seven harness rounds with the change made after each and its cause (PREREG section 10, round tables), the stopping rul"
    },
    {
     "doc": "si.tex",
@@ -438,6 +435,83 @@
    "doc": "main.tex",
    "text": "Eight",
    "source": "Eight",
+   "ok": true
+  },
+  {
+   "key": "si_w30",
+   "doc": "si.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: z holds: w normalised by the isotherm's uptake at 30 % RH",
+   "ok": true
+  },
+  {
+   "key": "si_kerr",
+   "doc": "si.tex",
+   "text": "2",
+   "source": "PREREG_P4_draft.md: in world N, B0 refitted on the training sorbents recovers k″ within 2 %;",
+   "ok": true
+  },
+  {
+   "key": "si_mof_b0",
+   "doc": "si.tex",
+   "text": "0.0128",
+   "source": "0.0128",
+   "ok": true
+  },
+  {
+   "key": "si_mof_l1",
+   "doc": "si.tex",
+   "text": "0.0070",
+   "source": "0.0070",
+   "ok": true
+  },
+  {
+   "key": "si_mof_gain",
+   "doc": "si.tex",
+   "text": "0.0022",
+   "source": "0.0022",
+   "ok": true
+  },
+  {
+   "key": "si_mof_F",
+   "doc": "si.tex",
+   "text": "0.003",
+   "source": "0.003",
+   "ok": true
+  },
+  {
+   "key": "si_mof_p",
+   "doc": "si.tex",
+   "text": "0.034",
+   "source": "0.034",
+   "ok": true
+  },
+  {
+   "key": "si_alpha",
+   "doc": "si.tex",
+   "text": "0.025",
+   "source": "PREREG_P4_draft.md: a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025",
+   "ok": true
+  },
+  {
+   "key": "si_mof_ratio",
+   "doc": "si.tex",
+   "text": "0.55",
+   "source": "0.55",
+   "ok": true
+  },
+  {
+   "key": "si_ros_ratio",
+   "doc": "si.tex",
+   "text": "0.36",
+   "source": "0.36",
+   "ok": true
+  },
+  {
+   "key": "si_alfu_ratio",
+   "doc": "si.tex",
+   "text": "0.42",
+   "source": "0.42",
    "ok": true
   }
  ]

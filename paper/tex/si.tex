@@ -5,10 +5,16 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{longtable}
 \usepackage{textcomp}
 \usepackage{caption}
 \usepackage[hidelinks]{hyperref}
 \input{ms_macros.tex}
+\newcommand{\kpp}{k''}
+\newcommand{\RHf}{\mathrm{RH}_{\mathrm{flow}}}
+\newcommand{\RHb}{\mathrm{RH}_{\mathrm{bed}}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
 
 \title{Supplementary Information for: Does the isotherm predict an unseen sorbent's rate constant? A
 pre-registered held-out-sorbent test of isotherm-driven water-uptake dynamics}
@@ -21,9 +27,69 @@ Technical University, \ID{34220} Istanbul, T\"urkiye}
 
 \section*{Supplementary Note~\snote{1}: The learned models and their harness record}
 
-\pending{note1}{L1 and L2 in full (PREREG section 5), the seven harness rounds with the change made after each and
-its cause (PREREG section 10, round tables), the stopping rule and the round-7 result, including the Al-fumarate
-fold.}
+\paragraph{Models.} The grey box L1 multiplies the rate of B0 by a bounded positive factor,
+\begin{equation}
+\frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\kpp}{m}\,\bigl(\RHf - \RHb(w)\bigr)\,\exp\!\bigl(2\tanh g_\theta(z)\bigr),
+\end{equation}
+so the rate is still zero at equilibrium and uptake cannot move against the driving force. The input $z$ holds the
+uptake normalised by the isotherm's uptake at \V{si_w30}{30}\,\% RH, $\RHf$, $\RHb$, the local isotherm slope, the
+branch flag, the temperature, $\C{1}/m$, and the driving force $\RHf - \RHb$ itself (added after round~\ID{6}, below). The
+black box L2 is a neural ODE, $\mathrm{d}w/\mathrm{d}t = (S/m)\,f_\theta(z)$ with a fixed unit scale $S$, given the
+same local isotherm features and no physics: no sign constraint and no zero rate at equilibrium. Both are small
+multilayer perceptrons trained in two stages, first on finite-difference rates (stage A) and then on open-loop
+rollouts over short windows (stage B), and validated and early-stopped on the median held-out error $E$.
+
+\paragraph{Harness.} Synthetic trajectories were generated on the real forcing, isotherms and dry masses from a known
+truth and run through the fold pipeline. In world N the truth is B0 with the pooled $\kpp$ of the real data. The
+correction worlds multiply B0's rate by a known factor that a model given only the isotherm can learn:
+\begin{align}
+\text{C:}\quad & \exp(-0.7\,w/w_{30}), \\
+\text{C2:}\quad & \exp\bigl(0.8\tanh(d/15)\bigr), \quad d = \RHf - \RHb(w)\ \text{in \% RH}, \\
+\text{C3:}\quad & \exp\bigl(-0.6\tanh(4(\RHb/100 - 0.25))\bigr).
+\end{align}
+The harness passed if (\C{1}) in world N, B0 refitted on the training sorbents recovers $\kpp$ within
+\V{si_kerr}{2}\,\%; (\C{2}) in a correction world not used to develop L1, L1 beats B0 by the decision rule of the main
+text on every held-out sorbent and halves B0's median $E$; and (\C{3}) in world N, no learned model beats B0. A judging
+world, once used for diagnosis, could no longer judge: the judging world moved from C (rounds \ID{2} to \ID{5}) to C2
+(round~\ID{6}) to C3 (round~\ID{7}), and C3 was defined and committed before any run on it. A null study (criterion
+\C{4}) was designed to bound false beats of a learned model before any positive verdict; it was not run for L1 after
+round~\ID{7}, because there was no positive result for it to protect.
+
+\paragraph{Record.} Table~\ref{tab:harness} lists every case. In round~\ID{1} L1 missed the injected correction and L2 failed even
+on correction-free data. In round~\ID{2}, with two-stage training, L1 found the correction, but L2 fitted the
+training sorbents and not an unseen one: a global encoding of the isotherm let it memorise material identity, so it
+was rebuilt on local isotherm features. In round~\ID{3} the rebuilt L2 still did not transfer, because its output was
+scaled by a per-sorbent number the network never saw; its output became a water mass flux. In round~\ID{4} the
+comparator was fitted by the scored metric and absorbed part of the injected slow-down, and L1 no longer beat it; L2
+again failed world N and was dropped after a diagnostic showed that it could not hold the equilibrium precisely
+enough over long plateaus. Diagnostics traced L1's bias to its stage-A target (a finite-difference rate paired with
+the instantaneous rather than the window-averaged humidity); round~\ID{5} fixed it and L1 then failed on the
+consistency of the gain over clusters, which led to weighting each segment on the scale of the scored relative error.
+In round~\ID{6} L1 passed world C, by then a reported world only, and failed the fresh world C2; there the rule of the
+time declared a beat on ROS-039 although L1's median error was larger than B0's, which led to condition~\C{4} of the
+decision rule. The driving force was then added to L1's inputs. Before round~\ID{7} ran in world C3 a stopping rule
+was written: L1 would not be redesigned again, and C3 would be judged on three held-out sorbents, adding Al-fumarate,
+which had never been held out in any diagnostic.
+
+\paragraph{Round~\ID{7} and the outcome.} Criteria \C{1} and \C{3} passed on all three sorbents. Criterion \C{2} failed on
+MOF-303: in world C3, L1 lowered the median $E$ from \V{si_mof_b0}{0.0128} to \V{si_mof_l1}{0.0070}, but the median
+cluster gain, \V{si_mof_gain}{0.0022}, was below $F = \V{si_mof_F}{0.003}$, the signed-rank $p$,
+\V{si_mof_p}{0.034}, was above \V{si_alpha}{0.025}, and the ratio, \V{si_mof_ratio}{0.55}, missed the halving. On
+ROS-039 and on Al-fumarate L1 met every condition (ratios \V{si_ros_ratio}{0.36} and \V{si_alfu_ratio}{0.42}). Under
+the stopping rule no learned model passed the harness, so H4a is reported as not tested and no learned model was
+fitted to the real data. The result concerns the method, not the data: a grey-box learner given only isotherms did not
+reliably recover a known, injected, isotherm-dependent rate correction of this size at the noise floor of these
+measurements. No statement is made about whether learning could help on the real data.
+
+{\small\setlength{\tabcolsep}{\ID{4.5pt}}
+\captionof{table}{Harness record of the learned models (synthetic data). Median held-out error $E$ of the
+learned model and of B0 refitted on the training sorbents, their ratio, the one-sided exact signed-rank $p$ (rounds
+\ID{4} to \ID{7}; rounds \ID{1} and \ID{2} used a paired bootstrap, round~\ID{3} ran L2 in world N only), the beat by
+the rule in force in that round, and in world N the largest relative error of the recovered $\kpp$ over the four
+temperature--direction strata. \textsuperscript{a}The untouched fold: Al-fumarate held out with the same code and
+seed.}\label{tab:harness}
+\input{tab_harness_l1.tex}
+}
 
 \section*{Supplementary Note~\snote{2}: The B2 harness}
 
