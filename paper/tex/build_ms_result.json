@@ -5,12 +5,13 @@
  "failures": [],
  "report": {
   "G8_tables": [
+   "tab_harness_b2.tex",
    "tab_harness_l1.tex"
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 87,
-  "G1_n_keys": 87,
+  "G1_n_uses": 105,
+  "G1_n_keys": 105,
   "G2_main.tex_n_refs": 31,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 2,
@@ -22,7 +23,7 @@
    "abstract": 32,
    "main_text": 1014,
    "methods": 1447,
-   "si": 1373
+   "si": 1595
   },
   "G5_targets": {
    "abstract": "<= 200",
@@ -64,11 +65,6 @@
     "doc": "main.tex",
     "name": "availability",
     "text": "Repository and Zenodo DOI of the code, pre-registration, harness records and every results file; the raw data stay at their source (Zenodo, doi:10.5281/zenodo.6"
-   },
-   {
-    "doc": "si.tex",
-    "name": "note2",
-    "text": "Results: pass criteria, per-world beats, median $r$, median fitted slope, $E$ of B0 per world, the within-world correlation of null beats (\\texttt{results/harne"
    }
   ]
  },
@@ -680,6 +676,132 @@
    "doc": "si.tex",
    "text": "0.12",
    "source": "PREREG_P4_draft.md: The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12",
+   "ok": true
+  },
+  {
+   "key": "si2_Kbeats",
+   "doc": "si.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "si2_Kerr",
+   "doc": "si.tex",
+   "text": "0.05",
+   "source": "0.05",
+   "ok": true
+  },
+  {
+   "key": "si2_nnull2",
+   "doc": "si.tex",
+   "text": "48",
+   "source": "48",
+   "ok": true
+  },
+  {
+   "key": "si2_Sbeats",
+   "doc": "si.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "si2_Smax",
+   "doc": "si.tex",
+   "text": "2",
+   "source": "2",
+   "ok": true
+  },
+  {
+   "key": "si2_cpobs",
+   "doc": "si.tex",
+   "text": "0.154",
+   "source": "0.154",
+   "ok": true
+  },
+  {
+   "key": "si2_rmed",
+   "doc": "si.tex",
+   "text": "-0.027",
+   "source": "-0.027",
+   "ok": true
+  },
+  {
+   "key": "si2_rhoobs",
+   "doc": "si.tex",
+   "text": "0.064",
+   "source": "0.064",
+   "ok": true
+  },
+  {
+   "key": "si2_K2a",
+   "doc": "si.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "si2_K2b",
+   "doc": "si.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "si2_K2c",
+   "doc": "si.tex",
+   "text": "5",
+   "source": "5",
+   "ok": true
+  },
+  {
+   "key": "si2_C3",
+   "doc": "si.tex",
+   "text": "6",
+   "source": "6",
+   "ok": true
+  },
+  {
+   "key": "si2_C3r",
+   "doc": "si.tex",
+   "text": "0.52",
+   "source": "0.52",
+   "ok": true
+  },
+  {
+   "key": "si2_bK3",
+   "doc": "si.tex",
+   "text": "1.5",
+   "source": "PREREG_P4_draft.md: |b_fit/1.5 − 1| is at most 0.25",
+   "ok": true
+  },
+  {
+   "key": "si2_b27b",
+   "doc": "si.tex",
+   "text": "0.50",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si2_T27b",
+   "doc": "si.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si2_b60b",
+   "doc": "si.tex",
+   "text": "1.38",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
+   "ok": true
+  },
+  {
+   "key": "si2_T60b",
+   "doc": "si.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: (0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)",
    "ok": true
   }
  ]

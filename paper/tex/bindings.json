@@ -5,7 +5,9 @@
   "CC": "results/prefreeze/cluster_counts.json",
   "RH": "results/rh50.json",
   "H7": "results/harness_round7/harness.json",
-  "HA": "results/harness_alfu/harness.json"
+  "HA": "results/harness_alfu/harness.json",
+  "HB": "results/harness_b2/harness_b2.json",
+  "HR": "results/harness_b2/report.json"
  },
  "bindings": {
   "n_sorbents": {"expr": "len([k for k in CH['F_within_segment_weighted'] if 'composite' not in k])", "fmt": "word"},
@@ -94,6 +96,24 @@
   "si2_bK": {"doc": "PREREG_P4_draft.md", "contains": "log k″ of each sorbent is shifted by 1.5·(RH₅₀/30 − mean)"},
   "si2_bK2": {"doc": "PREREG_P4_draft.md", "contains": "|b_fit/1.5 − 1| is at most 0.25"},
   "si2_x30": {"doc": "PREREG_P4_draft.md", "contains": "log k″ of each sorbent is shifted by 1.5·(RH₅₀/30 − mean)"},
+  "si2_Kbeats": {"expr": "HB['summary']['K_beats']", "fmt": "d"},
+  "si2_Kerr": {"expr": "100 * HB['summary']['K_median_rel_err_b']", "fmt": "f2"},
+  "si2_nnull2": {"expr": "sum(HR['worlds'][w]['folds'] for w in HR['worlds'] if w.startswith('S'))", "fmt": "d"},
+  "si2_Sbeats": {"expr": "sum(HB['summary']['S_beats_per_world'])", "fmt": "d"},
+  "si2_Smax": {"expr": "max(HB['summary']['S_beats_per_world'])", "fmt": "d"},
+  "si2_cpobs": {"expr": "HB['summary']['S_cp95_upper']", "fmt": "f3"},
+  "si2_rmed": {"expr": "HB['summary']['S_median_r']", "fmt": "f3"},
+  "si2_rhoobs": {"expr": "HR['null_within_world_rho']", "fmt": "f3"},
+  "si2_K2a": {"expr": "HB['summary']['power_K2']['K2a']['beats']", "fmt": "d"},
+  "si2_K2b": {"expr": "HB['summary']['power_K2']['K2b']['beats']", "fmt": "d"},
+  "si2_K2c": {"expr": "HB['summary']['power_K2']['K2c']['beats']", "fmt": "d"},
+  "si2_C3": {"expr": "HB['summary']['C3_reported']['beats']", "fmt": "d"},
+  "si2_C3r": {"expr": "HR['worlds']['C3']['median_r']", "fmt": "f2"},
+  "si2_bK3": {"doc": "PREREG_P4_draft.md", "contains": "|b_fit/1.5 − 1| is at most 0.25"},
+  "si2_b27b": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
+  "si2_T27b": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
+  "si2_b60b": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
+  "si2_T60b": {"doc": "PREREG_P4_draft.md", "contains": "(0.089 at 27 °C, slope 0.50; 0.300 at 60 °C, slope 1.38)"},
   "si_alfu_ratio": {"expr": "HA['cases']['C3|Al-fumarate']['L1']['E_model'] / HA['cases']['C3|Al-fumarate']['L1']['E_B0']", "fmt": "f2"}
  }
 }

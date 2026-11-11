@@ -22,6 +22,11 @@ def sig(x, n=2):
     return f"{x:.{d}f}"
 
 
+def num(s):
+    """A formatted number in math mode, so a negative value prints with a true minus sign."""
+    return f"${s}$"
+
+
 def pval(p):
     if p is None:
         return "--"
@@ -76,7 +81,29 @@ def tab_harness_l1():
     return "\n".join(out)
 
 
-TABLES = {"tab_harness_l1.tex": tab_harness_l1}
+def tab_harness_b2():
+    """B2 harness per world (PREREG section 10b), from results/harness_b2/report.json."""
+    rep = json.load(open(os.path.join(ROOT, "results", "harness_b2", "report.json"), encoding="utf-8"))
+    order = ["N", "K", "K2a", "K2b", "K2c", "S0", "S1", "S2", "S3", "S4", "S5", "C3"]
+    role = {"N": "no effect", "K": "plumbing", "K2a": "realistic power", "K2b": "realistic power",
+            "K2c": "realistic power", "C3": "form error"}
+    strata = ["27C|ads", "27C|des", "60C|ads", "60C|des"]
+    out = ["% written by paper/tex/make_tables.py from results/harness_b2/report.json; do not edit",
+           BS + "begin{tabular}{llcccccccc}", BS + "toprule",
+           " & & Folds & & & & " + BS + "multicolumn{4}{c}{Median fitted $b$}" + BS + BS,
+           BS + "cmidrule(l){7-10}",
+           "World & Role & beaten & Median $r$ & $E$ B0 & $E$ B2 & 27 ads & 27 des & 60 ads & 60 des" + BS + BS,
+           BS + "midrule"]
+    for w in order:
+        v = rep["worlds"][w]
+        b = [num(f"{v['median_b'][s]:.2f}") for s in strata]
+        out.append(f"{w} & {role.get(w, 'null')} & {v['beats']}/{v['folds']} & {num(format(v['median_r'], '.3f'))} & "
+                   f"{sig(v['median_E_B0'])} & {sig(v['median_E_B2'])} & " + " & ".join(b) + BS + BS)
+    out += [BS + "bottomrule", BS + "end{tabular}", ""]
+    return "\n".join(out)
+
+
+TABLES = {"tab_harness_l1.tex": tab_harness_l1, "tab_harness_b2.tex": tab_harness_b2}
 
 
 def main():

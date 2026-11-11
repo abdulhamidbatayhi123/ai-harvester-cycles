@@ -122,8 +122,28 @@ median of $r$ is below \V{si2_rmax}{2.5}\,\%. The bound of \V{si2_cpmax2}{0.40} 
 not tested. The K2 and C3 results are reported whatever happens; if H4a$'$ is falsified, the K2 worlds set its
 wording.
 
-\pending{note2}{Results: pass criteria, per-world beats, median $r$, median fitted slope, $E$ of B0 per world, the
-within-world correlation of null beats (\texttt{results/harness\_b2/report.json}).}
+\paragraph{Result.} The harness passed all three criteria (Table~\ref{tab:harnessb2}). No fold was beaten in N. In K
+all \V{si2_Kbeats}{8} folds were beaten and the fitted slope was recovered to within \V{si2_Kerr}{0.05}\,\% (median
+over folds and strata). Of the \V{si2_nnull2}{48} null fold-fits, \V{si2_Sbeats}{3} were beaten, at most
+\V{si2_Smax}{2} in any world; the upper bound on the per-fold beat rate was \V{si2_cpobs}{0.154}, the median of $r$
+over the null folds \V{si2_rmed}{-0.027}, and the within-world correlation of null beats \V{si2_rhoobs}{0.064}, inside
+the value the bound assumes. B2 was supported in two of the three realistic-power worlds (K2a and K2b,
+\V{si2_K2a}{7} and \V{si2_K2b}{7} folds) and not established in K2c (\V{si2_K2c}{5} folds), so an effect of the
+measured size is not always detected; a falsification on the real data is worded accordingly. In the form-error world
+C3, B2 beat B0 in \V{si2_C3}{6} of the folds, with median $r$ of \V{si2_C3r}{0.52} and a negative fitted slope at both
+temperatures: a rate law shared by every material but not of B0's form is enough to make the isotherm predict B0's
+effective rate constant.
+
+\begin{table}[h]
+\centering
+\small
+\caption{B2 harness per world (synthetic data). Folds beaten by the decision rule, median relative improvement $r$
+over folds, median over folds of the median held-out error $E$ of B0 and B2, and the median fitted slope $b$ per
+temperature (\textdegree C) and direction. True slopes: \V{si2_bK3}{1.5} in K; in K2a--c \V{si2_b27b}{0.50} at
+\V{si2_T27b}{27}~\textdegree C and \V{si2_b60b}{1.38} at \V{si2_T60b}{60}~\textdegree C; none in N, S0--S5 and
+C3.}\label{tab:harnessb2}
+\input{tab_harness_b2.tex}
+\end{table}
 
 \input{refs_si.tex}
 
