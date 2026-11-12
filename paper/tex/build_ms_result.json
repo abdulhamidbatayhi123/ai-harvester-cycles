@@ -1,8 +1,10 @@
 {
  "gate": "manuscript/build_ms.py",
  "final": false,
- "status": "PASS",
- "failures": [],
+ "status": "FAIL",
+ "failures": [
+  "G5: abstract 150 words > 147 (AIChE J. cap 150, with margin)"
+ ],
  "report": {
   "G8_tables": [
    "tab_h4a.tex",
@@ -29,13 +31,10 @@
    "si": 2012
   },
   "G5_targets": {
-   "abstract": "<= 200",
-   "main_text": "4500-5500",
-   "methods": "about 2500"
+   "abstract": "<= 147 (cap 150)",
+   "pages": "< 35 (main.pdf)"
   },
-  "G5_flags": [
-   "main text 3633 outside 4,500-5,500"
-  ],
+  "G5_flags": [],
   "G6_n_figures": 6,
   "G7_pending": []
  },

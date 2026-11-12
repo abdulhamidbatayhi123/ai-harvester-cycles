@@ -465,15 +465,13 @@ def gate_words(texts, fails, report):
     si_body = strip_comments(body_of(texts["si.tex"]))
     w["si"] = rendered_words(si_body)
     report["G5_words"] = w
-    report["G5_targets"] = {"abstract": "<= 200", "main_text": "4500-5500", "methods": "about 2500"}
-    if w["abstract"] > 200:
-        fails.append(f"G5: abstract {w['abstract']} words > 200")
-    flags = []
-    if not 4500 <= w["main_text"] <= 5500:
-        flags.append(f"main text {w['main_text']} outside 4,500-5,500")
-    if not 2000 <= w["methods"] <= 3000:
-        flags.append(f"Methods {w['methods']} outside about 2,500 (2,000-3,000)")
-    report["G5_flags"] = flags
+    # AIChE Journal (author guidelines read 2026-11-11): abstract at most 150 words, kept a few words under the cap
+    # because submission systems count differently (PAPER_WORKFLOW_LESSONS 1b.4); length is a page limit, checked on
+    # the compiled PDF in compile_doc (below 35 pages with figures inline)
+    report["G5_targets"] = {"abstract": "<= 147 (cap 150)", "pages": "< 35 (main.pdf)"}
+    if w["abstract"] > 147:
+        fails.append(f"G5: abstract {w['abstract']} words > 147 (AIChE J. cap 150, with margin)")
+    report["G5_flags"] = []
 
 
 def gate_figures(texts, fails, report, figdir=None):
@@ -592,6 +590,11 @@ def compile_doc(doc, fails):
                         tiny.append(f"p{i + 1} {s['size']:.1f}pt '{s['text'].strip()[:20]}'")
     if tiny:
         fails.append(f"G2c {doc}: {len(tiny)} text span(s) below 5 pt at print size: " + " | ".join(tiny[:8]))
+    # G5b: AIChE J. research articles stay below 35 pages (12 pt, double spaced, figures inline)
+    n_pages = fitz.open(os.path.join(HERE, doc[:-4] + ".pdf")).page_count
+    if doc == "main.tex" and n_pages >= 35:
+        fails.append(f"G5b main.tex: {n_pages} pages, AIChE J. limit is below 35")
+    print(f"G5b {doc}: {n_pages} pages")
     return not (over or undef or tiny)
 
 
