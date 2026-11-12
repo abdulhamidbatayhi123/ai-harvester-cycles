@@ -344,7 +344,7 @@ def write_bib(order, master, path, title):
 
 def gate_refs_static(texts, master, fails, report, write=False, outdir=HERE):
     si_body = strip_comments(body_of(texts["si.tex"]))
-    defined_notes = [int(x) for x in re.findall(r"(?:Supplementary Note~?|Note~S)" + re.escape(BS) + r"snote\{(\d+)\}:", si_body)]
+    defined_notes = [int(x) for x in re.findall(r"(?:Supplementary Note~?|Supporting Note~?|Note~S)" + re.escape(BS) + r"snote\{(\d+)\}:", si_body)]
     if defined_notes != list(range(1, len(defined_notes) + 1)):
         fails.append(f"G2: Supplementary Notes not numbered 1..n in si.tex: {defined_notes}")
     si_figs = re.findall(re.escape(BS) + r"includegraphics(?:\[[^\]]*\])?\{[^}]*fig_s(\d+)\.pdf\}", si_body)
@@ -362,7 +362,7 @@ def gate_refs_static(texts, master, fails, report, write=False, outdir=HERE):
         if write:
             write_bib([k for k in order if k in master], master,
                       os.path.join(outdir, "refs_main.tex" if doc == "main.tex" else "refs_si.tex"),
-                      "References" if doc == "main.tex" else "Supplementary References")
+                      "References" if doc == "main.tex" else "Supporting References")
         labels = set(re.findall(re.escape(BS) + r"label\{([^}]*)\}", body))
         for m in re.finditer(re.escape(BS) + r"(?:eq)?ref\{([^}]*)\}", body):
             if m.group(1) not in labels:
@@ -370,7 +370,7 @@ def gate_refs_static(texts, master, fails, report, write=False, outdir=HERE):
         for _, _, (n,) in macro_uses(body, "snote", 1):
             if not n.isdigit() or int(n) not in defined_notes:
                 fails.append(f"G2 {doc}: Supplementary Note {n} is not defined in si.tex")
-        for m in re.finditer(r"(?:Supplementary Figs?\.|Figures?)~?S(\d+)(?:(?:,|--|~and~| and )S(\d+))?", body):
+        for m in re.finditer(r"(?:Supplementary Figs?\.|Supporting Figures?|Figures?)~?S(\d+)(?:(?:,|--|~and~| and )S(\d+))?", body):
             for g in m.groups():
                 if g:
                     n = int(g)

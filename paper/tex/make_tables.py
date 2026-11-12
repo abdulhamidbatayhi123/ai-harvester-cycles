@@ -92,12 +92,12 @@ def tab_harness_b2():
            BS + "begin{tabular}{llcccccccc}", BS + "toprule",
            " & & Folds & & & & " + BS + "multicolumn{4}{c}{Median fitted $b$}" + BS + BS,
            BS + "cmidrule(l){7-10}",
-           "World & Role & beaten & Median $r$ & $E$ B0 & $E$ B2 & 27 ads & 27 des & 60 ads & 60 des" + BS + BS,
+           "World & Role & beaten & Median $r$ (" + BS + "%) & $E$ B0 & $E$ B2 & 27 ads & 27 des & 60 ads & 60 des" + BS + BS,
            BS + "midrule"]
     for w in order:
         v = rep["worlds"][w]
         b = [num(f"{v['median_b'][s]:.2f}") for s in strata]
-        out.append(f"{w} & {role.get(w, 'null')} & {v['beats']}/{v['folds']} & {num(format(v['median_r'], '.3f'))} & "
+        out.append(f"{w} & {role.get(w, 'null')} & {v['beats']}/{v['folds']} & {num(format(100 * v['median_r'], '.1f'))} & "
                    f"{sig(v['median_E_B0'])} & {sig(v['median_E_B2'])} & " + " & ".join(b) + BS + BS)
     out += [BS + "bottomrule", BS + "end{tabular}", ""]
     return "\n".join(out)

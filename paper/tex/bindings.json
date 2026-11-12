@@ -381,8 +381,8 @@
    "fmt": "f3"
   },
   "si2_rmed": {
-   "expr": "HB['summary']['S_median_r']",
-   "fmt": "f3"
+   "expr": "100 * HB['summary']['S_median_r']",
+   "fmt": "f1"
   },
   "si2_rhoobs": {
    "expr": "HR['null_within_world_rho']",
@@ -405,8 +405,8 @@
    "fmt": "d"
   },
   "si2_C3r": {
-   "expr": "HR['worlds']['C3']['median_r']",
-   "fmt": "f2"
+   "expr": "round(100 * HR['worlds']['C3']['median_r'])",
+   "fmt": "d"
   },
   "si2_bK3": {
    "doc": "PREREG_P4_draft.md",
@@ -824,6 +824,14 @@
    "expr": "round(100 * CS['exploratory_and_secondary']['secondary_R2']['t63_B0'])",
    "fmt": "d"
   },
+  "res_cau_b2": {
+   "expr": "CS['R2']['sorbents']['CAU-10']['B2']",
+   "fmt": "f2"
+  },
+  "res_cau_b0": {
+   "expr": "CS['R2']['sorbents']['CAU-10']['B0']",
+   "fmt": "f3"
+  },
   "fig_margin": {
    "doc": "PREREG_P4_draft.md",
    "contains": "is at least 10 % (practical significance)"
@@ -846,10 +854,6 @@
   },
   "res_cap_r1": {
    "expr": "sum(v['own_k_rel_reduction'] < 0.10 for v in CS['R1']['sorbents'].values())",
-   "fmt": "d"
-  },
-  "dis_cap": {
-   "expr": "sum(v['own_k_rel_reduction'] < 0.10 for v in CS['R2']['sorbents'].values())",
    "fmt": "d"
   }
  }

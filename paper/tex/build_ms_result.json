@@ -1,6 +1,6 @@
 {
  "gate": "manuscript/build_ms.py",
- "final": false,
+ "final": true,
  "status": "PASS",
  "failures": [],
  "report": {
@@ -13,20 +13,20 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 210,
-  "G1_n_keys": 210,
+  "G1_n_uses": 211,
+  "G1_n_keys": 211,
   "G2_main.tex_n_refs": 33,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 4,
   "G2_si_figures": 1,
   "G3_main.tex_em_dashes": 0,
   "G3_si.tex_em_dashes": 0,
-  "G4_n_phrases": 43,
+  "G4_n_phrases": 44,
   "G5_words": {
    "abstract": 147,
-   "main_text": 3632,
-   "methods": 2080,
-   "si": 2012
+   "main_text": 3703,
+   "methods": 2237,
+   "si": 2013
   },
   "G5_targets": {
    "abstract": "<= 147 (cap 150)",
@@ -84,55 +84,6 @@
    "doc": "main.tex",
    "text": "26",
    "source": "26",
-   "ok": true
-  },
-  {
-   "key": "dis_T",
-   "doc": "main.tex",
-   "text": "60",
-   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
-   "ok": true
-  },
-  {
-   "key": "dis_k",
-   "doc": "main.tex",
-   "text": "3.16",
-   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
-   "ok": true
-  },
-  {
-   "key": "dis_kp",
-   "doc": "main.tex",
-   "text": "1.59",
-   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
-   "ok": true
-  },
-  {
-   "key": "dis_g1",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
-   "ok": true
-  },
-  {
-   "key": "dis_g2",
-   "doc": "main.tex",
-   "text": "42",
-   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
-   "ok": true
-  },
-  {
-   "key": "dis_m",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
-   "ok": true
-  },
-  {
-   "key": "dis_cap",
-   "doc": "main.tex",
-   "text": "3",
-   "source": "3",
    "ok": true
   },
   {
@@ -451,6 +402,48 @@
    "ok": true
   },
   {
+   "key": "dis_T",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_k",
+   "doc": "main.tex",
+   "text": "3.16",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_kp",
+   "doc": "main.tex",
+   "text": "1.59",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_g1",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
+   "ok": true
+  },
+  {
+   "key": "dis_g2",
+   "doc": "main.tex",
+   "text": "42",
+   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
+   "ok": true
+  },
+  {
+   "key": "dis_m",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
    "key": "sigma",
    "doc": "main.tex",
    "text": "0.01",
@@ -483,20 +476,6 @@
    "doc": "main.tex",
    "text": "63",
    "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
-   "ok": true
-  },
-  {
-   "key": "pan_pos",
-   "doc": "main.tex",
-   "text": "19",
-   "source": "19",
-   "ok": true
-  },
-  {
-   "key": "pan_n",
-   "doc": "main.tex",
-   "text": "64",
-   "source": "64",
    "ok": true
   },
   {
@@ -756,6 +735,34 @@
    "doc": "main.tex",
    "text": "17",
    "source": "17",
+   "ok": true
+  },
+  {
+   "key": "pan_pos",
+   "doc": "main.tex",
+   "text": "19",
+   "source": "19",
+   "ok": true
+  },
+  {
+   "key": "pan_n",
+   "doc": "main.tex",
+   "text": "64",
+   "source": "64",
+   "ok": true
+  },
+  {
+   "key": "res_cau_b2",
+   "doc": "main.tex",
+   "text": "0.11",
+   "source": "0.11",
+   "ok": true
+  },
+  {
+   "key": "res_cau_b0",
+   "doc": "main.tex",
+   "text": "0.064",
+   "source": "0.064",
    "ok": true
   },
   {
@@ -1391,8 +1398,8 @@
   {
    "key": "si2_rmed",
    "doc": "si.tex",
-   "text": "-0.027",
-   "source": "-0.027",
+   "text": "-2.7",
+   "source": "-2.7",
    "ok": true
   },
   {
@@ -1433,8 +1440,8 @@
   {
    "key": "si2_C3r",
    "doc": "si.tex",
-   "text": "0.52",
-   "source": "0.52",
+   "text": "52",
+   "source": "52",
    "ok": true
   },
   {

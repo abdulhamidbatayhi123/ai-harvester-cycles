@@ -74,3 +74,4 @@ table, not the gate. Section numbers refer to PREREG_P4_draft.md (the frozen pre
 | colour | color (American spelling) |
 | analyse | analyze (American spelling) |
 | licence | license (American spelling) |
+| aluminium | aluminum (American spelling) |

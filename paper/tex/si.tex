@@ -1,6 +1,6 @@
 % Paper 4 Supplementary Information. Built and checked by paper/tex/build_ms.py with main.tex.
 \documentclass[11pt]{article}
-\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage[letterpaper,margin=1in]{geometry}
 \usepackage{fontspec}   % XeTeX (tectonic): Latin Modern OpenType
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
@@ -16,7 +16,7 @@
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 
-\title{Supplementary Information for: No detectable gain from predicting water-uptake rate constants from
+\title{Supporting Information for: No detectable gain from predicting water-uptake rate constants from
 half-loading humidity: a pre-registered test}
 \author{Abdulhamid Batayhi\\ Department of Mechatronics Engineering, Faculty of Mechanical Engineering,\\ Yildiz
 Technical University, \ID{34220} Istanbul, T\"urkiye}
@@ -25,7 +25,7 @@ Technical University, \ID{34220} Istanbul, T\"urkiye}
 \begin{document}
 \maketitle
 
-\section*{Supplementary Note~\snote{1}: The learned models and their harness record}
+\section*{Supporting Note~\snote{1}: The learned models and their harness record}
 
 \paragraph{Models.} The gray box L1 multiplies the rate of B0 by a bounded positive factor,
 \begin{equation}
@@ -91,7 +91,7 @@ seed.}\label{tab:harness}
 \input{tab_harness_l1.tex}
 }
 
-\section*{Supplementary Note~\snote{2}: The B2 harness}
+\section*{Supporting Note~\snote{2}: The B2 harness}
 
 \paragraph{Design.} The harness of H4a$'$ (version~\ID{2}, committed before its first run; an earlier version was
 revised after an independent review, and its only run was stopped before any result was read) uses the real forcing,
@@ -126,17 +126,17 @@ wording.
 all \V{si2_Kbeats}{8} folds were beaten and the fitted slope was recovered to within \V{si2_Kerr}{0.05}\,\% (median
 over folds and strata). Of the \V{si2_nnull2}{48} null fold-fits, \V{si2_Sbeats}{3} were beaten, at most
 \V{si2_Smax}{2} in any world; the upper bound on the per-fold beat rate was \V{si2_cpobs}{0.154}, the median of $r$
-over the null folds \V{si2_rmed}{-0.027}, and the within-world correlation of null beats \V{si2_rhoobs}{0.064}, inside
+over the null folds \V{si2_rmed}{-2.7}\,\%, and the within-world correlation of null beats \V{si2_rhoobs}{0.064}, inside
 the value the bound assumes. B2 was supported in two of the three realistic-power worlds (K2a and K2b,
 \V{si2_K2a}{7} and \V{si2_K2b}{7} folds) and not established in K2c (\V{si2_K2c}{5} folds), so an effect of the
 measured size is not always detected; a falsification on the real data is worded accordingly. In the form-error world
-C3, B2 beat B0 in \V{si2_C3}{6} of the folds, with median $r$ of \V{si2_C3r}{0.52} and a negative fitted slope at both
+C3, B2 beat B0 in \V{si2_C3}{6} of the folds, with median $r$ of \V{si2_C3r}{52}\,\% and a negative fitted slope at both
 temperatures: a rate law shared by every material but not of B0's form is enough to make the isotherm predict B0's
 effective rate constant.
 
 \begin{table}[h]
 \centering
-\small
+\small\setlength{\tabcolsep}{\ID{4pt}}
 \caption{B2 harness per world (synthetic data). Folds beaten by the decision rule, median relative improvement $r$
 over folds, median over folds of the median held-out error $E$ of B0 and B2, and the median fitted slope $b$ per
 temperature (\textdegree C) and direction. True slopes: \V{si2_bK3}{1.5} in K; in K2a--c \V{si2_b27b}{0.50} at
@@ -145,9 +145,9 @@ C3.}\label{tab:harnessb2}
 \input{tab_harness_b2.tex}
 \end{table}
 
-\section*{Supplementary Note~\snote{3}: Whole families held out (H4c)}
+\section*{Supporting Note~\snote{3}: Whole families held out (H4c)}
 
-Two of the four family folds differ from a single-sorbent fold: the aluminium carboxylate rods and the zinc triazolate
+Two of the four family folds differ from a single-sorbent fold: the aluminum carboxylate rods and the zinc triazolate
 fluorides. Table~\ref{tab:h4c} compares, for each of their materials, the median held-out error of B0 and B2 when the
 whole family is held out with the error when only that sorbent (with its composite) is held out. The comparison is
 descriptive and carries no test, as pre-registered.
@@ -161,7 +161,7 @@ the primary dry-mass rule.}\label{tab:h4c}
 \input{tab_h4c.tex}
 \end{table}
 
-\section*{Supplementary Note~\snote{4}: Strata, secondary metrics, exploratory checks}
+\section*{Supporting Note~\snote{4}: Strata, secondary metrics, exploratory checks}
 
 The protocol reports the temperature and direction strata separately and names two secondary metrics: the relative
 error in the time to \V{si4_t63}{63}\,\% of a segment's change, and the error truncated at five times the measured
@@ -173,7 +173,7 @@ recomputed predictions reproduce the confirmatory errors exactly. B2 improves on
 Two further checks were added after the result and are exploratory. First, a joint oracle applies both oracles at once:
 B0 with the held-out sorbent's own end points and its own rate constant fitted on those scaled isotherms. It lowered
 B0's median error by \V{si4_j2}{26}\,\% (R2) and \V{si4_j1}{25}\,\% (R1) at the median over held-out sorbents, about
-the sum of the two separate effects. Second, Fig.~\ref{fig:s1} plots each sorbent's own rate constant, fitted in
+the sum of the two separate effects. Second, Figure~\ref{fig:s1} plots each sorbent's own rate constant, fitted in
 sample before the freeze, against its half-loading humidity; no stratum shows a significant rank correlation, though
 with eight sorbents only strong correlations could be detected.
 

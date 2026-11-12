@@ -23,7 +23,7 @@ submission. Sources:
 | Notation section only if symbols are not all defined in the text | [G] | every symbol defined where introduced (Methods, Eq. 1-2) | PASS |
 | Plain Language Summary, at most 250 characters | [G] | 204 characters, docs/submission/aiche_metadata.md | PASS |
 | Graphical abstract fitting 50 mm x 60 mm, legible | [G] | figures/out/fig_toc.* (50 x 60 mm, fonts >= 6 pt) | PASS |
-| References numbered in citation order, AMA style, all authors | [G] | make_refs_master.py STYLE = "ama"; build checks order of first citation | PASS |
+| References numbered in citation order, AMA style, all authors; "complete information" incl. titles of periodicals (the guidelines' AMA example spells out "AIChE Journal") | [G] | make_refs_master.py STYLE = "ama" with full journal names; build checks order of first citation | PASS |
 | Appendices in Supplementary Material | [G] | SI Notes 1-4 | PASS |
 | Figures TIFF or EPS; color free | [G] | paper/tex/package_aiche.py writes every figure as 600 dpi TIFF (plus the vector PDF) into dist/aiche/ | PASS |
 | LaTeX: no directory structure for external files; PDF of the manuscript for review | [G] | package_aiche.py flattens every \includegraphics path and test-compiles the flat folder; main.pdf and si.pdf included | PASS |
@@ -34,6 +34,7 @@ submission. Sources:
 | Shared data cited in the reference list | [D] | own archive cited (Batayhi2026Archive; built from the Zenodo draft metadata, to be re-fetched from DataCite after publication) | PASS |
 | AI disclosure: tool, purpose, whether it influenced key arguments or conclusions, how outputs were verified | [A] | author's wording plus model names and a verification sentence (author's choice 2026-11-12), in the Acknowledgments as in recent AIChE J papers | PASS |
 | Data-sharing editorial requirements | [E] | not yet read | USER: please save the editorial as PDF |
-| American spelling (US journal) | style | converted; British forms in the banned list (build gate G4) | PASS |
+| American spelling (US journal) | style | converted (incl. aluminum, license); British forms in the banned list (build gate G4) | PASS |
+| Wiley/AIChE name the SI "Supporting Information"; recent papers write "Figure" | [G], 1a.3 | renamed throughout (Supporting Note/Table/Figure; Figure~n); SI on letter paper like the main text | PASS |
 | Structure and style of recent AIChE J papers of this type (8 open-access 2023-2026 papers read: 10.1002/aic.18779, 70045, 18600, 18627, 70604, 18573, 70404, 18074) | 1a.3 | numbered sections; Methods before Results; Results, Discussion, Conclusions; no Notation section; back matter Author Contributions, Acknowledgments (AI note), Conflict of Interest, Data Availability, Supporting Information; abstract about 150 words; negative results stated directly | PASS |
 | Optional "under review" preprint at submission (Authorea) | [G] | author chose YES (2026-11-12): opt in on the submission form | PASS (at submission) |
