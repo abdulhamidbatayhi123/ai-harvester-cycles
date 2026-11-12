@@ -1,0 +1,61 @@
+panel,series,x,y,x_label,y_label,x_tick_labels_if_categorical
+a,reference line,0,0,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,reference line,1,0,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,reference line,0,10,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,reference line,1,10,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R2 MOF-303 beaten=False,-0.14,-0.342599,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R2 MIL-160 beaten=False,0.86,-10.9362,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R2 CAU-10 beaten=False,1.86,-3.26524,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R2 Al-fumarate beaten=False,2.86,-3.36523,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R2 ROS-039 beaten=False,3.86,-4.96985,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R2 ROS-040 beaten=False,4.86,1.61383,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R2 ROS-037 beaten=False,5.86,0.0926479,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R2 Syloid beaten=False,6.86,-0.257833,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R1 MOF-303 beaten=False,0.14,-1.21005,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R1 MIL-160 beaten=False,1.14,3.85733,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R1 CAU-10 beaten=False,2.14,-10.5979,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R1 Al-fumarate beaten=False,3.14,2.00321,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R1 ROS-039 beaten=False,4.14,-3.32396,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R1 ROS-040 beaten=False,5.14,-0.167882,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R1 ROS-037 beaten=False,6.14,-0.00939071,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+a,r (%) R1 Syloid beaten=False,7.14,-0.0693251,,$r$ of B2 over B0 (%),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0 MOF-303,-0.2,0.057623,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0_endpoint_oracle MOF-303,0,0.0526134,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0star MOF-303,0.2,0.0463236,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F MOF-303,-0.32,0.00393145,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F MOF-303,0.32,0.00393145,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0 MIL-160,0.8,0.0789654,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0_endpoint_oracle MIL-160,1,0.0646672,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0star MIL-160,1.2,0.0449101,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F MIL-160,0.68,0.00370663,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F MIL-160,1.32,0.00370663,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0 CAU-10,1.8,0.0635963,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0_endpoint_oracle CAU-10,2,0.0615312,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0star CAU-10,2.2,0.058096,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F CAU-10,1.68,0.00205869,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F CAU-10,2.32,0.00205869,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0 Al-fumarate,2.8,0.0551407,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0_endpoint_oracle Al-fumarate,3,0.0436372,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0star Al-fumarate,3.2,0.0548756,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F Al-fumarate,2.68,0.00780318,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F Al-fumarate,3.32,0.00780318,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0 ROS-039,3.8,0.0903086,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0_endpoint_oracle ROS-039,4,0.0762556,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0star ROS-039,4.2,0.0764143,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F ROS-039,3.68,0.00618784,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F ROS-039,4.32,0.00618784,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0 ROS-040,4.8,0.0620671,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0_endpoint_oracle ROS-040,5,0.0532995,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0star ROS-040,5.2,0.0524098,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F ROS-040,4.68,0.00537085,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F ROS-040,5.32,0.00537085,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0 ROS-037,5.8,0.0995987,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0_endpoint_oracle ROS-037,6,0.0937237,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0star ROS-037,6.2,0.0851743,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F ROS-037,5.68,0.00615147,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F ROS-037,6.32,0.00615147,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0 Syloid,6.8,0.0608723,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0_endpoint_oracle Syloid,7,0.0500664,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,median E B0star Syloid,7.2,0.0612429,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F Syloid,6.68,0.00420938,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+b,noise floor F Syloid,7.32,0.00420938,,Median held-out error $E$,MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
