@@ -73,3 +73,4 @@ table, not the gate. Section numbers refer to PREREG_P4_draft.md (the frozen pre
 | grey | gray (American spelling) |
 | colour | color (American spelling) |
 | analyse | analyze (American spelling) |
+| licence | license (American spelling) |

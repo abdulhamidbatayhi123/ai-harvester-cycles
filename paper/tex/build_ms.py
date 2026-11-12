@@ -455,8 +455,11 @@ def section_text(body, start_pat, end_pat):
 def gate_words(texts, fails, report):
     body = strip_comments(body_of(texts["main.tex"]))
     abst = section_text(body, re.escape(BS + "begin{abstract}"), re.escape(BS + "end{abstract}"))
-    main = section_text(body, re.escape(BS + "section*{Introduction}"), re.escape(BS + "section*{Methods}"))
-    meth = section_text(body, re.escape(BS + "section*{Methods}"), re.escape(BS + "section*{Data Availability}"))
+    # AIChE J. order (2026-11-12): Introduction, Methods, Results, Discussion, Conclusions, then the back matter
+    intro = section_text(body, re.escape(BS) + r"section\*?\{Introduction\}", re.escape(BS) + r"section\*?\{Methods\}") or ""
+    rest = section_text(body, re.escape(BS) + r"section\*?\{Results\}", re.escape(BS) + r"section\*\{Author Contributions\}") or ""
+    main = intro + rest
+    meth = section_text(body, re.escape(BS) + r"section\*?\{Methods\}", re.escape(BS) + r"section\*?\{Results\}")
     if abst is None or main is None or meth is None:
         fails.append("G5: section anchors (abstract, Introduction, Methods, Data Availability) not found")
         return

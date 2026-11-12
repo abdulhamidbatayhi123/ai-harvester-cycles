@@ -21,10 +21,10 @@
   "G2_si_figures": 1,
   "G3_main.tex_em_dashes": 0,
   "G3_si.tex_em_dashes": 0,
-  "G4_n_phrases": 42,
+  "G4_n_phrases": 43,
   "G5_words": {
    "abstract": 147,
-   "main_text": 3633,
+   "main_text": 3632,
    "methods": 2080,
    "si": 2012
   },
@@ -84,6 +84,426 @@
    "doc": "main.tex",
    "text": "26",
    "source": "26",
+   "ok": true
+  },
+  {
+   "key": "dis_T",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_k",
+   "doc": "main.tex",
+   "text": "3.16",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_kp",
+   "doc": "main.tex",
+   "text": "1.59",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_g1",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
+   "ok": true
+  },
+  {
+   "key": "dis_g2",
+   "doc": "main.tex",
+   "text": "42",
+   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
+   "ok": true
+  },
+  {
+   "key": "dis_m",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "dis_cap",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "T_a",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
+   "key": "T_b",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
+   "key": "cyc_lo",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "cyc_hi",
+   "doc": "main.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "T_cyc",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "rh_dry",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
+   "ok": true
+  },
+  {
+   "key": "r2_lo",
+   "doc": "main.tex",
+   "text": "70",
+   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
+   "ok": true
+  },
+  {
+   "key": "r2_hi",
+   "doc": "main.tex",
+   "text": "229",
+   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
+   "ok": true
+  },
+  {
+   "key": "r2_med",
+   "doc": "main.tex",
+   "text": "90",
+   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
+   "ok": true
+  },
+  {
+   "key": "drift_win",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "results/prefreeze/checks2.md: Slope of a linear fit over the last 10 min of each window",
+   "ok": true
+  },
+  {
+   "key": "drift_r2",
+   "doc": "main.tex",
+   "text": "0.023",
+   "source": "results/prefreeze/checks2.md: All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).",
+   "ok": true
+  },
+  {
+   "key": "drift_r1",
+   "doc": "main.tex",
+   "text": "0.106",
+   "source": "results/prefreeze/checks2.md: All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).",
+   "ok": true
+  },
+  {
+   "key": "drift_n",
+   "doc": "main.tex",
+   "text": "80",
+   "source": "results/prefreeze/checks2.md: All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).",
+   "ok": true
+  },
+  {
+   "key": "T_comp",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: 27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour",
+   "ok": true
+  },
+  {
+   "key": "comp_lo",
+   "doc": "main.tex",
+   "text": "0.3",
+   "source": "PREREG_P4_draft.md: 27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour",
+   "ok": true
+  },
+  {
+   "key": "comp_hi",
+   "doc": "main.tex",
+   "text": "0.9",
+   "source": "PREREG_P4_draft.md: 27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour",
+   "ok": true
+  },
+  {
+   "key": "grid",
+   "doc": "main.tex",
+   "text": "6",
+   "source": "PREREG_P4_draft.md: Trajectories are linearly resampled to a uniform 6 s grid.",
+   "ok": true
+  },
+  {
+   "key": "grid_pts",
+   "doc": "main.tex",
+   "text": "11",
+   "source": "PREREG_P4_draft.md: time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant.",
+   "ok": true
+  },
+  {
+   "key": "t63",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant.",
+   "ok": true
+  },
+  {
+   "key": "t63_min",
+   "doc": "main.tex",
+   "text": "1.1",
+   "source": "PREREG_P4_draft.md: time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant.",
+   "ok": true
+  },
+  {
+   "key": "clu_lo",
+   "doc": "main.tex",
+   "text": "13",
+   "source": "13",
+   "ok": true
+  },
+  {
+   "key": "clu_hi",
+   "doc": "main.tex",
+   "text": "54",
+   "source": "54",
+   "ok": true
+  },
+  {
+   "key": "kp27",
+   "doc": "main.tex",
+   "text": "0.32",
+   "source": "0.32",
+   "ok": true
+  },
+  {
+   "key": "kpT1",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
+   "key": "kp60",
+   "doc": "main.tex",
+   "text": "1.2",
+   "source": "1.2",
+   "ok": true
+  },
+  {
+   "key": "kpT2",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
+   "key": "rh50_ref",
+   "doc": "main.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: which the adsorption branch reaches half its uptake at 30 % RH.",
+   "ok": true
+  },
+  {
+   "key": "rh50_27_lo",
+   "doc": "main.tex",
+   "text": "7.4",
+   "source": "7.4",
+   "ok": true
+  },
+  {
+   "key": "rh50_27_hi",
+   "doc": "main.tex",
+   "text": "24.3",
+   "source": "24.3",
+   "ok": true
+  },
+  {
+   "key": "T_r1",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: RH at 27 °C and 10.5 % to 28.7 % at 60 °C.",
+   "ok": true
+  },
+  {
+   "key": "rh50_60_lo",
+   "doc": "main.tex",
+   "text": "10.5",
+   "source": "10.5",
+   "ok": true
+  },
+  {
+   "key": "rh50_60_hi",
+   "doc": "main.tex",
+   "text": "28.7",
+   "source": "28.7",
+   "ok": true
+  },
+  {
+   "key": "T_r2",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: RH at 27 °C and 10.5 % to 28.7 % at 60 °C.",
+   "ok": true
+  },
+  {
+   "key": "F_lo",
+   "doc": "main.tex",
+   "text": "0.0021",
+   "source": "0.0021",
+   "ok": true
+  },
+  {
+   "key": "F_hi",
+   "doc": "main.tex",
+   "text": "0.0078",
+   "source": "0.0078",
+   "ok": true
+  },
+  {
+   "key": "margin",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "alpha",
+   "doc": "main.tex",
+   "text": "0.025",
+   "source": "PREREG_P4_draft.md: a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025",
+   "ok": true
+  },
+  {
+   "key": "viol_w",
+   "doc": "main.tex",
+   "text": "0.05",
+   "source": "PREREG_P4_draft.md: by more than 0.05 wt% over any 1-minute window",
+   "ok": true
+  },
+  {
+   "key": "viol_frac",
+   "doc": "main.tex",
+   "text": "5",
+   "source": "PREREG_P4_draft.md: violations exceed 5 % of a fold's segments",
+   "ok": true
+  },
+  {
+   "key": "need",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "PREREG_P4_draft.md: if the model beats the comparator in at least 7 of 8 folds",
+   "ok": true
+  },
+  {
+   "key": "nfold",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "PREREG_P4_draft.md: if the model beats the comparator in at least 7 of 8 folds",
+   "ok": true
+  },
+  {
+   "key": "margin2",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "ub",
+   "doc": "main.tex",
+   "text": "96.5",
+   "source": "PREREG_P4_draft.md: it is a one-sided 96.5 % upper bound on the median",
+   "ok": true
+  },
+  {
+   "key": "margin3",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "margin4",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "sigma",
+   "doc": "main.tex",
+   "text": "0.01",
+   "source": "PREREG_P4_draft.md: AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9.",
+   "ok": true
+  },
+  {
+   "key": "phi",
+   "doc": "main.tex",
+   "text": "0.9",
+   "source": "PREREG_P4_draft.md: AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9.",
+   "ok": true
+  },
+  {
+   "key": "eps_thr",
+   "doc": "main.tex",
+   "text": "0.2",
+   "source": "PREREG_P4_draft.md: (median RH of that tenth) is at least 0.2·w₃₀",
+   "ok": true
+  },
+  {
+   "key": "eps_rh",
+   "doc": "main.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: z holds: w normalised by the isotherm's uptake at 30 % RH",
+   "ok": true
+  },
+  {
+   "key": "t63b",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "pan_pos",
+   "doc": "main.tex",
+   "text": "19",
+   "source": "19",
+   "ok": true
+  },
+  {
+   "key": "pan_n",
+   "doc": "main.tex",
+   "text": "64",
+   "source": "64",
+   "ok": true
+  },
+  {
+   "key": "marg5",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
    "ok": true
   },
   {
@@ -658,426 +1078,6 @@
    "doc": "main.tex",
    "text": "17",
    "source": "17",
-   "ok": true
-  },
-  {
-   "key": "dis_T",
-   "doc": "main.tex",
-   "text": "60",
-   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
-   "ok": true
-  },
-  {
-   "key": "dis_k",
-   "doc": "main.tex",
-   "text": "3.16",
-   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
-   "ok": true
-  },
-  {
-   "key": "dis_kp",
-   "doc": "main.tex",
-   "text": "1.59",
-   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
-   "ok": true
-  },
-  {
-   "key": "dis_g1",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
-   "ok": true
-  },
-  {
-   "key": "dis_g2",
-   "doc": "main.tex",
-   "text": "42",
-   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
-   "ok": true
-  },
-  {
-   "key": "dis_m",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
-   "ok": true
-  },
-  {
-   "key": "dis_cap",
-   "doc": "main.tex",
-   "text": "3",
-   "source": "3",
-   "ok": true
-  },
-  {
-   "key": "T_a",
-   "doc": "main.tex",
-   "text": "27",
-   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
-   "ok": true
-  },
-  {
-   "key": "T_b",
-   "doc": "main.tex",
-   "text": "60",
-   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
-   "ok": true
-  },
-  {
-   "key": "cyc_lo",
-   "doc": "main.tex",
-   "text": "0",
-   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
-   "ok": true
-  },
-  {
-   "key": "cyc_hi",
-   "doc": "main.tex",
-   "text": "30",
-   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
-   "ok": true
-  },
-  {
-   "key": "T_cyc",
-   "doc": "main.tex",
-   "text": "27",
-   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
-   "ok": true
-  },
-  {
-   "key": "rh_dry",
-   "doc": "main.tex",
-   "text": "0",
-   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
-   "ok": true
-  },
-  {
-   "key": "r2_lo",
-   "doc": "main.tex",
-   "text": "70",
-   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
-   "ok": true
-  },
-  {
-   "key": "r2_hi",
-   "doc": "main.tex",
-   "text": "229",
-   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
-   "ok": true
-  },
-  {
-   "key": "r2_med",
-   "doc": "main.tex",
-   "text": "90",
-   "source": "PREREG_P4_draft.md: the 0 % set-point continues with the preheater off for 70 to 229 minutes (median 90)",
-   "ok": true
-  },
-  {
-   "key": "drift_win",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "results/prefreeze/checks2.md: Slope of a linear fit over the last 10 min of each window",
-   "ok": true
-  },
-  {
-   "key": "drift_r2",
-   "doc": "main.tex",
-   "text": "0.023",
-   "source": "results/prefreeze/checks2.md: All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).",
-   "ok": true
-  },
-  {
-   "key": "drift_r1",
-   "doc": "main.tex",
-   "text": "0.106",
-   "source": "results/prefreeze/checks2.md: All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).",
-   "ok": true
-  },
-  {
-   "key": "drift_n",
-   "doc": "main.tex",
-   "text": "80",
-   "source": "results/prefreeze/checks2.md: All runs: median |drift| R1 0.106 %/h (n 80, max 3.012); R2 0.023 %/h (n 80, max 1.845).",
-   "ok": true
-  },
-  {
-   "key": "T_comp",
-   "doc": "main.tex",
-   "text": "27",
-   "source": "PREREG_P4_draft.md: 27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour",
-   "ok": true
-  },
-  {
-   "key": "comp_lo",
-   "doc": "main.tex",
-   "text": "0.3",
-   "source": "PREREG_P4_draft.md: 27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour",
-   "ok": true
-  },
-  {
-   "key": "comp_hi",
-   "doc": "main.tex",
-   "text": "0.9",
-   "source": "PREREG_P4_draft.md: 27 °C, for 26 to 64 minutes, and were still losing 0.3 to 0.9 % of their mass per hour",
-   "ok": true
-  },
-  {
-   "key": "grid",
-   "doc": "main.tex",
-   "text": "6",
-   "source": "PREREG_P4_draft.md: Trajectories are linearly resampled to a uniform 6 s grid.",
-   "ok": true
-  },
-  {
-   "key": "grid_pts",
-   "doc": "main.tex",
-   "text": "11",
-   "source": "PREREG_P4_draft.md: time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant.",
-   "ok": true
-  },
-  {
-   "key": "t63",
-   "doc": "main.tex",
-   "text": "63",
-   "source": "PREREG_P4_draft.md: time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant.",
-   "ok": true
-  },
-  {
-   "key": "t63_min",
-   "doc": "main.tex",
-   "text": "1.1",
-   "source": "PREREG_P4_draft.md: time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant.",
-   "ok": true
-  },
-  {
-   "key": "clu_lo",
-   "doc": "main.tex",
-   "text": "13",
-   "source": "13",
-   "ok": true
-  },
-  {
-   "key": "clu_hi",
-   "doc": "main.tex",
-   "text": "54",
-   "source": "54",
-   "ok": true
-  },
-  {
-   "key": "kp27",
-   "doc": "main.tex",
-   "text": "0.32",
-   "source": "0.32",
-   "ok": true
-  },
-  {
-   "key": "kpT1",
-   "doc": "main.tex",
-   "text": "27",
-   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
-   "ok": true
-  },
-  {
-   "key": "kp60",
-   "doc": "main.tex",
-   "text": "1.2",
-   "source": "1.2",
-   "ok": true
-  },
-  {
-   "key": "kpT2",
-   "doc": "main.tex",
-   "text": "60",
-   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
-   "ok": true
-  },
-  {
-   "key": "rh50_ref",
-   "doc": "main.tex",
-   "text": "30",
-   "source": "PREREG_P4_draft.md: which the adsorption branch reaches half its uptake at 30 % RH.",
-   "ok": true
-  },
-  {
-   "key": "rh50_27_lo",
-   "doc": "main.tex",
-   "text": "7.4",
-   "source": "7.4",
-   "ok": true
-  },
-  {
-   "key": "rh50_27_hi",
-   "doc": "main.tex",
-   "text": "24.3",
-   "source": "24.3",
-   "ok": true
-  },
-  {
-   "key": "T_r1",
-   "doc": "main.tex",
-   "text": "27",
-   "source": "PREREG_P4_draft.md: RH at 27 °C and 10.5 % to 28.7 % at 60 °C.",
-   "ok": true
-  },
-  {
-   "key": "rh50_60_lo",
-   "doc": "main.tex",
-   "text": "10.5",
-   "source": "10.5",
-   "ok": true
-  },
-  {
-   "key": "rh50_60_hi",
-   "doc": "main.tex",
-   "text": "28.7",
-   "source": "28.7",
-   "ok": true
-  },
-  {
-   "key": "T_r2",
-   "doc": "main.tex",
-   "text": "60",
-   "source": "PREREG_P4_draft.md: RH at 27 °C and 10.5 % to 28.7 % at 60 °C.",
-   "ok": true
-  },
-  {
-   "key": "F_lo",
-   "doc": "main.tex",
-   "text": "0.0021",
-   "source": "0.0021",
-   "ok": true
-  },
-  {
-   "key": "F_hi",
-   "doc": "main.tex",
-   "text": "0.0078",
-   "source": "0.0078",
-   "ok": true
-  },
-  {
-   "key": "margin",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
-   "ok": true
-  },
-  {
-   "key": "alpha",
-   "doc": "main.tex",
-   "text": "0.025",
-   "source": "PREREG_P4_draft.md: a one-sided exact Wilcoxon signed-rank test of D over clusters gives p ≤ 0.025",
-   "ok": true
-  },
-  {
-   "key": "viol_w",
-   "doc": "main.tex",
-   "text": "0.05",
-   "source": "PREREG_P4_draft.md: by more than 0.05 wt% over any 1-minute window",
-   "ok": true
-  },
-  {
-   "key": "viol_frac",
-   "doc": "main.tex",
-   "text": "5",
-   "source": "PREREG_P4_draft.md: violations exceed 5 % of a fold's segments",
-   "ok": true
-  },
-  {
-   "key": "need",
-   "doc": "main.tex",
-   "text": "7",
-   "source": "PREREG_P4_draft.md: if the model beats the comparator in at least 7 of 8 folds",
-   "ok": true
-  },
-  {
-   "key": "nfold",
-   "doc": "main.tex",
-   "text": "8",
-   "source": "PREREG_P4_draft.md: if the model beats the comparator in at least 7 of 8 folds",
-   "ok": true
-  },
-  {
-   "key": "margin2",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
-   "ok": true
-  },
-  {
-   "key": "ub",
-   "doc": "main.tex",
-   "text": "96.5",
-   "source": "PREREG_P4_draft.md: it is a one-sided 96.5 % upper bound on the median",
-   "ok": true
-  },
-  {
-   "key": "margin3",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
-   "ok": true
-  },
-  {
-   "key": "margin4",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
-   "ok": true
-  },
-  {
-   "key": "sigma",
-   "doc": "main.tex",
-   "text": "0.01",
-   "source": "PREREG_P4_draft.md: AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9.",
-   "ok": true
-  },
-  {
-   "key": "phi",
-   "doc": "main.tex",
-   "text": "0.9",
-   "source": "PREREG_P4_draft.md: AR(1) measurement noise, σ = 0.01 wt%, φ = 0.9.",
-   "ok": true
-  },
-  {
-   "key": "eps_thr",
-   "doc": "main.tex",
-   "text": "0.2",
-   "source": "PREREG_P4_draft.md: (median RH of that tenth) is at least 0.2·w₃₀",
-   "ok": true
-  },
-  {
-   "key": "eps_rh",
-   "doc": "main.tex",
-   "text": "30",
-   "source": "PREREG_P4_draft.md: z holds: w normalised by the isotherm's uptake at 30 % RH",
-   "ok": true
-  },
-  {
-   "key": "t63b",
-   "doc": "main.tex",
-   "text": "63",
-   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
-   "ok": true
-  },
-  {
-   "key": "pan_pos",
-   "doc": "main.tex",
-   "text": "19",
-   "source": "19",
-   "ok": true
-  },
-  {
-   "key": "pan_n",
-   "doc": "main.tex",
-   "text": "64",
-   "source": "64",
-   "ok": true
-  },
-  {
-   "key": "marg5",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
    "ok": true
   },
   {
