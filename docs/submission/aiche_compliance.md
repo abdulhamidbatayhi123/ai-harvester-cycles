@@ -8,8 +8,9 @@ submission. Sources:
 [D] Wiley data sharing policy, https://authors.wiley.com/author-resources/Journal-Authors/open-access/data-sharing-citation/data-sharing-policy.html (read 2026-11-12)
 [A] Wiley publishing ethics, AI section, https://authors.wiley.com/ethics-guidelines/index.html (read 2026-11-12)
 [B] Editorial board, https://aiche.onlinelibrary.wiley.com/hub/journal/15475905/homepage/editorialboard.html (read 2026-11-12)
-[E] Editorial "New data sharing requirements for AIChE Journal authors" (Sholl 2023, doi:10.1002/aic.18017): free to read
-    but the reader did not render in the automated browser; UNREAD, PDF requested from the author.
+[E] Editorial "New data sharing requirements for AIChE Journal authors" (Sholl 2023, doi:10.1002/aic.18017); text supplied
+    by the author on 2026-11-12 (the Wiley reader does not render for automated browsers). Manuscripts missing either
+    element below are rejected without review.
 
 | Rule | Source | What the package does | Status |
 |---|---|---|---|
@@ -33,7 +34,8 @@ submission. Sources:
 | Data Availability Statement with link and persistent identifier; scripts archived | [D] | GitHub + Zenodo 10.5281/zenodo.24148229 (reserved) | PASS |
 | Shared data cited in the reference list | [D] | own archive cited (Batayhi2026Archive; built from the Zenodo draft metadata, to be re-fetched from DataCite after publication) | PASS |
 | AI disclosure: tool, purpose, whether it influenced key arguments or conclusions, how outputs were verified | [A] | author's wording plus model names and a verification sentence (author's choice 2026-11-12), in the Acknowledgments as in recent AIChE J papers | PASS |
-| Data-sharing editorial requirements | [E] | not yet read | USER: please save the editorial as PDF |
+| Supplementary Material shares the numerical data of every figure with data (including SI figures); a primary file lists the contents and format of any other files | [E] | figure scripts write <figure>.data.csv from the plotted artists; package builds figure_data.zip with README; Supporting Note S5 lists the files; build gate G6 refuses a data figure without its file | PASS |
+| A section titled "Data Availability and Reproducibility Statement" before the Conclusion: which figure data are in the SI, and the steps taken for reliability and reproducibility (calibration, reproduction of earlier work, uncertainty estimation) | [E] | Section before the Conclusions: figure data; freeze; synthetic harnesses with known truth; in-sample reproduction of the published model; independent re-implementation of the decision rule (240/240); noise floor and exact cluster tests; two dry-mass rules; exact recomputation; build-checked numbers | PASS |
 | American spelling (US journal) | style | converted (incl. aluminum, license); British forms in the banned list (build gate G4) | PASS |
 | Wiley/AIChE name the SI "Supporting Information"; recent papers write "Figure" | [G], 1a.3 | renamed throughout (Supporting Note/Table/Figure; Figure~n); SI on letter paper like the main text | PASS |
 | Structure and style of recent AIChE J papers of this type (8 open-access 2023-2026 papers read: 10.1002/aic.18779, 70045, 18600, 18627, 70604, 18573, 70404, 18074) | 1a.3 | numbered sections; Methods before Results; Results, Discussion, Conclusions; no Notation section; back matter Author Contributions, Acknowledgments (AI note), Conflict of Interest, Data Availability, Supporting Information; abstract about 150 words; negative results stated directly | PASS |
