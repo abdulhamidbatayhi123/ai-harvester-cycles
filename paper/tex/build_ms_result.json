@@ -1,6 +1,6 @@
 {
  "gate": "manuscript/build_ms.py",
- "final": true,
+ "final": false,
  "status": "PASS",
  "failures": [],
  "report": {
@@ -21,7 +21,7 @@
   "G2_si_figures": 1,
   "G3_main.tex_em_dashes": 0,
   "G3_si.tex_em_dashes": 0,
-  "G4_n_phrases": 35,
+  "G4_n_phrases": 42,
   "G5_words": {
    "abstract": 150,
    "main_text": 3633,
