@@ -8,3 +8,4 @@ paper/tex/*.aux
 paper/tex/*.log
 paper/tex/*.out
 private/
+dist/

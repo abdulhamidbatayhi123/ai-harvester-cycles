@@ -25,8 +25,8 @@ submission. Sources:
 | Graphical abstract fitting 50 mm x 60 mm, legible | [G] | figures/out/fig_toc.* (50 x 60 mm, fonts >= 6 pt) | PASS |
 | References numbered in citation order, AMA style, all authors | [G] | make_refs_master.py STYLE = "ama"; build checks order of first citation | PASS |
 | Appendices in Supplementary Material | [G] | SI Notes 1-4 | PASS |
-| Figures TIFF or EPS; color free | [G] | figures are vector PDF + 600 dpi PNG | FIX at packaging: export TIFF/EPS |
-| LaTeX: no directory structure for external files; PDF of the manuscript for review | [G] | main.tex uses ../../figures/out/ paths | FIX at packaging: flat folder, \includegraphics without paths |
+| Figures TIFF or EPS; color free | [G] | paper/tex/package_aiche.py writes every figure as 600 dpi TIFF (plus the vector PDF) into dist/aiche/ | PASS |
+| LaTeX: no directory structure for external files; PDF of the manuscript for review | [G] | package_aiche.py flattens every \includegraphics path and test-compiles the flat folder; main.pdf and si.pdf included | PASS |
 | Cover letter: short statement, readership, originality | [G] | docs/submission/ (private/cover_letter_aichej.md, kept out of git) | PASS |
 | 4-6 suggested reviewers, >= 2 with AIChE J papers in 10 years, justified, no colleagues | [G],[B] | private/suggested_reviewers.md: 3 with AIChE J papers, none on the board | PASS |
 | CRediT roles for authors | [G] | Author Contributions section | PASS |
