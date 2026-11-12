@@ -31,7 +31,7 @@ submission. Sources:
 | 4-6 suggested reviewers, >= 2 with AIChE J papers in 10 years, justified, no colleagues | [G],[B] | private/suggested_reviewers.md: 3 with AIChE J papers, none on the board | PASS |
 | CRediT roles for authors | [G] | Author Contributions section | PASS |
 | Data Availability Statement with link and persistent identifier; scripts archived | [D] | GitHub + Zenodo 10.5281/zenodo.24148229 (reserved) | PASS |
-| Shared data cited in the reference list | [D] | the paper's own archive is not yet a reference | FIX after the Zenodo record is published (DataCite record -> data_refs.json) |
+| Shared data cited in the reference list | [D] | own archive cited (Batayhi2026Archive; built from the Zenodo draft metadata, to be re-fetched from DataCite after publication) | PASS |
 | AI disclosure: tool, purpose, whether it influenced key arguments or conclusions, how outputs were verified | [A] | author's wording plus model names and a verification sentence (author's choice 2026-11-12), in the Acknowledgments as in recent AIChE J papers | PASS |
 | Data-sharing editorial requirements | [E] | not yet read | USER: please save the editorial as PDF |
 | American spelling (US journal) | style | converted; British forms in the banned list (build gate G4) | PASS |
