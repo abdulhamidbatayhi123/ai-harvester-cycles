@@ -72,7 +72,8 @@ def main():
             if r < R_FLOOR:
                 clipped.append({"rule": "R2" if j == 0 else "R1", "sorbent": s,
                                 "r_percent": r if math.isfinite(r) else "-inf (a held material without scored segments)"})
-            a.plot(x[i] + dx, y, ls="none", marker=m, ms=4, mec=col, mfc=col if beat else "white", mew=0.8)
+            a.plot(x[i] + dx, y, ls="none", marker=m, ms=4, mec=col, mfc=col if beat else "white", mew=0.8,
+                   gid=f"r (%) {'R2' if j == 0 else 'R1'} {s} beaten={beat}")
     top = max([MARGIN + 10.0] + [y + 5.0 for y in ys if math.isfinite(y)])
     fin = [y for y in ys if math.isfinite(y) and y >= R_FLOOR]
     bottom = R_FLOOR - 3.0 if clipped or not fin else max(R_FLOOR - 3.0, min(fin) - 5.0)
@@ -102,10 +103,11 @@ def main():
             if e:
                 v = float(np.nanmedian(np.asarray(e, float)))
                 vals.append(v)
-                b.plot(x[i] + (k - 1) * 0.2, v, **kw)
+                b.plot(x[i] + (k - 1) * 0.2, v, gid=f"median E {key} {s}", **kw)
         # the medians pool a parent with its composite, so the floor shown is the larger of the two (PREREG section 6)
         Fp = max(F[m] for m in p["held"])
-        b.plot([x[i] - 0.32, x[i] + 0.32], [Fp] * 2, color=fs.OI["grey"], lw=1.2, solid_capstyle="butt")
+        b.plot([x[i] - 0.32, x[i] + 0.32], [Fp] * 2, color=fs.OI["grey"], lw=1.2, solid_capstyle="butt",
+               gid=f"noise floor F {s}")
         vals.append(Fp)
     b.set_yscale("log")
     if vals:

@@ -31,7 +31,8 @@ def main():
         for i, s in enumerate(ORDER):
             r = 100 * dec["folds"][f"LOSO:{s}|B2"]["r_fold"]
             ys.append(r)
-            ax.plot(i + dx, r, ls="none", marker=mk, ms=3, mec=col, mfc="white", mew=0.7)
+            ax.plot(i + dx, r, ls="none", marker=mk, ms=3, mec=col, mfc="white", mew=0.7,
+                    gid=f"r (%) {'R2' if dec is d2 else 'R1'} {s}")
     ax.axhline(0, color=fs.OI["grey"], lw=0.5)
     ax.axhline(10, color=fs.OI["dark"], lw=0.7, ls="--")
     ax.text(7.4, 10.8, "10 % margin", fontsize=fs.SMALL_PT, ha="right", va="bottom")

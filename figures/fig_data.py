@@ -51,7 +51,7 @@ def main():
         i = ups30[1] if len(ups30) > 1 else ups30[0]
         w = g["w"][i][np.isfinite(g["w"][i])]
         t = np.arange(len(w)) * 0.1
-        b.plot(t, (w - w[0]) / (w[-1] - w[0]), color=col, linestyle=ls)
+        b.plot(t, (w - w[0]) / (w[-1] - w[0]), color=col, linestyle=ls, gid=f"{LABEL.get(s, s)} fraction of step")
     a.set_xlabel("relative humidity (%)")
     a.set_ylabel("uptake at 27 °C (wt%)")
     a.set_xlim(0, 40)
@@ -66,7 +66,7 @@ def main():
     x = np.arange(len(names))
     for j, (T, mk) in enumerate((("27C", "o"), ("60C", "s"))):
         vals = [summ["noise_floor"].get(f"{s}|{T}", {}).get("median_E", np.nan) for s in names]
-        c.plot(x + (j - 0.5) * 0.25, vals, linestyle="none", marker=mk, color=fs.OI["dark"],
+        c.plot(x + (j - 0.5) * 0.25, vals, linestyle="none", marker=mk, color=fs.OI["dark"], gid=f"noise floor F {T}",
                markerfacecolor="none" if T == "27C" else fs.OI["dark"], label=T.replace("C", " °C"))
     c.set_xticks(x)
     c.set_xticklabels([LABEL.get(s, s) for s in names], rotation=60, ha="right")

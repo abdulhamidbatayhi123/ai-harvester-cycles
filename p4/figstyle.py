@@ -197,5 +197,36 @@ def save(fig, stem, inputs=()):
             "git_dirty_files": _git_dirty(tracked)}
     with open(stem + ".prov.json", "w", encoding="utf-8") as f:
         json.dump(prov, f, indent=1)
+    n_rows = export_data(fig, stem)
     plt.close(fig)
-    return [stem + ".pdf", stem + ".png"]
+    return [stem + ".pdf", stem + ".png"] + ([stem + ".data.csv"] if n_rows else [])
+
+
+def export_data(fig, stem):
+    """Write the numerical data plotted in the figure to stem.data.csv (AIChE Journal requires the data underlying
+    every figure; editorial doi:10.1002/aic.18017). One row per plotted point of every line or marker series: panel
+    letter, series identifier (the artist's gid, else its label), x, y, and the panel's axis labels; x tick labels are
+    listed for panels with categorical axes. Taken from the drawn artists, so the table is exactly what is plotted.
+    Schematic figures (no data axes) write nothing and return 0."""
+    import csv
+    rows = []
+    letters = "abcdefghij"
+    data_axes = [ax for ax in fig.axes if ax.axison and ax.get_lines()]
+    for k, ax in enumerate(data_axes):
+        panel = letters[k] if len(data_axes) > 1 else ""
+        ticks = [t.get_text() for t in ax.get_xticklabels() if t.get_text()]
+        cat = ticks and not all(re.fullmatch(r"[\-−\d.]+", t) for t in ticks)
+        for ln in ax.get_lines():
+            sid = ln.get_gid() or ln.get_label()
+            if not sid or sid.startswith("_"):
+                sid = "reference line" if len(ln.get_xdata()) == 2 else "series"
+            for x, y in zip(ln.get_xdata(), ln.get_ydata()):
+                rows.append([panel, sid, f"{float(x):.6g}", f"{float(y):.6g}", ax.get_xlabel(), ax.get_ylabel(),
+                             "; ".join(ticks) if cat else ""])
+    if not rows:
+        return 0
+    with open(stem + ".data.csv", "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["panel", "series", "x", "y", "x_label", "y_label", "x_tick_labels_if_categorical"])
+        w.writerows(rows)
+    return len(rows)

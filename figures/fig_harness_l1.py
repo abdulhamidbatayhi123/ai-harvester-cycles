@@ -69,6 +69,7 @@ def main():
         if kind != "L1":
             continue
         a.plot(r + OFFSET[held], ratio, ls="none", marker=WORLD_MARK[world], ms=4, mec=col1,
+               gid=f"L1/B0 round {r} world {world} {held} beat={beat}",
                mfc=col1 if beat else "white", mew=0.8)
     # the one judged case that failed in round 7
     for r, world, held, kind, ratio, beat in R:
@@ -92,6 +93,7 @@ def main():
         if kind != "L2":
             continue
         b.plot(r + OFFSET[held], ratio, ls="none", marker=WORLD_MARK[world], ms=4, mec=col2,
+               gid=f"L2/B0 round {r} world {world} {held} beat={beat}",
                mfc=col2 if beat else "white", mew=0.8)
     b.set_xticks(range(1, 5))
     b.set_xlim(0.5, 4.5)

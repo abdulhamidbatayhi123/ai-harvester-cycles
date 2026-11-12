@@ -59,10 +59,10 @@ def main():
         _, gi, i, n = min(cand)
         g = own[gi]
         t = np.arange(n) * DT_MIN
-        ax.plot(t[::5], g["w"][i][:n][::5], **fs.style("data"), ms=2.2, label="measured")
-        ax.plot(t, pb0[gi][i][:n], **fs.style("B0"), label="B0 (shared k″)")
-        ax.plot(t, pb2[gi][i][:n], color=fs.OI["blue"], ls="--", label="B2 (from isotherm)")
-        ax.plot(t, pst[gi][i][:n], **fs.style("B0star"), label="B0* (own k″)")
+        ax.plot(t[::5], g["w"][i][:n][::5], **fs.style("data"), ms=2.2, label="measured", gid=f"measured {s} {g['temp']}")
+        ax.plot(t, pb0[gi][i][:n], **fs.style("B0"), label="B0 (shared k″)", gid=f"B0 {s} {g['temp']}")
+        ax.plot(t, pb2[gi][i][:n], color=fs.OI["blue"], ls="--", label="B2 (from isotherm)", gid=f"B2 {s} {g['temp']}")
+        ax.plot(t, pst[gi][i][:n], **fs.style("B0star"), label="B0* (own k″)", gid=f"B0* {s} {g['temp']}")
         rf, rt = float(np.median(g["rh"][i][:5])), float(np.median(g["rh"][i][n - 5:n]))
         ax.set_title(f"{LABEL.get(s, s)}, {g['temp'][:2]} °C, {rf:.0f} → {rt:.0f} % RH", fontsize=fs.SMALL_PT)
         ax.set_xlabel("Time in the step (min)")

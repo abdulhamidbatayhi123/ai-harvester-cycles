@@ -26,7 +26,7 @@ def main():
         st = d[key]
         for s, (x, y) in st["points"].items():
             comp = s.endswith("_composite")
-            ax.plot(x, y, ls="none", marker="o", ms=3.2, mec=fs.OI["dark"],
+            ax.plot(x, y, ls="none", marker="o", ms=3.2, mec=fs.OI["dark"], gid=f"own k {s} {key}",
                     mfc="white" if comp else fs.OI["dark"])
         rho = f"{st['rho']:.2f}".replace("-", "−")
         ax.set_title(f"{TITLE[key]}; ρ = {rho}, p = {st['p_exact']:.2f}", fontsize=fs.SMALL_PT)
