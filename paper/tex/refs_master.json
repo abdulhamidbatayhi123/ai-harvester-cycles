@@ -76,7 +76,8 @@
   "Jablonka2022Making": "A",
   "Xia2025Relationship": "A",
   "Nikolenko2026Modality": "A",
-  "Bezrukov2023Data": "A"
+  "Bezrukov2023Data": "A",
+  "Batayhi2026Archive": "A"
  },
  "open": {
   "Aristov2012Optimization": "status C: read the paper before citing a specific claim",
@@ -175,6 +176,7 @@
   "Jablonka2022Making": "Jablonka KM, Patiny L, Smit B. Making the collective knowledge of chemistry open and machine actionable. \\textit{Nature Chemistry}. 2022;14(4):365--376. doi:10.1038/s41557-022-00910-7",
   "Xia2025Relationship": "Xia X, Li K, Chen G, Li S. Relationship between water adsorption kinetics and structure property of metal-organic frameworks for adsorption cooling. \\textit{Colloids and Surfaces A: Physicochemical and Engineering Aspects}. 2025;720:137168. doi:10.1016/j.colsurfa.2025.137168",
   "Nikolenko2026Modality": "Nikolenko SI. Modality Graphs Predict Cross-Modal Reconstructability But Not Fusion Gain: A Preregistered Study in Machine Fault Diagnosis. \\textit{IEEE Access}. 2026;14:158836--158853. doi:10.1109/access.2026.3741122",
-  "Bezrukov2023Data": "Bezrukov AA, O'Hearn DJ, Gascón-Pérez V, Darwish S, Kumar A, Sanda S, Kumar N, Francis K, Zaworotko MJ. Metal-organic frameworks as regeneration optimized sorbents for atmospheric water harvesting. Zenodo; 2023. doi:10.5281/zenodo.6631711"
+  "Bezrukov2023Data": "Bezrukov AA, O'Hearn DJ, Gascón-Pérez V, Darwish S, Kumar A, Sanda S, Kumar N, Francis K, Zaworotko MJ. Metal-organic frameworks as regeneration optimized sorbents for atmospheric water harvesting. Zenodo; 2023. doi:10.5281/zenodo.6631711",
+  "Batayhi2026Archive": "Batayhi A. Code, results and pre-registration for: No detectable gain from predicting water-uptake rate constants from half-loading humidity: a pre-registered test. Zenodo; 2026. doi:10.5281/zenodo.24148229"
  }
 }

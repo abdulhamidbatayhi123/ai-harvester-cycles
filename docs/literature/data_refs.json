@@ -1,5 +1,5 @@
 {
- "fetched": "2026-11-11",
+ "fetched": "2026-11-12",
  "source": "api.datacite.org/dois/<doi>",
  "records": {
   "Bezrukov2023Data": {
@@ -58,6 +58,24 @@
    "rights": [
     "cc-by-4.0"
    ]
+  },
+  "Batayhi2026Archive": {
+   "doi": "10.5281/zenodo.24148229",
+   "creators": [
+    {
+     "family": "Batayhi",
+     "given": "Abdulhamid",
+     "name": "Batayhi, Abdulhamid"
+    }
+   ],
+   "title": "Code, results and pre-registration for: No detectable gain from predicting water-uptake rate constants from half-loading humidity: a pre-registered test",
+   "publisher": "Zenodo",
+   "year": 2026,
+   "version": "v1.0.0",
+   "rights": [
+    "mit"
+   ],
+   "source": "Zenodo draft API (not yet published)"
   }
  }
 }
