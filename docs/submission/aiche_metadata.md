@@ -10,3 +10,4 @@
 - Graphical abstract: figures/out/fig_toc.* (50 mm x 60 mm)
 - Data availability: repository and Zenodo DOI (to be created before submission); raw data at Zenodo 6631711 (CC BY 4.0)
 - Suggested reviewers: private/suggested_reviewers.md (kept out of git; confidential to the journal)
+- Preprint: opt in to the Wiley "under review" service (Authorea) on the submission form (author's choice 2026-11-12).

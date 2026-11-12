@@ -32,8 +32,8 @@ submission. Sources:
 | CRediT roles for authors | [G] | Author Contributions section | PASS |
 | Data Availability Statement with link and persistent identifier; scripts archived | [D] | GitHub + Zenodo 10.5281/zenodo.24148229 (reserved) | PASS |
 | Shared data cited in the reference list | [D] | the paper's own archive is not yet a reference | FIX after the Zenodo record is published (DataCite record -> data_refs.json) |
-| AI disclosure: tool, purpose, whether it influenced key arguments or conclusions, how outputs were verified | [A] | declaration uses the author's own wording (tool and purpose; author reviewed and edited all content) | USER: decide whether to add the influence and verification sentences Wiley asks for |
+| AI disclosure: tool, purpose, whether it influenced key arguments or conclusions, how outputs were verified | [A] | author's wording plus model names and a verification sentence (author's choice 2026-11-12), in the Acknowledgments as in recent AIChE J papers | PASS |
 | Data-sharing editorial requirements | [E] | not yet read | USER: please save the editorial as PDF |
 | American spelling (US journal) | style | converted; British forms in the banned list (build gate G4) | PASS |
-| Structure and style of recent AIChE J papers of this type | 1a.3 | survey running | PENDING |
-| Optional "under review" preprint at submission (Authorea) | [G] | author's choice | USER |
+| Structure and style of recent AIChE J papers of this type (8 open-access 2023-2026 papers read: 10.1002/aic.18779, 70045, 18600, 18627, 70604, 18573, 70404, 18074) | 1a.3 | numbered sections; Methods before Results; Results, Discussion, Conclusions; no Notation section; back matter Author Contributions, Acknowledgments (AI note), Conflict of Interest, Data Availability, Supporting Information; abstract about 150 words; negative results stated directly | PASS |
+| Optional "under review" preprint at submission (Authorea) | [G] | author chose YES (2026-11-12): opt in on the submission form | PASS (at submission) |
