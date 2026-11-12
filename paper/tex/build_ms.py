@@ -52,6 +52,7 @@ BS = chr(92)
 TECTONIC = os.environ.get("TECTONIC", r"C:\Users\abdulhamid batayhi\Desktop\ai-mof-cof-dynamics\tools\tectonic.exe")
 DOCS = ("main.tex", "si.tex")
 FIGDIR = "figures/out/"
+SCHEMATIC_FIGURES = {"fig_workflow.pdf"}   # figures without numerical data (exempt from the data-file check)
 WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"]
 
 
@@ -511,6 +512,10 @@ def gate_figures(texts, fails, report, figdir=None):
                 fp = os.path.join(ROOT, p)
                 if not os.path.exists(fp) or sha_lf(fp) != h:
                     fails.append(f"G6 {stem}: input {p} missing or changed since the figure was built")
+            # AIChE J. (editorial doi:10.1002/aic.18017): the numerical data of every figure with data are shared;
+            # p4/figstyle.export_data writes them; only declared schematics are exempt
+            if os.path.basename(path) not in SCHEMATIC_FIGURES and not os.path.exists(os.path.splitext(path)[0] + ".data.csv"):
+                fails.append(f"G6 {stem}: no plotted-data file (.data.csv) for a figure with data")
     report["G6_n_figures"] = n
 
 

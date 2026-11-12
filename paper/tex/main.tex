@@ -504,6 +504,30 @@ practical margin was set after the noise floor had been seen, though before any 
 confirmed at the freeze after the harness had been scored with it. Several secondary analyses of the protocol were not
 run (Methods), and all analyses added after the result are labeled exploratory.
 
+\section{Data Availability and Reproducibility Statement}
+
+The numerical data of Figures~\ref{fig:data}--\ref{fig:results}, of Supporting Figure~S\ID{1} and of the graphical
+abstract are tabulated in the Supporting Information, one CSV file per figure in \texttt{figure\_data.zip}, whose
+contents and format are listed in Supporting Note~S\ID{5}; each file is written by the figure's own script from the
+plotted data, so it holds exactly what is drawn. Figure~\ref{fig:workflow} is a schematic without numerical data. The
+tables are generated from the results files. The measurement data are those of Bezrukov et
+al.~\cite{Bezrukov2023Data}; the code, the frozen protocol, every result file and the figure scripts are public
+(Data Availability Statement).
+
+Several steps support the reliability of the reported results. The protocol was frozen before the confirmatory runs,
+and every later change is reported as a deviation. Both candidate models, the learned correction and the
+isotherm-predicted rate constant, had to pass a synthetic test with a known truth before they could meet held-out real
+data; for the isotherm-predicted rate constant, the pipeline recovered an injected slope to within
+\V{rep_Kerr}{0.05}\,\% and made no false beat without an effect. Before any held-out test, the published model was
+reproduced in sample: at \V{rep_T}{27}~\textdegree C the sorbents' own rate constants agreed with a coefficient of
+variation of \V{rep_cv}{0.07}, as Bezrukov et al.\ reported a material-independent constant there. The decision rule
+was re-implemented independently from the protocol text and agreed with the code in \V{rep_agree}{240} of
+\V{rep_cases}{240} random test cases. Uncertainty enters at two levels: the within-run repeatability of each sorbent,
+measured from repeated steps, sets the noise floor of every comparison, and inference uses clusters of repeats with
+exact tests; both definitions of the dry mass are analyzed. Secondary metrics recomputed from the stored parameters
+reproduce the confirmatory errors exactly. Every number in this article is generated from the result files and checked
+against them when the manuscript is built.
+
 \section{Conclusions}
 
 In a pre-registered test on seven metal--organic frameworks and a silica gel, a water-uptake rate constant predicted
@@ -551,7 +575,8 @@ code.
 
 Supporting Information: the learned models and their full harness record (Note~S\ID{1}, Table~S\ID{1}); the harness
 of the isotherm-predicted rate constant (Note~S\ID{2}, Table~S\ID{2}); whole families held out (Note~S\ID{3},
-Table~S\ID{3}); strata, secondary metrics and exploratory checks (Note~S\ID{4}, Table~S\ID{4}, Figure~S\ID{1}).
+Table~S\ID{3}); strata, secondary metrics and exploratory checks (Note~S\ID{4}, Table~S\ID{4}, Figure~S\ID{1}); the
+numerical data of every figure (Note~S\ID{5} and \texttt{figure\_data.zip}).
 
 \input{refs_main.tex}
 

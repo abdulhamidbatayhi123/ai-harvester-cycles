@@ -50,6 +50,21 @@ def main():
         Image.open(png).save(tif, compression="tiff_lzw", dpi=(600, 600))
     toc = os.path.join(ROOT, "figures", "out", "fig_toc.png")
     Image.open(toc).save(os.path.join(OUT, "graphical_abstract.tif"), compression="tiff_lzw", dpi=(600, 600))
+    # numerical data of every figure (AIChE J. editorial doi:10.1002/aic.18017), listed in Supporting Note S5
+    import zipfile
+    figout = os.path.join(ROOT, "figures", "out")
+    csvs = sorted(f for f in os.listdir(figout) if f.endswith(".data.csv"))
+    need = {os.path.splitext(os.path.basename(p))[0] + ".data.csv" for p in figs if "fig_workflow" not in p}
+    need.add("fig_toc.data.csv")
+    assert need <= set(csvs), f"figure data missing: {sorted(need - set(csvs))}"
+    readme = ("Numerical data of the figures (Supporting Note S5). One CSV per figure, written from the plotted artists.\n"
+              "Columns: panel, series, x, y, x_label, y_label, x_tick_labels_if_categorical.\n"
+              "fig1_data = Figure 2; fig_trajectories = Figure 3; fig_harness_l1 = Figure 4; fig_results = Figure 5;\n"
+              "fig_s1 = Figure S1; fig_toc = graphical abstract. Figure 1 is a schematic without data.\n")
+    with zipfile.ZipFile(os.path.join(OUT, "figure_data.zip"), "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("README.txt", readme)
+        for f in sorted(need):
+            z.write(os.path.join(figout, f), f)
     for doc in ("main.tex", "si.tex"):
         r = subprocess.run([TECTONIC, "-X", "compile", doc], cwd=OUT, capture_output=True, text=True,
                            encoding="utf-8", errors="replace")

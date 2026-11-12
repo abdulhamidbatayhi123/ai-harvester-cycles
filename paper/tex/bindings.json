@@ -9,7 +9,8 @@
   "HB": "results/harness_b2/harness_b2.json",
   "HR": "results/harness_b2/report.json",
   "CS": "results/confirm_summary.json",
-  "R2ROWS": "results/confirm_R2/rows.jsonl"
+  "R2ROWS": "results/confirm_R2/rows.jsonl",
+  "IDC": "results/independent_decide_check.json"
  },
  "bindings": {
   "n_sorbents": {
@@ -832,6 +833,11 @@
    "expr": "CS['R2']['sorbents']['CAU-10']['B0']",
    "fmt": "f3"
   },
+  "rep_Kerr": {"expr": "100 * HB['summary']['K_median_rel_err_b']", "fmt": "f2"},
+  "rep_T": {"doc": "PREREG_P4_draft.md", "contains": "At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07"},
+  "rep_cv": {"doc": "PREREG_P4_draft.md", "contains": "At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07"},
+  "rep_agree": {"expr": "IDC['modes']['own']['cases_agree']", "fmt": "d"},
+  "rep_cases": {"expr": "IDC['modes']['own']['cases']", "fmt": "d"},
   "fig_margin": {
    "doc": "PREREG_P4_draft.md",
    "contains": "is at least 10 % (practical significance)"

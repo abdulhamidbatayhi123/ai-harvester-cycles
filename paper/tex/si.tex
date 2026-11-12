@@ -195,6 +195,29 @@ Spearman rank correlation and its exact two-sided $p$ are computed; open: the tw
 Exploratory.}\label{fig:s1}
 \end{figure}
 
+\section*{Supporting Note~\snote{5}: Numerical data of the figures}
+
+The file \texttt{figure\_data.zip} holds one comma-separated file per figure with data, written by the figure's script
+from the plotted artists when the figure is drawn, so the values are exactly those shown:
+\begin{itemize}
+\item \texttt{fig1\_data.data.csv}: Figure~\ID{2} (isotherms, normalized step responses, noise floor per sorbent and
+  temperature);
+\item \texttt{fig\_trajectories.data.csv}: Figure~\ID{3} (measured uptake and the three model predictions in the three
+  segments);
+\item \texttt{\ID{fig\_harness\_l1.data.csv}}: Figure~\ID{4} (error ratios of the learned models per harness round, world and
+  held-out sorbent);
+\item \texttt{fig\_results.data.csv}: Figure~\ID{5} (relative improvement per held-out sorbent under both dry-mass
+  rules; median errors of B0, the end-point oracle and B0$^{*}$; noise floors);
+\item \texttt{\ID{fig\_s1.data.csv}}: Figure~S\ID{1};
+\item \texttt{fig\_toc.data.csv}: the graphical abstract.
+\end{itemize}
+Each file has the columns \texttt{panel}, \texttt{series} (what the plotted series is: model, sorbent, rule, world),
+\texttt{x}, \texttt{y}, the panel's axis labels, and, for panels whose horizontal axis is categorical, the category
+names in order (the $x$ value is then the category index, shifted slightly to separate overlapping markers).
+Horizontal reference lines appear as series named ``reference line'' with $x$ in axes fractions. Figure~\ID{1} is a
+schematic without numerical data. Tables~S\ID{1}--S\ID{4} are themselves the numerical data of the harness, the family
+folds and the secondary metrics.
+
 \input{refs_si.tex}
 
 \end{document}

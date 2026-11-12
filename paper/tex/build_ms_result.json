@@ -13,20 +13,20 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 211,
-  "G1_n_keys": 211,
+  "G1_n_uses": 216,
+  "G1_n_keys": 216,
   "G2_main.tex_n_refs": 33,
   "G2_si.tex_n_refs": 0,
-  "G2_si_notes": 4,
+  "G2_si_notes": 5,
   "G2_si_figures": 1,
   "G3_main.tex_em_dashes": 0,
   "G3_si.tex_em_dashes": 0,
   "G4_n_phrases": 44,
   "G5_words": {
    "abstract": 147,
-   "main_text": 3703,
+   "main_text": 4016,
    "methods": 2237,
-   "si": 2013
+   "si": 2221
   },
   "G5_targets": {
    "abstract": "<= 147 (cap 150)",
@@ -1071,6 +1071,41 @@
    "doc": "main.tex",
    "text": "10",
    "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "rep_Kerr",
+   "doc": "main.tex",
+   "text": "0.05",
+   "source": "0.05",
+   "ok": true
+  },
+  {
+   "key": "rep_T",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07",
+   "ok": true
+  },
+  {
+   "key": "rep_cv",
+   "doc": "main.tex",
+   "text": "0.07",
+   "source": "PREREG_P4_draft.md: At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07",
+   "ok": true
+  },
+  {
+   "key": "rep_agree",
+   "doc": "main.tex",
+   "text": "240",
+   "source": "240",
+   "ok": true
+  },
+  {
+   "key": "rep_cases",
+   "doc": "main.tex",
+   "text": "240",
+   "source": "240",
    "ok": true
   },
   {
