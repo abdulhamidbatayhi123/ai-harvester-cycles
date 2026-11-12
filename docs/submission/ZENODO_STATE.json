@@ -1,5 +1,11 @@
 {
  "id": "24148229",
  "created": "2026-11-12 02:49:16",
- "doi": "10.5281/zenodo.24148229"
+ "doi": "10.5281/zenodo.24148229",
+ "file": {
+  "name": "ai-harvester-cycles-v1.0.0.zip",
+  "md5": "fd74d1ec7e4dbba13aafef54544a1cc8",
+  "bytes": 10814706
+ },
+ "published": "2026-11-12 19:18:42"
 }
