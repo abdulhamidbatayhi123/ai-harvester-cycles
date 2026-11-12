@@ -9,4 +9,4 @@
   protocol fixed in advance, we found no gain over assuming one shared rate for all of them.
 - Graphical abstract: figures/out/fig_toc.* (50 mm x 60 mm)
 - Data availability: repository and Zenodo DOI (to be created before submission); raw data at Zenodo 6631711 (CC BY 4.0)
-- Suggested reviewers: 4-6, at least two with AIChE J. papers in the past 10 years; see suggested_reviewers.md (to do)
+- Suggested reviewers: private/suggested_reviewers.md (kept out of git; confidential to the journal)
