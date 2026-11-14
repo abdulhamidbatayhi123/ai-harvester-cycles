@@ -69,6 +69,10 @@ to new, and the commit hashes quoted inside `PREREG_P4_draft.md` are the old one
 byte-identical before and after (its SHA-256 is in `FREEZE_MANIFEST.json`). The freeze is recorded only in this
 history; it was not deposited with a third-party registry before the confirmatory runs.
 
+To check the hashes in `FREEZE_MANIFEST.json`, hash text files with line endings converted to LF: the manifest
+hashes are LF-normalised, and the Zenodo archive (built on Windows) stores most text files with CRLF line endings,
+so hashing them as downloaded gives a false mismatch. Files compared after LF conversion match the tagged commit.
+
 ## Licence
 
 Code: MIT (`LICENSE`). The Bezrukov et al. data are CC BY 4.0 and stay at their source.

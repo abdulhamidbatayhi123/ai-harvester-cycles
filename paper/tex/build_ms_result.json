@@ -13,8 +13,8 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 216,
-  "G1_n_keys": 216,
+  "G1_n_uses": 220,
+  "G1_n_keys": 220,
   "G2_main.tex_n_refs": 33,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 5,
@@ -24,8 +24,8 @@
   "G4_n_phrases": 44,
   "G5_words": {
    "abstract": 147,
-   "main_text": 4016,
-   "methods": 2237,
+   "main_text": 4056,
+   "methods": 2290,
    "si": 2221
   },
   "G5_targets": {
@@ -845,8 +845,8 @@
   {
    "key": "res_rho_p",
    "doc": "main.tex",
-   "text": "0.22",
-   "source": "0.22",
+   "text": "0.21",
+   "source": "0.21",
    "ok": true
   },
   {
@@ -1092,6 +1092,34 @@
    "doc": "main.tex",
    "text": "0.07",
    "source": "PREREG_P4_draft.md: At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07",
+   "ok": true
+  },
+  {
+   "key": "rep_cv_des",
+   "doc": "main.tex",
+   "text": "0.11",
+   "source": "PREREG_P4_draft.md: coefficient of variation 0.07 for uptake and 0.11 for release",
+   "ok": true
+  },
+  {
+   "key": "rep_T60",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: At 60 °C they do not: 0.42 and 0.30",
+   "ok": true
+  },
+  {
+   "key": "rep_cv60a",
+   "doc": "main.tex",
+   "text": "0.42",
+   "source": "PREREG_P4_draft.md: At 60 °C they do not: 0.42 and 0.30",
+   "ok": true
+  },
+  {
+   "key": "rep_cv60d",
+   "doc": "main.tex",
+   "text": "0.30",
+   "source": "PREREG_P4_draft.md: At 60 °C they do not: 0.42 and 0.30",
    "ok": true
   },
   {

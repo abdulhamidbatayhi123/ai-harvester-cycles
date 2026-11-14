@@ -690,7 +690,7 @@
    "fmt": "f2"
   },
   "res_rho_p": {
-   "expr": "CS['exploratory_and_secondary']['rh50_vs_k']['p_min']",
+   "expr": "math.floor(100 * CS['exploratory_and_secondary']['rh50_vs_k']['p_min']) / 100",
    "fmt": "f2"
   },
   "res_ownk_med_r1b": {
@@ -836,6 +836,10 @@
   "rep_Kerr": {"expr": "100 * HB['summary']['K_median_rel_err_b']", "fmt": "f2"},
   "rep_T": {"doc": "PREREG_P4_draft.md", "contains": "At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07"},
   "rep_cv": {"doc": "PREREG_P4_draft.md", "contains": "At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07"},
+  "rep_cv_des": {"doc": "PREREG_P4_draft.md", "contains": "coefficient of variation 0.07 for uptake and 0.11 for release"},
+  "rep_T60": {"doc": "PREREG_P4_draft.md", "contains": "At 60 °C they do not: 0.42 and 0.30"},
+  "rep_cv60a": {"doc": "PREREG_P4_draft.md", "contains": "At 60 °C they do not: 0.42 and 0.30"},
+  "rep_cv60d": {"doc": "PREREG_P4_draft.md", "contains": "At 60 °C they do not: 0.42 and 0.30"},
   "rep_agree": {"expr": "IDC['modes']['own']['cases_agree']", "fmt": "d"},
   "rep_cases": {"expr": "IDC['modes']['own']['cases']", "fmt": "d"},
   "fig_margin": {

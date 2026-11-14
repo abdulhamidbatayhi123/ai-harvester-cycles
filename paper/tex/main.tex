@@ -1,9 +1,7 @@
 % Paper 4 manuscript. Built and checked by paper/tex/build_ms.py (gates G1-G8). Every number in the text is
 % \V{key}{value} bound to a results file or a frozen document in paper/tex/bindings.json.
-% Sources: paper/manuscript/introduction_draft.md and methods_draft.md (2026-11-10), PREREG_P4_draft.md (to be
-% frozen; section numbers below refer to it). Journal not chosen yet (chosen after the results; criteria in the
-% project HANDOFF): neutral article layout and source-style references until then. Results, Discussion and
-% Abstract are \pending until the confirmatory runs (after the freeze).
+% Protocol: PREREG_P4_draft.md, frozen at tag prereg-p4-freeze (section numbers in comments refer to it).
+% Target journal: AIChE Journal (Separations); AMA references written by build_ms.py from refs_master.json.
 % AIChE Journal submission layout (author guidelines read 2026-11-11): 12 pt, double spaced, 1 inch margins.
 \documentclass[12pt]{article}
 \usepackage[letterpaper,margin=1in]{geometry}
@@ -121,7 +119,11 @@ The protocol was written before any model was fitted to held-out real data and f
 \ID{84d8e8c} (tag \texttt{prereg-p4-freeze}; hashes of the protocol, code and derived data in its freeze manifest);
 every change before the freeze is listed with its cause in the protocol's
 corrections section. The freeze is recorded in the project's version history, published with this article; it was
-not deposited with a third-party registry before the confirmatory runs, so its timing rests on that history. The order of events matters for how the results may be read. The original primary hypothesis,
+not deposited with a third-party registry before the confirmatory runs, so its timing rests on that history. After the
+confirmatory runs and before publication, the history was filtered once, on \ID{2026-11-12}, to remove private
+correspondence and submission documents; this changed every commit hash, including the hashes quoted inside the
+protocol, but not the protocol itself, whose hash is in the freeze manifest (old and new hashes are mapped in
+\texttt{COMMIT\_MAP.tsv}). The order of events matters for how the results may be read. The original primary hypothesis,
 H4a, asked whether a learned model, given only an unseen sorbent's isotherms, predicts its uptake trajectories better
 than the published isotherm-driven model. A learned model could enter that test only after passing a synthetic
 ground-truth harness. The gray-box model L1 failed the harness in its last allowed round, under a stopping rule
@@ -345,8 +347,9 @@ CAU-10-H, extrapolated at the higher temperature, its median error was \V{res_ca
 \V{res_cau_b0}{0.064}. H4a$'$ is falsified under both rules.
 
 The pre-registered wording of this falsification is weak by design: B2 was supported in two of the three
-realistic-power worlds of its harness, not all three, so the paper says that no rate constant predicted from this
-descriptor was detectable at this noise and error level. Those worlds give the effect the largest size the measured
+realistic-power worlds of its harness, not all three, so the falsification takes the pre-registered form: no
+isotherm-predicted rate constant was detectable at this noise and error level. Because the isotherm entered only
+through its half-loading humidity, the paper states this for that descriptor. Those worlds give the effect the largest size the measured
 spread of $\kpp$ allows: the descriptor explains all of it. In them \V{res_k2a}{7}, \V{res_k2b}{7} and \V{res_k2c}{5}
 of the eight folds reached $r \ge \V{res_marg3}{10}$\,\%, whereas the falsifier allows at most one (an exploratory
 count; each world is a single replicate). An isotherm effect as large as the whole measured spread of $\kpp$ would
@@ -357,7 +360,7 @@ gain more than a sorbent's own rate constant does. Two exploratory checks agree 
 the training sorbents changed sign from fold to fold (\V{res_bmin}{-0.61} to \V{res_bmax}{0.30} under R2), unlike the
 consistent slopes of the realistic-power and form-error worlds (Supporting Table~S2). And in sample, a sorbent's
 own rate constant showed no significant rank correlation with its half-loading humidity in any temperature and
-direction (Spearman \V{res_rho_lo}{-0.50} to \V{res_rho_hi}{0.10}, exact $p \ge \V{res_rho_p}{0.22}$; with eight
+direction (Spearman \V{res_rho_lo}{-0.50} to \V{res_rho_hi}{0.10}, exact $p \ge \V{res_rho_p}{0.21}$; with eight
 sorbents only strong correlations could be detected; Supporting Figure~S1).
 
 \subsection{Where the error of the isotherm-driven model lies}
@@ -458,8 +461,8 @@ isotherm descriptor, the humidity of half loading, used in one log-linear form, 
 from that shared value. It did not. Across \V{dis2_n}{8} held-out sorbents and both definitions of the dry mass, the
 isotherm-predicted rate constant never came near the practical margin, its fitted dependence on the descriptor changed
 sign from one training set to the next, and in sample the sorbents' own rate constants showed no significant rank
-correlation with the descriptor. The pre-registered wording, that no rate constant predicted from this descriptor was
-detectable at this noise and error level, is deliberately cautious, because the harness found an effect of the
+correlation with the descriptor. The pre-registered wording, that no isotherm-predicted rate constant was detectable at
+this noise and error level (here, none predicted from this descriptor), is deliberately cautious, because the harness found an effect of the
 measured size in only two of three realistic worlds. Those worlds let the descriptor explain the whole measured spread
 of the rate constant, and in each of them most folds cleared the margin, whereas on the real data none did; an effect
 of that size would most likely have been seen, but a smaller, partial one could have been missed. And because a
@@ -520,7 +523,9 @@ isotherm-predicted rate constant, had to pass a synthetic test with a known trut
 data; for the isotherm-predicted rate constant, the pipeline recovered an injected slope to within
 \V{rep_Kerr}{0.05}\,\% and made no false beat without an effect. Before any held-out test, the published model was
 reproduced in sample: at \V{rep_T}{27}~\textdegree C the sorbents' own rate constants agreed with a coefficient of
-variation of \V{rep_cv}{0.07}, as Bezrukov et al.\ reported a material-independent constant there. The decision rule
+variation of \V{rep_cv}{0.07} for uptake and \V{rep_cv_des}{0.11} for release, as Bezrukov et al.\ reported a
+material-independent constant there; at \V{rep_T60}{60}~\textdegree C they differed more (\V{rep_cv60a}{0.42} for
+uptake and \V{rep_cv60d}{0.30} for release; sample standard deviations). The decision rule
 was re-implemented independently from the protocol text and agreed with the code in \V{rep_agree}{240} of
 \V{rep_cases}{240} random test cases. Uncertainty enters at two levels: the within-run repeatability of each sorbent,
 measured from repeated steps, sets the noise floor of every comparison, and inference uses clusters of repeats with
