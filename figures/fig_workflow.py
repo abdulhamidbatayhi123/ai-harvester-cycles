@@ -29,7 +29,7 @@ ROW1 = [("Data", ["dynamic vapor sorption archive:", "eight sorbents, two compos
                             "falsified: ≤ 1 fold with r ≥ 10 %"], "Methods: decision rule", "blue")]
 ROW2 = [("Learned correction", ["gray-box network on", "the rate; synthetic", "harness, seven rounds"], "H4a: not tested", True),
         ("Harness for B2", ["known truths: no effect,", "plumbing, realistic effect,", "nulls, form error"], "gate: passed", False),
-        ("Isotherm-predicted k″", ["rate constant from", "the isotherm (B2)", "against shared k″"], "H4a′: falsified, 0 of 8", True),
+        ("Isotherm-predicted k″", ["rate constant from", "the isotherm (B2)", "against shared k″"], "H4a′: falsified", True),
         ("Where B0's error lies", ["own k″ (oracle) and", "own end point:", "share of B0's error"], "descriptive", False),
         ("Whole families", ["leave one family out", "against one sorbent", "out"], "descriptive", False)]
 
