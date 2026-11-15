@@ -31,7 +31,7 @@ def main():
                     mfc="white" if comp else fs.OI["dark"])
         rho = f"{st['rho']:.2f}".replace("-", "−")
         ax.set_title(f"{TITLE[key]}; ρ = {rho}, p = {st['p_exact']:.2f}", fontsize=fs.SMALL_PT)
-        ax.set_xlabel("RH$_{50}$ (% RH)")
+        ax.set_xlabel("RH₅₀ (% RH)")
         ax.xaxis.set_major_locator(MultipleLocator(5))   # same ticks in every panel
         fs.letter(ax, letter, x=-0.3, y=1.1)
     axes[0].set_ylabel("Own k″" + chr(10) + "(wt% mg/min per % RH)")
