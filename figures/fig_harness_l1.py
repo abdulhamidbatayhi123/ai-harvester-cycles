@@ -82,8 +82,8 @@ def main():
     ticks(a, [0.1, 0.2, 0.5, 1, 2])
     a.set_xlabel("Harness round")
     a.set_ylabel("Median $E$, L1 / B0")
-    a.text(0.55, 0.5, "halving", fontsize=fs.SMALL_PT, ha="left", va="bottom")
-    a.text(0.55, 1.0, "no change", fontsize=fs.SMALL_PT, ha="left", va="bottom")
+    a.text(2.65, 0.5, "halving", fontsize=fs.SMALL_PT, ha="left", va="bottom")
+    a.text(2.65, 1.0, "no change", fontsize=fs.SMALL_PT, ha="left", va="bottom")
     hand = [Line2D([], [], ls="none", marker=WORLD_MARK[w], ms=4, mec=col1, mfc="white", mew=0.8, label=lab)
             for w, lab in (("N", "N (no correction)"), ("C", "C"), ("C2", "C2"), ("C3", "C3"))]
     hand += [Line2D([], [], ls="none", marker="o", ms=4, mec=col1, mfc=col1, label="filled: beat")]
