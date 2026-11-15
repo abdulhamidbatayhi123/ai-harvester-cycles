@@ -173,8 +173,25 @@ def ama_data(r):
     return f"{ama_names(pairs)} {title(r['title'])}{ver} {tex_escape(r['publisher'])}; {r['year']}. doi:{r['doi']}"
 
 
+# Typesetting corrections of Crossref metadata errors, checked against the live Crossref records on 2026-11-15:
+# names split wrongly between given and family name, all-capital names and journal title, the abbreviated journal
+# title and the placeholder issue "0" of a 1955 article. Only the form changes; no author, title or locator changes.
+CORRECTIONS = {
+    "Glueckauf1955Theory": {"journal": "Transactions of the Faraday Society", "number": ""},
+    "Sakoda1984Fundamental": {"author": "Sakoda, Akiyoshi and Suzuki, Motoyuki",
+                              "journal": "Journal of Chemical Engineering of Japan"},
+    "Velte2023Adsorption": {"author": ("Velte, Andreas and Laurenz, Eric and Rustam, Lina and Hügenell, Philipp P. C. "
+                                       "and Henninger, Matthias and Seiler, Jan and Füldner, Gerrit")},
+    "Nogueira2022Using": {"author": ("Nogueira, Idelfonso B. R. and Santana, Vinicius V. and Ribeiro, Ana M. and "
+                                     "Rodrigues, Alírio E.")},
+}
+
+
 def build():
     bib = parse_bib(open(BIB, encoding="utf-8").read())
+    for k, fix in CORRECTIONS.items():
+        bib[k].update(fix)
+        bib[k] = {f: v for f, v in bib[k].items() if v != ""}
     entries, status = {}, {}
     for k, f in bib.items():
         entries[k] = ama_entry(f) if STYLE == "ama" else entry(f)

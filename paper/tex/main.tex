@@ -435,9 +435,12 @@ the rate.}
 \makebox[\linewidth]{\includegraphics{../../figures/out/fig_harness_l1.pdf}}
 \caption{\textbf{Synthetic harness record of the learned models} (synthetic data only). \textbf{a}, Gray box L1:
 median held-out error of L1 over that of B0 refitted on the training sorbents, per harness round, world and held-out
-sorbent; marker shape gives the world (N, no correction; C, C2, C3, correction worlds), a filled marker a beat by
-the rule in force in that round. Lines mark no change and the halving required from round~\ID{3}. \textbf{b}, Black
-box L2, rounds \ID{1} to \ID{4}, dropped after round~\ID{4}.}
+sorbent (offset within a round); marker shape gives the world (N, no correction; C, C2, C3, correction worlds), a
+filled marker a beat by the decision rule in force in that round. Round~\ID{3} ran L2 only. The filled marker above
+\ID{1} in round~\ID{6} is a beat that the rule of that round declared although L1's median error exceeded B0's; it led
+to condition~(\ID{4}) of the decision rule (Supporting Note~\snote{1}). Lines mark no change and the halving that
+the harness required, besides a beat, in its judging world from round~\ID{3}. \textbf{b}, Black box L2 in worlds N
+(circles) and C (squares), rounds \ID{1} to \ID{4}, dropped after round~\ID{4}.}
 \label{fig:harness}
 \end{figure}
 
@@ -463,10 +466,10 @@ from that shared value. It did not. Across \V{dis2_n}{8} held-out sorbents and b
 isotherm-predicted rate constant never came near the practical margin, its fitted dependence on the descriptor changed
 sign from one training set to the next, and in sample the sorbents' own rate constants showed no significant rank
 correlation with the descriptor. The pre-registered wording, that no isotherm-predicted rate constant was detectable at
-this noise and error level (here, none predicted from this descriptor), is deliberately cautious, because the harness found an effect of the
-measured size in only two of three realistic worlds. Those worlds let the descriptor explain the whole measured spread
-of the rate constant, and in each of them most folds cleared the margin, whereas on the real data none did; an effect
-of that size would most likely have been seen, but a smaller, partial one could have been missed. And because a
+this noise and error level (here, none predicted from this descriptor), is deliberately cautious, because the harness supported B2 in only two of three realistic worlds. Those worlds let
+the descriptor explain the whole measured spread of the rate constant, and in each of them most folds cleared the
+margin, whereas on the real data none did; an effect of that size was seen in each of these single-replicate worlds,
+but a smaller, partial one could have been missed. And because a
 sorbent's own rate constant gained little on several held-out sorbents, the test could in practice falsify the
 hypothesis or leave it open, but hardly support it. What the result does not show is that the rate constant is material-independent, or that
 no other isotherm feature, functional form or larger set of sorbents could predict it; those questions remain open.

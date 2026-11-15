@@ -82,12 +82,13 @@ reliably recover a known, injected, isotherm-dependent rate correction of this s
 measurements. No statement is made about whether learning could help on the real data.
 
 {\small\setlength{\tabcolsep}{\ID{4.5pt}}
-\captionof{table}{Harness record of the learned models (synthetic data). Median held-out error $E$ of the
+\setlength{\LTcapwidth}{\textwidth}
+\newcommand{\TabHarnessCaption}{\caption{Harness record of the learned models (synthetic data). Median held-out error $E$ of the
 learned model and of B0 refitted on the training sorbents, their ratio, the one-sided exact signed-rank $p$ (rounds
 \ID{4} to \ID{7}; rounds \ID{1} and \ID{2} used a paired bootstrap, round~\ID{3} ran L2 in world N only), the beat by
 the rule in force in that round, and in world N the largest relative error of the recovered $\kpp$ over the four
 temperature--direction strata. \textsuperscript{a}The untouched fold: Al-fumarate held out with the same code and
-seed.}\label{tab:harness}
+seed.}\label{tab:harness}}
 \input{tab_harness_l1.tex}
 }
 
@@ -215,7 +216,7 @@ Each file has the columns \texttt{panel}, \texttt{series} (what the plotted seri
 \texttt{x}, \texttt{y}, the panel's axis labels, and, for panels whose horizontal axis is categorical, the category
 names in order (the $x$ value is then the category index, shifted slightly to separate overlapping markers).
 Horizontal reference lines appear as series named ``reference line'' with $x$ in axes fractions. Figure~\ID{1} is a
-schematic without numerical data. Tables~S\ID{1}--S\ID{4} are themselves the numerical data of the harness, the family
+schematic without numerical data. Tables~S\ID{1}--S\ID{4} are themselves the numerical data of the two harnesses, the family
 folds and the secondary metrics.
 
 \input{refs_si.tex}

@@ -67,12 +67,16 @@ def harness_rows():
 
 
 def tab_harness_l1():
+    head = "Round & World & Held out & Model & $E$ model & $E$ B0 & Ratio & $p$ & Beat & $k''$ error (" + BS + "%)" + BS + BS
     out = ["% written by paper/tex/make_tables.py from results/harness_round1-7/harness.json and "
            "results/harness_alfu/harness.json; do not edit",
+           # the caption sits inside the longtable (macro defined in si.tex): a longtable always steps the table
+           # counter, so a caption set outside it would make the next table S3 instead of S2
            BS + "begin{longtable}{lllccccccc}",
-           BS + "toprule",
-           "Round & World & Held out & Model & $E$ model & $E$ B0 & Ratio & $p$ & Beat & $k''$ error (" + BS + "%)" + BS + BS,
-           BS + "midrule", BS + "endhead"]
+           BS + "TabHarnessCaption" + BS + BS,
+           BS + "toprule", head, BS + "midrule", BS + "endfirsthead",
+           BS + "multicolumn{10}{l}{Table~" + BS + "thetable" + BS + " (continued)}" + BS + BS,
+           BS + "toprule", head, BS + "midrule", BS + "endhead"]
     for x in harness_rows():
         rnd = x["round"].replace("7*", "7" + BS + "textsuperscript{a}")
         out.append(f"{rnd} & {x['world']} & {x['held']} & {x['model']} & {sig(x['E_model'])} & {sig(x['E_B0'])} & "

@@ -24,7 +24,7 @@
   "G4_n_phrases": 44,
   "G5_words": {
    "abstract": 147,
-   "main_text": 4058,
+   "main_text": 4118,
    "methods": 2290,
    "si": 2221
   },
@@ -34,7 +34,8 @@
   },
   "G5_flags": [],
   "G6_n_figures": 6,
-  "G7_pending": []
+  "G7_pending": [],
+  "G2_si_tables": 4
  },
  "G1_bindings_checked": [
   {

@@ -619,6 +619,27 @@ def load_bindings(path):
     return json.load(open(path, encoding="utf-8"), object_pairs_hook=no_duplicates)
 
 
+# Supporting tables and figures that the main text cites by number (it cannot use ref into si.tex): the number LaTeX
+# printed for each label in si.aux must be the one main.tex uses, and the SI tables must run S1..Sn without a gap
+SI_NUMBERS = {"tab:harness": "S1", "tab:harnessb2": "S2", "tab:h4c": "S3", "tab:secondary": "S4", "fig:s1": "S1"}
+
+
+def gate_si_numbers(outdir, fails, report):
+    aux = open(os.path.join(outdir, "si.aux"), encoding="utf-8", errors="replace").read()
+    got = dict(re.findall(re.escape(BS) + r"newlabel\{((?:tab|fig):[^}]*)\}\{\{(S\d+)\}", aux))
+    for lab, want in SI_NUMBERS.items():
+        if got.get(lab) != want:
+            fails.append(f"G2 si.tex: {lab} printed as {got.get(lab)}, main.tex cites it as {want}")
+    tabs = [int(v[1:]) for k, v in got.items() if k.startswith("tab:")]
+    if sorted(tabs) != list(range(1, len(tabs) + 1)):
+        fails.append(f"G2 si.tex: SI tables not numbered S1..Sn: {sorted(tabs)}")
+    main = strip_comments(body_of(open(os.path.join(outdir, "main.tex"), encoding="utf-8").read()))
+    for m in re.finditer(r"Tables?~S(?:" + re.escape(BS) + r"ID\{)?(\d+)", main):
+        if int(m.group(1)) > len(tabs):
+            fails.append(f"G2 main.tex: Table S{m.group(1)} cited, the SI has {len(tabs)} tables")
+    report["G2_si_tables"] = len(tabs)
+
+
 def main():
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
@@ -634,6 +655,7 @@ def main():
         for d in DOCS:
             if compile_doc(d, fails):
                 gate_refs_compiled(d, HERE, fails)
+        gate_si_numbers(HERE, fails, report)
     res = {"gate": "manuscript/build_ms.py", "final": final, "status": "PASS" if not fails else "FAIL",
            "failures": fails, "report": {k: v for k, v in report.items() if k != "G1_rows"},
            "G1_bindings_checked": report.get("G1_rows", [])}
@@ -643,7 +665,7 @@ def main():
     print(f"G1 numbers: {r.get('G1_n_uses')} bound uses of {r.get('G1_n_keys')} keys; unbound tokens "
           f"main {r.get('G1_main.tex_unbound')}, SI {r.get('G1_si.tex_unbound')}")
     print(f"G2 references: main {r.get('G2_main.tex_n_refs')}, SI {r.get('G2_si.tex_n_refs')}; "
-          f"SI notes {r.get('G2_si_notes')}, SI figures {r.get('G2_si_figures')}")
+          f"SI notes {r.get('G2_si_notes')}, SI figures {r.get('G2_si_figures')}, SI tables {r.get('G2_si_tables')}")
     print(f"G3 em dashes: main {r.get('G3_main.tex_em_dashes')}, SI {r.get('G3_si.tex_em_dashes')}")
     print(f"G4 banned phrases checked: {r.get('G4_n_phrases')}")
     print(f"G5 words: {r.get('G5_words')} targets {r.get('G5_targets')} flags {r.get('G5_flags')}")

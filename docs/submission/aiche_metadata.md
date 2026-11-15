@@ -4,10 +4,11 @@
 - Topical heading: Separations: Materials, Devices and Processes
 - Title (112 characters, limit 120): No detectable gain from predicting water-uptake rate constants from half-loading humidity: a pre-registered test
 - Keywords (five): water sorption kinetics; metal-organic frameworks; linear driving force; held-out validation; pre-registration
-- Plain Language Summary (204 characters, limit 250):
-  Can a material's equilibrium water-uptake curve predict how fast it takes up water? Testing eight sorbents with a
-  protocol fixed in advance, we found no gain over assuming one shared rate for all of them.
+- Plain Language Summary (217 characters, limit 250):
+  Can a material's equilibrium water-uptake curve predict how fast it takes up and releases water? Testing eight
+  sorbents with a protocol fixed in advance, we found no gain over assuming one shared rate for all of them.
 - Graphical abstract: figures/out/fig_toc.* (50 mm x 60 mm)
-- Data availability: repository and Zenodo DOI (to be created before submission); raw data at Zenodo 6631711 (CC BY 4.0)
+- Data availability: https://github.com/abdulhamidbatayhi123/ai-harvester-cycles, archived at Zenodo (version 1.0.1,
+  doi:10.5281/zenodo.24243541); measurement data of Bezrukov et al. at Zenodo (doi:10.5281/zenodo.6631711, CC BY 4.0)
 - Suggested reviewers: private/suggested_reviewers.md (kept out of git; confidential to the journal)
 - Preprint: opt in to the Wiley "under review" service (Authorea) on the submission form (author's choice 2026-11-12).

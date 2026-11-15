@@ -8,12 +8,12 @@
   6.0,
   8.0
  ],
- "made": "2026-11-12 19:08:21",
+ "made": "2026-11-15 16:02:41",
  "hash": "sha256, text files LF-normalised",
  "style": "p4/figstyle.py",
- "style_sha256": "0b8d565a92aee9f78841f4dcacde62da624e4e5c6b0b1ac71a57b3cd9b8b4c6e",
+ "style_sha256": "d7b803bd940ac3114056b18911a37d501750e0adc343099d2404b56fab31e569",
  "script": "figures/fig_s1_rh50_k.py",
- "script_sha256": "1c55bf41e9618fa3040a67be6052dc172fbd346459f2b781a2c01848e122c78d",
+ "script_sha256": "1eed3d39c3c99ed87e56f377df5937cd3745f5ebc9308e9db1d40c32dd30169d",
  "inputs": {
   "results/exploratory/rh50_vs_k.json": "394908604fdabfc1e052d73d358cc0e42a25877a6a57d066fff036f17e267842"
  },

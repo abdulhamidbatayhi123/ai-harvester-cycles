@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+title: >-
+  Code, results and pre-registration for: No detectable gain from predicting water-uptake rate constants from
+  half-loading humidity: a pre-registered test
+message: If you use this software or its results, please cite the archived release.
+type: software
+authors:
+  - given-names: Abdulhamid
+    family-names: Batayhi
+    orcid: "https://orcid.org/0009-0007-0374-6755"
+    affiliation: >-
+      Department of Mechatronics Engineering, Faculty of Mechanical Engineering, Yildiz Technical University,
+      Istanbul, Türkiye
+repository-code: "https://github.com/abdulhamidbatayhi123/ai-harvester-cycles"
+version: v1.0.1
+doi: 10.5281/zenodo.24243541
+date-released: "2026-11-15"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24243541
+    description: Archived release v1.0.1 (Zenodo)
+  - type: doi
+    value: 10.5281/zenodo.24148228
+    description: Concept DOI, all versions (Zenodo)
+license: MIT
+abstract: >-
+  A pre-registered falsification test of whether a sorbent's isotherm, through its half-loading humidity,
+  predicts the rate constant of the isotherm-driven water-uptake model of Bezrukov et al. on unseen sorbents
+  (seven metal-organic frameworks and a silica gel, held out one at a time and by family). Includes the frozen
+  protocol with its freeze manifest and corrections history, the synthetic ground-truth harnesses of both
+  candidate models, every confirmatory, secondary and exploratory result file, the figure scripts with the
+  numerical data of every figure, and a manuscript build that refuses any number not resolved from a results
+  file. The measurement data are those of Bezrukov et al. (doi:10.5281/zenodo.6631711, CC BY 4.0).
+keywords:
+  - water sorption kinetics
+  - metal-organic frameworks
+  - linear driving force
+  - held-out validation
+  - pre-registration

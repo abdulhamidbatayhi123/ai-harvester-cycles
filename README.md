@@ -5,11 +5,15 @@ Code, pre-registration, harness records and every results file of the paper
 **No detectable gain from predicting water-uptake rate constants from half-loading humidity: a pre-registered test**
 (Abdulhamid Batayhi, Yildiz Technical University; manuscript in `paper/tex/`).
 
-The paper tests, on the open dynamic-vapour-sorption archive of Bezrukov et al. (Zenodo
+The paper tests, on the open dynamic vapor sorption archive of Bezrukov et al. (Zenodo
 [10.5281/zenodo.6631711](https://doi.org/10.5281/zenodo.6631711), CC BY 4.0; seven MOFs and a silica gel), whether an
 unseen sorbent's isotherm predicts the rate constant of the isotherm-driven uptake model better than one value shared
 by the other sorbents. The protocol was frozen before any confirmatory fit (git tag `prereg-p4-freeze`, commit
-84d8e8c; hashes in `FREEZE_MANIFEST.json`; the history was filtered once before publication, see below). Result: falsified under both dry-mass rules (`results/final_verdict.json`).
+84d8e8c; hashes in `FREEZE_MANIFEST.json`; the history was filtered once before publication, see below). Result:
+falsified under both dry-mass rules (`results/final_verdict.json`).
+
+Archived at Zenodo: version 1.0.1, [10.5281/zenodo.24243541](https://doi.org/10.5281/zenodo.24243541) (all versions:
+[10.5281/zenodo.24148228](https://doi.org/10.5281/zenodo.24148228)). To cite the code and results, see `CITATION.cff`.
 
 ## Where things are
 
@@ -47,7 +51,8 @@ Python 3.12; exact package versions in `requirements-lock.txt` (`pip install -r 
    `run_study` appends one row per fold to `rows.jsonl` and skips folds already there, so an interrupted run resumes.
 5. Summaries, secondary and exploratory analyses: `audit/summarise_confirm.py`, `audit/secondary_metrics.py`,
    `audit/exploratory_joint_oracle.py`, `audit/exploratory_rh50_vs_k.py` (usage line at the top of each).
-6. Figures: the usage line at the top of each `figures/fig_*.py`. Manuscript: `python -I paper/tex/make_tables.py`, then
+6. Figures: the usage line at the top of each `figures/fig_*.py`; each figure script also writes the plotted numbers to
+   `figures/out/<figure>.data.csv` (packed as `figure_data.zip` in the Supporting Information). Manuscript: `python -I paper/tex/make_tables.py`, then
    `python -I paper/tex/build_ms.py` (needs the `tectonic` TeX engine; the gates check that every number in the text
    equals its source, that every reference and figure is current, and more; see the script's docstring).
 
@@ -70,9 +75,9 @@ byte-identical before and after (its SHA-256 is in `FREEZE_MANIFEST.json`). The 
 history; it was not deposited with a third-party registry before the confirmatory runs.
 
 To check the hashes in `FREEZE_MANIFEST.json`, hash text files with line endings converted to LF: the manifest
-hashes are LF-normalised, and the Zenodo archive (built on Windows) stores most text files with CRLF line endings,
+hashes are LF-normalized, and the Zenodo archive (built on Windows) stores most text files with CRLF line endings,
 so hashing them as downloaded gives a false mismatch. Files compared after LF conversion match the tagged commit.
 
-## Licence
+## License
 
 Code: MIT (`LICENSE`). The Bezrukov et al. data are CC BY 4.0 and stay at their source.
