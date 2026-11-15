@@ -28,8 +28,8 @@ ROW1 = [("Data", ["dynamic vapor sorption archive:", "eight sorbents, two compos
                             "10 % margin, signed-rank test;", "supported: 7 of 8 folds beaten;",
                             "falsified: ≤ 1 fold with r ≥ 10 %"], "Methods: decision rule", "blue")]
 ROW2 = [("Learned correction", ["gray-box network on", "the rate; synthetic", "harness, seven rounds"], "H4a: not tested", True),
-        ("Harness for B2", ["known truths: no effect,", "plumbing, realistic effect,", "nulls, form error"], "gate", False),
-        ("Isotherm-predicted k″", ["rate constant from", "the isotherm (B2)", "against shared k″"], "H4a′", True),
+        ("Harness for B2", ["known truths: no effect,", "plumbing, realistic effect,", "nulls, form error"], "gate: passed", False),
+        ("Isotherm-predicted k″", ["rate constant from", "the isotherm (B2)", "against shared k″"], "H4a′: falsified, 0 of 8", True),
         ("Where B0's error lies", ["own k″ (oracle) and", "own end point:", "share of B0's error"], "descriptive", False),
         ("Whole families", ["leave one family out", "against one sorbent", "out"], "descriptive", False)]
 
@@ -100,7 +100,7 @@ def main():
     y3, h3 = 1.0, 8.5
     arrow((W / 2, y2 - 2.3), (W / 2, y3 + h3 + 0.3))
     b = box(W / 2 - 62.0, y3, 124.0, h3, tint(fs.OI["green"], 0.15), fs.OI["green"])
-    text(W / 2, y3 + h3 / 2, "Can an unseen sorbent's dynamics be predicted from its isotherm?", b, fontsize=FS,
+    text(W / 2, y3 + h3 / 2, "Can the isotherm step predict an unseen sorbent's rate constant? Here: no detectable gain", b, fontsize=FS,
          fontweight="bold", ha="center", va="center")
     # layout check: every text inside its box, no two texts overlapping
     fig.canvas.draw()
