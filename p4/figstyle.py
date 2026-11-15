@@ -202,6 +202,14 @@ def save(fig, stem, inputs=()):
     return [stem + ".pdf", stem + ".png"] + ([stem + ".data.csv"] if n_rows else [])
 
 
+def _plain(s):
+    """A figure label as plain text for the data CSV: mathtext markup removed ('$r$ of B2' -> 'r of B2',
+    '$^{-1}$' -> '^-1'), the characters themselves kept."""
+    s = re.sub(r"\\mathrm\{([^}]*)\}", r"\1", s)
+    s = re.sub(r"\^\{([^}]*)\}", r"^\1", s)
+    return s.replace("$", "")
+
+
 def export_data(fig, stem):
     """Write the numerical data plotted in the figure to stem.data.csv (AIChE Journal requires the data underlying
     every figure; editorial doi:10.1002/aic.18017). One row per plotted point of every line or marker series: panel
@@ -221,8 +229,8 @@ def export_data(fig, stem):
             if not sid or sid.startswith("_"):
                 sid = "reference line" if len(ln.get_xdata()) == 2 else "series"
             for x, y in zip(ln.get_xdata(), ln.get_ydata()):
-                rows.append([panel, sid, f"{float(x):.6g}", f"{float(y):.6g}", ax.get_xlabel(), ax.get_ylabel(),
-                             "; ".join(ticks) if cat else ""])
+                rows.append([panel, _plain(sid), f"{float(x):.6g}", f"{float(y):.6g}", _plain(ax.get_xlabel()),
+                             _plain(ax.get_ylabel()), "; ".join(ticks) if cat else ""])
     if not rows:
         return 0
     with open(stem + ".data.csv", "w", encoding="utf-8", newline="") as f:

@@ -52,13 +52,13 @@ def main():
         w = g["w"][i][np.isfinite(g["w"][i])]
         t = np.arange(len(w)) * 0.1
         b.plot(t, (w - w[0]) / (w[-1] - w[0]), color=col, linestyle=ls, gid=f"{LABEL.get(s, s)} fraction of step")
-    a.set_xlabel("relative humidity (%)")
-    a.set_ylabel("uptake at 27 °C (wt%)")
+    a.set_xlabel("Relative humidity (%)")
+    a.set_ylabel("Uptake at 27 °C (wt%)")
     a.set_xlim(0, 40)
     fig.legend(*a.get_legend_handles_labels(), loc="lower left", ncol=4, handlelength=2.6,
                bbox_to_anchor=(0.04, -0.01), columnspacing=1.4)
-    b.set_xlabel("time after the 0 → 30 % RH step (min)")
-    b.set_ylabel("fraction of the step change")
+    b.set_xlabel("Time after the 0 → 30 % RH step (min)")
+    b.set_ylabel("Fraction of the step change")
     b.set_xlim(0, 80)
     b.set_ylim(-0.02, 1.05)
     # c: noise floor per sorbent and temperature
@@ -70,7 +70,7 @@ def main():
                markerfacecolor="none" if T == "27C" else fs.OI["dark"], label=T.replace("C", " °C"))
     c.set_xticks(x)
     c.set_xticklabels([LABEL.get(s, s) for s in names], rotation=60, ha="right")
-    c.set_ylabel("noise floor F (normalized RMS)")
+    c.set_ylabel("Noise floor F (normalized RMS)")
     c.set_yscale("log")
     # plain tick labels: the superscripts of 10^-3 would print below 5 pt at 6 pt tick size
     from matplotlib.ticker import FixedLocator, NullLocator

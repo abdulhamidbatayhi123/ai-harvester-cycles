@@ -13,6 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from p4 import figstyle as fs  # noqa: E402
 
 import matplotlib.pyplot as plt  # noqa: E402
+from matplotlib.ticker import MultipleLocator  # noqa: E402
 
 TITLE = {"27C|ads": "27 °C, uptake", "27C|des": "27 °C, release", "60C|ads": "60 °C, uptake", "60C|des": "60 °C, release"}
 
@@ -31,6 +32,7 @@ def main():
         rho = f"{st['rho']:.2f}".replace("-", "−")
         ax.set_title(f"{TITLE[key]}; ρ = {rho}, p = {st['p_exact']:.2f}", fontsize=fs.SMALL_PT)
         ax.set_xlabel("RH50 (% RH)")
+        ax.xaxis.set_major_locator(MultipleLocator(5))   # same ticks in every panel
         fs.letter(ax, letter, x=-0.3, y=1.1)
     axes[0].set_ylabel("Own k″")
     fig.subplots_adjust(left=0.08, right=0.99, bottom=0.24, top=0.85, wspace=0.45)
