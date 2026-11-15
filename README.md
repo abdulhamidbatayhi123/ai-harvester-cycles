@@ -50,7 +50,14 @@ Python 3.12; exact package versions in `requirements-lock.txt` (`pip install -r 
 
    `run_study` appends one row per fold to `rows.jsonl` and skips folds already there, so an interrupted run resumes.
 5. Summaries, secondary and exploratory analyses: `audit/summarise_confirm.py`, `audit/secondary_metrics.py`,
-   `audit/exploratory_joint_oracle.py`, `audit/exploratory_rh50_vs_k.py` (usage line at the top of each).
+   `audit/exploratory_joint_oracle.py`, `audit/exploratory_rh50_vs_k.py`, and, from the last internal review,
+   `audit/exploratory_oracle_r.py` (the oracle's r by the decision rule), `audit/exploratory_rh50_vs_k_R1.py` (the
+   rank correlation under R1, with RH50 recomputed under R1; it also recomputes the R2 values of `results/rh50.json`
+   and checks that they agree) and `audit/exploratory_k_spread.py` (usage line at the top of each).
+Pre-freeze inputs (run before the freeze; their outputs are committed and hashed in `FREEZE_MANIFEST.json`):
+   `audit/prefreeze_checks.py` and `audit/prefreeze_checks2.py` (noise floors, clusters, drift; `checks2.json` holds the
+   floors F the decision rule uses), `audit/reproduce_b0.py` (in-sample reproduction of B0, R2 and R1),
+   `audit/h4b_insample.py` and `audit/extrapolation_flags.py`; usage line at the top of each.
 6. Figures: the usage line at the top of each `figures/fig_*.py`; each figure script also writes the plotted numbers to
    `figures/out/<figure>.data.csv` (packed as `figure_data.zip` in the Supporting Information). Manuscript: `python -I paper/tex/make_tables.py`, then
    `python -I paper/tex/build_ms.py` (needs the `tectonic` TeX engine; the gates check that every number in the text

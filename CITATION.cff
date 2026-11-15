@@ -29,8 +29,8 @@ abstract: >-
   (seven metal-organic frameworks and a silica gel, held out one at a time and by family). Includes the frozen
   protocol with its freeze manifest and corrections history, the synthetic ground-truth harnesses of both
   candidate models, every confirmatory, secondary and exploratory result file, the figure scripts with the
-  numerical data of every figure, and a manuscript build that refuses any number not resolved from a results
-  file. The measurement data are those of Bezrukov et al. (doi:10.5281/zenodo.6631711, CC BY 4.0).
+  numerical data of every figure, and a manuscript build that checks every number against its source (a results
+  file or the frozen protocol). The measurement data are those of Bezrukov et al. (doi:10.5281/zenodo.6631711, CC BY 4.0).
 keywords:
   - water sorption kinetics
   - metal-organic frameworks

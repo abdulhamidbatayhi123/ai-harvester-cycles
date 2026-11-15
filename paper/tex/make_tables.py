@@ -42,7 +42,8 @@ def ratio(x):
 
 def kerr(x):
     """Largest relative error of the recovered k'' over the four strata, world N only (criterion 1), in %."""
-    return "--" if x["k_err"] is None or x["model"] != "L1" else f"{100 * x['k_err']:.2f}"
+    # shown once per case: on the L1 row, or on the L2 row in round 3, which ran L2 only
+    return "--" if x["k_err"] is None or (x["model"] != "L1" and x["round"] != "3") else f"{100 * x['k_err']:.2f}"
 
 
 def harness_rows():

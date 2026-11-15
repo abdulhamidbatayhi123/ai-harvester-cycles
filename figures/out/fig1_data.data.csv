@@ -8727,19 +8727,19 @@ b,Syloid AL-1 fraction of step,56.3,0.999417,Time after the 0 → 30 % RH step (
 b,Syloid AL-1 fraction of step,56.4,0.999636,Time after the 0 → 30 % RH step (min),Fraction of the step change,
 b,Syloid AL-1 fraction of step,56.5,0.99983,Time after the 0 → 30 % RH step (min),Fraction of the step change,
 b,Syloid AL-1 fraction of step,56.6,1,Time after the 0 → 30 % RH step (min),Fraction of the step change,
-c,noise floor F 27C,-0.125,0.00186907,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 27C,0.875,0.00262487,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 27C,1.875,0.000938587,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 27C,2.875,0.00140212,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 27C,3.875,0.00182063,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 27C,4.875,0.00346005,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 27C,5.875,0.00200156,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 27C,6.875,0.00110977,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 60C,0.125,0.00496264,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 60C,1.125,0.0044278,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 60C,2.125,0.00280543,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 60C,3.125,0.012604,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 60C,4.125,0.0028557,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 60C,5.125,0.00664471,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 60C,6.125,0.00495778,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
-c,noise floor F 60C,7.125,0.00575919,,Noise floor F (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 27C,-0.125,0.00186907,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 27C,0.875,0.00262487,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 27C,1.875,0.000938587,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 27C,2.875,0.00140212,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 27C,3.875,0.00182063,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 27C,4.875,0.00346005,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 27C,5.875,0.00200156,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 27C,6.875,0.00110977,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 60C,0.125,0.00496264,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 60C,1.125,0.0044278,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 60C,2.125,0.00280543,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 60C,3.125,0.012604,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 60C,4.125,0.0028557,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 60C,5.125,0.00664471,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 60C,6.125,0.00495778,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1
+c,within-run repeatability 60C,7.125,0.00575919,,Within-run repeatability (normalized RMS),MOF-303; MIL-160; CAU-10-H; Al-fumarate; ROS-039; ROS-040; ROS-037; Syloid AL-1

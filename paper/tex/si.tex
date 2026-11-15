@@ -37,7 +37,8 @@ branch flag, the temperature, $\C{1}/m$, and the driving force $\RHf - \RHb$ its
 black box L2 is a neural ODE, $\mathrm{d}w/\mathrm{d}t = (S/m)\,f_\theta(z)$ with a fixed unit scale $S$, given the
 same local isotherm features and no physics: no sign constraint and no zero rate at equilibrium. Both are small
 multilayer perceptrons trained in two stages, first on finite-difference rates (stage A) and then on open-loop
-rollouts over short windows (stage B), and validated and early-stopped on the median held-out error $E$.
+rollouts over short windows (stage B), and validated and early-stopped on the median error $E$ of a validation
+sorbent drawn from the training sorbents (Syloid AL-1), never on the held-out sorbent.
 
 \paragraph{Harness.} Synthetic trajectories were generated on the real forcing, isotherms and dry masses from a known
 truth and run through the fold pipeline. In world N the truth is B0 with the pooled $\kpp$ of the real data. The
@@ -73,7 +74,8 @@ which had never been held out in any diagnostic.
 
 \paragraph{Round~\ID{7} and the outcome.} Criteria \C{1} and \C{3} passed on all three sorbents. Criterion \C{2} failed on
 MOF-303: in world C3, L1 lowered the median $E$ from \V{si_mof_b0}{0.0128} to \V{si_mof_l1}{0.0070}, but the median
-cluster gain, \V{si_mof_gain}{0.0022}, was below $F = \V{si_mof_F}{0.003}$, the signed-rank $p$,
+cluster gain, \V{si_mof_gain}{0.0022}, was below $F = \V{si_mof_F}{0.003}$ (one synthetic floor that this harness
+used for every sorbent; the B2 harness used each material's measured floor), the signed-rank $p$,
 \V{si_mof_p}{0.034}, was above \V{si_alpha}{0.025}, and the ratio, \V{si_mof_ratio}{0.55}, missed the halving. On
 ROS-039 and on Al-fumarate L1 met every condition (ratios \V{si_ros_ratio}{0.36} and \V{si_alfu_ratio}{0.42}). Under
 the stopping rule no learned model passed the harness, so H4a is reported as not tested and no learned model was
@@ -95,18 +97,21 @@ seed.}\label{tab:harness}}
 \section*{Supporting Note~\snote{2}: The B2 harness}
 
 \paragraph{Design.} The harness of H4a$'$ (version~\ID{2}, committed before its first run; an earlier version was
-revised after an independent review, and its only run was stopped before any result was read) uses the real forcing,
+revised after an independent AI-assisted review (Acknowledgments of the main text), and its only run was stopped before any result was read) uses the real forcing,
 isotherms and dry masses of the primary set and the two composites, and the same autocorrelated noise as the harness
 of Note~\snote{1}. Each world runs the \V{si2_nfold}{8} LOSO folds; in each fold B0 and B2 are fitted on the training
 sorbents by the scored metric, and the decision rule of the main text is applied with each material's real noise
 floor and the admissibility check. In world N the truth is B0 with the pooled $\kpp$ of the real data. In world K
-(plumbing) the log rate constant of each sorbent is shifted by $\V{si2_bK}{1.5}\,(x - \bar{x})$, with $x = \mathrm{RH}_{50}/\V{si2_x30}{30}\,\%$,
+(plumbing) $\ln\kpp$ of each sorbent is shifted by $\V{si2_bK}{1.5}\,(x - \bar{x})$, with $x = \mathrm{RH}_{50}/\V{si2_x30}{30}\,\%$,
 so the truth lies inside B2's class; K checks the machinery, not power. Worlds K2a, K2b and K2c (realistic power) use
 the same form with the slope at each temperature chosen so that the across-sorbent spread of the shift equals the
-measured in-sample spread of $\log\kpp$ (\V{si2_sd27}{0.089} at \V{si2_T27}{27}~\textdegree C, slope
-\V{si2_b27}{0.50}; \V{si2_sd60}{0.300} at \V{si2_T60}{60}~\textdegree C, slope \V{si2_b60}{1.38}), plus end-point
+measured in-sample spread of $\ln\kpp$ (\V{si2_sd27}{0.089} at \V{si2_T27}{27}~\textdegree C, slope
+\V{si2_b27}{0.50}; \V{si2_sd60}{0.300} at \V{si2_T60}{60}~\textdegree C, slope \V{si2_b60}{1.38}; the protocol fixed
+these spreads from the least-squares fits, whereas the scored-metric fits used elsewhere give \V{si2_sdm27}{0.096} and
+\V{si2_sdm60}{0.232}, so at \ID{60}~\textdegree C these worlds carry a larger effect than the metric fits suggest), plus
+end-point
 offsets drawn as in the null worlds: the largest effect of the measured size that the isotherm could carry, with
-end-point error on top. In the six structure-free null worlds S0 to S5 the log rate constant of each sorbent and
+end-point error on top. In the six structure-free null worlds S0 to S5, $\ln\kpp$ of each sorbent and
 temperature is shifted by a normal draw with the same spreads, independent of the isotherm, and the equilibrium is the
 isotherm scaled by $(\C{1} + \varepsilon)$, with $|\varepsilon|$ resampled from the \V{si2_ngroups}{18} measured group
 offsets, a random sign and $|\varepsilon\, w_{30}|$ capped at \V{si2_cap}{3.128}~wt\%; nothing any model sees predicts
@@ -119,7 +124,8 @@ beaten in K and the median over folds and strata of $|b_{\mathrm{fit}}/\V{si2_bK
 per-fold beat rate is at most \V{si2_cpmax}{0.40}, no world has \V{si2_wmax}{5} or more of its folds beaten, and the
 median of $r$ is below \V{si2_rmax}{2.5}\,\%. The bound of \V{si2_cpmax2}{0.40} keeps the probability of at least
 \V{si2_need2}{7} beaten folds under the null at or below \V{si2_p7}{0.05} for a within-world fold correlation up to
-\V{si2_rho}{0.12}; the observed within-world correlation of null beats is reported. If the harness fails, H4a$'$ is
+\V{si2_rho}{0.12}, an assumption taken from a stylized simulation; the observed within-world correlation of null
+beats is reported. If the harness fails, H4a$'$ is
 not tested. The K2 and C3 results are reported whatever happens; if H4a$'$ is falsified, the K2 worlds set its
 wording.
 
@@ -128,10 +134,10 @@ all \V{si2_Kbeats}{8} folds were beaten and the fitted slope was recovered to wi
 over folds and strata). Of the \V{si2_nnull2}{48} null fold-fits, \V{si2_Sbeats}{3} were beaten, at most
 \V{si2_Smax}{2} in any world; the upper bound on the per-fold beat rate was \V{si2_cpobs}{0.154}, the median of $r$
 over the null folds \V{si2_rmed}{-2.7}\,\%, and the within-world correlation of null beats \V{si2_rhoobs}{0.064}, inside
-the value the bound assumes. B2 was supported in two of the three realistic-power worlds (K2a and K2b,
+the value the bound assumes, though imprecise because it rests on three beats. B2 was supported in two of the three realistic-power worlds (K2a and K2b,
 \V{si2_K2a}{7} and \V{si2_K2b}{7} folds) and not established in K2c (\V{si2_K2c}{5} folds), so an effect of the
 measured size is not always detected; a falsification on the real data is worded accordingly. In the form-error world
-C3, B2 beat B0 in \V{si2_C3}{6} of the folds, with median $r$ of \V{si2_C3r}{52}\,\% and a negative fitted slope at both
+C3, B2 beat B0 in \V{si2_C3}{6} of the eight folds, with median $r$ of \V{si2_C3r}{52}\,\% and a negative fitted slope at both
 temperatures: a rate law shared by every material but not of B0's form is enough to make the isotherm predict B0's
 effective rate constant.
 
@@ -164,7 +170,8 @@ the primary dry-mass rule.}\label{tab:h4c}
 
 \section*{Supporting Note~\snote{4}: Strata, secondary metrics, exploratory checks}
 
-The protocol reports the temperature and direction strata separately and names two secondary metrics: the relative
+The protocol reports the temperature and direction strata separately, and among its secondary metrics are two
+error measures: the relative
 error in the time to \V{si4_t63}{63}\,\% of a segment's change, and the error truncated at five times the measured
 time to \V{si4_t63b}{63}\,\%, so that long equilibrium tails do not dilute the transient (Table~\ref{tab:secondary}).
 They were computed after the confirmatory runs with the parameters stored in them (no refit of B0 or B2), and the
@@ -173,10 +180,13 @@ recomputed predictions reproduce the confirmatory errors exactly. B2 improves on
 
 Two further checks were added after the result and are exploratory. First, a joint oracle applies both oracles at once:
 B0 with the held-out sorbent's own end points and its own rate constant fitted on those scaled isotherms. It lowered
-B0's median error by \V{si4_j2}{26}\,\% (R2) and \V{si4_j1}{25}\,\% (R1) at the median over held-out sorbents, about
-the sum of the two separate effects. Second, Figure~\ref{fig:s1} plots each sorbent's own rate constant, fitted in
+B0's median error by \V{si4_j2}{26}\,\% (R2) and \V{si4_j1}{25}\,\% (R1) at the median over held-out sorbents,
+somewhat less than the sum of the two separate medians; it is not a best case, since in the Al-fumarate fold it scored
+worse than the end-point oracle alone. Second, Figure~\ref{fig:s1} plots each sorbent's own rate constant, fitted in
 sample before the freeze, against its half-loading humidity; no stratum shows a significant rank correlation, though
-with eight sorbents only strong correlations could be detected.
+with eight sorbents only strong correlations could be detected. Under R1, with the half-loading humidity recomputed
+from the isotherms under that rule, all four correlations are negative and none is significant ($\rho$ from
+\V{res_rho1_lo}{-0.60} to \V{res_rho1_hi}{-0.24}, exact $p \ge \V{res_rho1_p}{0.13}$).
 
 \begin{table}[h]
 \centering
@@ -201,7 +211,7 @@ Exploratory.}\label{fig:s1}
 The file \texttt{figure\_data.zip} holds one comma-separated file per figure with data, written by the figure's script
 from the plotted artists when the figure is drawn, so the values are exactly those shown:
 \begin{itemize}
-\item \texttt{fig1\_data.data.csv}: Figure~\ID{2} (isotherms, normalized step responses, noise floor per sorbent and
+\item \texttt{fig1\_data.data.csv}: Figure~\ID{2} (isotherms, normalized step responses, within-run repeatability per sorbent and
   temperature);
 \item \texttt{fig\_trajectories.data.csv}: Figure~\ID{3} (measured uptake and the three model predictions in the three
   segments);

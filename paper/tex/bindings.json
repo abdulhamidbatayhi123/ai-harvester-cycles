@@ -10,7 +10,14 @@
   "HR": "results/harness_b2/report.json",
   "CS": "results/confirm_summary.json",
   "R2ROWS": "results/confirm_R2/rows.jsonl",
-  "IDC": "results/independent_decide_check.json"
+  "IDC": "results/independent_decide_check.json",
+  "RB": "results/prefreeze/reproduce_b0.json",
+  "D2": "results/confirm_R2/decide.json",
+  "D1": "results/confirm_R1/decide.json",
+  "OR2": "results/exploratory/oracle_r_R2.json",
+  "OR1": "results/exploratory/oracle_r_R1.json",
+  "RK1": "results/exploratory/rh50_vs_k_R1.json",
+  "KS": "results/exploratory/k_spread.json"
  },
  "bindings": {
   "n_sorbents": {
@@ -122,11 +129,11 @@
    "contains": "time-to-63 % in P is 1.1 min, so this keeps at least 11 points inside every time constant."
   },
   "clu_lo": {
-   "expr": "min(v['clusters'] for v in CC['counts']['R2'].values())",
+   "expr": "min(sum(v['inference_clusters'] for k, v in CH['clusters'].items() if k.split('|')[0] == m) for m in set(k.split('|')[0] for k in CH['clusters']))",
    "fmt": "d"
   },
   "clu_hi": {
-   "expr": "max(v['clusters'] for v in CC['counts']['R2'].values())",
+   "expr": "max(sum(v['inference_clusters'] for k, v in CH['clusters'].items() if k.split('|')[0] == m) for m in set(k.split('|')[0] for k in CH['clusters']))",
    "fmt": "d"
   },
   "rh50_ref": {
@@ -833,15 +840,42 @@
    "expr": "CS['R2']['sorbents']['CAU-10']['B0']",
    "fmt": "f3"
   },
-  "rep_Kerr": {"expr": "100 * HB['summary']['K_median_rel_err_b']", "fmt": "f2"},
-  "rep_T": {"doc": "PREREG_P4_draft.md", "contains": "At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07"},
-  "rep_cv": {"doc": "PREREG_P4_draft.md", "contains": "At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07"},
-  "rep_cv_des": {"doc": "PREREG_P4_draft.md", "contains": "coefficient of variation 0.07 for uptake and 0.11 for release"},
-  "rep_T60": {"doc": "PREREG_P4_draft.md", "contains": "At 60 °C they do not: 0.42 and 0.30"},
-  "rep_cv60a": {"doc": "PREREG_P4_draft.md", "contains": "At 60 °C they do not: 0.42 and 0.30"},
-  "rep_cv60d": {"doc": "PREREG_P4_draft.md", "contains": "At 60 °C they do not: 0.42 and 0.30"},
-  "rep_agree": {"expr": "IDC['modes']['own']['cases_agree']", "fmt": "d"},
-  "rep_cases": {"expr": "IDC['modes']['own']['cases']", "fmt": "d"},
+  "rep_Kerr": {
+   "expr": "100 * HB['summary']['K_median_rel_err_b']",
+   "fmt": "f2"
+  },
+  "rep_T": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "At 27 °C the per-material k″ agree across the eight sorbents: coefficient of variation 0.07"
+  },
+  "rep_cv": {
+   "expr": "RB['pooled']['27C|ads']['k2_cv_across_8_sample_sd']",
+   "fmt": "f2"
+  },
+  "rep_cv_des": {
+   "expr": "RB['pooled']['27C|des']['k2_cv_across_8_sample_sd']",
+   "fmt": "f2"
+  },
+  "rep_T60": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "At 60 °C they do not: 0.42 and 0.30"
+  },
+  "rep_cv60a": {
+   "expr": "RB['pooled']['60C|ads']['k2_cv_across_8_sample_sd']",
+   "fmt": "f2"
+  },
+  "rep_cv60d": {
+   "expr": "RB['pooled']['60C|des']['k2_cv_across_8_sample_sd']",
+   "fmt": "f2"
+  },
+  "rep_agree": {
+   "expr": "IDC['modes']['own']['cases_agree']",
+   "fmt": "d"
+  },
+  "rep_cases": {
+   "expr": "IDC['modes']['own']['cases']",
+   "fmt": "d"
+  },
   "fig_margin": {
    "doc": "PREREG_P4_draft.md",
    "contains": "is at least 10 % (practical significance)"
@@ -858,13 +892,77 @@
    "doc": "PREREG_P4_draft.md",
    "contains": "is at least 10 % (practical significance)"
   },
-  "res_cap_r2": {
-   "expr": "sum(v['own_k_rel_reduction'] < 0.10 for v in CS['R2']['sorbents'].values())",
+  "res_b0b_r2": {
+   "expr": "sum(v['heldout_best_candidate'] == 'B0-b_or_B0_other' for k, v in D2['folds'].items() if k.startswith('LOSO:'))",
    "fmt": "d"
   },
-  "res_cap_r1": {
-   "expr": "sum(v['own_k_rel_reduction'] < 0.10 for v in CS['R1']['sorbents'].values())",
+  "res_b0b_r1": {
+   "expr": "sum(v['heldout_best_candidate'] == 'B0-b_or_B0_other' for k, v in D1['folds'].items() if k.startswith('LOSO:'))",
    "fmt": "d"
+  },
+  "res_viol_max": {
+   "expr": "100 * max(v['violation_excess'] for D in (D2, D1) for k, v in D['folds'].items() if k.startswith('LOSO:'))",
+   "fmt": "f1"
+  },
+  "res_rpool_37": {
+   "expr": "100 * D2['folds']['LOSO:ROS-037|B2']['r_pooled']",
+   "fmt": "f1"
+  },
+  "res_rpool_39": {
+   "expr": "100 * D2['folds']['LOSO:ROS-039|B2']['r_pooled']",
+   "fmt": "f1"
+  },
+  "res_orr_r2": {
+   "expr": "OR2['summary']['n_loso_r_ge_margin']",
+   "fmt": "d"
+  },
+  "res_orr_r1": {
+   "expr": "OR1['summary']['n_loso_r_ge_margin']",
+   "fmt": "d"
+  },
+  "res_orm_r2": {
+   "expr": "OR2['summary']['n_loso_rule_met']",
+   "fmt": "d"
+  },
+  "res_orm_r1": {
+   "expr": "OR1['summary']['n_loso_rule_met']",
+   "fmt": "d"
+  },
+  "res_bneg_r2": {
+   "expr": "sum(x < 0 for s in CS['R2']['sorbents'].values() for x in s['b'].values())",
+   "fmt": "d"
+  },
+  "res_bneg_r1": {
+   "expr": "sum(x < 0 for s in CS['R1']['sorbents'].values() for x in s['b'].values())",
+   "fmt": "d"
+  },
+  "res_bn": {
+   "expr": "sum(len(s['b']) for s in CS['R2']['sorbents'].values())",
+   "fmt": "d"
+  },
+  "res_bneg27a_r1": {
+   "expr": "sum(s['b']['27C|ads'] < 0 for s in CS['R1']['sorbents'].values())",
+   "fmt": "d"
+  },
+  "res_rho1_lo": {
+   "expr": "RK1['summary']['rho_min']",
+   "fmt": "f2"
+  },
+  "res_rho1_hi": {
+   "expr": "RK1['summary']['rho_max']",
+   "fmt": "f2"
+  },
+  "res_rho1_p": {
+   "expr": "RK1['summary']['p_min']",
+   "fmt": "f2"
+  },
+  "si2_sdm27": {
+   "expr": "KS['metric']['27C']",
+   "fmt": "f3"
+  },
+  "si2_sdm60": {
+   "expr": "KS['metric']['60C']",
+   "fmt": "f3"
   }
  }
 }
