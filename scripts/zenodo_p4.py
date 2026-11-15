@@ -43,7 +43,7 @@ DESC = ("<p>Archive of the repository github.com/abdulhamidbatayhi123/ai-harvest
         "to new commit hashes.</p>")
 
 
-VERSION = "v1.0.0"
+VERSION = "v1.0.1"   # v1.0.0 = record 24148229 (2026-11-12); v1.0.1 = pre-submission fixes (2026-11-15)
 KEYWORDS = ["metal-organic frameworks", "water sorption kinetics", "linear driving force", "dynamic vapour sorption",
             "atmospheric water harvesting", "held-out validation", "pre-registration", "grey-box machine learning"]
 
@@ -140,6 +140,18 @@ def main():
     rid = st.get("id")
     if rid in OTHER_PROJECT_DRAFTS:
         raise SystemExit(f"refusing: {rid} belongs to another project")
+    if "--new-version" in sys.argv:
+        # new version of the published record (author approved v1.0.1 on 2026-11-15): Zenodo creates a fresh draft in
+        # the same concept record; the previous version stays unchanged. VERSION and the publication date are set by
+        # --metadata afterwards.
+        if not st.get("published"):
+            raise SystemExit("refusing: the current record is not published, so there is nothing to version")
+        old = dict(st)
+        d = req("POST", f"{API}/records/{rid}/versions", tk, {})
+        rid = d["id"]
+        st = {"id": rid, "created": time.strftime("%Y-%m-%d %H:%M:%S"), "previous": old}
+        save(st)
+        print("new-version draft created:", rid, "(previous", old["id"], old["doi"] + ")")
     if not rid:
         meta = {"metadata": {
             "resource_type": {"id": "software"},
@@ -167,6 +179,7 @@ def main():
         cur = req("GET", f"{API}/records/{rid}/draft", tk)
         m = cur["metadata"]
         m.update(full_metadata())
+        m["publication_date"] = time.strftime("%Y-%m-%d")
         req("PUT", f"{API}/records/{rid}/draft", tk, {"metadata": m, "access": cur.get("access"),
                                                      "files": cur.get("files"), "pids": cur.get("pids")})
         back = req("GET", f"{API}/records/{rid}/draft", tk)["metadata"]
