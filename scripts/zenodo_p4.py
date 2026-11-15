@@ -27,10 +27,10 @@ STATE = os.path.join(ROOT, "docs", "submission", "ZENODO_STATE.json")
 UA = "ai-harvester-cycles-deposit/1.0"
 OTHER_PROJECT_DRAFTS = {"23661737", "24087443", "24088038", "24101894", "24120765"}   # other projects: never touch
 
-TITLE = ("Code, results and pre-registration for: Isotherm step position does not predict water-uptake rate "
-         "constants of unseen sorbents: a pre-registered held-out test")
+TITLE = ("Code, results and pre-registration for: No detectable prediction of water-sorption rate constants "
+         "from isotherm step position: a pre-registered held-out test")
 DESC = ("<p>Archive of the repository github.com/abdulhamidbatayhi123/ai-harvester-cycles for the manuscript "
-        "\"Isotherm step position does not predict water-uptake rate constants of unseen sorbents: a "
+        "\"No detectable prediction of water-sorption rate constants from isotherm step position: a "
         "pre-registered held-out test\" (submitted to AIChE Journal). It contains the pre-registration frozen at git tag "
         "prereg-p4-freeze with its manifest (SHA-256 of the protocol, code and derived data) and its corrections "
         "history, the analysis package (data handling, dry-mass rules, physics models, learned models, confirmatory "

@@ -179,7 +179,7 @@
   "Varoquaux2018Cross": "Varoquaux G. Cross-validation failure: Small sample sizes lead to large error bars. \\textit{NeuroImage}. 2018;180:68--77. doi:10.1016/j.neuroimage.2017.06.061",
   "VarmaSimon2006Bias": "Varma S, Simon R. Bias in error estimation when using cross-validation for model selection. \\textit{BMC Bioinformatics}. 2006;7(1):91. doi:10.1186/1471-2105-7-91",
   "Talts2018Validating": "Talts S, Betancourt M, Simpson D, Vehtari A, Gelman A. Validating Bayesian Inference Algorithms with Simulation-Based Calibration. \\textit{arXiv}. Preprint posted online 2018. doi:10.48550/arXiv.1804.06788",
-  "Cook2006Validation": "Cook SR, Gelman A, Rubin DB. Validation of Software for Bayesian Models Using Posterior Quantiles. \\textit{Journal of Computational and Graphical Statistics}. 2006;15(3):675--692. doi:10.1198/106186006X136976 Published correction appears in \\textit{J Comput Graph Stat}. 2017;26(4):940. doi:10.1080/10618600.2017.1377082",
+  "Cook2006Validation": "Cook SR, Gelman A, Rubin DB. Validation of Software for Bayesian Models Using Posterior Quantiles. \\textit{Journal of Computational and Graphical Statistics}. 2006;15(3):675--692. doi:10.1198/106186006X136976. Published correction appears in \\textit{J Comput Graph Stat}. 2017;26(4):940. doi:10.1080/10618600.2017.1377082",
   "Modrak2025Simulation": "Modrák M, Moon AH, Kim S, Bürkner P, Huurre N, Faltejsková K, Gelman A, Vehtari A. Simulation-Based Calibration Checking for Bayesian Computation: The Choice of Test Quantities Shapes Sensitivity. \\textit{Bayesian Analysis}. 2025;20(2):461--488. doi:10.1214/23-BA1404",
   "Brunton2016Discovering": "Brunton SL, Proctor JL, Kutz JN. Discovering governing equations from data by sparse identification of nonlinear dynamical systems. \\textit{Proceedings of the National Academy of Sciences}. 2016;113(15):3932--3937. doi:10.1073/pnas.1517384113",
   "Gelman2020Bayesian": "Gelman A, Vehtari A, Simpson D, Margossian CC, Carpenter B, Yao Y, Kennedy L, Gabry J, Bürkner P-C, Modrák M. Bayesian Workflow. \\textit{arXiv}. Preprint posted online 2020. doi:10.48550/arXiv.2011.01808",
@@ -213,6 +213,6 @@
   "Sharma2022Hybrid": "Sharma N, Liu YA. A hybrid science‐guided machine learning approach for modeling chemical processes: A review. \\textit{AIChE Journal}. 2022;68(5):e17609. doi:10.1002/aic.17609",
   "Rajulapati2022Integration": "Rajulapati L, Chinta S, Shyamala B, Rengaswamy R. Integration of machine learning and first principles models. \\textit{AIChE Journal}. 2022;68(6):e17715. doi:10.1002/aic.17715",
   "Bezrukov2023Data": "Bezrukov AA, O'Hearn DJ, Gascón-Pérez V, Darwish S, Kumar A, Sanda S, Kumar N, Francis K, Zaworotko MJ. Metal-organic frameworks as regeneration optimized sorbents for atmospheric water harvesting. Zenodo; 2023. doi:10.5281/zenodo.6631711",
-  "Batayhi2026Archive": "Batayhi A. Code, results and pre-registration for: Isotherm step position does not predict water-uptake rate constants of unseen sorbents: a pre-registered held-out test. Version 1.0.2. Zenodo; 2026. doi:10.5281/zenodo.24260908"
+  "Batayhi2026Archive": "Batayhi A. Code, results and pre-registration for: No detectable prediction of water-sorption rate constants from isotherm step position: a pre-registered held-out test. Version 1.0.2. Zenodo; 2026. doi:10.5281/zenodo.24260908"
  }
 }

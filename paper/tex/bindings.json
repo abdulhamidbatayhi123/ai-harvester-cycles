@@ -624,14 +624,6 @@
    "expr": "CS['R2']['loso_folds']",
    "fmt": "d"
   },
-  "abs_lo": {
-   "expr": "round(CS['R2']['summary']['B0_over_F_min'])",
-   "fmt": "d"
-  },
-  "abs_hi": {
-   "expr": "round(CS['R2']['summary']['B0_over_F_max'])",
-   "fmt": "d"
-  },
   "abs_t63": {
    "expr": "round(100 * CS['exploratory_and_secondary']['secondary_R2']['t63_B0'])",
    "fmt": "d"
@@ -1003,6 +995,10 @@
   "si2_phi": {
    "doc": "PREREG_P4_draft.md",
    "contains": "σ = 0.01 wt%, φ = 0.9"
+  },
+  "abs_joint": {
+   "expr": "round(100 * CS['exploratory_and_secondary']['joint_R2']['rel_reduction_median'])",
+   "fmt": "d"
   }
  }
 }

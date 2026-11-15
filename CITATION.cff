@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: >-
-  Code, results and pre-registration for: Isotherm step position does not predict water-uptake rate constants of unseen sorbents: a pre-registered held-out test
+  Code, results and pre-registration for: No detectable prediction of water-sorption rate constants from isotherm step position: a pre-registered held-out test
 message: If you use this software or its results, please cite the archived release.
 type: software
 authors:

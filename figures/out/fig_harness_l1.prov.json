@@ -8,12 +8,12 @@
   6.0,
   8.0
  ],
- "made": "2026-11-15 15:54:00",
+ "made": "2026-11-16 02:28:06",
  "hash": "sha256, text files LF-normalised",
  "style": "p4/figstyle.py",
  "style_sha256": "d7b803bd940ac3114056b18911a37d501750e0adc343099d2404b56fab31e569",
  "script": "figures/fig_harness_l1.py",
- "script_sha256": "ae5c3dcf5698f96a9fd7f055506725be750b301825627e93d5807b36701a2224",
+ "script_sha256": "bb8eced7d59a60cb8bc3d9d701fc1cf44589048e100f8ff841da5770f416cf17",
  "inputs": {
   "results/harness_round1/harness.json": "22bed5bb67405bbbc9d0497dcc2412880fedd536f2b6551c587cfa3e811cda63",
   "results/harness_round2/harness.json": "2d8ce7b94b0414d7b9b0a3aa569cf7c62adfc38ad96356fb33c8253bb8ef1387",

@@ -13,8 +13,8 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 277,
-  "G1_n_keys": 246,
+  "G1_n_uses": 288,
+  "G1_n_keys": 245,
   "G2_main.tex_n_refs": 49,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 5,
@@ -23,9 +23,9 @@
   "G3_si.tex_em_dashes": 0,
   "G4_n_phrases": 44,
   "G5_words": {
-   "abstract": 147,
-   "main_text": 5660,
-   "methods": 2758,
+   "abstract": 139,
+   "main_text": 5775,
+   "methods": 2772,
    "si": 2764
   },
   "G5_targets": {
@@ -67,17 +67,10 @@
    "ok": true
   },
   {
-   "key": "abs_lo",
+   "key": "abs_joint",
    "doc": "main.tex",
-   "text": "7",
-   "source": "7",
-   "ok": true
-  },
-  {
-   "key": "abs_hi",
-   "doc": "main.tex",
-   "text": "31",
-   "source": "31",
+   "text": "26",
+   "source": "26",
    "ok": true
   },
   {
@@ -127,6 +120,27 @@
    "doc": "main.tex",
    "text": "8",
    "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_ownk_med",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
+   "ok": true
+  },
+  {
+   "key": "res_ownk_med",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
+   "ok": true
+  },
+  {
+   "key": "res_ownk_med",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
    "ok": true
   },
   {
@@ -522,6 +536,13 @@
    "ok": true
   },
   {
+   "key": "t63b",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
    "key": "marg5",
    "doc": "main.tex",
    "text": "10",
@@ -725,6 +746,20 @@
    "ok": true
   },
   {
+   "key": "res_rpool_37",
+   "doc": "main.tex",
+   "text": "0.3",
+   "source": "0.3",
+   "ok": true
+  },
+  {
+   "key": "res_rpool_39",
+   "doc": "main.tex",
+   "text": "-1.8",
+   "source": "-1.8",
+   "ok": true
+  },
+  {
    "key": "res_ros_ratio",
    "doc": "main.tex",
    "text": "0.36",
@@ -764,6 +799,13 @@
    "doc": "main.tex",
    "text": "0.55",
    "source": "0.55",
+   "ok": true
+  },
+  {
+   "key": "fig_margin",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
    "ok": true
   },
   {
@@ -897,6 +939,20 @@
    "doc": "main.tex",
    "text": "18",
    "source": "18",
+   "ok": true
+  },
+  {
+   "key": "res_t63_b2",
+   "doc": "main.tex",
+   "text": "18",
+   "source": "18",
+   "ok": true
+  },
+  {
+   "key": "res_t63_b0",
+   "doc": "main.tex",
+   "text": "17",
+   "source": "17",
    "ok": true
   },
   {
@@ -1159,27 +1215,6 @@
    "ok": true
   },
   {
-   "key": "res_rpool_37",
-   "doc": "main.tex",
-   "text": "0.3",
-   "source": "0.3",
-   "ok": true
-  },
-  {
-   "key": "res_rpool_39",
-   "doc": "main.tex",
-   "text": "-1.8",
-   "source": "-1.8",
-   "ok": true
-  },
-  {
-   "key": "fig_margin",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
-   "ok": true
-  },
-  {
    "key": "res_gap_lo",
    "doc": "main.tex",
    "text": "-0.7",
@@ -1205,24 +1240,24 @@
    "doc": "main.tex",
    "text": "45",
    "source": "45",
-   "ok": true
-  },
-  {
-   "key": "res_ownk_med",
-   "doc": "main.tex",
-   "text": "15",
-   "source": "15",
-   "ok": true
-  },
-  {
-   "key": "res_ownk_med",
-   "doc": "main.tex",
-   "text": "15",
-   "source": "15",
    "ok": true
   },
   {
    "key": "res_ep_n",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_ep_n",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_ep_of",
    "doc": "main.tex",
    "text": "8",
    "source": "8",
@@ -1257,10 +1292,24 @@
    "ok": true
   },
   {
+   "key": "res_ep_med",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
+   "ok": true
+  },
+  {
    "key": "res_ep_beats",
    "doc": "main.tex",
    "text": "3",
    "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_ep_n_r1",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
    "ok": true
   },
   {
@@ -1278,10 +1327,31 @@
    "ok": true
   },
   {
+   "key": "res_ep_med_r1",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
+   "key": "res_ep_med_r1",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
+   "ok": true
+  },
+  {
    "key": "res_gap_hi_r1",
    "doc": "main.tex",
    "text": "50",
    "source": "50",
+   "ok": true
+  },
+  {
+   "key": "res_ownk_med_r1b",
+   "doc": "main.tex",
+   "text": "22",
+   "source": "22",
    "ok": true
   },
   {
@@ -1436,6 +1506,13 @@
    "doc": "main.tex",
    "text": "17",
    "source": "17",
+   "ok": true
+  },
+  {
+   "key": "dis2_t63p",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
    "ok": true
   },
   {

@@ -2,7 +2,7 @@
 
 - Article type: Research Article
 - Topical heading: Separations: Materials, Devices and Processes
-- Title (118 characters, limit 120): Isotherm step position does not predict water-uptake rate constants of unseen sorbents: a pre-registered held-out test
+- Title (117 characters, limit 120): No detectable prediction of water-sorption rate constants from isotherm step position: a pre-registered held-out test
 - Keywords (five): water sorption kinetics; metal-organic frameworks; linear driving force; held-out validation; pre-registration
 - Plain Language Summary (217 characters, limit 250):
   Can a material's equilibrium water-uptake curve predict how fast it takes up and releases water? Testing eight

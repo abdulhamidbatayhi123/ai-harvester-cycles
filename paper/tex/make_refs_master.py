@@ -160,7 +160,7 @@ def ama_entry(f):
     page = (f.get("pages") or f.get("eid") or "").replace("--", "-").replace("-", "--")
     loc = f"{vol}{iss}" + (f":{page}" if page else "")
     out = f"{a} {t} \\textit{{{tex_escape(f['journal'])}}}. {y};{loc}. doi:{f['doi']}"
-    return out + (" " + f["addendum"] if f.get("addendum") else "")
+    return out + (". " + f["addendum"] if f.get("addendum") else "")
 
 
 def ama_data(r):
