@@ -169,7 +169,8 @@ def ama_data(r):
         else:
             full = (c.get("name") or c["family"]).split()
             pairs.append((full[-1], " ".join(full[:-1])))
-    return f"{ama_names(pairs)} {title(r['title'])} {tex_escape(r['publisher'])}; {r['year']}. doi:{r['doi']}"
+    ver = f" Version {r['version'].lstrip('v')}." if r.get("version") else ""
+    return f"{ama_names(pairs)} {title(r['title'])}{ver} {tex_escape(r['publisher'])}; {r['year']}. doi:{r['doi']}"
 
 
 def build():
