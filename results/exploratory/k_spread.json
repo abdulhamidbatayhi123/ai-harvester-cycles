@@ -1,0 +1,29 @@
+{
+ "about": "EXPLORATORY (post hoc; internal referee review 2026-11-15, item 1): the across-sorbent spread of ln k'' per\ntemperature, computed from results/prefreeze/reproduce_b0.json for both kinds of in-sample fit: least squares\n(k2_own) and the scored metric (k2_own_metric, the fit used everywhere else in the paper). Spread = root mean square\nof the two directions' sample standard deviations of ln k'' over the eight parent sorbents. The B2 harness's\nrealistic-power worlds used the spreads fixed in the protocol from the least-squares fits (0.089 at 27 C, 0.300 at\n60 C; audit/harness_b2.py SD_B); this file shows how the metric fits compare.",
+ "least_squares": {
+  "27C": 0.09129621070226854,
+  "60C": 0.30147840068064063
+ },
+ "metric": {
+  "27C": 0.09612404401083505,
+  "60C": 0.231509852706497
+ },
+ "per_direction_sd": {
+  "least_squares|27C": {
+   "ads": 0.06784518404803129,
+   "des": 0.10985002129574116
+  },
+  "least_squares|60C": {
+   "ads": 0.3281811373566649,
+   "des": 0.27216831784246975
+  },
+  "metric|27C": {
+   "ads": 0.08718599005568003,
+   "des": 0.10429893006164909
+  },
+  "metric|60C": {
+   "ads": 0.22379002079829288,
+   "des": 0.23898043934905533
+  }
+ }
+}

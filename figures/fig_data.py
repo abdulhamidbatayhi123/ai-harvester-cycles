@@ -3,7 +3,8 @@
 a  adsorption isotherms at 27 C for the eight sorbents (end-points of the isotherm runs);
 b  one measured 0 -> 30 % RH uptake step per sorbent at 27 C, as fraction of the step change
    against time (first step-run file, second repeat), showing the spread of time scales;
-c  the measured test-retest noise floor F per sorbent and temperature.
+c  the within-run repeatability per sorbent and temperature (a material's noise floor F is the segment-weighted
+   mean of its two values).
 
 Sorbents are coloured by family (hues kept apart from the model colours of figstyle) and
 differ by line style within a family.
@@ -66,11 +67,11 @@ def main():
     x = np.arange(len(names))
     for j, (T, mk) in enumerate((("27C", "o"), ("60C", "s"))):
         vals = [summ["noise_floor"].get(f"{s}|{T}", {}).get("median_E", np.nan) for s in names]
-        c.plot(x + (j - 0.5) * 0.25, vals, linestyle="none", marker=mk, color=fs.OI["dark"], gid=f"noise floor F {T}",
+        c.plot(x + (j - 0.5) * 0.25, vals, linestyle="none", marker=mk, color=fs.OI["dark"], gid=f"within-run repeatability {T}",
                markerfacecolor="none" if T == "27C" else fs.OI["dark"], label=T.replace("C", " °C"))
     c.set_xticks(x)
     c.set_xticklabels([LABEL.get(s, s) for s in names], rotation=60, ha="right")
-    c.set_ylabel("Noise floor F (normalized RMS)")
+    c.set_ylabel("Within-run repeatability (normalized RMS)")
     c.set_yscale("log")
     # plain tick labels: the superscripts of 10^-3 would print below 5 pt at 6 pt tick size
     from matplotlib.ticker import FixedLocator, NullLocator

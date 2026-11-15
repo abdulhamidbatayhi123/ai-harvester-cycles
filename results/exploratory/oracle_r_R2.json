@@ -1,0 +1,159 @@
+{
+ "about": "EXPLORATORY (post hoc; internal referee review 2026-11-15, item 1): the relative improvement r of the oracle B0*\n(each held-out sorbent's own k'', fitted on its own data by the scored metric) over the pooled B0 of the same\nvariant, computed with the decision rule's own definition (p4.decide: cluster means of the segment values, r = median\ncluster d over the median cluster E of B0, the smaller per-material value in a parent + composite fold). B2 changes\nonly k'' relative to B0, so the oracle shows what any per-sorbent rate constant could reach under the rule: H4a' needs\nr >= 10 % on at least 7 of the 8 LOSO folds to be supported.",
+ "rows": "results/confirm_R2/rows.jsonl",
+ "margin": 0.1,
+ "folds": {
+  "LOFO:Al-rod": {
+   "per_material": {
+    "MOF-303": {
+     "r": 0.16905177616491843,
+     "rule_met": false,
+     "n_clusters": 13
+    },
+    "MIL-160": {
+     "r": 0.3540265898342572,
+     "rule_met": true,
+     "n_clusters": 35
+    },
+    "CAU-10": {
+     "r": 0.3971783292185393,
+     "rule_met": false,
+     "n_clusters": 35
+    },
+    "Al-fumarate": {
+     "r": 0.0007923802284743374,
+     "rule_met": false,
+     "n_clusters": 17
+    }
+   },
+   "r_fold": 0.0007923802284743374,
+   "rule_met": false
+  },
+  "LOFO:Zn-triazolate-F": {
+   "per_material": {
+    "ROS-039": {
+     "r": 0.2340077286417914,
+     "rule_met": true,
+     "n_clusters": 26
+    },
+    "ROS-040": {
+     "r": 0.029338960533072188,
+     "rule_met": false,
+     "n_clusters": 35
+    },
+    "ROS-039_composite": {
+     "r": 0.06715579790576552,
+     "rule_met": false,
+     "n_clusters": 54
+    }
+   },
+   "r_fold": 0.029338960533072188,
+   "rule_met": false
+  },
+  "LOSO:Al-fumarate": {
+   "per_material": {
+    "Al-fumarate": {
+     "r": -0.004991514235185641,
+     "rule_met": false,
+     "n_clusters": 17
+    }
+   },
+   "r_fold": -0.004991514235185641,
+   "rule_met": false
+  },
+  "LOSO:CAU-10": {
+   "per_material": {
+    "CAU-10": {
+     "r": 0.5964116126157971,
+     "rule_met": false,
+     "n_clusters": 35
+    }
+   },
+   "r_fold": 0.5964116126157971,
+   "rule_met": false
+  },
+  "LOSO:MIL-160": {
+   "per_material": {
+    "MIL-160": {
+     "r": 0.17115343803868613,
+     "rule_met": true,
+     "n_clusters": 35
+    }
+   },
+   "r_fold": 0.17115343803868613,
+   "rule_met": true
+  },
+  "LOSO:MOF-303": {
+   "per_material": {
+    "MOF-303": {
+     "r": 0.1390315793377987,
+     "rule_met": false,
+     "n_clusters": 13
+    }
+   },
+   "r_fold": 0.1390315793377987,
+   "rule_met": false
+  },
+  "LOSO:ROS-037": {
+   "per_material": {
+    "ROS-037": {
+     "r": 0.13335126410803289,
+     "rule_met": false,
+     "n_clusters": 26
+    },
+    "ROS-037_composite": {
+     "r": 0.22865844371357508,
+     "rule_met": true,
+     "n_clusters": 54
+    }
+   },
+   "r_fold": 0.13335126410803289,
+   "rule_met": false
+  },
+  "LOSO:ROS-039": {
+   "per_material": {
+    "ROS-039": {
+     "r": 0.07062703293893376,
+     "rule_met": false,
+     "n_clusters": 26
+    },
+    "ROS-039_composite": {
+     "r": 0.06116799924144415,
+     "rule_met": false,
+     "n_clusters": 54
+    }
+   },
+   "r_fold": 0.06116799924144415,
+   "rule_met": false
+  },
+  "LOSO:ROS-040": {
+   "per_material": {
+    "ROS-040": {
+     "r": -0.026803683266527847,
+     "rule_met": false,
+     "n_clusters": 35
+    }
+   },
+   "r_fold": -0.026803683266527847,
+   "rule_met": false
+  },
+  "LOSO:Syloid": {
+   "per_material": {
+    "Syloid": {
+     "r": 0.06700828377557581,
+     "rule_met": false,
+     "n_clusters": 35
+    }
+   },
+   "r_fold": 0.06700828377557581,
+   "rule_met": false
+  }
+ },
+ "summary": {
+  "n_loso": 8,
+  "n_loso_r_ge_margin": 4,
+  "n_loso_rule_met": 1,
+  "r_fold_min": -0.026803683266527847,
+  "r_fold_max": 0.5964116126157971
+ }
+}

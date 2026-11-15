@@ -24,8 +24,9 @@ ROW1 = [("Data", ["dynamic vapor sorption archive:", "eight sorbents, two compos
                   "step runs and isotherms", "at two temperatures"], "Methods: data", "sky"),
         ("Isotherm-driven model", ["rate set by the humidity gap", "to the isotherm; one rate",
                                    "constant shared by all", "training sorbents (B0)"], "Methods: models", "orange"),
-        ("Held-out tests", ["leave one sorbent out (8 folds),", "leave one family out;", "noise floor, practical margin,",
-                            "signed-rank test, 7 of 8 folds"], "Methods: decision rule", "blue")]
+        ("Held-out tests", ["leave one sorbent out (8 folds),", "leave one family out; noise floor,",
+                            "10 % margin, signed-rank test;", "supported: 7 of 8 folds beaten;",
+                            "falsified: ≤ 1 fold with r ≥ 10 %"], "Methods: decision rule", "blue")]
 ROW2 = [("Learned correction", ["gray-box network on", "the rate; synthetic", "harness, seven rounds"], "H4a: not tested", True),
         ("Harness for B2", ["known truths: no effect,", "realistic effect, nulls,", "form error"], "gate", False),
         ("Isotherm-predicted k″", ["rate constant from", "the isotherm (B2)", "against shared k″"], "H4a′", True),
