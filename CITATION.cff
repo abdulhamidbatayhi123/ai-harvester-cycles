@@ -12,13 +12,13 @@ authors:
       Department of Mechatronics Engineering, Faculty of Mechanical Engineering, Yildiz Technical University,
       Istanbul, Türkiye
 repository-code: "https://github.com/abdulhamidbatayhi123/ai-harvester-cycles"
-version: v1.0.1
-doi: 10.5281/zenodo.24243541
+version: v1.0.2
+doi: 10.5281/zenodo.24260908
 date-released: "2026-11-15"
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.24243541
-    description: Archived release v1.0.1 (Zenodo)
+    value: 10.5281/zenodo.24260908
+    description: Archived release v1.0.2 (Zenodo)
   - type: doi
     value: 10.5281/zenodo.24148228
     description: Concept DOI, all versions (Zenodo)

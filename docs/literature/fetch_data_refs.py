@@ -17,7 +17,7 @@ DATA = {  # key: DOI (sources in DATA_SOURCES.md)
     "Bezrukov2023Data": "10.5281/zenodo.6631711",
     # the paper's own code-and-results archive (Wiley data policy: shared data are cited in the reference list);
     # until the record is published and registered at DataCite, its metadata is read from the Zenodo draft
-    "Batayhi2026Archive": "10.5281/zenodo.24243541",   # v1.0.1; v1.0.0 was 10.5281/zenodo.24148229
+    "Batayhi2026Archive": "10.5281/zenodo.24260908",   # v1.0.2; v1.0.1 was 24243541, v1.0.0 24148229
 }
 ROOT = os.path.dirname(os.path.dirname(HERE))
 

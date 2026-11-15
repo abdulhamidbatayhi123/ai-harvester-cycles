@@ -12,7 +12,7 @@ by the other sorbents. The protocol was frozen before any confirmatory fit (git 
 84d8e8c; hashes in `FREEZE_MANIFEST.json`; the history was filtered once before publication, see below). Result:
 falsified under both dry-mass rules (`results/final_verdict.json`).
 
-Archived at Zenodo: version 1.0.1, [10.5281/zenodo.24243541](https://doi.org/10.5281/zenodo.24243541) (all versions:
+Archived at Zenodo: version 1.0.2, [10.5281/zenodo.24260908](https://doi.org/10.5281/zenodo.24260908) (all versions:
 [10.5281/zenodo.24148228](https://doi.org/10.5281/zenodo.24148228)). To cite the code and results, see `CITATION.cff`.
 
 ## Where things are
