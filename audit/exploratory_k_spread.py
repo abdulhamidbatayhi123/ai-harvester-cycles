@@ -1,7 +1,8 @@
 """EXPLORATORY (post hoc; internal referee review 2026-11-15, item 1): the across-sorbent spread of ln k'' per
 temperature, computed from results/prefreeze/reproduce_b0.json for both kinds of in-sample fit: least squares
-(k2_own) and the scored metric (k2_own_metric, the fit used everywhere else in the paper). Spread = root mean square
-of the two directions' sample standard deviations of ln k'' over the eight parent sorbents. The B2 harness's
+(k2_own) and the scored metric (k2_own_metric, the fit used everywhere else in the paper). Spread = mean of the two
+directions' sample standard deviations of ln k'' over the eight parent sorbents, the definition that reproduces the
+protocol's least-squares values (0.0888 and 0.3002; verification review 2026-11-15, finding F10). The B2 harness's
 realistic-power worlds used the spreads fixed in the protocol from the least-squares fits (0.089 at 27 C, 0.300 at
 60 C; audit/harness_b2.py SD_B); this file shows how the metric fits compare.
 
@@ -29,7 +30,7 @@ def main():
                      for s in PARENTS]
                 sds[d] = statistics.stdev(x)
             out["per_direction_sd"][f"{kind}|{T}"] = sds
-            out[kind][T] = math.sqrt((sds["ads"] ** 2 + sds["des"] ** 2) / 2)
+            out[kind][T] = (sds["ads"] + sds["des"]) / 2
     with open(sys.argv[1], "w", encoding="utf-8", newline="\n") as f:
         json.dump(out, f, indent=1)
     print(json.dumps({k: out[k] for k in ("least_squares", "metric")}, indent=1))

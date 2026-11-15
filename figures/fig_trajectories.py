@@ -63,7 +63,9 @@ def main():
         ax.plot(t, pb0[gi][i][:n], **fs.style("B0"), label="B0 (shared k″)", gid=f"B0 {s} {g['temp']}")
         ax.plot(t, pb2[gi][i][:n], color=fs.OI["blue"], ls="--", label="B2 (from isotherm)", gid=f"B2 {s} {g['temp']}")
         ax.plot(t, pst[gi][i][:n], **fs.style("B0star"), label="B0* (own k″)", gid=f"B0* {s} {g['temp']}")
-        rf, rt = float(np.median(g["rh"][i][:5])), float(np.median(g["rh"][i][n - 5:n]))
+        # the step's set points (the measured RH at the first grid points is still in the sensor's transition)
+        seg = g["segments"][i]
+        rf, rt = float(seg.rh_from), float(seg.rh_to)
         ax.set_title(f"{LABEL.get(s, s)}, {g['temp'][:2]} °C, {rf:.0f} → {rt:.0f} % RH", fontsize=fs.SMALL_PT)
         ax.set_xlabel("Time in the step (min)")
         fs.letter(ax, letter, x=-0.2)

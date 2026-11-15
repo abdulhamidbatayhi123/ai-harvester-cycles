@@ -52,7 +52,10 @@ def main():
         i = ups30[1] if len(ups30) > 1 else ups30[0]
         w = g["w"][i][np.isfinite(g["w"][i])]
         t = np.arange(len(w)) * 0.1
-        b.plot(t, (w - w[0]) / (w[-1] - w[0]), color=col, linestyle=ls, gid=f"{LABEL.get(s, s)} fraction of step")
+        keep = t <= 80.0          # the drawn range (x limit below), so the exported data hold only what is shown
+        f = (w - w[0]) / (w[-1] - w[0])
+        t, f = t[keep], f[keep]
+        b.plot(t, f, color=col, linestyle=ls, gid=f"{LABEL.get(s, s)} fraction of step")
     a.set_xlabel("Relative humidity (%)")
     a.set_ylabel("Uptake at 27 °C (wt%)")
     a.set_xlim(0, 40)

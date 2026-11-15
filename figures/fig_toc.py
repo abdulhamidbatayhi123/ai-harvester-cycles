@@ -1,6 +1,6 @@
 """Graphical abstract for AIChE Journal (must fit 50 mm x 60 mm and be legible at that size; guidelines read
 2026-11-11): the relative improvement r of the isotherm-predicted rate constant (B2) over the shared one (B0) for each
-held-out sorbent, under both dry-mass rules, against the 10 % practical margin. Same data as Fig. 3a.
+held-out sorbent, under both dry-mass rules, against the 10 % practical margin. Same data as Fig. 5a.
 
 usage: python -I figures/fig_toc.py results/confirm_R2/decide.json results/confirm_R1/decide.json figures/out/fig_toc
 """
@@ -39,11 +39,11 @@ def main():
     ax.set_xticks(range(len(ORDER)))
     ax.set_xticklabels([])
     ax.set_xlabel("8 held-out sorbents", fontsize=fs.SMALL_PT)
-    ax.set_ylabel("Improvement r over shared k″ (%)", fontsize=fs.SMALL_PT)
+    ax.set_ylabel("Gain r of B2 over shared k″ (%)", fontsize=fs.SMALL_PT)
     lo = 5 * math.floor((min(ys) - 2) / 5)
     ax.set_ylim(lo, 16)
     ax.set_xlim(-0.6, len(ORDER) - 0.4)
-    fig.text(0.5, 0.97, "Does the isotherm predict", fontsize=fs.BODY_PT, ha="center", va="top", fontweight="bold")
+    fig.text(0.5, 0.97, "Does half-loading humidity predict", fontsize=fs.BODY_PT, ha="center", va="top", fontweight="bold")
     fig.text(0.5, 0.905, "a sorbent's rate constant?", fontsize=fs.BODY_PT, ha="center", va="top", fontweight="bold")
     beaten = max(d["H4a"]["B2"]["LOSO_beats"] for d in (d2, d1))      # from the decide outputs, not typed
     folds = d2["H4a"]["B2"]["LOSO_folds"]

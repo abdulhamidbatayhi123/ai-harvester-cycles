@@ -1,12 +1,12 @@
 {
- "about": "EXPLORATORY (post hoc; internal referee review 2026-11-15, item 1): the across-sorbent spread of ln k'' per\ntemperature, computed from results/prefreeze/reproduce_b0.json for both kinds of in-sample fit: least squares\n(k2_own) and the scored metric (k2_own_metric, the fit used everywhere else in the paper). Spread = root mean square\nof the two directions' sample standard deviations of ln k'' over the eight parent sorbents. The B2 harness's\nrealistic-power worlds used the spreads fixed in the protocol from the least-squares fits (0.089 at 27 C, 0.300 at\n60 C; audit/harness_b2.py SD_B); this file shows how the metric fits compare.",
+ "about": "EXPLORATORY (post hoc; internal referee review 2026-11-15, item 1): the across-sorbent spread of ln k'' per\ntemperature, computed from results/prefreeze/reproduce_b0.json for both kinds of in-sample fit: least squares\n(k2_own) and the scored metric (k2_own_metric, the fit used everywhere else in the paper). Spread = mean of the two\ndirections' sample standard deviations of ln k'' over the eight parent sorbents, the definition that reproduces the\nprotocol's least-squares values (0.0888 and 0.3002; verification review 2026-11-15, finding F10). The B2 harness's\nrealistic-power worlds used the spreads fixed in the protocol from the least-squares fits (0.089 at 27 C, 0.300 at\n60 C; audit/harness_b2.py SD_B); this file shows how the metric fits compare.",
  "least_squares": {
-  "27C": 0.09129621070226854,
-  "60C": 0.30147840068064063
+  "27C": 0.08884760267188622,
+  "60C": 0.3001747275995673
  },
  "metric": {
-  "27C": 0.09612404401083505,
-  "60C": 0.231509852706497
+  "27C": 0.09574246005866456,
+  "60C": 0.23138523007367412
  },
  "per_direction_sd": {
   "least_squares|27C": {

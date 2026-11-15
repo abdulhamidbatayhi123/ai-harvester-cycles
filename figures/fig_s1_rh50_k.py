@@ -34,7 +34,7 @@ def main():
         ax.set_xlabel("RH50 (% RH)")
         ax.xaxis.set_major_locator(MultipleLocator(5))   # same ticks in every panel
         fs.letter(ax, letter, x=-0.3, y=1.1)
-    axes[0].set_ylabel("Own k″")
+    axes[0].set_ylabel("Own k″" + chr(10) + "(wt% mg min$^{-1}$ per % RH)")
     fig.subplots_adjust(left=0.08, right=0.99, bottom=0.24, top=0.85, wspace=0.45)
     fs.save(fig, stem, inputs=[src])
 
