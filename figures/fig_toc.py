@@ -39,12 +39,12 @@ def main():
     ax.set_xticks(range(len(ORDER)))
     ax.set_xticklabels([])
     ax.set_xlabel("8 held-out sorbents", fontsize=fs.SMALL_PT)
-    ax.set_ylabel("Gain over shared k″ (%)", fontsize=fs.SMALL_PT)
+    ax.set_ylabel("Improvement r over shared k″ (%)", fontsize=fs.SMALL_PT)
     lo = 5 * math.floor((min(ys) - 2) / 5)
     ax.set_ylim(lo, 16)
     ax.set_xlim(-0.6, len(ORDER) - 0.4)
     fig.text(0.5, 0.97, "Does the isotherm predict", fontsize=fs.BODY_PT, ha="center", va="top", fontweight="bold")
-    fig.text(0.5, 0.905, "a sorbent's uptake rate?", fontsize=fs.BODY_PT, ha="center", va="top", fontweight="bold")
+    fig.text(0.5, 0.905, "a sorbent's rate constant?", fontsize=fs.BODY_PT, ha="center", va="top", fontweight="bold")
     beaten = max(d["H4a"]["B2"]["LOSO_beats"] for d in (d2, d1))      # from the decide outputs, not typed
     folds = d2["H4a"]["B2"]["LOSO_folds"]
     fig.text(0.5, 0.80, f"Pre-registered test: {beaten} of {folds} beaten", fontsize=fs.SMALL_PT, ha="center", va="top")
