@@ -17,7 +17,7 @@
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 
-\title{Supporting Information for: Does the position of the isotherm step predict the water-uptake rate of unseen sorbents? A pre-registered test}
+\title{Supporting Information for: Isotherm step position does not predict water-uptake rate constants of unseen sorbents: a pre-registered held-out test}
 \author{Abdulhamid Batayhi\\ Department of Mechatronics Engineering, Faculty of Mechanical Engineering,\\ Yildiz
 Technical University, \ID{34220} Istanbul, T\"urkiye}
 \date{}
@@ -134,6 +134,18 @@ median of $r$ is below \V{si2_rmax}{2.5}\,\%. The bound of \V{si2_cpmax2}{0.40} 
 beats is reported. If the harness fails, H4a$'$ is
 not tested. The K2 and C3 results are reported whatever happens; if H4a$'$ is falsified, the K2 worlds set its
 wording.
+
+\paragraph{What was known when H4a$'$ was added.} The protocol records three facts known when H4a$'$ was written. First, each sorbent's in-sample rate constant had been
+fitted: CAU-10-H at \V{dis_T}{60}~\textdegree C had both the largest uptake constant (\V{dis_k}{3.16} against
+\V{dis_kp}{1.59}~wt\% mg min$^{-1}$ per \% RH pooled over all eight sorbents, both least-squares fits in sample) and,
+computed the same day, the largest half-loading humidity; no correlation over the sorbents had been computed. Second,
+even each sorbent's own best-fit rate constant closed only \V{dis_g1}{10} to \V{dis_g2}{42}\,\% of the gap between B0
+and the noise floor in sample. A supported verdict, which needs $r \ge \V{dis_m}{10}$\,\% on seven of eight folds, was
+therefore nearly unreachable, and the test could realistically only falsify H4a$'$ or leave it open. Third, in an
+archived replicate of the synthetic null study of the learned-model pipeline (\texttt{results/null\_rep0\_preD}),
+which scored B2 as a comparator, B2's median error had been within a fraction of a percent of B0's in five of the six
+folds that replicate ran, and clearly worse in the sixth (in the same replicate an earlier version of L1 beat B0
+by chance in two of the five folds it scored; Note~\snote{1}).
 
 \paragraph{Result.} The harness passed all three criteria (Table~\ref{tab:harnessb2}). No fold was beaten in N. In K
 all \V{si2_Kbeats}{8} folds were beaten and the fitted slope was recovered to within \V{si2_Kerr}{0.05}\,\% (median

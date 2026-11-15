@@ -85,7 +85,8 @@ def authors(field):
 
 
 def title(field):
-    t = field
+    # Crossref titles can carry JATS markup (<scp>small caps</scp>) and line breaks: keep the text only
+    t = " ".join(re.sub(r"</?scp>", "", field).split()).replace("( ", "(").replace(" )", ")")
     while t.startswith("{") and t.endswith("}"):
         t = t[1:-1]
     t = tex_escape(t).strip()

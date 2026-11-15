@@ -2,7 +2,7 @@
 
 Code, pre-registration, harness records and every results file of the paper
 
-**Does the position of the isotherm step predict the water-uptake rate of unseen sorbents? A pre-registered test**
+**Isotherm step position does not predict water-uptake rate constants of unseen sorbents: a pre-registered held-out test**
 (Abdulhamid Batayhi, Yildiz Technical University; manuscript in `paper/tex/`).
 
 The paper tests, on the open dynamic vapor sorption archive of Bezrukov et al. (Zenodo

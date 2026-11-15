@@ -636,10 +636,6 @@
    "expr": "round(100 * CS['exploratory_and_secondary']['secondary_R2']['t63_B0'])",
    "fmt": "d"
   },
-  "abs_joint": {
-   "expr": "round(100 * CS['exploratory_and_secondary']['joint_R2']['rel_reduction_median'])",
-   "fmt": "d"
-  },
   "res_fb_lo": {
    "expr": "CS['F_between']['session_min']",
    "fmt": "f3"

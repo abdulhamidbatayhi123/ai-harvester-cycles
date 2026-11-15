@@ -11,6 +11,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage{textcomp}
 \usepackage{caption}
 \usepackage[hidelinks]{hyperref}
@@ -21,7 +22,7 @@
 \newcommand{\RHh}{\mathrm{RH}_{50}}
 \setlength{\emergencystretch}{1.5em}
 
-\title{Does the position of the isotherm step predict the water-uptake rate of unseen sorbents? A pre-registered test}
+\title{Isotherm step position does not predict water-uptake rate constants of unseen sorbents: a pre-registered held-out test}
 \author{Abdulhamid Batayhi\\ Department of Mechatronics Engineering,\\ Faculty of Mechanical Engineering, Yildiz
 Technical University,\\ \ID{34220} Istanbul, T\"urkiye\\ E-mail: abdulhamid.batayhi@std.yildiz.edu.tr}
 \date{}
@@ -37,8 +38,8 @@ humidity beat the shared constant for \V{abs_beats}{0} of \V{abs_folds}{8} sorbe
 no rate constant predicted from this descriptor was detectable at this noise and error level. A learned gray-box
 correction, the originally planned primary test, failed synthetic validation and was not tested. On unseen sorbents the shared model mispredicted the
 time to \V{abs_63}{63}\,\% of a step's change by a median \V{abs_t63}{17}\,\%; its trajectory error was
-\V{abs_lo}{7} to \V{abs_hi}{31} times within-run repeatability. Each
-sorbent's own rate constant and end points removed a median \V{abs_joint}{26}\,\% of that error (exploratory).
+\V{abs_lo}{7} to \V{abs_hi}{31} times within-run repeatability. Screening and cycle design should measure a new sorbent's rate constant, not
+predict it from half-loading humidity.
 \end{abstract}
 
 \noindent\textbf{Topical heading:} Separations: Materials, Devices and Processes\\
@@ -55,15 +56,18 @@ day~\cite{Hanikel2019Rapid}, and analyses of adsorption-based harvesting place h
 isotherm among the properties that set device output~\cite{LaPotin2019Adsorption}. Yet sorbents are usually
 compared, and increasingly screened by machine learning, on equilibrium properties: the humidity of the
 condensation step, the capacity and the cycling stability~\cite{Furukawa2014Water,Harriman2025Optimizing,
-Alkhatib2026Machine,Zheng2023Shaping}. Whether the rate of a new sorbent can be predicted from the same equilibrium
+Alkhatib2026Machine,Zheng2023Shaping}, and for gas separations, process design frameworks screen MOFs through
+descriptors and data-driven isotherm models coupled to cycle models~\cite{Zhang2022Descriptor,Zhang2022Matching}.
+Whether the rate of a new sorbent can be predicted from the same equilibrium
 data decides whether such screening can rank sorbents by what a cycle delivers.
 
 The working models of sorption dynamics answer this with an assumption. They take the driving force from the
 isotherm and lump everything else into a rate constant, in the linear-driving-force
 tradition~\cite{Glueckauf1955Theory,Sircar2000Why} that adsorption-cooling and chiller models have long
 used~\cite{Sakoda1984Fundamental,Chua2004Transient}. The approximation has known limits~\cite{Raymond2011Intraparticle},
-and the measured rate depends on loading within one framework~\cite{Hossain2019Kinetics} and on how the sorbent is
-held (loose or glued grains, coatings, powder or monolith)~\cite{Solovyeva2023Water,Li2025Atmospheric}.
+and the measured rate depends on loading within one framework~\cite{Hossain2019Kinetics}, on particle
+size~\cite{Guo2023Universal} and on how the sorbent is held (loose or glued grains, coatings, powder or
+monolith)~\cite{Solovyeva2023Water,Li2025Atmospheric}.
 Bezrukov et al.\ measured the water uptake dynamics of seven MOFs and a silica gel by dynamic vapor sorption on
 milligram powder layers and described them with one such model: the rate is proportional to the difference between
 the gas humidity and the humidity in equilibrium with the current uptake (read from the isotherm), with one rate
@@ -82,11 +86,19 @@ noting that a stepped isotherm is not by itself a measure of the kinetics~\cite{
 studies fits every material separately; none of them tests whether an isotherm-based model predicts the dynamics of a
 sorbent left out of the fit.
 
+Why might the isotherm set the rate? In the isotherm-driven model the driving force already comes from the isotherm,
+so one shared rate constant is right only if everything else, transport within and between particles, is alike across
+sorbents. If the true rate law has another form, a rate constant fitted with the model's driving force absorbs the
+misfit and comes to depend on the conditions of the fit~\cite{Huang2018Model}; for a stepped isotherm, that
+dependence would follow where the step sits. The humidity of half loading, the position of the step, is the simplest
+scalar test of this idea, although a stepped isotherm is not by itself a measure of the kinetics~\cite{Xia2025Relationship}.
+
 Learning offers an alternative. Hybrid models that place a neural network inside a mechanistic
 equation~\cite{Psichogios1992Hybrid,Thompson1994Modeling}, now often written as universal differential
 equations~\cite{Rackauckas2020Universal}, have been applied to adsorption
 dynamics~\cite{Nogueira2022Using,Subraveti2022Physics,Frandsen2025Systematic}, and are expected to extrapolate better than black boxes
-because the mechanistic part holds where data are lacking~\cite{Thompson1994Modeling}. Two cautions apply to any
+because the mechanistic part holds where data are lacking~\cite{Thompson1994Modeling}, though only within a finite
+domain of applicability~\cite{Bangi2023Deep}. Two cautions apply to any
 claim that such a model transfers to new materials. Random splits overestimate performance on materials unlike those
 in training, so a test must hold out whole materials or families~\cite{Meredig2018Can,Roberts2017Cross}, and leakage
 between training and test data inflates results across machine-learning-based science~\cite{Kapoor2023Leakage}. And
@@ -98,16 +110,19 @@ are seen~\cite{Nosek2018Preregistration}.
 
 Here we test the isotherm-driven model on sorbents it has not seen, under a protocol frozen before the confirmatory
 runs (pre-registered in the project's public version history rather than with a registry;
-Section~\ref{sec:prereg}), and make three contributions. First, the full record of a learned gray-box correction that knows a sorbent only by its isotherms
-and, before meeting real data, had to recover known corrections in synthetic trajectories generated on the real
-humidity records and isotherms. In its last allowed round it did so for two of three held-out sorbents, not the
-third, so under a stopping rule fixed in advance this architecture was not tested on real data. We report every
-round, because leaving failed attempts out of the record biases what later models learn from
-it~\cite{StriethKalthoff2022Machine}. Second, a confirmatory test of whether a held-out sorbent's isotherm, through
-its half-loading humidity, predicts the effective rate constant of the published model better than one value shared
-by the training sorbents, with its own synthetic check of false positives and power. Third, an estimate of how much of
-the published model's error on unseen sorbents a correct per-sorbent rate constant, a correct end point (the uptake at
-which a step levels off), or both would remove, and the cost of holding out a whole family.
+Section~\ref{sec:prereg}). Unseen means that no uptake data of the held-out sorbent enter any fit; only its
+isotherms are supplied. The study makes three contributions. First, a confirmatory test of whether a held-out
+sorbent's half-loading humidity predicts the effective rate constant of the published model better than one value
+shared by the training sorbents, with its own synthetic check of false positives and power; the prediction beat the
+shared value in \V{res_beats_r2}{0} of \V{res_folds}{8} folds (Section~\ref{sec:h4ap}). Second, an estimate of how
+much of the published model's error on unseen sorbents a correct per-sorbent rate constant, a correct end point (the
+uptake at which a step levels off), or both would remove, and the cost of holding out a whole family
+(Section~\ref{sec:error}). Third, the full record of a learned gray-box correction that knows a sorbent only by its
+isotherms; under a stopping rule fixed in advance it failed its synthetic test in the last allowed round, so it was
+not tested on real data (Section~\ref{sec:learned}). Every round is reported, because leaving failed attempts out of
+the record biases what later models learn from it~\cite{StriethKalthoff2022Machine}. The Results follow the order of
+events: the published model on unseen sorbents, the learned correction, the confirmatory test and the sources of
+error.
 
 Four models recur. B0 is the published isotherm-driven model with one rate constant $\kpp$ shared by the training
 sorbents. B2 is the same model with $\kpp$ predicted from the held-out sorbent's half-loading humidity. B0$^{*}$ is B0
@@ -121,6 +136,17 @@ LOFO); a synthetic test with a known truth is called a harness, and each synthet
 
 Figure~\ref{fig:workflow} summarizes the study: the data, the models, the held-out tests and the analyses whose
 results follow in Section~\ref{sec:results}.
+
+\begin{figure}[!tbp]
+\centering
+\makebox[\linewidth]{\includegraphics{../../figures/out/fig_workflow.pdf}}
+\caption{\textbf{Workflow of the study.} Top: the data, the isotherm-driven model with one rate constant shared by
+the training sorbents (B0), and the held-out tests with their decision rule. Middle: the result blocks; a black label
+marks a pre-registered hypothesis with a decision rule, a white label a gate that must pass first or a descriptive
+analysis. Each result block carries its outcome. Bottom: the question and its answer for the descriptor tested, the
+half-loading humidity. Schematic; no data.}
+\label{fig:workflow}
+\end{figure}
 
 \subsection{Pre-registration and order of events}\label{sec:prereg}
 
@@ -258,17 +284,11 @@ seen and before any learned model was fitted to real data.
 
 \subsection{What was known when H4a$'$ was added}
 
-The protocol records three facts known when H4a$'$ was written. First, each sorbent's in-sample rate constant had been
-fitted: CAU-10-H at \V{dis_T}{60}~\textdegree C had both the largest uptake constant (\V{dis_k}{3.16} against
-\V{dis_kp}{1.59}~wt\% mg min$^{-1}$ per \% RH pooled over all eight sorbents, both least-squares fits in sample) and,
-computed the same day, the largest half-loading humidity; no correlation over the sorbents had been computed. Second,
-even each sorbent's own best-fit rate constant closed only \V{dis_g1}{10} to \V{dis_g2}{42}\,\% of the gap between B0
-and the noise floor in sample. A supported verdict, which needs $r \ge \V{dis_m}{10}$\,\% on seven of eight folds, was
-therefore nearly unreachable, and the test could realistically only falsify H4a$'$ or leave it open. Third, in an
-archived replicate of the synthetic null study of the learned-model pipeline (\texttt{results/null\_rep0\_preD}),
-which scored B2 as a comparator, B2's median error had been within a fraction of a percent of B0's in five of the six
-folds that replicate ran, and clearly worse in the sixth (in the same replicate an earlier version of L1 beat B0
-by chance in two of the five folds it scored; Supporting Note~\snote{1}).
+The protocol records three facts known when H4a$'$ was written (Supporting Note~\snote{2}). CAU-10-H at
+\V{dis_T}{60}~\textdegree C had both the largest in-sample uptake constant and the largest half-loading humidity,
+though no correlation over the sorbents had been computed; even each sorbent's own rate constant closed only
+\V{dis_g1}{10} to \V{dis_g2}{42}\,\% of the gap between B0 and the noise floor in sample, so a supported verdict was
+nearly unreachable; and in an archived synthetic null replicate B2's median error had been close to B0's.
 
 \subsection{Synthetic harnesses}
 
@@ -350,6 +370,34 @@ with the adsorption branch in both directions; the linear-driving-force model B1
 branch during release, would have had the lower median error in \V{res_b0b_r2}{5} of the eight folds
 (\V{res_b0b_r1}{4} under R1), so these data do not settle which isotherm branch should drive release.
 
+\begin{figure}[!tbp]
+\centering
+\makebox[\linewidth]{\includegraphics{../../figures/out/fig1_data.pdf}}
+\caption{\textbf{The data.} \textbf{a}, Adsorption isotherms of the eight sorbents at \V{T_lo}{27}~\textdegree C
+(for ROS-037 and Syloid AL-1 measured at a set point of \ID{25}~\textdegree C).
+\textbf{b}, Normalized uptake after the step from \V{rh_lo}{0} to \V{rh_hi}{30}\,\% RH at \V{T_lo2}{27}~\textdegree C,
+one measured step per sorbent (the second such repeat in the first step-run file by file name; dry mass by rule
+R2). \textbf{c}, Within-run repeatability per
+sorbent and temperature: the median normalized RMS difference between consecutive repeats of the same step; a
+material's noise floor $F$ is the segment-weighted mean of its two values. Colors mark families (orange, aluminum
+carboxylate rods; green, zinc triazolate fluorides); the composites are not shown.}
+\label{fig:data}
+\end{figure}
+\begin{figure}[!tbp]
+\centering
+\makebox[\linewidth]{\includegraphics{../../figures/out/fig_trajectories.pdf}}
+\caption{\textbf{Held-out predictions against the measurements} (primary dry-mass rule R2). The panels show the
+held-out sorbents with the lowest, the fourth-lowest (lower median of eight) and the highest median error of B0, each
+in the segment whose B0 error is closest to the fold's median of Table~\ref{tab:h4a} (a fixed rule, so the segments
+are not chosen by eye; for ROS-037 that median pools the composite, so the segment shown lies above ROS-037's own
+median). Gray circles: measured uptake (every fifth
+point); solid: B0 with the rate constant shared by the training sorbents; dashed: B2 with the rate constant predicted
+from the isotherm; dotted: the oracle B0$^{*}$ with the sorbent's own rate constant. The rule happened to select three
+release steps. In \textbf{a} the measured uptake ends below zero: an end-point offset from the dry mass and the
+isotherm's end point, not a rate error.}
+\label{fig:trajectories}
+\end{figure}
+
 \subsection{A learned correction could not be validated}\label{sec:learned}
 
 Before it could meet real data, the gray-box model L1 had to recover known corrections in synthetic trajectories
@@ -366,7 +414,22 @@ is a statement about this architecture and its training at this noise floor, not
 black-box model L2 had failed earlier, even without any correction to find, because an unconstrained flux network did
 not hold the equilibrium over long plateaus (Supporting Note~\snote{1}).
 
-\subsection{A rate constant predicted from half-loading humidity did not beat the shared one}
+\begin{figure}[!tbp]
+\centering
+\makebox[\linewidth]{\includegraphics{../../figures/out/fig_harness_l1.pdf}}
+\caption{\textbf{Synthetic harness record of the learned models} (synthetic data only). \textbf{a}, Gray box L1:
+median held-out error of L1 over that of B0 refitted on the training sorbents, per harness round, world and held-out
+sorbent (offset within a round: MOF-303 left, ROS-039 center, Al-fumarate right); marker shape gives the world (N, no correction; C, C2, C3, correction worlds), a
+filled marker a beat by the decision rule in force in that round. Round~\ID{3} ran L2 only. The filled marker above
+\ID{1} in round~\ID{6} is a beat that the rule of that round declared although L1's median error exceeded B0's; it led
+to condition~(\ID{4}) of the decision rule (Supporting Note~\snote{1}). The labeled open triangle is the decisive
+failure: MOF-303 in world C3, round~\ID{7}. Solid line, no change; dashed line, the halving of B0's error that the
+harness required, besides a beat, in its judging world from round~\ID{3}. \textbf{b}, Black box L2 in worlds N
+(circles) and C (squares), rounds \ID{1} to \ID{4}, dropped after round~\ID{4}.}
+\label{fig:harness}
+\end{figure}
+
+\subsection{A rate constant predicted from half-loading humidity did not beat the shared one}\label{sec:h4ap}
 
 The harness of B2 passed all three of its criteria (Supporting Note~\snote{2}): no fold was beaten without an
 effect, all \V{res_Kbeats}{8} folds were beaten when the truth lay in B2's class, and \V{res_Sbeats}{3} of the
@@ -421,7 +484,35 @@ $p \ge \V{res_rho_p}{0.21}$, under R2; \V{res_rho1_lo}{-0.60} to \V{res_rho1_hi}
 \V{res_rho1_p}{0.13}$, under R1); with eight sorbents only strong correlations could be detected (Supporting
 Figure~S1 and Note~\snote{4}).
 
-\subsection{Where the error of the isotherm-driven model lies}
+\begin{table}[!tbp]
+\centering
+\small
+\caption{\textbf{H4a$'$ per held-out sorbent.} $r$: relative improvement of B2 over B0 by the decision rule (from
+cluster medians per material; in folds holding out a parent and its composite, the smaller of the two values, while
+pooled over both it is \V{res_rpool_37}{0.3}\,\% for ROS-037 and \V{res_rpool_39}{-1.8}\,\% for ROS-039 under R2),
+under the primary (R2) and sensitivity (R1) dry-mass rules. Beaten: whether the fold was beaten by the pre-registered rule.
+Median $E$ (R2): median held-out error of B0, B2 and the oracle B0$^{*}$ (own $\kpp$) over all segments of the fold,
+parent and composite together; this summary weights segments, not clusters, and can differ markedly from $r$, as for
+CAU-10-H. Share: the share of the oracle's gain that B2 achieved, shown only where the oracle lowers B0's median error by more
+than \ID{5}\,\%, and negative where B2 is worse than B0. Extrap.: temperatures (\textdegree C) at which the held-out descriptor lies
+outside the training range. Every fold used B0 with the adsorption branch in both directions.}
+\label{tab:h4a}
+\input{tab_h4a.tex}
+\end{table}
+\begin{figure}[!tbp]
+\centering
+\makebox[\linewidth]{\includegraphics{../../figures/out/fig_results.pdf}}
+\caption{\textbf{Confirmatory result.} \textbf{a}, Relative improvement $r$ of B2, the model with the
+isotherm-predicted rate constant, over B0 per held-out sorbent (for ROS-037 and ROS-039 the smaller of the
+parent and composite values, as in Table~\ref{tab:h4a}) under the primary (R2, circles) and sensitivity (R1, squares)
+dry-mass rules; a filled marker would mark a fold beaten by the pre-registered rule (none was). The dashed line is the
+\V{fig_margin}{10}\,\% practical margin. \textbf{b}, Median held-out error of B0, of B0 with the sorbent's own end
+point, and of B0 with its own rate constant (B0$^{*}$), with the noise floor $F$ (bar), under R2; for ROS-037 and
+ROS-039 the medians pool the parent with its composite and the bar is the larger of their two floors.}
+\label{fig:results}
+\end{figure}
+
+\subsection{Where the error of the isotherm-driven model lies}\label{sec:error}
 
 Fitting B0's rate constant on the held-out sorbent itself (B0$^{*}$, an oracle) closed \V{res_gap_lo}{-0.7} to
 \V{res_gap_hi}{45}\,\% of the gap between B0 and the noise floor under R2, in no sorbent more than half, and lowered
@@ -443,101 +534,47 @@ a whole family, which the protocol expected to degrade every model (H4c, descrip
 \V{res_h4c_r2}{5} of the \V{res_h4c_n}{7} materials concerned under R2 (\V{res_h4c_r1}{3} under R1) and B2's for
 \V{res_h4c_b2}{4} under R2, so the expectation held only in part (Supporting Table~S3).
 
-\begin{table}[tbp]
-\centering
-\small
-\caption{\textbf{H4a$'$ per held-out sorbent.} $r$: relative improvement of B2 over B0 by the decision rule (from
-cluster medians per material; in folds holding out a parent and its composite, the smaller of the two values, while
-pooled over both it is \V{res_rpool_37}{0.3}\,\% for ROS-037 and \V{res_rpool_39}{-1.8}\,\% for ROS-039 under R2),
-under the primary (R2) and sensitivity (R1) dry-mass rules. Beaten: whether the fold was beaten by the pre-registered rule.
-Median $E$ (R2): median held-out error of B0, B2 and the oracle B0$^{*}$ (own $\kpp$) over all segments of the fold,
-parent and composite together; this summary weights segments, not clusters, and can differ markedly from $r$, as for
-CAU-10-H. Share: the share of the oracle's gain that B2 achieved, shown only where the oracle lowers B0's median error by more
-than \ID{5}\,\%, and negative where B2 is worse than B0. Extrap.: temperatures (\textdegree C) at which the held-out descriptor lies
-outside the training range. Every fold used B0 with the adsorption branch in both directions.}
-\label{tab:h4a}
-\input{tab_h4a.tex}
-\end{table}
 
-\begin{figure}[tbp]
-\centering
-\makebox[\linewidth]{\includegraphics{../../figures/out/fig_workflow.pdf}}
-\caption{\textbf{Workflow of the study.} Top: the data, the isotherm-driven model with one rate constant shared by
-the training sorbents (B0), and the held-out tests with their decision rule. Middle: the result blocks; a black label
-marks a pre-registered hypothesis with a decision rule, a white label a gate that must pass first or a descriptive
-analysis. Bottom: the broad question behind the study; the confirmatory test addresses it for one descriptor, the
-half-loading humidity. Schematic; no data.}
-\label{fig:workflow}
-\end{figure}
 
-\begin{figure}[tbp]
-\centering
-\makebox[\linewidth]{\includegraphics{../../figures/out/fig1_data.pdf}}
-\caption{\textbf{The data.} \textbf{a}, Adsorption isotherms of the eight sorbents at \V{T_lo}{27}~\textdegree C
-(for ROS-037 and Syloid AL-1 measured at a set point of \ID{25}~\textdegree C).
-\textbf{b}, Normalized uptake after the step from \V{rh_lo}{0} to \V{rh_hi}{30}\,\% RH at \V{T_lo2}{27}~\textdegree C,
-one measured step per sorbent (the second such repeat in the first step-run file by file name; dry mass by rule
-R2). \textbf{c}, Within-run repeatability per
-sorbent and temperature: the median normalized RMS difference between consecutive repeats of the same step; a
-material's noise floor $F$ is the segment-weighted mean of its two values. Colors mark families (orange, aluminum
-carboxylate rods; green, zinc triazolate fluorides); the composites are not shown.}
-\label{fig:data}
-\end{figure}
 
-\begin{figure}[tbp]
-\centering
-\makebox[\linewidth]{\includegraphics{../../figures/out/fig_trajectories.pdf}}
-\caption{\textbf{Held-out predictions against the measurements} (primary dry-mass rule R2). The panels show the
-held-out sorbents with the lowest, the fourth-lowest (lower median of eight) and the highest median error of B0, each
-in the segment whose B0 error is closest to the fold's median of Table~\ref{tab:h4a} (a fixed rule, so the segments
-are not chosen by eye; for ROS-037 that median pools the composite, so the segment shown lies above ROS-037's own
-median). Gray circles: measured uptake (every fifth
-point); solid: B0 with the rate constant shared by the training sorbents; dashed: B2 with the rate constant predicted
-from the isotherm; dotted: the oracle B0$^{*}$ with the sorbent's own rate constant. The rule happened to select three
-release steps. In \textbf{a} the measured uptake ends below zero: an end-point offset from the dry mass and the
-isotherm's end point, not a rate error.}
-\label{fig:trajectories}
-\end{figure}
 
-\begin{figure}[tbp]
-\centering
-\makebox[\linewidth]{\includegraphics{../../figures/out/fig_harness_l1.pdf}}
-\caption{\textbf{Synthetic harness record of the learned models} (synthetic data only). \textbf{a}, Gray box L1:
-median held-out error of L1 over that of B0 refitted on the training sorbents, per harness round, world and held-out
-sorbent (offset within a round: MOF-303 left, ROS-039 center, Al-fumarate right); marker shape gives the world (N, no correction; C, C2, C3, correction worlds), a
-filled marker a beat by the decision rule in force in that round. Round~\ID{3} ran L2 only. The filled marker above
-\ID{1} in round~\ID{6} is a beat that the rule of that round declared although L1's median error exceeded B0's; it led
-to condition~(\ID{4}) of the decision rule (Supporting Note~\snote{1}). The labeled open triangle is the decisive
-failure: MOF-303 in world C3, round~\ID{7}. Solid line, no change; dashed line, the halving of B0's error that the
-harness required, besides a beat, in its judging world from round~\ID{3}. \textbf{b}, Black box L2 in worlds N
-(circles) and C (squares), rounds \ID{1} to \ID{4}, dropped after round~\ID{4}.}
-\label{fig:harness}
-\end{figure}
 
-\begin{figure}[tbp]
-\centering
-\makebox[\linewidth]{\includegraphics{../../figures/out/fig_results.pdf}}
-\caption{\textbf{Confirmatory result.} \textbf{a}, Relative improvement $r$ of B2, the model with the
-isotherm-predicted rate constant, over B0 per held-out sorbent (for ROS-037 and ROS-039 the smaller of the
-parent and composite values, as in Table~\ref{tab:h4a}) under the primary (R2, circles) and sensitivity (R1, squares)
-dry-mass rules; a filled marker would mark a fold beaten by the pre-registered rule (none was). The dashed line is the
-\V{fig_margin}{10}\,\% practical margin. \textbf{b}, Median held-out error of B0, of B0 with the sorbent's own end
-point, and of B0 with its own rate constant (B0$^{*}$), with the noise floor $F$ (bar), under R2; for ROS-037 and
-ROS-039 the medians pool the parent with its composite and the bar is the larger of their two floors.}
-\label{fig:results}
-\end{figure}
 
 
 \section{Discussion}
 
-The isotherm-driven model assumes that, once the driving force is read from the isotherm, one rate constant serves
+\begin{table}[!tbp]
+\centering
+\small
+\caption{\textbf{Decisions of the study.} Status as fixed by the protocol; numbers under the primary dry-mass rule
+unless stated.}
+\label{tab:decisions}
+\begin{tabular}{>{\raggedright\arraybackslash}p{\ID{0.24}\linewidth}>{\raggedright\arraybackslash}p{\ID{0.36}\linewidth}>{\raggedright\arraybackslash}p{\ID{0.32}\linewidth}}
+\toprule
+Hypothesis or analysis & Question & Outcome\\
+\midrule
+H4a (original primary) & Does a learned correction given only isotherms beat B0? & Not tested: L1 failed its harness\\
+B2 harness (gate) & Does the pipeline avoid chance wins and find an effect inside B2's class? & Passed:
+\V{res_Kbeats}{8} of \V{res_folds}{8} in-class folds; \V{res_Sbeats}{3} of \V{res_nnull}{48} null fold-fits\\
+H4a$'$ (confirmatory) & Does a rate constant predicted from half-loading humidity beat the shared one? & Falsified
+under both rules: \V{res_beats_r2}{0} of \V{res_folds}{8} folds\\
+H4b (descriptive) & How much of B0's gap to the noise floor does a sorbent's own $\kpp$ close? &
+\V{res_gap_lo}{-0.7} to \V{res_gap_hi}{45}\,\%; median error reduction \V{res_ownk_med}{15}\,\%\\
+H4c (descriptive) & Does holding out a whole family raise the error? & In part: B0's rose for \V{res_h4c_r2}{5} of
+\V{res_h4c_n}{7} materials\\
+Joint oracle (exploratory) & Own $\kpp$ and own end points together & Median \V{res_joint_r2}{26}\,\% less error;
+more than \V{res_jointF}{7.1} times $F$ left\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:decisions} summarizes the decisions. Taken together, the position of the isotherm step carried no
+detectable information about how fast a new sorbent takes up water, and a correct rate constant would have removed
+little of the error in any case. The isotherm-driven model assumes that, once the driving force is read from the isotherm, one rate constant serves
 every material~\cite{Bezrukov2023Regeneration}. The confirmatory test asked a narrow question: whether the simplest
 isotherm descriptor, the humidity of half loading, used in one log-linear form, predicts how a new sorbent departs
-from that shared value. It did not improve on the shared value for any held-out sorbent. Across \V{dis2_n}{8} held-out sorbents and both definitions of the dry mass, the
-isotherm-predicted rate constant never came near the practical margin, its fitted dependence on the descriptor changed
-sign from one training set to the next under the primary rule (under the sensitivity rule it was mostly negative),
-and in sample the sorbents' own rate constants showed no significant rank correlation with the descriptor under
-either rule. The pre-registered wording, that no isotherm-predicted rate constant (here, none
+from that shared value. It did not improve on the shared value for any of the \V{dis2_n}{8} held-out sorbents, and in sample the
+sorbents' own rate constants showed no significant rank correlation with the descriptor under either rule. The pre-registered wording, that no isotherm-predicted rate constant (here, none
 predicted from this descriptor) was detectable at this noise and error level, is deliberately cautious: where the
 descriptor explained the whole measured spread of the rate constant, in the realistic-power worlds of the harness,
 most folds cleared the margin, whereas on the real data none did, but a smaller, partial effect could have been
@@ -548,7 +585,9 @@ the oracle's in at least two folds. The falsification therefore rules out a desc
 per-sorbent variation in $\kpp$, not a weak one. What the result does not show is that the rate constant is material-independent, or that
 no other isotherm feature, functional form or larger set of sorbents could predict it; those questions remain open.
 For screening, it means that the half-loading humidity, used through this model, gave no detectable improvement over
-one rate constant shared by the sorbents already measured.
+one rate constant shared by the sorbents already measured. Simple indicators computed from equilibrium data are
+attractive for screening when they are validated against the full process model~\cite{Dias2023Performance}; this one
+did not pass the analogous test for rate.
 
 A better rate constant would not have removed much of the error in any case. Under the primary dry-mass rule, each
 sorbent's own rate constant removed a median \V{dis2_ownk}{15}\,\% of the shared model's error and its own end points
@@ -562,20 +601,33 @@ cannot separate. No rate constant or end point can repair it; if it is the rate 
 limits of the linear-driving-force approximation~\cite{Raymond2011Intraparticle}; whether uptake steps show
 the same is not established here. The isotherm input is another: the isotherms come from separate runs, for two
 sorbents at \ID{25} rather than \ID{27}~\textdegree C, and scaling them to a sorbent's own measured end points alone
-lowered B0's error as much as its own rate constant did under R2, though only about a third as much under R1. Differences between samples and sessions are a third:
-the same step on another pan or in another session agreed only to within an $E$ of \V{dis2_fb1}{0.034} to
-\V{dis2_fb2}{0.37}, a range, a ceiling that also contains the mass effect B0 models, that overlaps the model's error, and the measured rate depends on how the sorbent is
+lowered B0's error as much as its own rate constant did under R2, though only about a third as much under R1. Differences between samples and sessions are a
+third. The same step on another pan or in another session agreed only to within an $E$ of \V{dis2_fb1}{0.034} to
+\V{dis2_fb2}{0.37}. This range overlaps the model's error; it is a ceiling on the noise, because it also contains real
+differences between samples and the mass effect that B0 models, and the measured rate depends on how the sorbent is
 held~\cite{Solovyeva2023Water,Li2025Atmospheric}. Errors in the dry mass and lags in the instrument's delivery of
-humidity would inflate both the model's error and that scatter. One reported harness result narrows the field a little: the one shared form error that was simulated, built into
+humidity would inflate both the model's error and that scatter; errors in a model's inputs are known to shift fitted
+parameters and predictions~\cite{Abdi2023Parameter}. One reported harness result narrows the field a little: the one shared form error that was simulated, built into
 the form-error world of the harness, made the isotherm-predicted rate constant win in most folds with a consistent
 negative slope. On the real data it won in no fold, although under the sensitivity rule its fitted slopes were mostly
 negative. This argues against a shared form error of the simulated kind and size; one of another shape or a smaller
 size need not leave that signature.
 
+For screening and device design, the results give three working rules for sorbents measured as milligram powder
+layers. First, a new sorbent's rate constant cannot be taken from its half-loading humidity; until a validated
+predictor exists, it should be treated as unknown within the spread of these materials. Second, cycle timing taken
+from the shared-constant model carries a median error of \V{dis2_t63}{17}\,\% in the time to \V{dis2_t63p}{63}\,\% of a
+step's change on unseen sorbents, which a half-cycle schedule has to allow for. Third, an isotherm measured on the
+same sample as the kinetics matters as much as the rate constant: under the primary rule, scaling the isotherm to the
+sorbent's own end points lowered the error about as much as its own rate constant did.
+
 The learned model's record concerns one architecture and its training. A gray-box correction given only the isotherms
 recovered large injected effects, and in the final round it recovered a new one on two of three held-out sorbents; it
 failed on the sorbent where the metric-fitted comparator left the smallest error to correct, at a margin close to the
-noise floor. The record does not say whether another design would pass, or whether a correction as small as the one
+noise floor. L1 is a series hybrid, in which a learned factor multiplies a mechanistic rate; recovering such a
+factor is an inverse problem known to amplify measurement noise~\cite{Cho2026Dictionary}, which is consistent with a
+failure where the correction was smallest relative to the noise floor. The record does not say whether another
+design would pass, or whether a correction as small as the one
 left on MOF-303 can be confirmed only with more sorbents or lower noise. What it shows is the value of testing a procedure on data
 simulated from a known truth before it meets real data~\cite{Cook2006Validation,Talts2018Validating,Modrak2025Simulation}: without the
 harness, a model that had found corrections in the worlds it was developed on could have been reported as a success.
@@ -588,7 +640,10 @@ so the rate constant is an effective one for this geometry, not an intrinsic pro
 coatings or devices is untested. The two composites extend the set only within their families. The \V{dis2_m}{10}\,\%
 practical margin was set after the noise floor had been seen, though before any model met held-out real data, and was
 confirmed at the freeze after the harness had been scored with it. Several secondary analyses of the protocol were not
-run (Methods), and all analyses added after the result are labeled exploratory.
+run (Methods), and all analyses added after the result are labeled exploratory. The pre-registration is self-held:
+the freeze is recorded in the project's public version history, not with a third-party registry, so its timing rests
+on that history. With eight sorbents only strong rank correlations between a sorbent's rate constant and its
+descriptor could be detected, and only one descriptor in one functional form was tested.
 
 \section{Data Availability and Reproducibility Statement}
 

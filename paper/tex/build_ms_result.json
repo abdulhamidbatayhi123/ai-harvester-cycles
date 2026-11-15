@@ -13,9 +13,9 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 258,
-  "G1_n_keys": 247,
-  "G2_main.tex_n_refs": 41,
+  "G1_n_uses": 277,
+  "G1_n_keys": 246,
+  "G2_main.tex_n_refs": 49,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 5,
   "G2_si_figures": 1,
@@ -23,10 +23,10 @@
   "G3_si.tex_em_dashes": 0,
   "G4_n_phrases": 44,
   "G5_words": {
-   "abstract": 146,
-   "main_text": 5132,
-   "methods": 2783,
-   "si": 2566
+   "abstract": 147,
+   "main_text": 5660,
+   "methods": 2758,
+   "si": 2764
   },
   "G5_targets": {
    "abstract": "<= 147 (cap 150)",
@@ -81,10 +81,52 @@
    "ok": true
   },
   {
-   "key": "abs_joint",
+   "key": "res_beats_r2",
    "doc": "main.tex",
-   "text": "26",
-   "source": "26",
+   "text": "0",
+   "source": "0",
+   "ok": true
+  },
+  {
+   "key": "res_beats_r2",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "0",
+   "ok": true
+  },
+  {
+   "key": "res_beats_r2",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "0",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
    "ok": true
   },
   {
@@ -410,22 +452,22 @@
    "ok": true
   },
   {
-   "key": "dis_k",
-   "doc": "main.tex",
-   "text": "3.16",
-   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
-   "ok": true
-  },
-  {
-   "key": "dis_kp",
-   "doc": "main.tex",
-   "text": "1.59",
+   "key": "dis_T",
+   "doc": "si.tex",
+   "text": "60",
    "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
    "ok": true
   },
   {
    "key": "dis_g1",
    "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
+   "ok": true
+  },
+  {
+   "key": "dis_g1",
+   "doc": "si.tex",
    "text": "10",
    "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
    "ok": true
@@ -438,10 +480,10 @@
    "ok": true
   },
   {
-   "key": "dis_m",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "key": "dis_g2",
+   "doc": "si.tex",
+   "text": "42",
+   "source": "PREREG_P4_draft.md: k″ closes 10 % to 42 % of the gap between B0 and F",
    "ok": true
   },
   {
@@ -655,6 +697,34 @@
    "ok": true
   },
   {
+   "key": "T_lo",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
+   "key": "rh_lo",
+   "doc": "main.tex",
+   "text": "0",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "rh_hi",
+   "doc": "main.tex",
+   "text": "30",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
+   "key": "T_lo2",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
+   "ok": true
+  },
+  {
    "key": "res_ros_ratio",
    "doc": "main.tex",
    "text": "0.36",
@@ -704,45 +774,52 @@
    "ok": true
   },
   {
-   "key": "res_Sbeats",
-   "doc": "main.tex",
-   "text": "3",
-   "source": "3",
-   "ok": true
-  },
-  {
-   "key": "res_Sbeats",
-   "doc": "main.tex",
-   "text": "3",
-   "source": "3",
-   "ok": true
-  },
-  {
-   "key": "res_nnull",
-   "doc": "main.tex",
-   "text": "48",
-   "source": "48",
-   "ok": true
-  },
-  {
-   "key": "res_nnull",
-   "doc": "main.tex",
-   "text": "48",
-   "source": "48",
-   "ok": true
-  },
-  {
-   "key": "res_beats_r2",
-   "doc": "main.tex",
-   "text": "0",
-   "source": "0",
-   "ok": true
-  },
-  {
-   "key": "res_folds",
+   "key": "res_Kbeats",
    "doc": "main.tex",
    "text": "8",
    "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_Sbeats",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_Sbeats",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_Sbeats",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_nnull",
+   "doc": "main.tex",
+   "text": "48",
+   "source": "48",
+   "ok": true
+  },
+  {
+   "key": "res_nnull",
+   "doc": "main.tex",
+   "text": "48",
+   "source": "48",
+   "ok": true
+  },
+  {
+   "key": "res_nnull",
+   "doc": "main.tex",
+   "text": "48",
+   "source": "48",
    "ok": true
   },
   {
@@ -1082,6 +1159,34 @@
    "ok": true
   },
   {
+   "key": "res_rpool_37",
+   "doc": "main.tex",
+   "text": "0.3",
+   "source": "0.3",
+   "ok": true
+  },
+  {
+   "key": "res_rpool_39",
+   "doc": "main.tex",
+   "text": "-1.8",
+   "source": "-1.8",
+   "ok": true
+  },
+  {
+   "key": "fig_margin",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "res_gap_lo",
+   "doc": "main.tex",
+   "text": "-0.7",
+   "source": "-0.7",
+   "ok": true
+  },
+  {
    "key": "res_gap_lo",
    "doc": "main.tex",
    "text": "-0.7",
@@ -1093,6 +1198,20 @@
    "doc": "main.tex",
    "text": "45",
    "source": "45",
+   "ok": true
+  },
+  {
+   "key": "res_gap_hi",
+   "doc": "main.tex",
+   "text": "45",
+   "source": "45",
+   "ok": true
+  },
+  {
+   "key": "res_ownk_med",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
    "ok": true
   },
   {
@@ -1180,6 +1299,13 @@
    "ok": true
   },
   {
+   "key": "res_joint_r2",
+   "doc": "main.tex",
+   "text": "26",
+   "source": "26",
+   "ok": true
+  },
+  {
    "key": "res_joint_r1",
    "doc": "main.tex",
    "text": "25",
@@ -1194,10 +1320,31 @@
    "ok": true
   },
   {
+   "key": "res_jointF",
+   "doc": "main.tex",
+   "text": "7.1",
+   "source": "7.1",
+   "ok": true
+  },
+  {
    "key": "res_h4c_r2",
    "doc": "main.tex",
    "text": "5",
    "source": "5",
+   "ok": true
+  },
+  {
+   "key": "res_h4c_r2",
+   "doc": "main.tex",
+   "text": "5",
+   "source": "5",
+   "ok": true
+  },
+  {
+   "key": "res_h4c_n",
+   "doc": "main.tex",
+   "text": "7",
+   "source": "7",
    "ok": true
   },
   {
@@ -1219,55 +1366,6 @@
    "doc": "main.tex",
    "text": "4",
    "source": "4",
-   "ok": true
-  },
-  {
-   "key": "res_rpool_37",
-   "doc": "main.tex",
-   "text": "0.3",
-   "source": "0.3",
-   "ok": true
-  },
-  {
-   "key": "res_rpool_39",
-   "doc": "main.tex",
-   "text": "-1.8",
-   "source": "-1.8",
-   "ok": true
-  },
-  {
-   "key": "T_lo",
-   "doc": "main.tex",
-   "text": "27",
-   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
-   "ok": true
-  },
-  {
-   "key": "rh_lo",
-   "doc": "main.tex",
-   "text": "0",
-   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
-   "ok": true
-  },
-  {
-   "key": "rh_hi",
-   "doc": "main.tex",
-   "text": "30",
-   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
-   "ok": true
-  },
-  {
-   "key": "T_lo2",
-   "doc": "main.tex",
-   "text": "27",
-   "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
-   "ok": true
-  },
-  {
-   "key": "fig_margin",
-   "doc": "main.tex",
-   "text": "10",
-   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
    "ok": true
   },
   {
@@ -1327,6 +1425,34 @@
    "ok": true
   },
   {
+   "key": "dis2_t63",
+   "doc": "main.tex",
+   "text": "17",
+   "source": "17",
+   "ok": true
+  },
+  {
+   "key": "dis2_t63",
+   "doc": "main.tex",
+   "text": "17",
+   "source": "17",
+   "ok": true
+  },
+  {
+   "key": "dis2_t63p",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "dis2_t63p",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
    "key": "dis2_m",
    "doc": "main.tex",
    "text": "10",
@@ -1380,20 +1506,6 @@
    "doc": "main.tex",
    "text": "240",
    "source": "240",
-   "ok": true
-  },
-  {
-   "key": "dis2_t63p",
-   "doc": "main.tex",
-   "text": "63",
-   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
-   "ok": true
-  },
-  {
-   "key": "dis2_t63",
-   "doc": "main.tex",
-   "text": "17",
-   "source": "17",
    "ok": true
   },
   {
@@ -1688,6 +1800,27 @@
    "doc": "si.tex",
    "text": "0.12",
    "source": "PREREG_P4_draft.md: The 0.40 bound keeps P(at least 7 of 8 | H0) ≤ 0.05 for a within-world fold correlation ρ ≤ 0.12",
+   "ok": true
+  },
+  {
+   "key": "dis_k",
+   "doc": "si.tex",
+   "text": "3.16",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_kp",
+   "doc": "si.tex",
+   "text": "1.59",
+   "source": "PREREG_P4_draft.md: CAU-10-H at 60 °C has both the largest uptake k″ (3.16 against 1.59 pooled)",
+   "ok": true
+  },
+  {
+   "key": "dis_m",
+   "doc": "si.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
    "ok": true
   },
   {

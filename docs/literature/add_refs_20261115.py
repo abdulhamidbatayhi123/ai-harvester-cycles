@@ -17,6 +17,19 @@ NEW = {  # key: (DOI, verification note)
     "Kong2026Regeneration": ("10.1002/anie.6095254", "status A: full text read (Europe PMC PMC13725610, review 2026-11-15)"),
     "Ma2025Microscopic": ("10.1021/acs.nanolett.5c00343", "status B: abstract read (review 2026-11-15)"),
     "Frandsen2025Systematic": ("10.1002/aic.70045", "status B: abstract read (review 2026-11-15)"),
+    # AIChE Journal literature review (2026-11-16): abstract read unless noted
+    "Huang2018Model": ("10.1002/aic.16051", "status B: abstract read (AIChE J. review 2026-11-16)"),
+    "Cho2026Dictionary": ("10.1002/aic.70419", "status B: full text skimmed (AIChE J. review 2026-11-16)"),
+    "Bangi2023Deep": ("10.1002/aic.18012", "status B: abstract read (AIChE J. review 2026-11-16)"),
+    "Zhang2022Descriptor": ("10.1002/aic.17524", "status B: abstract read (AIChE J. review 2026-11-16)"),
+    "Zhang2022Matching": ("10.1002/aic.17788", "status B: full text skimmed (AIChE J. review 2026-11-16)"),
+    "Dias2023Performance": ("10.1002/aic.18074", "status B: full text skimmed (AIChE J. review 2026-11-16)"),
+    "Wang2022Investigation": ("10.1002/aic.17737", "status B: abstract read (AIChE J. review 2026-11-16)"),
+    "Guo2023Universal": ("10.1002/aic.18181", "status B: abstract read (AIChE J. review 2026-11-16)"),
+    "Chew2026AI": ("10.1002/aic.70358", "status B: abstract read (AIChE J. review 2026-11-16)"),
+    "Abdi2023Parameter": ("10.1002/aic.18058", "status B: abstract read (AIChE J. review 2026-11-16)"),
+    "Sharma2022Hybrid": ("10.1002/aic.17609", "status B: abstract read (AIChE J. review 2026-11-16)"),
+    "Rajulapati2022Integration": ("10.1002/aic.17715", "status B: abstract read (AIChE J. review 2026-11-16)"),
 }
 
 
