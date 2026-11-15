@@ -2,7 +2,7 @@
 
 Code, pre-registration, harness records and every results file of the paper
 
-**No detectable gain from predicting water-uptake rate constants from half-loading humidity: a pre-registered test**
+**Does the position of the isotherm step predict the water-uptake rate of unseen sorbents? A pre-registered test**
 (Abdulhamid Batayhi, Yildiz Technical University; manuscript in `paper/tex/`).
 
 The paper tests, on the open dynamic vapor sorption archive of Bezrukov et al. (Zenodo

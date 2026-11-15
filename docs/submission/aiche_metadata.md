@@ -2,7 +2,7 @@
 
 - Article type: Research Article
 - Topical heading: Separations: Materials, Devices and Processes
-- Title (112 characters, limit 120): No detectable gain from predicting water-uptake rate constants from half-loading humidity: a pre-registered test
+- Title (110 characters, limit 120): Does the position of the isotherm step predict the water-uptake rate of unseen sorbents? A pre-registered test
 - Keywords (five): water sorption kinetics; metal-organic frameworks; linear driving force; held-out validation; pre-registration
 - Plain Language Summary (217 characters, limit 250):
   Can a material's equilibrium water-uptake curve predict how fast it takes up and releases water? Testing eight
