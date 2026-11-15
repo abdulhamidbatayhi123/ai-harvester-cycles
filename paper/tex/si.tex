@@ -8,6 +8,7 @@
 \usepackage{longtable}
 \usepackage{textcomp}
 \usepackage{caption}
+\usepackage{placeins}
 \usepackage[hidelinks]{hyperref}
 \input{ms_macros.tex}
 \newcommand{\kpp}{k''}
@@ -54,12 +55,17 @@ text on every held-out sorbent and halves B0's median $E$; and (\C{3}) in world 
 world, once used for diagnosis, could no longer judge: the judging world moved from C (rounds \ID{2} to \ID{5}) to C2
 (round~\ID{6}) to C3 (round~\ID{7}), and C3 was defined and committed before any run on it. A null study (criterion
 \C{4}) was designed to bound false beats of a learned model before any positive verdict; it was not run for L1 after
-round~\ID{7}, because there was no positive result for it to protect.
+round~\ID{7}, because there was no positive result for it to protect. One replicate had been run before round
+\ID{7} with an earlier L1, without the driving force as input (\texttt{results/null\_rep0\_preD}); in it that L1 beat
+B0 by chance in two of the five folds it scored, which led to the per-fold-rate form of criterion~\C{4}.
 
 \paragraph{Record.} Table~\ref{tab:harness} lists every case. In round~\ID{1} L1 missed the injected correction and L2 failed even
 on correction-free data. In round~\ID{2}, with two-stage training, L1 found the correction, but L2 fitted the
 training sorbents and not an unseen one: a global encoding of the isotherm let it memorize material identity, so it
-was rebuilt on local isotherm features. In round~\ID{3} the rebuilt L2 still did not transfer, because its output was
+was rebuilt on local isotherm features. Round~\ID{2} met the harness criteria as then written; before any
+real-data fit, a protocol review found the least-squares comparator weaker than one fitted by the scored metric (L1's
+error was already below B0's in world N), so the halving was required from round~\ID{3} and the comparator was fitted
+by the scored metric from round~\ID{4}, and the harness was judged under these revised criteria. In round~\ID{3} the rebuilt L2 still did not transfer, because its output was
 scaled by a per-sorbent number the network never saw; its output became a water mass flux. In round~\ID{4} the
 comparator was fitted by the scored metric and absorbed part of the injected slow-down, and L1 no longer beat it; L2
 again failed world N and was dropped after a diagnostic showed that it could not hold the equilibrium precisely
@@ -98,8 +104,9 @@ seed.}\label{tab:harness}}
 
 \paragraph{Design.} The harness of H4a$'$ (version~\ID{2}, committed before its first run; an earlier version was
 revised after an independent AI-assisted review (Acknowledgments of the main text), and its only run was stopped before any result was read) uses the real forcing,
-isotherms and dry masses of the primary set and the two composites, and the same autocorrelated noise as the harness
-of Note~\snote{1}. Each world runs the \V{si2_nfold}{8} LOSO folds; in each fold B0 and B2 are fitted on the training
+isotherms and dry masses of the primary set and the two composites, and first-order autoregressive
+noise ($\sigma = \V{si2_sig}{0.01}$~wt\%, $\varphi = \V{si2_phi}{0.9}$), except in world C3, which is the world of
+Note~\snote{1} with its independent noise of the same $\sigma$. Each world runs the \V{si2_nfold}{8} LOSO folds; in each fold B0 and B2 are fitted on the training
 sorbents by the scored metric, and the decision rule of the main text is applied with each material's real noise
 floor and the admissibility check. In world N the truth is B0 with the pooled $\kpp$ of the real data. In world K
 (plumbing) $\ln\kpp$ of each sorbent is shifted by $\V{si2_bK}{1.5}\,(x - \bar{x})$, with $x = \mathrm{RH}_{50}/\V{si2_x30}{30}\,\%$,
@@ -107,8 +114,8 @@ so the truth lies inside B2's class; K checks the machinery, not power. Worlds K
 the same form with the slope at each temperature chosen so that the across-sorbent spread of the shift equals the
 measured in-sample spread of $\ln\kpp$ (\V{si2_sd27}{0.089} at \V{si2_T27}{27}~\textdegree C, slope
 \V{si2_b27}{0.50}; \V{si2_sd60}{0.300} at \V{si2_T60}{60}~\textdegree C, slope \V{si2_b60}{1.38}; the protocol fixed
-these spreads from the least-squares fits, whereas the scored-metric fits used elsewhere give \V{si2_sdm27}{0.096} and
-\V{si2_sdm60}{0.232}, so at \ID{60}~\textdegree C these worlds carry a larger effect than the metric fits suggest), plus
+these spreads from the least-squares fits, whereas (exploratory, added after the result) the scored-metric fits used elsewhere give \V{si2_sdm27}{0.096} and
+\V{si2_sdm60}{0.231}, so at \ID{60}~\textdegree C these worlds carry a larger effect than the metric fits suggest), plus
 end-point
 offsets drawn as in the null worlds: the largest effect of the measured size that the isotherm could carry, with
 end-point error on top. In the six structure-free null worlds S0 to S5, $\ln\kpp$ of each sorbent and
@@ -146,7 +153,7 @@ effective rate constant.
 \small\setlength{\tabcolsep}{\ID{4pt}}
 \caption{B2 harness per world (synthetic data). Folds beaten by the decision rule, median relative improvement $r$
 over folds, median over folds of the median held-out error $E$ of B0 and B2, and the median fitted slope $b$ per
-temperature (\textdegree C) and direction. True slopes: \V{si2_bK3}{1.5} in K; in K2a--c \V{si2_b27b}{0.50} at
+temperature (\textdegree C) and direction (ads, uptake; des, release). True slopes: \V{si2_bK3}{1.5} in K; in K2a--c \V{si2_b27b}{0.50} at
 \V{si2_T27b}{27}~\textdegree C and \V{si2_b60b}{1.38} at \V{si2_T60b}{60}~\textdegree C; none in N, S0--S5 and
 C3.}\label{tab:harnessb2}
 \input{tab_harness_b2.tex}
@@ -181,8 +188,9 @@ recomputed predictions reproduce the confirmatory errors exactly. B2 improves on
 Two further checks were added after the result and are exploratory. First, a joint oracle applies both oracles at once:
 B0 with the held-out sorbent's own end points and its own rate constant fitted on those scaled isotherms. It lowered
 B0's median error by \V{si4_j2}{26}\,\% (R2) and \V{si4_j1}{25}\,\% (R1) at the median over held-out sorbents,
-somewhat less than the sum of the two separate medians; it is not a best case, since in the Al-fumarate fold it scored
-worse than the end-point oracle alone. Second, Figure~\ref{fig:s1} plots each sorbent's own rate constant, fitted in
+somewhat less than the sum of the two separate medians; it is not a best case: under R2 it scored worse in the Al-fumarate fold
+than the end-point oracle alone and than B0 itself, and under R1 worse than the own-$\kpp$ oracle alone in the
+Al-fumarate and MOF-303 folds. Second, Figure~\ref{fig:s1} plots each sorbent's own rate constant, fitted in
 sample before the freeze, against its half-loading humidity; no stratum shows a significant rank correlation, though
 with eight sorbents only strong correlations could be detected. Under R1, with the half-loading humidity recomputed
 from the isotherms under that rule, all four correlations are negative and none is significant ($\rho$ from
@@ -206,6 +214,7 @@ Spearman rank correlation and its exact two-sided $p$ are computed; open: the tw
 Exploratory.}\label{fig:s1}
 \end{figure}
 
+\FloatBarrier
 \section*{Supporting Note~\snote{5}: Numerical data of the figures}
 
 The file \texttt{figure\_data.zip} holds one comma-separated file per figure with data, written by the figure's script
@@ -225,7 +234,7 @@ from the plotted artists when the figure is drawn, so the values are exactly tho
 Each file has the columns \texttt{panel}, \texttt{series} (what the plotted series is: model, sorbent, rule, world),
 \texttt{x}, \texttt{y}, the panel's axis labels, and, for panels whose horizontal axis is categorical, the category
 names in order (the $x$ value is then the category index, shifted slightly to separate overlapping markers).
-Horizontal reference lines appear as series named ``reference line'' with $x$ in axes fractions. Figure~\ID{1} is a
+Horizontal reference lines appear as series named ``reference line'' with $x$ in axes fractions. Point series on a numeric axis may also be shifted to separate overlapping markers (Figure~\ID{4}: the harness round shifted by held-out sorbent; graphical abstract: the sorbent index shifted by dry-mass rule). Series use the code's identifiers: CAU-10 is CAU-10-H, Syloid is Syloid AL-1, B0star is B0$^{*}$ and B0\_endpoint\_oracle the end-point oracle. Figure~\ID{1} is a
 schematic without numerical data. Tables~S\ID{1}--S\ID{4} are themselves the numerical data of the two harnesses, the family
 folds and the secondary metrics.
 

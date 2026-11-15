@@ -11,6 +11,11 @@ ROOT = os.path.dirname(os.path.dirname(HERE))
 BS = chr(92)
 
 
+def f3(x):
+    """Median errors with three decimals, so that the small differences the text counts are visible."""
+    return "--" if x is None else f"{x:.3f}"
+
+
 def sig(x, n=2):
     """n significant figures, plain decimal (no exponent) for the magnitudes in these tables."""
     if x is None:
@@ -162,7 +167,7 @@ def tab_h4a():
         a, b, p = d2["folds"].get(k + "|B2"), d1["folds"].get(k + "|B2"), rows.get(k)
         if a is None or b is None or p is None:
             continue
-        med = lambda key: sig(float(np.nanmedian(np.asarray(p["E"][key], float))))
+        med = lambda key: f3(float(np.nanmedian(np.asarray(p["E"][key], float))))
         fl = ", ".join(f"{x['temp'][:2]}" for x in ext.get(k, []))
         out.append(f"{LABEL.get(s, s)} & {_r(a)} & {_r(b)} & {'yes' if a['beats_B0'] else 'no'} & "
                    f"{'yes' if b['beats_B0'] else 'no'} & {med('B0')} & {med('B2')} & {med('B0star')} & {share(a, p)} & {fl or '--'}"
@@ -199,7 +204,8 @@ def tab_h4c():
                 continue
             name = LABEL.get(parent, parent) + (" composite" if s.endswith("_composite") else "")
             vals = [own(pl, s, "B0"), own(pf, s, "B0"), own(pl, s, "B2"), own(pf, s, "B2")]
-            out.append(f"{fam.split(':')[1]} & {name} & " + " & ".join(sig(v) for v in vals) + BS + BS)
+            fam_name = {"Al-rod": "Al carboxylate rods", "Zn-triazolate-F": "Zn triazolate fluorides"}[fam.split(":")[1]]
+            out.append(f"{fam_name} & {name} & " + " & ".join(f3(v) for v in vals) + BS + BS)
     out += [BS + "bottomrule", BS + "end{tabular}", ""]
     return "\n".join(out)
 
@@ -218,13 +224,13 @@ def tab_secondary():
              "60C|ads": "60 \\textdegree C, uptake", "60C|des": "60 \\textdegree C, release"}
     for k, lab in names.items():
         a, b = s["R2"]["strata"][k], s["R1"]["strata"][k]
-        out.append(f"Median $E$ & {lab} (n = {a['n_seg']}) & {sig(a['E_B0'])} & {sig(a['E_B2'])} & -- & "
-                   f"{sig(b['E_B0'])} & {sig(b['E_B2'])} & --" + BS + BS)
+        out.append(f"Median $E$ & {lab} (n = {a['n_seg']}) & {f3(a['E_B0'])} & {f3(a['E_B2'])} & -- & "
+                   f"{f3(b['E_B0'])} & {f3(b['E_B2'])} & --" + BS + BS)
     a, b = sec["secondary_R2"], sec["secondary_R1"]
-    out.append(f"$t_{{63}}$ relative error & all held-out segments & {a['t63_B0']:.3f} & {a['t63_B2']:.3f} & "
+    out.append(f"Median $|\\Delta t_{{63}}|/t_{{63}}$ & all held-out segments & {a['t63_B0']:.3f} & {a['t63_B2']:.3f} & "
                f"{a['t63_B0star']:.3f} & {b['t63_B0']:.3f} & {b['t63_B2']:.3f} & {b['t63_B0star']:.3f}" + BS + BS)
-    out.append(f"$E$ to $5\\,t_{{63}}$ & all held-out segments & {sig(a['Etr_B0'])} & {sig(a['Etr_B2'])} & "
-               f"{sig(a['Etr_B0star'])} & {sig(b['Etr_B0'])} & {sig(b['Etr_B2'])} & {sig(b['Etr_B0star'])}" + BS + BS)
+    out.append(f"Median $E$ to $5\\,t_{{63}}$ & all held-out segments & {f3(a['Etr_B0'])} & {f3(a['Etr_B2'])} & "
+               f"{f3(a['Etr_B0star'])} & {f3(b['Etr_B0'])} & {f3(b['Etr_B2'])} & {f3(b['Etr_B0star'])}" + BS + BS)
     out += [BS + "bottomrule", BS + "end{tabular}", ""]
     return "\n".join(out).replace("\\\\textdegree", BS + "textdegree")
 

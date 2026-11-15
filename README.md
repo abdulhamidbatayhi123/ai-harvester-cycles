@@ -31,15 +31,18 @@ Archived at Zenodo: version 1.0.1, [10.5281/zenodo.24243541](https://doi.org/10.
 
 ## Reproduce
 
-Python 3.12; exact package versions in `requirements-lock.txt` (`pip install -r requirements-lock.txt`; CPU only).
+Python 3.12; exact package versions in `requirements-lock.txt` (`pip install -r requirements-lock.txt --extra-index-url https://download.pytorch.org/whl/cpu`; the CPU build of
+torch is pinned as `+cpu`, which only the PyTorch index provides).
 
 1. Data. Download `data.zip` from Zenodo 6631711 into `data_raw/bezrukov2023/` and check its md5 against
    `DATA_SOURCES.md`. Convert once: `python -I audit/extract_dvs.py data_raw/bezrukov2023/data.zip data_derived/bezrukov2023`.
    Raw and derived data are not redistributed here.
 2. Tests: `python -E -s -m pytest -q`.
 3. B2 harness (synthetic; about 15 h on a laptop in four parallel parts): `python -I audit/harness_b2.py
-   data_derived/bezrukov2023 <out_dir> "<worlds>"`, then `--evaluate` and `audit/b2_harness_report.py`
-   (commands in `PREREG_P4_draft.md` section 10b and `audit/run_harness_b2.bat`).
+   data_derived/bezrukov2023 results/harness_b2/part1 "N,K,K2a,K2b"` (part2 "S0,K2c,S1,S2", part3 "S3,S4,C3",
+   part4 "S5"), then `python -I audit/harness_b2.py --evaluate results/harness_b2/harness_b2.json
+   results/harness_b2/part1/harness_b2.json ... results/harness_b2/part4/harness_b2.json` and
+   `python -I audit/b2_harness_report.py results/harness_b2/harness_b2.json results/harness_b2/report.json`.
 4. Confirmatory runs (about 4.5 h per dry-mass rule), exactly as in PREREG section 11:
 
        python -E -s -m p4.run_study data_derived/bezrukov2023 results/confirm_R2 --kinds none
@@ -49,19 +52,25 @@ Python 3.12; exact package versions in `requirements-lock.txt` (`pip install -r 
        python -E -s -m p4.final_verdict results/confirm_R2/decide.json results/confirm_R1/decide.json results/harness_b2/harness_b2.json results/final_verdict.json B2
 
    `run_study` appends one row per fold to `rows.jsonl` and skips folds already there, so an interrupted run resumes.
-5. Summaries, secondary and exploratory analyses: `audit/summarise_confirm.py`, `audit/secondary_metrics.py`,
-   `audit/exploratory_joint_oracle.py`, `audit/exploratory_rh50_vs_k.py`, and, from the last internal review,
+5. Secondary and exploratory analyses, then the summary: `audit/secondary_metrics.py` (R2, R1),
+   `audit/exploratory_joint_oracle.py` (R2, R1), `audit/exploratory_rh50_vs_k.py`, and, from the last internal review,
    `audit/exploratory_oracle_r.py` (the oracle's r by the decision rule), `audit/exploratory_rh50_vs_k_R1.py` (the
-   rank correlation under R1, with RH50 recomputed under R1; it also recomputes the R2 values of `results/rh50.json`
-   and checks that they agree) and `audit/exploratory_k_spread.py` (usage line at the top of each).
-Pre-freeze inputs (run before the freeze; their outputs are committed and hashed in `FREEZE_MANIFEST.json`):
+   rank correlation under R1, with RH50 recomputed under R1) and `audit/exploratory_k_spread.py`; then
+   `audit/summarise_confirm.py` last, because it collects their outputs (usage line at the top of each).
+Pre-freeze inputs (run before the freeze; their outputs were committed before the freeze and are unchanged since,
+   see tag `prereg-p4-freeze`; `checks2.json` and `rh50.json` are also hashed in `FREEZE_MANIFEST.json`):
    `audit/prefreeze_checks.py` and `audit/prefreeze_checks2.py` (noise floors, clusters, drift; `checks2.json` holds the
    floors F the decision rule uses), `audit/reproduce_b0.py` (in-sample reproduction of B0, R2 and R1),
-   `audit/h4b_insample.py` and `audit/extrapolation_flags.py`; usage line at the top of each.
-6. Figures: the usage line at the top of each `figures/fig_*.py`; each figure script also writes the plotted numbers to
-   `figures/out/<figure>.data.csv` (packed as `figure_data.zip` in the Supporting Information). Manuscript: `python -I paper/tex/make_tables.py`, then
-   `python -I paper/tex/build_ms.py` (needs the `tectonic` TeX engine; the gates check that every number in the text
-   equals its source, that every reference and figure is current, and more; see the script's docstring).
+   `audit/h4b_insample.py` and `audit/extrapolation_flags.py`; `audit/rh50_table.py` recomputes every value of
+   `results/rh50.json` and checks it against the frozen file; usage line at the top of each.
+6. Figures: the usage line at the top of each `figures/fig_*.py`; each data-figure script (all but the schematic
+   `fig_workflow.py`) also writes the plotted numbers to `figures/out/<figure>.data.csv`, and
+   `python -I paper/tex/package_aiche.py` packs them as `figure_data.zip` for the Supporting Information. Figures 2 and 3
+   also read `data_derived/` (not redistributed; its combined hash is in `FREEZE_MANIFEST.json`), which their provenance
+   files do not list. Manuscript: `python -I paper/tex/make_tables.py`, then `python -I paper/tex/build_ms.py` (needs the
+   `tectonic` TeX engine; set `TECTONIC` to its executable). The gates check every number written in digits against
+   its source (a results file or the frozen protocol), that every reference and figure is current, and more; see the
+   script's docstring.
 
 ## Notes for data reviewers
 
@@ -76,14 +85,18 @@ Pre-freeze inputs (run before the freeze; their outputs are committed and hashed
 
 The project was kept in a local git repository from the first data audit (October 2026) to submission. Before it was
 made public (2026-11-12), three private documents (an unsent letter and two documents meant for the journal only)
-were removed from the whole history; nothing else changed. This changed every commit hash: `COMMIT_MAP.tsv` maps old
+were removed from the whole history; nothing else changed. This changed the hash of every commit after the first three: `COMMIT_MAP.tsv` maps old
 to new, and the commit hashes quoted inside `PREREG_P4_draft.md` are the old ones. The frozen protocol is
 byte-identical before and after (its SHA-256 is in `FREEZE_MANIFEST.json`). The freeze is recorded only in this
 history; it was not deposited with a third-party registry before the confirmatory runs.
 
 To check the hashes in `FREEZE_MANIFEST.json`, hash text files with line endings converted to LF: the manifest
 hashes are LF-normalized, and the Zenodo archive (built on Windows) stores most text files with CRLF line endings,
-so hashing them as downloaded gives a false mismatch. Files compared after LF conversion match the tagged commit.
+so hashing them as downloaded gives a false mismatch. `python -I audit/verify_freeze.py` does this check, reads the
+manifest's p4 keys (written with Windows separators) as `p4/<name>`, and recomputes the combined hash of
+`data_derived/` (recipe in its docstring). Every listed file matches the tagged commit except `p4/figstyle.py`, the
+figure style, which was changed after the freeze (figure appearance and the export of figure data only; disclosed in
+the manuscript, Section 2.10).
 
 ## License
 

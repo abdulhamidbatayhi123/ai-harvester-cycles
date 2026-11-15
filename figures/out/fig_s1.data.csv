@@ -1,12 +1,20 @@
 panel,series,x,y,x_label,y_label,x_tick_labels_if_categorical
-a,own k ROS-037 27C|ads,13.2754,0.300669,RH50 (% RH),Own k″,
-a,own k ROS-039 27C|ads,7.41241,0.312562,RH50 (% RH),Own k″,
-a,own k ROS-040 27C|ads,14.0565,0.307903,RH50 (% RH),Own k″,
-a,own k MOF-303 27C|ads,12.571,0.331986,RH50 (% RH),Own k″,
-a,own k MIL-160 27C|ads,8.14755,0.365209,RH50 (% RH),Own k″,
-a,own k CAU-10 27C|ads,17.7011,0.321269,RH50 (% RH),Own k″,
-a,own k Al-fumarate 27C|ads,24.3075,0.32702,RH50 (% RH),Own k″,
-a,own k Syloid 27C|ads,14.0535,0.26969,RH50 (% RH),Own k″,
+a,own k ROS-037 27C|ads,13.2754,0.300669,RH50 (% RH),"Own k″
+(wt% mg/min per % RH)",
+a,own k ROS-039 27C|ads,7.41241,0.312562,RH50 (% RH),"Own k″
+(wt% mg/min per % RH)",
+a,own k ROS-040 27C|ads,14.0565,0.307903,RH50 (% RH),"Own k″
+(wt% mg/min per % RH)",
+a,own k MOF-303 27C|ads,12.571,0.331986,RH50 (% RH),"Own k″
+(wt% mg/min per % RH)",
+a,own k MIL-160 27C|ads,8.14755,0.365209,RH50 (% RH),"Own k″
+(wt% mg/min per % RH)",
+a,own k CAU-10 27C|ads,17.7011,0.321269,RH50 (% RH),"Own k″
+(wt% mg/min per % RH)",
+a,own k Al-fumarate 27C|ads,24.3075,0.32702,RH50 (% RH),"Own k″
+(wt% mg/min per % RH)",
+a,own k Syloid 27C|ads,14.0535,0.26969,RH50 (% RH),"Own k″
+(wt% mg/min per % RH)",
 b,own k ROS-037 27C|des,13.2754,0.227113,RH50 (% RH),,
 b,own k ROS-039 27C|des,7.41241,0.273303,RH50 (% RH),,
 b,own k ROS-040 27C|des,14.0565,0.296967,RH50 (% RH),,

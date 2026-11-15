@@ -13,9 +13,9 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 240,
-  "G1_n_keys": 236,
-  "G2_main.tex_n_refs": 33,
+  "G1_n_uses": 258,
+  "G1_n_keys": 247,
+  "G2_main.tex_n_refs": 41,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 5,
   "G2_si_figures": 1,
@@ -23,10 +23,10 @@
   "G3_si.tex_em_dashes": 0,
   "G4_n_phrases": 44,
   "G5_words": {
-   "abstract": 147,
-   "main_text": 4583,
-   "methods": 2509,
-   "si": 2358
+   "abstract": 146,
+   "main_text": 5132,
+   "methods": 2783,
+   "si": 2566
   },
   "G5_targets": {
    "abstract": "<= 147 (cap 150)",
@@ -487,6 +487,41 @@
    "ok": true
   },
   {
+   "key": "rep_T60",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: At 60 °C they do not: 0.42 and 0.30",
+   "ok": true
+  },
+  {
+   "key": "rep_T60",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: At 60 °C they do not: 0.42 and 0.30",
+   "ok": true
+  },
+  {
+   "key": "rep_cv60a_prot",
+   "doc": "main.tex",
+   "text": "0.42",
+   "source": "PREREG_P4_draft.md: At 60 °C they do not: 0.42 and 0.30",
+   "ok": true
+  },
+  {
+   "key": "rep_cv60a",
+   "doc": "main.tex",
+   "text": "0.41",
+   "source": "0.41",
+   "ok": true
+  },
+  {
+   "key": "rep_cv60a",
+   "doc": "main.tex",
+   "text": "0.41",
+   "source": "0.41",
+   "ok": true
+  },
+  {
    "key": "n_seg",
    "doc": "main.tex",
    "text": "1187",
@@ -526,6 +561,34 @@
    "doc": "main.tex",
    "text": "31",
    "source": "31",
+   "ok": true
+  },
+  {
+   "key": "res_b0_lo_r1",
+   "doc": "main.tex",
+   "text": "0.046",
+   "source": "0.046",
+   "ok": true
+  },
+  {
+   "key": "res_b0_hi_r1",
+   "doc": "main.tex",
+   "text": "0.12",
+   "source": "0.12",
+   "ok": true
+  },
+  {
+   "key": "res_b0F_lo_r1",
+   "doc": "main.tex",
+   "text": "9",
+   "source": "9",
+   "ok": true
+  },
+  {
+   "key": "res_b0F_hi_r1",
+   "doc": "main.tex",
+   "text": "34",
+   "source": "34",
    "ok": true
   },
   {
@@ -645,6 +708,20 @@
    "doc": "main.tex",
    "text": "3",
    "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_Sbeats",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
+   "ok": true
+  },
+  {
+   "key": "res_nnull",
+   "doc": "main.tex",
+   "text": "48",
+   "source": "48",
    "ok": true
   },
   {
@@ -769,8 +846,15 @@
   {
    "key": "res_viol_max",
    "doc": "main.tex",
-   "text": "0.4",
-   "source": "0.4",
+   "text": "0.42",
+   "source": "0.42",
+   "ok": true
+  },
+  {
+   "key": "res_violraw_max",
+   "doc": "main.tex",
+   "text": "4.2",
+   "source": "4.2",
    "ok": true
   },
   {
@@ -785,6 +869,27 @@
    "doc": "main.tex",
    "text": "0.064",
    "source": "0.064",
+   "ok": true
+  },
+  {
+   "key": "res_mil_p_r1",
+   "doc": "main.tex",
+   "text": "0.010",
+   "source": "0.010",
+   "ok": true
+  },
+  {
+   "key": "si2_K2c",
+   "doc": "main.tex",
+   "text": "5",
+   "source": "5",
+   "ok": true
+  },
+  {
+   "key": "si2_K2c",
+   "doc": "si.tex",
+   "text": "5",
+   "source": "5",
    "ok": true
   },
   {
@@ -827,6 +932,20 @@
    "doc": "main.tex",
    "text": "4",
    "source": "4",
+   "ok": true
+  },
+  {
+   "key": "res_orr_r2",
+   "doc": "main.tex",
+   "text": "4",
+   "source": "4",
+   "ok": true
+  },
+  {
+   "key": "res_orr_r1",
+   "doc": "main.tex",
+   "text": "3",
+   "source": "3",
    "ok": true
   },
   {
@@ -1159,6 +1278,20 @@
    "ok": true
   },
   {
+   "key": "dis_m10",
+   "doc": "main.tex",
+   "text": "10",
+   "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "dis_or2nd",
+   "doc": "main.tex",
+   "text": "17",
+   "source": "17",
+   "ok": true
+  },
+  {
    "key": "dis2_ownk",
    "doc": "main.tex",
    "text": "15",
@@ -1226,20 +1359,6 @@
    "doc": "main.tex",
    "text": "0.11",
    "source": "0.11",
-   "ok": true
-  },
-  {
-   "key": "rep_T60",
-   "doc": "main.tex",
-   "text": "60",
-   "source": "PREREG_P4_draft.md: At 60 °C they do not: 0.42 and 0.30",
-   "ok": true
-  },
-  {
-   "key": "rep_cv60a",
-   "doc": "main.tex",
-   "text": "0.41",
-   "source": "0.41",
    "ok": true
   },
   {
@@ -1376,6 +1495,20 @@
    "ok": true
   },
   {
+   "key": "si2_sig",
+   "doc": "si.tex",
+   "text": "0.01",
+   "source": "PREREG_P4_draft.md: σ = 0.01 wt%, φ = 0.9",
+   "ok": true
+  },
+  {
+   "key": "si2_phi",
+   "doc": "si.tex",
+   "text": "0.9",
+   "source": "PREREG_P4_draft.md: σ = 0.01 wt%, φ = 0.9",
+   "ok": true
+  },
+  {
    "key": "si2_nfold",
    "doc": "si.tex",
    "text": "8",
@@ -1448,8 +1581,8 @@
   {
    "key": "si2_sdm60",
    "doc": "si.tex",
-   "text": "0.232",
-   "source": "0.232",
+   "text": "0.231",
+   "source": "0.231",
    "ok": true
   },
   {
@@ -1625,13 +1758,6 @@
    "doc": "si.tex",
    "text": "7",
    "source": "7",
-   "ok": true
-  },
-  {
-   "key": "si2_K2c",
-   "doc": "si.tex",
-   "text": "5",
-   "source": "5",
    "ok": true
   },
   {

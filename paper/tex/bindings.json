@@ -902,7 +902,7 @@
   },
   "res_viol_max": {
    "expr": "100 * max(v['violation_excess'] for D in (D2, D1) for k, v in D['folds'].items() if k.startswith('LOSO:'))",
-   "fmt": "f1"
+   "fmt": "f2"
   },
   "res_rpool_37": {
    "expr": "100 * D2['folds']['LOSO:ROS-037|B2']['r_pooled']",
@@ -963,6 +963,50 @@
   "si2_sdm60": {
    "expr": "KS['metric']['60C']",
    "fmt": "f3"
+  },
+  "res_b0_lo_r1": {
+   "expr": "CS['R1']['summary']['E_B0_min']",
+   "fmt": "f3"
+  },
+  "res_b0_hi_r1": {
+   "expr": "CS['R1']['summary']['E_B0_max']",
+   "fmt": "f2"
+  },
+  "res_b0F_lo_r1": {
+   "expr": "CS['R1']['summary']['B0_over_F_min']",
+   "fmt": "f0"
+  },
+  "res_b0F_hi_r1": {
+   "expr": "CS['R1']['summary']['B0_over_F_max']",
+   "fmt": "f0"
+  },
+  "res_mil_p_r1": {
+   "expr": "D1['folds']['LOSO:MIL-160|B2']['p_signflip']",
+   "fmt": "f3"
+  },
+  "res_violraw_max": {
+   "expr": "100 * max(v['violation_rate'] for D in (D2, D1) for k, v in D['folds'].items() if k.startswith('LOSO:'))",
+   "fmt": "f1"
+  },
+  "dis_or2nd": {
+   "expr": "100 * sorted(v['r_fold'] for k, v in OR2['folds'].items() if k.startswith('LOSO:'))[-2]",
+   "fmt": "f0"
+  },
+  "rep_cv60a_prot": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "At 60 °C they do not: 0.42 and 0.30"
+  },
+  "dis_m10": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "is at least 10 % (practical significance)"
+  },
+  "si2_sig": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "σ = 0.01 wt%, φ = 0.9"
+  },
+  "si2_phi": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "σ = 0.01 wt%, φ = 0.9"
   }
  }
 }

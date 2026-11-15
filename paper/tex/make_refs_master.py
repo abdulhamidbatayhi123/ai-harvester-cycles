@@ -128,7 +128,7 @@ STYLE = "ama"
 def ama_initials(given):
     """AMA initials: no periods or spaces; hyphenated names keep the hyphen ('Mei-Yan' -> 'M-Y', 'Ricky T. Q.' -> 'RTQ')."""
     out = ""
-    for w in given.replace(".", " ").split():
+    for w in given.replace("‐", "-").replace(".", " ").split():
         sub = [s for s in w.split("-") if s]
         out += "-".join(s[0] for s in sub)
     return out
@@ -158,7 +158,8 @@ def ama_entry(f):
     iss = f"({f['number']})" if f.get("number") else ""
     page = (f.get("pages") or f.get("eid") or "").replace("--", "-").replace("-", "--")
     loc = f"{vol}{iss}" + (f":{page}" if page else "")
-    return f"{a} {t} \\textit{{{tex_escape(f['journal'])}}}. {y};{loc}. doi:{f['doi']}"
+    out = f"{a} {t} \\textit{{{tex_escape(f['journal'])}}}. {y};{loc}. doi:{f['doi']}"
+    return out + (" " + f["addendum"] if f.get("addendum") else "")
 
 
 def ama_data(r):
@@ -184,6 +185,9 @@ CORRECTIONS = {
                                        "and Henninger, Matthias and Seiler, Jan and Füldner, Gerrit")},
     "Nogueira2022Using": {"author": ("Nogueira, Idelfonso B. R. and Santana, Vinicius V. and Ribeiro, Ana M. and "
                                      "Rodrigues, Alírio E.")},
+    # AMA notes a published correction (Crossref 'updated-by' 10.1080/10618600.2017.1377082, read 2026-11-15)
+    "Cook2006Validation": {"addendum": ("Published correction appears in \\textit{J Comput Graph Stat}. "
+                                        "2017;26(4):940. doi:10.1080/10618600.2017.1377082")},
 }
 
 

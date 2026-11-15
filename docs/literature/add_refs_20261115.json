@@ -1,0 +1,5352 @@
+{
+ "Bezrukov2024Rapid": {
+  "indexed": {
+   "date-parts": [
+    [
+     2026,
+     11,
+     14
+    ]
+   ],
+   "date-time": "2026-11-14T16:40:21Z",
+   "timestamp": 1794674421329,
+   "version": "4.9.1"
+  },
+  "reference-count": 68,
+  "publisher": "Elsevier BV",
+  "issue": "5",
+  "license": [
+   {
+    "start": {
+     "date-parts": [
+      [
+       2024,
+       5,
+       1
+      ]
+     ],
+     "date-time": "2024-05-01T00:00:00Z",
+     "timestamp": 1714521600000
+    },
+    "content-version": "tdm",
+    "delay-in-days": 0,
+    "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+   },
+   {
+    "start": {
+     "date-parts": [
+      [
+       2024,
+       5,
+       1
+      ]
+     ],
+     "date-time": "2024-05-01T00:00:00Z",
+     "timestamp": 1714521600000
+    },
+    "content-version": "tdm",
+    "delay-in-days": 0,
+    "URL": "https://www.elsevier.com/legal/tdmrep-license"
+   },
+   {
+    "start": {
+     "date-parts": [
+      [
+       2024,
+       9,
+       2
+      ]
+     ],
+     "date-time": "2024-09-02T00:00:00Z",
+     "timestamp": 1725235200000
+    },
+    "content-version": "vor",
+    "delay-in-days": 124,
+    "URL": "http://creativecommons.org/licenses/by/4.0/"
+   }
+  ],
+  "funder": [
+   {
+    "DOI": "10.13039/501100001602",
+    "name": "Science Foundation Ireland",
+    "doi-asserted-by": "publisher",
+    "id": [
+     {
+      "id": "10.13039/501100001602",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   }
+  ],
+  "content-domain": {
+   "domain": [
+    "cell.com",
+    "elsevier.com",
+    "sciencedirect.com"
+   ],
+   "crossmark-restriction": true
+  },
+  "short-container-title": [
+   "Chem"
+  ],
+  "published-print": {
+   "date-parts": [
+    [
+     2024,
+     5
+    ]
+   ]
+  },
+  "DOI": "10.1016/j.chempr.2024.01.011",
+  "type": "journal-article",
+  "created": {
+   "date-parts": [
+    [
+     2024,
+     2,
+     9
+    ]
+   ],
+   "date-time": "2024-02-09T15:32:00Z",
+   "timestamp": 1707492720000
+  },
+  "page": "1458-1470",
+  "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+  "source": "Crossref",
+  "is-referenced-by-count": 14,
+  "title": [
+   "Rapid determination of experimental sorption isotherms from non-equilibrium sorption kinetic data"
+  ],
+  "prefix": "10.1016",
+  "volume": "10",
+  "author": [
+   {
+    "given": "Andrey A.",
+    "family": "Bezrukov",
+    "sequence": "first",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Daniel J.",
+    "family": "O’Hearn",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Victoria",
+    "family": "Gascón-Pérez",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Catiúcia R.M.O.",
+    "family": "Matos",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Kyriaki",
+    "family": "Koupepidou",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Shaza",
+    "family": "Darwish",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Suresh",
+    "family": "Sanda",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Naveen",
+    "family": "Kumar",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Xia",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Mohana",
+    "family": "Shivanna",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-1360-540X",
+    "authenticated-orcid": false,
+    "given": "Michael J.",
+    "family": "Zaworotko",
+    "sequence": "additional",
+    "affiliation": [],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "member": "78",
+  "reference": [
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib1",
+    "doi-asserted-by": "crossref",
+    "first-page": "2167",
+    "DOI": "10.1351/pac199062112167",
+    "article-title": "Glossary of atmospheric chemistry terms (Recommendations 1990)",
+    "volume": "62",
+    "author": "Calvert",
+    "year": "1990",
+    "journal-title": "Pure Appl. Chem."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib2",
+    "series-title": "Adsorption by Powders and Porous Solids: Principles, Methodology and Applications",
+    "author": "Rouquerol",
+    "year": "2013"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib3",
+    "doi-asserted-by": "crossref",
+    "first-page": "1400",
+    "DOI": "10.1039/b807086p",
+    "article-title": "Design and synthesis of metal–organic frameworks using metal–organic polyhedra as supermolecular building blocks",
+    "volume": "38",
+    "author": "Perry Iv",
+    "year": "2009",
+    "journal-title": "Chem. Soc. Rev."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib4",
+    "series-title": "Functional Metal-Organic Frameworks: Gas Storage, Separation and Catalysis",
+    "author": "Schröder",
+    "year": "2010"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib5",
+    "doi-asserted-by": "crossref",
+    "first-page": "2334",
+    "DOI": "10.1002/anie.200300610",
+    "article-title": "Functional Porous Coordination Polymers",
+    "volume": "43",
+    "author": "Kitagawa",
+    "year": "2004",
+    "journal-title": "Angew. Chem. Int. Ed. Engl."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib6",
+    "doi-asserted-by": "crossref",
+    "first-page": "2618",
+    "DOI": "10.1021/acs.chemmater.7b00441",
+    "article-title": "Development of a Cambridge Structural Database Subset: A Collection of Metal–Organic Frameworks for Past, Present, and Future",
+    "volume": "29",
+    "author": "Moghadam",
+    "year": "2017",
+    "journal-title": "Chem. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib7",
+    "doi-asserted-by": "crossref",
+    "DOI": "10.1002/adma.202002780",
+    "article-title": "High Throughput Methods in the Synthesis, Characterization, and Optimization of Porous Materials",
+    "volume": "32",
+    "author": "Clayson",
+    "year": "2020",
+    "journal-title": "Adv. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib8",
+    "doi-asserted-by": "crossref",
+    "first-page": "5151",
+    "DOI": "10.1039/c1cc10674k",
+    "article-title": "High-throughput screening: speeding up porous materials discovery",
+    "volume": "47",
+    "author": "Wollmann",
+    "year": "2011",
+    "journal-title": "Chem. Commun."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib9",
+    "doi-asserted-by": "crossref",
+    "first-page": "86",
+    "DOI": "10.1016/j.micromeso.2011.08.028",
+    "article-title": "Infrasorb: Optical detection of the heat of adsorption for high throughput adsorption screening of porous solids",
+    "volume": "149",
+    "author": "Wollmann",
+    "year": "2012",
+    "journal-title": "Micropor. Mesopor. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib10",
+    "doi-asserted-by": "crossref",
+    "first-page": "6772",
+    "DOI": "10.1021/acs.iecr.5b00513",
+    "article-title": "Development of a Semiautomated Zero Length Column Technique for Carbon Capture Applications: Rapid Capacity Ranking of Novel Adsorbents",
+    "volume": "54",
+    "author": "Hu",
+    "year": "2015",
+    "journal-title": "Ind. Eng. Chem. Res."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib11",
+    "doi-asserted-by": "crossref",
+    "DOI": "10.1016/j.colsurfa.2021.126746",
+    "article-title": "High-throughput screening of metal-organic frameworks for water harvesting from air",
+    "volume": "624",
+    "author": "Wang",
+    "year": "2021",
+    "journal-title": "Colloids Surf. A: Physicochem. Eng. Aspects"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib12",
+    "doi-asserted-by": "crossref",
+    "first-page": "263",
+    "DOI": "10.1021/co3000192",
+    "article-title": "High-Throughput Screening of Metal–Organic Frameworks for CO2 Separation",
+    "volume": "14",
+    "author": "Han",
+    "year": "2012",
+    "journal-title": "ACS Comb. Sci."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib13",
+    "doi-asserted-by": "crossref",
+    "first-page": "86",
+    "DOI": "10.1016/j.micromeso.2013.02.002",
+    "article-title": "MOF stability and gas adsorption as a function of exposure to water, humid air, SO2, and NO2",
+    "volume": "173",
+    "author": "Han",
+    "year": "2013",
+    "journal-title": "Micropor. Mesopor. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib14",
+    "doi-asserted-by": "crossref",
+    "first-page": "111",
+    "DOI": "10.1021/co300128w",
+    "article-title": "Experimental Screening of Porous Materials for High Pressure Gas Adsorption and Evaluation in Gas Separations: Application to MOFs (MIL-100 and CAU-10)",
+    "volume": "15",
+    "author": "Wiersum",
+    "year": "2013",
+    "journal-title": "ACS Comb. Sci."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib15",
+    "doi-asserted-by": "crossref",
+    "first-page": "4787",
+    "DOI": "10.1021/jacs.5b00838",
+    "article-title": "Application of a High-Throughput Analyzer in Evaluating Solid Adsorbents for Post-Combustion Carbon Capture via Multicomponent Adsorption of CO2, N2, and H2O",
+    "volume": "137",
+    "author": "Mason",
+    "year": "2015",
+    "journal-title": "J. Am. Chem. Soc."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib16",
+    "series-title": "Diffusion in Nanoporous Materials",
+    "author": "Ruthven",
+    "year": "2012"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib17",
+    "doi-asserted-by": "crossref",
+    "first-page": "59",
+    "DOI": "10.1002/andp.18551700105",
+    "article-title": "Ueber Diffusion",
+    "volume": "170",
+    "author": "Fick",
+    "year": "1855",
+    "journal-title": "Ann. Phys."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib18",
+    "doi-asserted-by": "crossref",
+    "DOI": "10.1016/j.energy.2020.117998",
+    "article-title": "Dynamics of adsorptive heat conversion systems: Review of basics and recent advances",
+    "volume": "205",
+    "author": "Aristov",
+    "year": "2020",
+    "journal-title": "Energy"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib19",
+    "article-title": "Metal-organic frameworks as regeneration optimized sorbents for atmospheric water harvesting",
+    "volume": "4",
+    "author": "Bezrukov",
+    "year": "2023",
+    "journal-title": "Cell Rep. Phys. Sci."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib20",
+    "doi-asserted-by": "crossref",
+    "first-page": "8303",
+    "DOI": "10.1021/acs.chemrev.9b00746",
+    "article-title": "Water and Metal–Organic Frameworks: From Interaction toward Utilization",
+    "volume": "120",
+    "author": "Liu",
+    "year": "2020",
+    "journal-title": "Chem. Rev."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib21",
+    "doi-asserted-by": "crossref",
+    "first-page": "435",
+    "DOI": "10.1038/532435a",
+    "article-title": "Seven chemical separations to change the world",
+    "volume": "532",
+    "author": "Sholl",
+    "year": "2016",
+    "journal-title": "Nature"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib22",
+    "doi-asserted-by": "crossref",
+    "first-page": "3928",
+    "DOI": "10.1002/anie.201109084",
+    "article-title": "Solid–Vapor Sorption of Xylenes: Prioritized Selectivity as a Means of Separating All Three Isomers Using a Single Substrate",
+    "volume": "51",
+    "author": "Lusi",
+    "year": "2012",
+    "journal-title": "Angew. Chem. Int. Ed. Engl."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib23",
+    "doi-asserted-by": "crossref",
+    "first-page": "6630",
+    "DOI": "10.1002/anie.201901198",
+    "article-title": "Highly Selective, High-Capacity Separation of o-Xylene from C8 Aromatics by a Switching Adsorbent Layered Material",
+    "volume": "58",
+    "author": "Wang",
+    "year": "2019",
+    "journal-title": "Angew. Chem. Int. Ed. Engl."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib24",
+    "doi-asserted-by": "crossref",
+    "first-page": "2750",
+    "DOI": "10.1021/jacs.9b12879",
+    "article-title": "Robust Metal-Triazolate Frameworks for CO(2) Capture from Flue Gas",
+    "volume": "142",
+    "author": "Shi",
+    "year": "2020",
+    "journal-title": "J. Am. Chem. Soc."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib25",
+    "doi-asserted-by": "crossref",
+    "first-page": "7961",
+    "DOI": "10.1021/ja5016298",
+    "article-title": "Thermal Structural Transitions and Carbon Dioxide Adsorption Properties of Zeolitic Imidazolate Framework-7 (ZIF-7)",
+    "volume": "136",
+    "author": "Cai",
+    "year": "2014",
+    "journal-title": "J. Am. Chem. Soc."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib26",
+    "unstructured": "Sorption kinetics isotherm determination at Github. https://github.com/AndreyBezrukov/SKID."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib27",
+    "doi-asserted-by": "crossref",
+    "first-page": "17",
+    "DOI": "10.1021/cm3025445",
+    "article-title": "Structures, Sorption Characteristics, and Nonlinear Optical Properties of a New Series of Highly Stable Aluminum MOFs",
+    "volume": "25",
+    "author": "Reinsch",
+    "year": "2013",
+    "journal-title": "Chem. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib28",
+    "doi-asserted-by": "crossref",
+    "first-page": "2820",
+    "DOI": "10.1039/B704325B",
+    "article-title": "Synthesis and catalytic properties of MIL-100(Fe), an iron(iii) carboxylate with large pores",
+    "volume": "27",
+    "author": "Horcajada",
+    "year": "2007",
+    "journal-title": "Chem. Commun."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib29",
+    "doi-asserted-by": "crossref",
+    "first-page": "325",
+    "DOI": "10.1016/j.micromeso.2008.11.020",
+    "article-title": "Characterization of metal-organic frameworks by water adsorption",
+    "volume": "120",
+    "author": "Küsgens",
+    "year": "2009",
+    "journal-title": "Micropor. Mesopor. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib30",
+    "doi-asserted-by": "crossref",
+    "first-page": "131",
+    "DOI": "10.1016/j.micromeso.2011.08.016",
+    "article-title": "The progression of Al-based metal-organic frameworks – From academic research to industrial production and applications",
+    "volume": "157",
+    "author": "Gaab",
+    "year": "2012",
+    "journal-title": "Micropor. Mesopor. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib31",
+    "doi-asserted-by": "crossref",
+    "first-page": "24073",
+    "DOI": "10.1039/C4RA03794D",
+    "article-title": "Advancement of sorption-based heat transformation by a metal coating of highly-stable, hydrophilic aluminium fumarate MOF",
+    "volume": "4",
+    "author": "Jeremias",
+    "year": "2014",
+    "journal-title": "RSC Adv."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib32",
+    "doi-asserted-by": "crossref",
+    "first-page": "4775",
+    "DOI": "10.1002/adma.201502418",
+    "article-title": "Design of Hydrophilic Metal Organic Framework Water Adsorbents for Heat Reallocation",
+    "volume": "27",
+    "author": "Cadiau",
+    "year": "2015",
+    "journal-title": "Adv. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib33",
+    "doi-asserted-by": "crossref",
+    "first-page": "13850",
+    "DOI": "10.1021/ja8057953",
+    "article-title": "A New Zirconium Inorganic Building Brick Forming Metal Organic Frameworks with Exceptional Stability",
+    "volume": "130",
+    "author": "Cavka",
+    "year": "2008",
+    "journal-title": "J. Am. Chem. Soc."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib34",
+    "doi-asserted-by": "crossref",
+    "first-page": "6513",
+    "DOI": "10.1021/ie202325p",
+    "article-title": "Effect of Water Adsorption on Retention of Structure and Surface Area of Metal–Organic Frameworks",
+    "volume": "51",
+    "author": "Schoenecker",
+    "year": "2012",
+    "journal-title": "Ind. Eng. Chem. Res."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib35",
+    "doi-asserted-by": "crossref",
+    "DOI": "10.1126/sciadv.aat3198",
+    "article-title": "Practical water production from desert air",
+    "volume": "4",
+    "author": "Fathieh",
+    "year": "2018",
+    "journal-title": "Sci. Adv."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib36",
+    "doi-asserted-by": "crossref",
+    "first-page": "1699",
+    "DOI": "10.1021/acscentsci.9b00745",
+    "article-title": "Rapid Cycling and Exceptional Yield in a Metal-Organic Framework Water Harvester",
+    "volume": "5",
+    "author": "Hanikel",
+    "year": "2019",
+    "journal-title": "ACS Cent. Sci."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib37",
+    "doi-asserted-by": "crossref",
+    "first-page": "15827",
+    "DOI": "10.1039/C8DT03365J",
+    "article-title": "Humidity-induced CO2 capture enhancement in Mg-CUK-1",
+    "volume": "47",
+    "author": "Sagastuy-Breña",
+    "year": "2018",
+    "journal-title": "Dalton Trans."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib38",
+    "doi-asserted-by": "crossref",
+    "first-page": "25778",
+    "DOI": "10.1021/acsami.9b02605",
+    "article-title": "Porous Metal–Organic Framework CUK-1 for Adsorption Heat Allocation toward Green Applications of Natural Refrigerant Water",
+    "volume": "11",
+    "author": "Lee",
+    "year": "2019",
+    "journal-title": "ACS Appl. Mater. Interfaces"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib39",
+    "doi-asserted-by": "crossref",
+    "first-page": "39560",
+    "DOI": "10.1021/acsami.2c10002",
+    "article-title": "Flexible Coordination Network Exhibiting Water Vapor-Induced Reversible Switching between Closed and Open Phases",
+    "volume": "14",
+    "author": "Shivanna",
+    "year": "2022",
+    "journal-title": "ACS Appl. Mater. Interfaces"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib40",
+    "doi-asserted-by": "crossref",
+    "first-page": "783",
+    "DOI": "10.1021/acs.chemmater.2c03662",
+    "article-title": "Structural Phase Transformations Induced by Guest Molecules in a Nickel-Based 2D Square Lattice Coordination Network",
+    "volume": "35",
+    "author": "Li",
+    "year": "2023",
+    "journal-title": "Chem. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib41",
+    "doi-asserted-by": "crossref",
+    "first-page": "3269",
+    "DOI": "10.1002/anie.200453923",
+    "article-title": "Expanding and Shrinking Porous Modulation Based on Pillared-Layer Coordination Polymers Showing Selective Guest Adsorption",
+    "volume": "43",
+    "author": "Maji",
+    "year": "2004",
+    "journal-title": "Angew. Chem. Int. Ed. Engl."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib42",
+    "doi-asserted-by": "crossref",
+    "first-page": "7732",
+    "DOI": "10.1021/jacs.1c01831",
+    "article-title": "Fabrication of Moisture-Responsive Crystalline Smart Materials for Water Harvesting and Electricity Transduction",
+    "volume": "143",
+    "author": "Yang",
+    "year": "2021",
+    "journal-title": "J. Am. Chem. Soc."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib43",
+    "doi-asserted-by": "crossref",
+    "first-page": "4179",
+    "DOI": "10.1039/C5DT03510D",
+    "article-title": "Structure and properties of Al-MIL-53-ADP, a breathing MOF based on the aliphatic linker molecule adipic acid",
+    "volume": "45",
+    "author": "Reinsch",
+    "year": "2016",
+    "journal-title": "Dalton Trans."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib44",
+    "doi-asserted-by": "crossref",
+    "first-page": "2034",
+    "DOI": "10.1021/ja109810w",
+    "article-title": "Wide Control of Proton Conductivity in Porous Coordination Polymers",
+    "volume": "133",
+    "author": "Shigematsu",
+    "year": "2011",
+    "journal-title": "J. Am. Chem. Soc."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib45",
+    "doi-asserted-by": "crossref",
+    "first-page": "367",
+    "DOI": "10.1016/j.ica.2012.08.012",
+    "article-title": "Synthesis and characterization of expected and unexpected topologies of homochiral porous metal(II) malate frameworks",
+    "volume": "394",
+    "author": "Yutkin",
+    "year": "2013",
+    "journal-title": "Inorg. Chim. Acta"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib46",
+    "doi-asserted-by": "crossref",
+    "first-page": "7069",
+    "DOI": "10.1039/C8DT05060K",
+    "article-title": "Cluster nuclearity control and modulated hydrothermal synthesis of functionalized Zr12 metal–organic frameworks",
+    "volume": "48",
+    "author": "Peh",
+    "year": "2019",
+    "journal-title": "Dalton Trans."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib47",
+    "doi-asserted-by": "crossref",
+    "first-page": "579",
+    "DOI": "10.1016/j.solidstatesciences.2004.03.007",
+    "article-title": "A family of microporous mixed oxalates with isotypic-framework structures based on eight-coordinate metals",
+    "volume": "6",
+    "author": "Audebrand",
+    "year": "2004",
+    "journal-title": "Solid State Sci."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib48",
+    "doi-asserted-by": "crossref",
+    "first-page": "309",
+    "DOI": "10.1021/ja01269a023",
+    "article-title": "Adsorption of gases in multimolecular layers",
+    "volume": "60",
+    "author": "Brunauer",
+    "year": "1938",
+    "journal-title": "J. Am. Chem. Soc."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib49",
+    "doi-asserted-by": "crossref",
+    "first-page": "8552",
+    "DOI": "10.1021/ja071174k",
+    "article-title": "Applicability of the BET Method for Determining Surface Areas of Microporous Metal−Organic Frameworks",
+    "volume": "129",
+    "author": "Walton",
+    "year": "2007",
+    "journal-title": "J. Am. Chem. Soc."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib50",
+    "doi-asserted-by": "crossref",
+    "first-page": "1533",
+    "DOI": "10.1007/s10450-019-00168-5",
+    "article-title": "pyGAPS: a Python-based framework for adsorption isotherm processing and material characterisation",
+    "volume": "25",
+    "author": "Iacomi",
+    "year": "2019",
+    "journal-title": "Adsorption"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib51",
+    "doi-asserted-by": "crossref",
+    "first-page": "387",
+    "DOI": "10.1021/acs.jpcc.8b08211",
+    "article-title": "Kinetics of Water Vapor Adsorption and Desorption in MIL-101 Metal–Organic Frameworks",
+    "volume": "123",
+    "author": "Yanagita",
+    "year": "2019",
+    "journal-title": "J. Phys. Chem. C"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib52",
+    "doi-asserted-by": "crossref",
+    "DOI": "10.1038/s41598-020-58405-9",
+    "article-title": "Reversible Atmospheric Water Harvesting Using Metal-Organic Frameworks",
+    "volume": "10",
+    "author": "Logan",
+    "year": "2020",
+    "journal-title": "Sci. Rep."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib53",
+    "doi-asserted-by": "crossref",
+    "first-page": "410",
+    "DOI": "10.1038/nchem.627",
+    "article-title": "Rapid preparation of flexible porous coordination polymer nanocrystals with accelerated guest adsorption kinetics",
+    "volume": "2",
+    "author": "Tanaka",
+    "year": "2010",
+    "journal-title": "Nat. Chem."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib54",
+    "doi-asserted-by": "crossref",
+    "first-page": "10492",
+    "DOI": "10.1039/D2CC02662G",
+    "article-title": "The importance of crystal size for breathing kinetics in MIL-53(Al)",
+    "volume": "58",
+    "author": "Bon",
+    "year": "2022",
+    "journal-title": "Chem. Commun."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib55",
+    "doi-asserted-by": "crossref",
+    "first-page": "9174",
+    "DOI": "10.1021/acsnano.6b04996",
+    "article-title": "Nanosizing a Metal–Organic Framework Enzyme Carrier for Accelerating Nerve Agent Hydrolysis",
+    "volume": "10",
+    "author": "Li",
+    "year": "2016",
+    "journal-title": "ACS Nano"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib56",
+    "doi-asserted-by": "crossref",
+    "first-page": "295",
+    "DOI": "10.1007/s10450-020-00276-7",
+    "article-title": "A review of common practices in gravimetric and volumetric adsorption kinetic experiments",
+    "volume": "27",
+    "author": "Wang",
+    "year": "2021",
+    "journal-title": "Adsorption"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib57",
+    "doi-asserted-by": "crossref",
+    "DOI": "10.1016/j.ces.2019.115417",
+    "article-title": "Measurement of water vapor adsorption isotherms in mesoporous materials using the zero length column technique",
+    "volume": "214",
+    "author": "Centineo",
+    "year": "2020",
+    "journal-title": "Chem. Eng. Sci."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib58",
+    "doi-asserted-by": "crossref",
+    "first-page": "1940",
+    "DOI": "10.1039/C9CC09525J",
+    "article-title": "[Cu(4-phenylpyridine)4(trifluoromethanesulfonate)2], a Werner complex that exhibits high selectivity for o-xylene",
+    "volume": "56",
+    "author": "Kałuża",
+    "year": "2020",
+    "journal-title": "Chem. Commun."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib59",
+    "article-title": "Adsorption-based atmospheric water harvesting device for arid climates",
+    "volume": "9",
+    "author": "Kim",
+    "year": "2018",
+    "journal-title": "Nat. Commun."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib60",
+    "doi-asserted-by": "crossref",
+    "first-page": "430",
+    "DOI": "10.1126/science.aam8743",
+    "article-title": "Water harvesting from air with metal-organic frameworks powered by natural sunlight",
+    "volume": "356",
+    "author": "Kim",
+    "year": "2017",
+    "journal-title": "Science"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib61",
+    "doi-asserted-by": "crossref",
+    "DOI": "10.1016/j.micromeso.2020.110378",
+    "article-title": "Experimental investigation of the dehumidification performance of a metal-organic framework MIL-101(Cr)/ ceramic fibre paper for use as a desiccant wheel",
+    "volume": "305",
+    "author": "Chen",
+    "year": "2020",
+    "journal-title": "Micropor. Mesopor. Mater."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib62",
+    "doi-asserted-by": "crossref",
+    "first-page": "8393",
+    "DOI": "10.1021/acs.iecr.7b00106",
+    "article-title": "A Functional Full-Scale Heat Exchanger Coated with Aluminum Fumarate Metal–Organic Framework for Adsorption Heat Transformation",
+    "volume": "56",
+    "author": "Kummer",
+    "year": "2017",
+    "journal-title": "Ind. Eng. Chem. Res."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib63",
+    "doi-asserted-by": "crossref",
+    "first-page": "24973",
+    "DOI": "10.1039/C9TA07465A",
+    "article-title": "Designing a new aluminium muconate metal–organic framework (MIL-53-muc) as a methanol adsorbent for sub-zero temperature heat transformation applications",
+    "volume": "7",
+    "author": "Matemb Ma Ntep",
+    "year": "2019",
+    "journal-title": "J. Mater. Chem. A"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib64",
+    "doi-asserted-by": "crossref",
+    "first-page": "985",
+    "DOI": "10.1038/s41560-018-0261-6",
+    "article-title": "A robust large-pore zirconium carboxylate metal-organic framework for energy-efficient water-sorption-driven refrigeration",
+    "volume": "3",
+    "author": "Wang",
+    "year": "2018",
+    "journal-title": "Nat. Energy"
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib65",
+    "doi-asserted-by": "crossref",
+    "DOI": "10.1038/s41598-018-33704-4",
+    "article-title": "Metal-Organic Frameworks as advanced moisture sorbents for energy-efficient high temperature cooling",
+    "volume": "8",
+    "author": "Cui",
+    "year": "2018",
+    "journal-title": "Sci. Rep."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib66",
+    "article-title": "Characterization of Adsorption Enthalpy of Novel Water-Stable Zeolites and Metal-Organic Frameworks",
+    "volume": "6",
+    "author": "Kim",
+    "year": "2016",
+    "journal-title": "Sci. Rep."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib67",
+    "doi-asserted-by": "crossref",
+    "first-page": "470",
+    "DOI": "10.1252/jcej.16.470",
+    "article-title": "Method for the calculation of effective pore size distribution in molecular sieve carbon",
+    "volume": "16",
+    "author": "Horváth",
+    "year": "1983",
+    "journal-title": "J. Chem. Eng. Jpn."
+   },
+   {
+    "key": "10.1016/j.chempr.2024.01.011_bib68",
+    "doi-asserted-by": "crossref",
+    "first-page": "1051",
+    "DOI": "10.1515/pac-2014-1117",
+    "article-title": "Physisorption of gases, with special reference to the evaluation of surface area and pore size distribution (IUPAC Technical Report)",
+    "volume": "87",
+    "author": "Thommes",
+    "year": "2015",
+    "journal-title": "Pure Appl. Chem."
+   }
+  ],
+  "container-title": [
+   "Chem"
+  ],
+  "original-title": [],
+  "language": "en",
+  "link": [
+   {
+    "URL": "https://api.elsevier.com/content/article/PII:S2451929424000159?httpAccept=text/xml",
+    "content-type": "text/xml",
+    "content-version": "vor",
+    "intended-application": "text-mining"
+   },
+   {
+    "URL": "https://api.elsevier.com/content/article/PII:S2451929424000159?httpAccept=text/plain",
+    "content-type": "text/plain",
+    "content-version": "vor",
+    "intended-application": "text-mining"
+   }
+  ],
+  "deposited": {
+   "date-parts": [
+    [
+     2024,
+     9,
+     15
+    ]
+   ],
+   "date-time": "2024-09-15T18:19:23Z",
+   "timestamp": 1726424363000
+  },
+  "score": 1,
+  "resource": {
+   "primary": {
+    "URL": "https://linkinghub.elsevier.com/retrieve/pii/S2451929424000159"
+   }
+  },
+  "subtitle": [],
+  "short-title": [],
+  "issued": {
+   "date-parts": [
+    [
+     2024,
+     5
+    ]
+   ]
+  },
+  "references-count": 68,
+  "journal-issue": {
+   "issue": "5",
+   "published-print": {
+    "date-parts": [
+     [
+      2024,
+      5
+     ]
+    ]
+   }
+  },
+  "alternative-id": [
+   "S2451929424000159"
+  ],
+  "URL": "https://doi.org/10.1016/j.chempr.2024.01.011",
+  "relation": {},
+  "ISSN": [
+   "2451-9294"
+  ],
+  "issn-type": [
+   {
+    "value": "2451-9294",
+    "type": "print"
+   }
+  ],
+  "subject": [],
+  "published": {
+   "date-parts": [
+    [
+     2024,
+     5
+    ]
+   ]
+  },
+  "assertion": [
+   {
+    "value": "Elsevier",
+    "name": "publisher",
+    "label": "This article is maintained by"
+   },
+   {
+    "value": "Rapid determination of experimental sorption isotherms from non-equilibrium sorption kinetic data",
+    "name": "articletitle",
+    "label": "Article Title"
+   },
+   {
+    "value": "Chem",
+    "name": "journaltitle",
+    "label": "Journal Title"
+   },
+   {
+    "value": "https://doi.org/10.1016/j.chempr.2024.01.011",
+    "name": "articlelink",
+    "label": "CrossRef DOI link to publisher maintained version"
+   },
+   {
+    "value": "article",
+    "name": "content_type",
+    "label": "Content Type"
+   },
+   {
+    "value": "© 2024 The Authors. Published by Elsevier Inc.",
+    "name": "copyright",
+    "label": "Copyright"
+   }
+  ]
+ },
+ "Eaby2025Ultramicroporous": {
+  "indexed": {
+   "date-parts": [
+    [
+     2026,
+     11,
+     5
+    ]
+   ],
+   "date-time": "2026-11-05T22:58:57Z",
+   "timestamp": 1793919537212,
+   "version": "4.8.0"
+  },
+  "reference-count": 83,
+  "publisher": "American Chemical Society (ACS)",
+  "issue": "2",
+  "license": [
+   {
+    "start": {
+     "date-parts": [
+      [
+       2025,
+       1,
+       2
+      ]
+     ],
+     "date-time": "2025-01-02T00:00:00Z",
+     "timestamp": 1735776000000
+    },
+    "content-version": "vor",
+    "delay-in-days": 0,
+    "URL": "https://creativecommons.org/licenses/by/4.0/"
+   }
+  ],
+  "funder": [
+   {
+    "DOI": "10.13039/501100001602",
+    "name": "Science Foundation Ireland",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "12/RC/2275_P2"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "12/RC/2275_P2"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100001602",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/501100001602",
+    "name": "Science Foundation Ireland",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "21/PATH-S/9454"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "21/PATH-S/9454"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100001602",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/501100001602",
+    "name": "Science Foundation Ireland",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "21/US/3760"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "21/US/3760"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100001602",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100000001",
+    "name": "National Science Foundation",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "2154882"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "2154882"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100000001",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100000001",
+    "name": "National Science Foundation",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "CHE-230105"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "CHE-230105"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100000001",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   }
+  ],
+  "content-domain": {
+   "domain": [],
+   "crossmark-restriction": false
+  },
+  "short-container-title": [
+   "J. Am. Chem. Soc."
+  ],
+  "published-print": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     15
+    ]
+   ]
+  },
+  "DOI": "10.1021/jacs.4c13797",
+  "type": "journal-article",
+  "created": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     2
+    ]
+   ],
+   "date-time": "2025-01-02T12:44:59Z",
+   "timestamp": 1735821899000
+  },
+  "page": "1813-1822",
+  "source": "Crossref",
+  "is-referenced-by-count": 20,
+  "title": [
+   "An Ultramicroporous Physisorbent Sustained by a Trifecta of Directional Supramolecular Interactions"
+  ],
+  "prefix": "10.1021",
+  "volume": "147",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0003-4840-5413",
+    "authenticated-orcid": true,
+    "given": "Alan C.",
+    "family": "Eaby",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences, University of Limerick, Limerick V94 T9PX, Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-9397-6886",
+    "authenticated-orcid": true,
+    "given": "Shaza",
+    "family": "Darwish",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences, University of Limerick, Limerick V94 T9PX, Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-1213-8317",
+    "authenticated-orcid": true,
+    "given": "Shi-Qiang",
+    "family": "Wang",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences, University of Limerick, Limerick V94 T9PX, Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-0525-3547",
+    "authenticated-orcid": true,
+    "given": "Andrey A.",
+    "family": "Bezrukov",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences, University of Limerick, Limerick V94 T9PX, Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-4918-0730",
+    "authenticated-orcid": true,
+    "given": "Debobroto",
+    "family": "Sensharma",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences, University of Limerick, Limerick V94 T9PX, Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Angela",
+    "family": "Shipman",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemistry, North Carolina State University, Raleigh, North Carolina 27607, United States"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Carlos J.",
+    "family": "Solanilla",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemistry, North Carolina State University, Raleigh, North Carolina 27607, United States"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-0246-7408",
+    "authenticated-orcid": true,
+    "given": "Brian",
+    "family": "Space",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemistry, North Carolina State University, Raleigh, North Carolina 27607, United States"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-2375-7009",
+    "authenticated-orcid": true,
+    "given": "Soumya",
+    "family": "Mukherjee",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences, University of Limerick, Limerick V94 T9PX, Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-1360-540X",
+    "authenticated-orcid": true,
+    "given": "Michael J.",
+    "family": "Zaworotko",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences, University of Limerick, Limerick V94 T9PX, Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "member": "316",
+  "published-online": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     2
+    ]
+   ]
+  },
+  "reference": [
+   {
+    "key": "ref1/cit1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.200300610"
+   },
+   {
+    "key": "ref2/cit2",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.1230444"
+   },
+   {
+    "key": "ref3/cit3",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/c0nj00275e"
+   },
+   {
+    "key": "ref4/cit4a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b807086p"
+   },
+   {
+    "key": "ref4/cit4b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cr3002824"
+   },
+   {
+    "key": "ref5/cit5",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/nature11893"
+   },
+   {
+    "key": "ref6/cit6",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/nature15732"
+   },
+   {
+    "key": "ref7/cit7",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D0CC04645K"
+   },
+   {
+    "key": "ref8/cit8",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/smm2.1016"
+   },
+   {
+    "key": "ref9/cit9",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/532435a"
+   },
+   {
+    "key": "ref10/cit10",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ccr.2023.215111"
+   },
+   {
+    "key": "ref11/cit11a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adfm.202304788"
+   },
+   {
+    "key": "ref11/cit11b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.chemrev.9b00746"
+   },
+   {
+    "key": "ref11/cit11c",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chempr.2023.09.005"
+   },
+   {
+    "key": "ref12/cit12a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1246/bcsj.71.1739"
+   },
+   {
+    "key": "ref12/cit12b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1246/cl.1997.1219"
+   },
+   {
+    "key": "ref12/cit12c",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.199717251"
+   },
+   {
+    "key": "ref12/cit12d",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/B618320B"
+   },
+   {
+    "key": "ref12/cit12e",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.200703934"
+   },
+   {
+    "key": "ref12/cit12f",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/smll.202006351"
+   },
+   {
+    "key": "ref13/cit13",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/chem.202200420"
+   },
+   {
+    "key": "ref14/cit14a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja00197a079"
+   },
+   {
+    "key": "ref14/cit14b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja00160a038"
+   },
+   {
+    "key": "ref15/cit15a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1351/pac197127040647"
+   },
+   {
+    "key": "ref15/cit15b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cr9900432"
+   },
+   {
+    "key": "ref16/cit16a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41557-022-01128-3"
+   },
+   {
+    "key": "ref16/cit16b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.enchem.2021.100067"
+   },
+   {
+    "key": "ref17/cit17",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.chemrev.0c01049"
+   },
+   {
+    "key": "ref18/cit18a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/zaac.18970150118"
+   },
+   {
+    "key": "ref18/cit18b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/163566a0"
+   },
+   {
+    "key": "ref19/cit19",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.283.5405.1148"
+   },
+   {
+    "key": "ref20/cit20",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/46248"
+   },
+   {
+    "key": "ref21/cit21",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.1067208"
+   },
+   {
+    "key": "ref22/cit22",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja1009635"
+   },
+   {
+    "key": "ref23/cit23",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1073/pnas.0602439103"
+   },
+   {
+    "key": "ref24/cit24",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b600188m"
+   },
+   {
+    "key": "ref25/cit25",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/c39760000333"
+   },
+   {
+    "key": "ref26/cit26a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/1521-3773(20000804)39:15<2695::AID-ANIE2695>3.0.CO;2-M"
+   },
+   {
+    "key": "ref26/cit26b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja01077a019"
+   },
+   {
+    "key": "ref27/cit27",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.6b13300"
+   },
+   {
+    "key": "ref28/cit28",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja4054948"
+   },
+   {
+    "key": "ref29/cit29a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja2066016"
+   },
+   {
+    "key": "ref29/cit29b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja963905e"
+   },
+   {
+    "key": "ref30/cit30",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja506577g"
+   },
+   {
+    "key": "ref31/cit31",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C4CC04158E"
+   },
+   {
+    "key": "ref32/cit32",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adfm.201909842"
+   },
+   {
+    "key": "ref33/cit33",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/S0010-8545(02)00218-7"
+   },
+   {
+    "key": "ref34/cit34",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acsami.2c12485"
+   },
+   {
+    "key": "ref35/cit35a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ccr.2007.07.009"
+   },
+   {
+    "key": "ref35/cit35b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b313997m"
+   },
+   {
+    "key": "ref36/cit36",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cr100160e"
+   },
+   {
+    "key": "ref37/cit37",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1107/S2052520616003954"
+   },
+   {
+    "key": "ref38/cit38a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.chemmater.7b00441"
+   },
+   {
+    "key": "ref38/cit38b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D0SC01297A"
+   },
+   {
+    "key": "ref39/cit39",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/1521-3773(20020104)41:1<48::AID-ANIE48>3.0.CO;2-U"
+   },
+   {
+    "key": "ref40/cit40",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.199523111"
+   },
+   {
+    "key": "ref41/cit41",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/accountsmr.0c00019"
+   },
+   {
+    "key": "ref42/cit42",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.trechm.2020.02.013"
+   },
+   {
+    "key": "ref43/cit43",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acssuschemeng.9b04552"
+   },
+   {
+    "key": "ref44/cit44",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ica.2014.04.025"
+   },
+   {
+    "key": "ref45/cit45",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s43246-024-00609-x"
+   },
+   {
+    "key": "ref46/cit46",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1107/S1600576719014092"
+   },
+   {
+    "key": "ref47/cit47a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1107/S0021889802022112"
+   },
+   {
+    "key": "ref47/cit47b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1107/S090744490804362X"
+   },
+   {
+    "key": "ref48/cit48",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1107/S2053229614024929"
+   },
+   {
+    "key": "ref49/cit49",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1107/S2052252516015633"
+   },
+   {
+    "key": "ref51/cit51",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D0CS00997K"
+   },
+   {
+    "key": "ref52/cit52",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C4RA16545D"
+   },
+   {
+    "key": "ref53/cit53",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.200462711"
+   },
+   {
+    "key": "ref54/cit54",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.xcrp.2023.101252"
+   },
+   {
+    "key": "ref55/cit55a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acsmaterialslett.0c00130"
+   },
+   {
+    "key": "ref55/cit55b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41565-020-0673-x"
+   },
+   {
+    "key": "ref55/cit55c",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja500330a"
+   },
+   {
+    "key": "ref56/cit56",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1351/pac198557040603"
+   },
+   {
+    "key": "ref57/cit57",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/0040-6031(94)01952-D"
+   },
+   {
+    "key": "ref58/cit58",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.201704304"
+   },
+   {
+    "key": "ref59/cit59",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D3TA01574B"
+   },
+   {
+    "key": "ref61/cit61",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41586-023-05749-7"
+   },
+   {
+    "key": "ref62/cit62",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b301219k"
+   },
+   {
+    "key": "ref63/cit63a",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41467-022-32642-0"
+   },
+   {
+    "key": "ref63/cit63b",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acscentsci.9b00745"
+   },
+   {
+    "key": "ref64/cit64",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.202209073"
+   },
+   {
+    "key": "ref65/cit65",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.abm1854"
+   }
+  ],
+  "container-title": [
+   "Journal of the American Chemical Society"
+  ],
+  "original-title": [],
+  "language": "en",
+  "link": [
+   {
+    "URL": "https://pubs.acs.org/doi/pdf/10.1021/jacs.4c13797",
+    "content-type": "application/pdf",
+    "content-version": "vor",
+    "intended-application": "unspecified"
+   },
+   {
+    "URL": "https://pubs.acs.org/doi/pdf/10.1021/jacs.4c13797",
+    "content-type": "unspecified",
+    "content-version": "vor",
+    "intended-application": "similarity-checking"
+   }
+  ],
+  "deposited": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     15
+    ]
+   ],
+   "date-time": "2025-01-15T10:44:21Z",
+   "timestamp": 1736937861000
+  },
+  "score": 1,
+  "resource": {
+   "primary": {
+    "URL": "https://pubs.acs.org/doi/10.1021/jacs.4c13797"
+   }
+  },
+  "subtitle": [],
+  "short-title": [],
+  "issued": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     2
+    ]
+   ]
+  },
+  "references-count": 83,
+  "journal-issue": {
+   "issue": "2",
+   "published-print": {
+    "date-parts": [
+     [
+      2025,
+      1,
+      15
+     ]
+    ]
+   }
+  },
+  "alternative-id": [
+   "10.1021/jacs.4c13797"
+  ],
+  "URL": "https://doi.org/10.1021/jacs.4c13797",
+  "relation": {},
+  "ISSN": [
+   "0002-7863",
+   "1520-5126"
+  ],
+  "issn-type": [
+   {
+    "value": "0002-7863",
+    "type": "print"
+   },
+   {
+    "value": "1520-5126",
+    "type": "electronic"
+   }
+  ],
+  "subject": [],
+  "published": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     2
+    ]
+   ]
+  }
+ },
+ "Shabangu2025One": {
+  "indexed": {
+   "date-parts": [
+    [
+     2026,
+     11,
+     6
+    ]
+   ],
+   "date-time": "2026-11-06T02:58:10Z",
+   "timestamp": 1793933890584,
+   "version": "4.8.0"
+  },
+  "reference-count": 80,
+  "publisher": "American Chemical Society (ACS)",
+  "issue": "2",
+  "license": [
+   {
+    "start": {
+     "date-parts": [
+      [
+       2025,
+       1,
+       2
+      ]
+     ],
+     "date-time": "2025-01-02T00:00:00Z",
+     "timestamp": 1735776000000
+    },
+    "content-version": "vor",
+    "delay-in-days": 0,
+    "URL": "https://creativecommons.org/licenses/by/4.0/"
+   }
+  ],
+  "funder": [
+   {
+    "DOI": "10.13039/501100001588",
+    "name": "Enterprise Ireland",
+    "doi-asserted-by": "publisher",
+    "id": [
+     {
+      "id": "10.13039/501100001588",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100010665",
+    "name": "H2020 Marie Sklodowska-Curie Actions",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "847402"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "847402"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100010665",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100010663",
+    "name": "H2020 European Research Council",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "885695"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "885695"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100010663",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "name": "Research Ireland",
+    "award": [
+     "16/IA/4624"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "16/IA/4624"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Research Ireland",
+    "award": [
+     "IRCLA/2019/167"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "IRCLA/2019/167"
+      ]
+     }
+    ]
+   }
+  ],
+  "content-domain": {
+   "domain": [],
+   "crossmark-restriction": false
+  },
+  "short-container-title": [
+   "ACS Materials Lett."
+  ],
+  "published-print": {
+   "date-parts": [
+    [
+     2025,
+     2,
+     3
+    ]
+   ]
+  },
+  "DOI": "10.1021/acsmaterialslett.4c02019",
+  "type": "journal-article",
+  "created": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     2
+    ]
+   ],
+   "date-time": "2025-01-02T09:00:17Z",
+   "timestamp": 1735808417000
+  },
+  "page": "433-441",
+  "source": "Crossref",
+  "is-referenced-by-count": 11,
+  "title": [
+   "One Step Further: A Flexible Metal–Organic Framework that Functions as a Dual-Purpose Water Vapor Sorbent"
+  ],
+  "prefix": "10.1021",
+  "volume": "7",
+  "author": [
+   {
+    "given": "Samuel M.",
+    "family": "Shabangu",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-0525-3547",
+    "authenticated-orcid": true,
+    "given": "Andrey A.",
+    "family": "Bezrukov",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-4840-5413",
+    "authenticated-orcid": true,
+    "given": "Alan C.",
+    "family": "Eaby",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-1725-4069",
+    "authenticated-orcid": true,
+    "given": "Sousa Javan",
+    "family": "Nikkhah",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-9397-6886",
+    "authenticated-orcid": true,
+    "given": "Shaza",
+    "family": "Darwish",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-5913-3244",
+    "authenticated-orcid": true,
+    "given": "Varvara I.",
+    "family": "Nikolayenko",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-4918-0730",
+    "authenticated-orcid": true,
+    "given": "Debobroto",
+    "family": "Sensharma",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-1213-8317",
+    "authenticated-orcid": true,
+    "given": "Shi-Qiang",
+    "family": "Wang",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "Institute of Materials Research and Engineering",
+      "place": [
+       "Singapore"
+      ]
+     },
+     {
+      "name": "Agency for Science, Technology and Research",
+      "place": [
+       "Singapore"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-1592-0726",
+    "authenticated-orcid": true,
+    "given": "Matthias",
+    "family": "Vandichel",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-1360-540X",
+    "authenticated-orcid": true,
+    "given": "Michael J.",
+    "family": "Zaworotko",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Sciences, Bernal Institute",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     },
+     {
+      "name": "University of Limerick",
+      "place": [
+       "Limerick, Republic of Ireland"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "member": "316",
+  "published-online": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     2
+    ]
+   ]
+  },
+  "reference": [
+   {
+    "key": "ref1/cit1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/sciadv.1500323"
+   },
+   {
+    "key": "ref2/cit2",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.joule.2018.07.015"
+   },
+   {
+    "key": "ref3/cit3",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41467-018-03162-7"
+   },
+   {
+    "key": "ref4/cit4",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.xcrp.2023.101252"
+   },
+   {
+    "key": "ref5/cit5",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.201704304"
+   },
+   {
+    "key": "ref6/cit6",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.accounts.9b00062"
+   },
+   {
+    "key": "ref7/cit7",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.201104084"
+   },
+   {
+    "key": "ref8/cit8",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.rser.2009.07.016"
+   },
+   {
+    "key": "ref9/cit9",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.14324/111.444/ucloe.000049"
+   },
+   {
+    "key": "ref10/cit10",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.buildenv.2014.05.030"
+   },
+   {
+    "key": "ref11/cit11",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.7b04132"
+   },
+   {
+    "key": "ref12/cit12",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D2RA07733G"
+   },
+   {
+    "key": "ref13/cit13",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acsmaterialsau.2c00027"
+   },
+   {
+    "key": "ref14/cit14",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acsmaterialslett.0c00130"
+   },
+   {
+    "key": "ref15/cit15",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D3QM00484H"
+   },
+   {
+    "key": "ref16/cit16",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chempr.2023.09.005"
+   },
+   {
+    "key": "ref17/cit17",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41565-020-0673-x"
+   },
+   {
+    "key": "ref18/cit18",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.micromeso.2007.12.022"
+   },
+   {
+    "key": "ref19/cit19",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1351/pac198557040603"
+   },
+   {
+    "key": "ref20/cit20",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/je00031a004"
+   },
+   {
+    "key": "ref21/cit21",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/la00002a036"
+   },
+   {
+    "key": "ref22/cit22",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b807086p"
+   },
+   {
+    "key": "ref23/cit23",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cr3002824"
+   },
+   {
+    "key": "ref24/cit24",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.200300610"
+   },
+   {
+    "key": "ref25/cit25",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cr300014x"
+   },
+   {
+    "key": "ref26/cit26",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/B618320B"
+   },
+   {
+    "key": "ref27/cit27",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/smll.202006351"
+   },
+   {
+    "key": "ref28/cit28",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acscentsci.0c00678"
+   },
+   {
+    "key": "ref29/cit29",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja500330a"
+   },
+   {
+    "key": "ref30/cit30",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cr5002589"
+   },
+   {
+    "key": "ref31/cit31",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.micromeso.2008.11.020"
+   },
+   {
+    "key": "ref32/cit32",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acscentsci.9b00745"
+   },
+   {
+    "key": "ref33/cit33",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C4RA03794D"
+   },
+   {
+    "key": "ref34/cit34",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acscentsci.7b00186"
+   },
+   {
+    "key": "ref35/cit35",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C5CE00789E"
+   },
+   {
+    "key": "ref36/cit36",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41467-019-10960-0"
+   },
+   {
+    "key": "ref37/cit37",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acsami.0c15901"
+   },
+   {
+    "key": "ref38/cit38",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chempr.2017.11.005"
+   },
+   {
+    "key": "ref39/cit39",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b301219k"
+   },
+   {
+    "key": "ref40/cit40",
+    "unstructured": "Zaworotko, M. J.; Pérez, V. G.; Bezrukov, A. A.; O’Hearn, D. J.; Wang, S. Water capture methods, devices, and compounds. U.S. Patent US20200030737A1, 2020."
+   },
+   {
+    "key": "ref41/cit41",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.jssc.2005.05.038"
+   },
+   {
+    "key": "ref42/cit42",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3390/molecules24050945"
+   },
+   {
+    "key": "ref43/cit43",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/srep19097"
+   },
+   {
+    "key": "ref44/cit44",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.201704304"
+   },
+   {
+    "key": "ref45/cit45",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C4CS00101J"
+   },
+   {
+    "key": "ref46/cit46",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C4CS90059F"
+   },
+   {
+    "key": "ref47/cit47",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b313997m"
+   },
+   {
+    "key": "ref48/cit48",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.201800820"
+   },
+   {
+    "key": "ref49/cit49",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D1FD00037C"
+   },
+   {
+    "key": "ref50/cit50",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/chem.201203515"
+   },
+   {
+    "key": "ref51/cit51",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.201904160"
+   },
+   {
+    "key": "ref52/cit52",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C9CC04446A"
+   },
+   {
+    "key": "ref53/cit53",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja1023282"
+   },
+   {
+    "key": "ref54/cit54",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jp202147m"
+   },
+   {
+    "key": "ref55/cit55",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b804302g"
+   },
+   {
+    "key": "ref56/cit56",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja9092715"
+   },
+   {
+    "key": "ref57/cit57",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.jes.2021.01.030"
+   },
+   {
+    "key": "ref58/cit58",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/chem.200305413"
+   },
+   {
+    "key": "ref59/cit59",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jp010674b"
+   },
+   {
+    "key": "ref60/cit60",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.chemmater.2c03662"
+   },
+   {
+    "key": "ref61/cit61",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.micromeso.2012.01.015"
+   },
+   {
+    "key": "ref62/cit62",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D1SC02060A"
+   },
+   {
+    "key": "ref63/cit63",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41467-022-31274-8"
+   },
+   {
+    "key": "ref64/cit64",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C1DT11729G"
+   },
+   {
+    "key": "ref65/cit65",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja403453g"
+   },
+   {
+    "key": "ref66/cit66",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja0276974"
+   },
+   {
+    "key": "ref67/cit67",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/sciadv.aat3198"
+   },
+   {
+    "key": "ref68/cit68",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.aam8743"
+   },
+   {
+    "key": "ref69/cit69",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D3TA01574B"
+   },
+   {
+    "key": "ref70/cit70",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D2CC02777A"
+   },
+   {
+    "key": "ref71/cit71",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.1c01831"
+   },
+   {
+    "key": "ref72/cit72",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.cgd.9b00097"
+   },
+   {
+    "key": "ref73/cit73",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja039022m"
+   },
+   {
+    "key": "ref74/cit74",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.201502418"
+   },
+   {
+    "key": "ref75/cit75",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cm3025445"
+   },
+   {
+    "key": "ref76/cit76",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.micromeso.2011.08.016"
+   },
+   {
+    "key": "ref77/cit77",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.jpcc.8b08211"
+   },
+   {
+    "key": "ref78/cit78",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chempr.2024.01.011"
+   },
+   {
+    "key": "ref79/cit79",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.202106263"
+   },
+   {
+    "key": "ref80/cit80",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/S0378-3812(99)00074-6"
+   }
+  ],
+  "container-title": [
+   "ACS Materials Letters"
+  ],
+  "original-title": [],
+  "language": "en",
+  "link": [
+   {
+    "URL": "https://pubs.acs.org/doi/pdf/10.1021/acsmaterialslett.4c02019",
+    "content-type": "application/pdf",
+    "content-version": "vor",
+    "intended-application": "unspecified"
+   },
+   {
+    "URL": "https://pubs.acs.org/doi/pdf/10.1021/acsmaterialslett.4c02019",
+    "content-type": "unspecified",
+    "content-version": "vor",
+    "intended-application": "similarity-checking"
+   }
+  ],
+  "deposited": {
+   "date-parts": [
+    [
+     2025,
+     2,
+     3
+    ]
+   ],
+   "date-time": "2025-02-03T09:11:17Z",
+   "timestamp": 1738573877000
+  },
+  "score": 1,
+  "resource": {
+   "primary": {
+    "URL": "https://pubs.acs.org/doi/10.1021/acsmaterialslett.4c02019"
+   }
+  },
+  "subtitle": [],
+  "short-title": [],
+  "issued": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     2
+    ]
+   ]
+  },
+  "references-count": 80,
+  "journal-issue": {
+   "issue": "2",
+   "published-print": {
+    "date-parts": [
+     [
+      2025,
+      2,
+      3
+     ]
+    ]
+   }
+  },
+  "alternative-id": [
+   "10.1021/acsmaterialslett.4c02019"
+  ],
+  "URL": "https://doi.org/10.1021/acsmaterialslett.4c02019",
+  "relation": {},
+  "ISSN": [
+   "2639-4979",
+   "2639-4979"
+  ],
+  "issn-type": [
+   {
+    "value": "2639-4979",
+    "type": "print"
+   },
+   {
+    "value": "2639-4979",
+    "type": "electronic"
+   }
+  ],
+  "subject": [],
+  "published": {
+   "date-parts": [
+    [
+     2025,
+     1,
+     2
+    ]
+   ]
+  }
+ },
+ "Kong2026Regeneration": {
+  "indexed": {
+   "date-parts": [
+    [
+     2026,
+     11,
+     14
+    ]
+   ],
+   "date-time": "2026-11-14T19:28:11Z",
+   "timestamp": 1794684491246,
+   "version": "4.9.1"
+  },
+  "reference-count": 59,
+  "publisher": "Wiley",
+  "issue": "45",
+  "license": [
+   {
+    "start": {
+     "date-parts": [
+      [
+       2026,
+       9,
+       21
+      ]
+     ],
+     "date-time": "2026-09-21T00:00:00Z",
+     "timestamp": 1789948800000
+    },
+    "content-version": "am",
+    "delay-in-days": 0,
+    "URL": "http://creativecommons.org/licenses/by/4.0/"
+   },
+   {
+    "start": {
+     "date-parts": [
+      [
+       2026,
+       9,
+       21
+      ]
+     ],
+     "date-time": "2026-09-21T00:00:00Z",
+     "timestamp": 1789948800000
+    },
+    "content-version": "vor",
+    "delay-in-days": 0,
+    "URL": "http://creativecommons.org/licenses/by/4.0/"
+   },
+   {
+    "start": {
+     "date-parts": [
+      [
+       2026,
+       9,
+       21
+      ]
+     ],
+     "date-time": "2026-09-21T00:00:00Z",
+     "timestamp": 1789948800000
+    },
+    "content-version": "tdm",
+    "delay-in-days": 0,
+    "URL": "http://doi.wiley.com/10.1002/tdm_license_1.1"
+   }
+  ],
+  "funder": [
+   {
+    "DOI": "10.13039/501100000781",
+    "name": "European Research Council",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "ADG 885695"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "ADG 885695"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100000781",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/501100001809",
+    "name": "National Natural Science Foundation of China",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "22401168"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "22401168"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100001809",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/501100002858",
+    "name": "China Postdoctoral Science Foundation",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "2025M780887"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "2025M780887"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100002858",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100000001",
+    "name": "National Science Foundation",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "2154882"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "2154882"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100000001",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100000001",
+    "name": "National Science Foundation",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "2138259"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "2138259"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100000001",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100000001",
+    "name": "National Science Foundation",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "2138286"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "2138286"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100000001",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100000001",
+    "name": "National Science Foundation",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "2138307"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "2138307"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100000001",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100000001",
+    "name": "National Science Foundation",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "2137603"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "2137603"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100000001",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/100000001",
+    "name": "National Science Foundation",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "2138296"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "2138296"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/100000001",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/501100025294",
+    "name": "Research Ireland",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "12/RC/2275_P2"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "12/RC/2275_P2"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100025294",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/501100025294",
+    "name": "Research Ireland",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "21/US/3760"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "21/US/3760"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100025294",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/501100001602",
+    "name": "Science Foundation Ireland",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "21/PATH‐S/9454"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "21/PATH‐S/9454"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100001602",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   }
+  ],
+  "content-domain": {
+   "domain": [
+    "onlinelibrary.wiley.com"
+   ],
+   "crossmark-restriction": true
+  },
+  "short-container-title": [
+   "Angew Chem Int Ed"
+  ],
+  "published-print": {
+   "date-parts": [
+    [
+     2026,
+     11,
+     2
+    ]
+   ]
+  },
+  "abstract": "<jats:title>ABSTRACT</jats:title>\n                  <jats:p>\n                    Atmospheric water harvesting (AWH) can be enabled by solid desiccants that exhibit S‐shaped adsorption isotherms with one or more steps at low relative humidity (RH, &lt;30%) and mild regeneration temperatures (&lt;60°C). There remains a dearth of such regeneration‐optimized sorbents (ROSs), which thus far are limited exclusively to physisorbents mainly because chemisorbents typically require elevated temperatures for water recovery. Herein, the first comprehensive water sorption study of the\n                    <jats:bold>SIFSIX‐3‐Ni</jats:bold>\n                    family of hybrid coordination networks (HCNs) and a new, related family of HCNs, reveals a shared cooperative chemisorption mechanism with markedly different RH thresholds and regeneration requirements. Whereas the\n                    <jats:bold>SIFSIX‐3‐Ni</jats:bold>\n                    family operates outside the RH and regeneration limits of ROSs, four\n                    <jats:bold>M′FSIX‐25‐M</jats:bold>\n                    analogues (M = Co\n                    <jats:sup>2+</jats:sup>\n                    , Ni\n                    <jats:sup>2+</jats:sup>\n                    ; M' = Si\n                    <jats:sup>4+</jats:sup>\n                    , Ti\n                    <jats:sup>4+</jats:sup>\n                    ,\n                    <jats:bold>25</jats:bold>\n                    = 1,4‐bis(imidazol‐1‐yl)naphthalene) exhibit both low‐RH chemisorption and regeneration from 34‐44°C. The lead regeneration optimized chemisorbent,\n                    <jats:bold>ROC‐1</jats:bold>\n                    (\n                    <jats:bold>TIFSIX‐25‐Ni</jats:bold>\n                    ), has a projected water‐harvesting productivity of ca. 3.5  L\n                    <jats:sub>sorbent</jats:sub>\n                    <jats:sup>−1</jats:sup>\n                    d\n                    <jats:sup>−1</jats:sup>\n                    . Density functional theory calculations provide insight into the energetics and mechanism of hydration/dehydration in these first‐generation ROCs. This work establishes ROCs as a new class of desiccants that offers reversible chemisorption within the low‐RH and mild‐regeneration conditions relevant to AWH in arid environments.\n                  </jats:p>",
+  "DOI": "10.1002/anie.6095254",
+  "type": "journal-article",
+  "created": {
+   "date-parts": [
+    [
+     2026,
+     9,
+     21
+    ]
+   ],
+   "date-time": "2026-09-21T15:55:03Z",
+   "timestamp": 1790006103000
+  },
+  "update-policy": "https://doi.org/10.1002/crossmark_policy",
+  "source": "Crossref",
+  "is-referenced-by-count": 0,
+  "title": [
+   "Regeneration‐Optimized Chemisorbents: Evaluating Hybrid Coordination Networks for Atmospheric Water Harvesting"
+  ],
+  "prefix": "10.1002",
+  "volume": "65",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0003-2940-8600",
+    "authenticated-orcid": false,
+    "given": "Xiang‐Jing",
+    "family": "Kong",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences University of Limerick  Limerick Ireland"
+     },
+     {
+      "name": "Department of Chemical Engineering College of Materials Science and Engineering Beijing University of Technology  Beijing China"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-7140-8543",
+    "authenticated-orcid": false,
+    "given": "Asif",
+    "family": "Raza",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences University of Limerick  Limerick Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-0757-7358",
+    "authenticated-orcid": false,
+    "given": "Lilia",
+    "family": "Croitor",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences University of Limerick  Limerick Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-0525-3547",
+    "authenticated-orcid": false,
+    "given": "Andrey",
+    "family": "Bezrukov",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences University of Limerick  Limerick Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-8046-394X",
+    "authenticated-orcid": false,
+    "given": "Xia",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences University of Limerick  Limerick Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-8378-8467",
+    "authenticated-orcid": false,
+    "given": "Angela",
+    "family": "Shipman",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemistry North Carolina State University  Raleigh North Carolina USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0009-0008-6713-5846",
+    "authenticated-orcid": false,
+    "given": "William",
+    "family": "Morris",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemistry North Carolina State University  Raleigh North Carolina USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-7614-0438",
+    "authenticated-orcid": false,
+    "given": "Carlos J.",
+    "family": "Solanilla‐Salinas",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemistry North Carolina State University  Raleigh North Carolina USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-3102-3056",
+    "authenticated-orcid": false,
+    "given": "Adam",
+    "family": "Hogan",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemistry North Carolina State University  Raleigh North Carolina USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-0246-7408",
+    "authenticated-orcid": false,
+    "given": "Brian",
+    "family": "Space",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemistry North Carolina State University  Raleigh North Carolina USA"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-9851-5031",
+    "authenticated-orcid": false,
+    "given": "Volodymyr",
+    "family": "Bon",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Inorganic Chemistry Technische Universitat Dresden  Dresden Germany"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-4572-0303",
+    "authenticated-orcid": false,
+    "given": "Stefan",
+    "family": "Kaskel",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Inorganic Chemistry Technische Universitat Dresden  Dresden Germany"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-2375-7009",
+    "authenticated-orcid": false,
+    "given": "Soumya",
+    "family": "Mukherjee",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences University of Limerick  Limerick Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-4840-5413",
+    "authenticated-orcid": false,
+    "given": "Alan C.",
+    "family": "Eaby",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences University of Limerick  Limerick Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-3443-6243",
+    "authenticated-orcid": false,
+    "given": "Tao",
+    "family": "He",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences University of Limerick  Limerick Ireland"
+     },
+     {
+      "name": "Department of Chemical Engineering College of Materials Science and Engineering Beijing University of Technology  Beijing China"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-1360-540X",
+    "authenticated-orcid": false,
+    "given": "Michael J.",
+    "family": "Zaworotko",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Bernal Institute and Department of Chemical Sciences University of Limerick  Limerick Ireland"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "member": "311",
+  "published-online": {
+   "date-parts": [
+    [
+     2026,
+     9,
+     21
+    ]
+   ]
+  },
+  "reference": [
+   {
+    "key": "e_1_2_8_2_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.200300610"
+   },
+   {
+    "key": "e_1_2_8_3_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.1230444"
+   },
+   {
+    "key": "e_1_2_8_4_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/c0nj00275e"
+   },
+   {
+    "key": "e_1_2_8_5_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b807086p"
+   },
+   {
+    "key": "e_1_2_8_6_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cr3002824"
+   },
+   {
+    "key": "e_1_2_8_7_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/nature11893"
+   },
+   {
+    "key": "e_1_2_8_8_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adfm.202304788"
+   },
+   {
+    "key": "e_1_2_8_9_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.chemrev.9b00746"
+   },
+   {
+    "key": "e_1_2_8_10_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chempr.2023.09.005"
+   },
+   {
+    "key": "e_1_2_8_11_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/nature15732"
+   },
+   {
+    "key": "e_1_2_8_12_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ccr.2023.215111"
+   },
+   {
+    "key": "e_1_2_8_13_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s44221‐023‐00070‐z"
+   },
+   {
+    "key": "e_1_2_8_14_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.202209073"
+   },
+   {
+    "key": "e_1_2_8_15_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.1c02108"
+   },
+   {
+    "key": "e_1_2_8_16_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.abm1854"
+   },
+   {
+    "key": "e_1_2_8_17_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/smll.202006351"
+   },
+   {
+    "key": "e_1_2_8_18_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.199521271"
+   },
+   {
+    "key": "e_1_2_8_19_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C5CC05866J"
+   },
+   {
+    "key": "e_1_2_8_20_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja00160a038"
+   },
+   {
+    "key": "e_1_2_8_21_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C7CC02289A"
+   },
+   {
+    "key": "e_1_2_8_22_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.6b05345"
+   },
+   {
+    "key": "e_1_2_8_23_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.aax8666"
+   },
+   {
+    "key": "e_1_2_8_24_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.202206613"
+   },
+   {
+    "key": "e_1_2_8_25_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.7b01682"
+   },
+   {
+    "key": "e_1_2_8_26_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.jpcc.4c04486"
+   },
+   {
+    "key": "e_1_2_8_27_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.0c01314"
+   },
+   {
+    "key": "e_1_2_8_28_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.5c14477"
+   },
+   {
+    "key": "e_1_2_8_29_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.aam8310"
+   },
+   {
+    "key": "e_1_2_8_30_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C5CC06577A"
+   },
+   {
+    "key": "e_1_2_8_31_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.3c11503"
+   },
+   {
+    "key": "e_1_2_8_32_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.aam8743"
+   },
+   {
+    "key": "e_1_2_8_33_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.201704304"
+   },
+   {
+    "key": "e_1_2_8_34_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1351/pac197127040647"
+   },
+   {
+    "key": "e_1_2_8_35_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cr9900432"
+   },
+   {
+    "key": "e_1_2_8_36_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.xcrp.2023.101252"
+   },
+   {
+    "key": "e_1_2_8_37_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.202116145"
+   },
+   {
+    "key": "e_1_2_8_38_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D4SC03029J"
+   },
+   {
+    "key": "e_1_2_8_39_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/ejic.200900144"
+   },
+   {
+    "key": "e_1_2_8_40_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/smll.202005360"
+   },
+   {
+    "key": "e_1_2_8_41_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D0CC03196H"
+   },
+   {
+    "key": "e_1_2_8_42_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/aic.16236"
+   },
+   {
+    "key": "e_1_2_8_43_1",
+    "unstructured": "It should be noted that BET surface areas of HUMs are routinely determined from CO2sorption data collected at 0 and 25°C. See references [6] [28]and [40]."
+   },
+   {
+    "key": "e_1_2_8_44_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1351/pac198557040603"
+   },
+   {
+    "key": "e_1_2_8_45_1",
+    "unstructured": "Prolonged exposure to high RH under continuous flow and low partial pressures in the DVS resulted in degradation of theM′FSIX‐3‐Mcompounds. We hypothesize that this arises from water condensation between particles leading to localized deliquescence followed by sublimation of volatile pyrazine ligands. The excess moisture is subsequently removed during the RH decrease step of the experiment promoting recrystallization and resulting in a mixture of solid phases upon completion of the DVS measurement."
+   },
+   {
+    "key": "e_1_2_8_46_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/sciadv.aat3198"
+   },
+   {
+    "key": "e_1_2_8_47_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/srep19097"
+   },
+   {
+    "key": "e_1_2_8_48_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/jacs.4c13797"
+   },
+   {
+    "key": "e_1_2_8_49_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/b301219k"
+   },
+   {
+    "key": "e_1_2_8_50_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.jssc.2005.05.038"
+   },
+   {
+    "key": "e_1_2_8_51_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C4RA03794D"
+   },
+   {
+    "key": "e_1_2_8_52_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.micromeso.2011.08.016"
+   },
+   {
+    "key": "e_1_2_8_53_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cm3025445"
+   },
+   {
+    "key": "e_1_2_8_54_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.enconman.2005.10.034"
+   },
+   {
+    "key": "e_1_2_8_55_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.device.2023.100099"
+   },
+   {
+    "key": "e_1_2_8_56_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1063/5.0263097"
+   },
+   {
+    "key": "e_1_2_8_57_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ijrefrig.2011.06.012"
+   },
+   {
+    "key": "e_1_2_8_58_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chempr.2024.01.011"
+   },
+   {
+    "key": "e_1_2_8_59_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.283.5405.1148"
+   },
+   {
+    "key": "e_1_2_8_60_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ar0201153"
+   }
+  ],
+  "container-title": [
+   "Angewandte Chemie International Edition"
+  ],
+  "original-title": [],
+  "language": "en",
+  "link": [
+   {
+    "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/anie.6095254",
+    "content-type": "application/pdf",
+    "content-version": "vor",
+    "intended-application": "text-mining"
+   },
+   {
+    "URL": "https://onlinelibrary.wiley.com/doi/full-xml/10.1002/anie.6095254",
+    "content-type": "application/xml",
+    "content-version": "vor",
+    "intended-application": "text-mining"
+   },
+   {
+    "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/anie.6095254",
+    "content-type": "application/pdf",
+    "content-version": "vor",
+    "intended-application": "syndication"
+   },
+   {
+    "URL": "https://onlinelibrary.wiley.com/doi/pdf/10.1002/anie.6095254",
+    "content-type": "unspecified",
+    "content-version": "vor",
+    "intended-application": "similarity-checking"
+   }
+  ],
+  "deposited": {
+   "date-parts": [
+    [
+     2026,
+     11,
+     14
+    ]
+   ],
+   "date-time": "2026-11-14T18:21:32Z",
+   "timestamp": 1794680492000
+  },
+  "score": 1,
+  "resource": {
+   "primary": {
+    "URL": "https://onlinelibrary.wiley.com/doi/10.1002/anie.6095254"
+   }
+  },
+  "subtitle": [],
+  "short-title": [],
+  "issued": {
+   "date-parts": [
+    [
+     2026,
+     9,
+     21
+    ]
+   ]
+  },
+  "references-count": 59,
+  "journal-issue": {
+   "issue": "45",
+   "published-print": {
+    "date-parts": [
+     [
+      2026,
+      11,
+      2
+     ]
+    ]
+   }
+  },
+  "alternative-id": [
+   "10.1002/anie.6095254"
+  ],
+  "URL": "https://doi.org/10.1002/anie.6095254",
+  "archive": [
+   "Portico"
+  ],
+  "relation": {},
+  "ISSN": [
+   "1433-7851",
+   "1521-3773"
+  ],
+  "issn-type": [
+   {
+    "value": "1433-7851",
+    "type": "print"
+   },
+   {
+    "value": "1521-3773",
+    "type": "electronic"
+   }
+  ],
+  "subject": [],
+  "published": {
+   "date-parts": [
+    [
+     2026,
+     9,
+     21
+    ]
+   ]
+  },
+  "assertion": [
+   {
+    "value": "2026-06-26",
+    "order": 0,
+    "name": "received",
+    "label": "Received",
+    "group": {
+     "name": "publication_history",
+     "label": "Publication History"
+    }
+   },
+   {
+    "value": "2026-09-14",
+    "order": 2,
+    "name": "accepted",
+    "label": "Accepted",
+    "group": {
+     "name": "publication_history",
+     "label": "Publication History"
+    }
+   },
+   {
+    "value": "2026-09-21",
+    "order": 3,
+    "name": "published",
+    "label": "Published",
+    "group": {
+     "name": "publication_history",
+     "label": "Publication History"
+    }
+   }
+  ],
+  "article-number": "e6095254"
+ },
+ "Ma2025Microscopic": {
+  "indexed": {
+   "date-parts": [
+    [
+     2026,
+     9,
+     2
+    ]
+   ],
+   "date-time": "2026-09-02T15:32:27Z",
+   "timestamp": 1788363147780,
+   "version": "build-2803163510"
+  },
+  "reference-count": 55,
+  "publisher": "American Chemical Society (ACS)",
+  "issue": "14",
+  "license": [
+   {
+    "start": {
+     "date-parts": [
+      [
+       2025,
+       3,
+       28
+      ]
+     ],
+     "date-time": "2025-03-28T00:00:00Z",
+     "timestamp": 1743120000000
+    },
+    "content-version": "stm-asf",
+    "delay-in-days": 0,
+    "URL": "https://doi.org/10.15223/policy-029"
+   },
+   {
+    "start": {
+     "date-parts": [
+      [
+       2025,
+       3,
+       28
+      ]
+     ],
+     "date-time": "2025-03-28T00:00:00Z",
+     "timestamp": 1743120000000
+    },
+    "content-version": "stm-asf",
+    "delay-in-days": 0,
+    "URL": "https://doi.org/10.15223/policy-037"
+   },
+   {
+    "start": {
+     "date-parts": [
+      [
+       2025,
+       3,
+       28
+      ]
+     ],
+     "date-time": "2025-03-28T00:00:00Z",
+     "timestamp": 1743120000000
+    },
+    "content-version": "stm-asf",
+    "delay-in-days": 0,
+    "URL": "https://doi.org/10.15223/policy-045"
+   }
+  ],
+  "funder": [
+   {
+    "DOI": "10.13039/501100002920",
+    "name": "Research Grants Council, University Grants Committee",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "16207124"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "16207124"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100002920",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "DOI": "10.13039/501100002920",
+    "name": "Research Grants Council, University Grants Committee",
+    "doi-asserted-by": "publisher",
+    "award": [
+     "C6020-22G"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "C6020-22G"
+      ]
+     }
+    ],
+    "id": [
+     {
+      "id": "10.13039/501100002920",
+      "id-type": "DOI",
+      "asserted-by": "publisher"
+     }
+    ]
+   },
+   {
+    "name": "Frontier Technology Research for Joint Institutes with Industry Scheme",
+    "award": [
+     "FTRIS-002"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "FTRIS-002"
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Hong Kong Environment and Conservation Fund",
+    "award": [
+     "08/2022"
+    ],
+    "award-info": [
+     {
+      "award-number": [
+       "08/2022"
+      ]
+     }
+    ]
+   }
+  ],
+  "content-domain": {
+   "domain": [],
+   "crossmark-restriction": false
+  },
+  "short-container-title": [
+   "Nano Lett."
+  ],
+  "published-print": {
+   "date-parts": [
+    [
+     2025,
+     4,
+     9
+    ]
+   ]
+  },
+  "DOI": "10.1021/acs.nanolett.5c00343",
+  "type": "journal-article",
+  "created": {
+   "date-parts": [
+    [
+     2025,
+     3,
+     28
+    ]
+   ],
+   "date-time": "2025-03-28T12:22:48Z",
+   "timestamp": 1743164568000
+  },
+  "page": "5778-5783",
+  "source": "Crossref",
+  "is-referenced-by-count": 13,
+  "title": [
+   "Microscopic Kinetics of Water Adsorption in Metal–Organic Frameworks"
+  ],
+  "prefix": "10.1021",
+  "volume": "25",
+  "author": [
+   {
+    "given": "Chunye",
+    "family": "Ma",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Department of Mechanical and Aerospace Engineering",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     },
+     {
+      "name": "The Hong Kong University of Science and Technology",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Jiawang",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Mechanical and Aerospace Engineering",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     },
+     {
+      "name": "The Hong Kong University of Science and Technology",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0003-3460-7292",
+    "authenticated-orcid": true,
+    "given": "Guang",
+    "family": "Wang",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Mechanical and Aerospace Engineering",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     },
+     {
+      "name": "The Hong Kong University of Science and Technology",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0001-7164-1049",
+    "authenticated-orcid": true,
+    "given": "Zhigang",
+    "family": "Li",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Mechanical and Aerospace Engineering",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     },
+     {
+      "name": "The Hong Kong University of Science and Technology",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Wei",
+    "family": "Su",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Division of Emerging Interdisciplinary Areas",
+      "place": [
+       "Clear Water Bay, Hong Kong"
+      ]
+     },
+     {
+      "name": "Hong Kong University of Science and Technology",
+      "place": [
+       "Clear Water Bay, Hong Kong"
+      ]
+     },
+     {
+      "name": "Department of Mathematics",
+      "place": [
+       "Clear Water Bay, Hong Kong"
+      ]
+     },
+     {
+      "name": "Hong Kong University of Science and Technology",
+      "place": [
+       "Clear Water Bay, Hong Kong"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "ORCID": "https://orcid.org/0000-0002-5085-8123",
+    "authenticated-orcid": true,
+    "given": "Yanguang",
+    "family": "Zhou",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Mechanical and Aerospace Engineering",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     },
+     {
+      "name": "The Hong Kong University of Science and Technology",
+      "place": [
+       "Kowloon, Hong Kong"
+      ]
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "member": "316",
+  "published-online": {
+   "date-parts": [
+    [
+     2025,
+     3,
+     28
+    ]
+   ]
+  },
+  "reference": [
+   {
+    "key": "ref1/cit1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41467-018-03162-7"
+   },
+   {
+    "key": "ref2/cit2",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.icheatmasstransfer.2022.105961"
+   },
+   {
+    "key": "ref3/cit3",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.accounts.9b00062"
+   },
+   {
+    "key": "ref4/cit4",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.buildenv.2020.107396"
+   },
+   {
+    "key": "ref5/cit5",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ijrefrig.2021.09.033"
+   },
+   {
+    "key": "ref6/cit6",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.colsurfa.2010.09.003"
+   },
+   {
+    "key": "ref7/cit7",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acsenergylett.3c00196"
+   },
+   {
+    "key": "ref8/cit8",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.aau9101"
+   },
+   {
+    "key": "ref9/cit9",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.201707461"
+   },
+   {
+    "key": "ref10/cit10",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/anie.198903591"
+   },
+   {
+    "key": "ref11/cit11",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.cej.2009.10.029"
+   },
+   {
+    "key": "ref12/cit12",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.cej.2012.12.038"
+   },
+   {
+    "key": "ref13/cit13",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D3RA07982A"
+   },
+   {
+    "key": "ref14/cit14",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41565-020-0673-x"
+   },
+   {
+    "key": "ref15/cit15",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1103/PhysRevB.106.085417"
+   },
+   {
+    "key": "ref16/cit16",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1103/PhysRevB.109.045424"
+   },
+   {
+    "key": "ref17/cit17",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41467-024-46473-8"
+   },
+   {
+    "key": "ref18/cit18",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/admi.202001507"
+   },
+   {
+    "key": "ref19/cit19",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1126/science.1230444"
+   },
+   {
+    "key": "ref20/cit20",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chempr.2017.11.005"
+   },
+   {
+    "key": "ref21/cit21",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D1TA06238G"
+   },
+   {
+    "key": "ref22/cit22",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C6TA01757F"
+   },
+   {
+    "key": "ref23/cit23",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/ja500330a"
+   },
+   {
+    "key": "ref24/cit24",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.iecr.9b00976"
+   },
+   {
+    "key": "ref25/cit25",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.jpcc.8b08211"
+   },
+   {
+    "key": "ref26/cit26",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.tsep.2022.101436"
+   },
+   {
+    "key": "ref27/cit27",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.applthermaleng.2020.115393"
+   },
+   {
+    "key": "ref28/cit28",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/aic.17035"
+   },
+   {
+    "key": "ref29/cit29",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.cej.2009.09.013"
+   },
+   {
+    "key": "ref30/cit30",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/C4CS00078A"
+   },
+   {
+    "key": "ref31/cit31",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ecmx.2024.100694"
+   },
+   {
+    "key": "ref32/cit32",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/S0008-6223(02)00201-4"
+   },
+   {
+    "key": "ref33/cit33",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ijheatmasstransfer.2022.123103"
+   },
+   {
+    "key": "ref34/cit34",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.pmatsci.2021.100904"
+   },
+   {
+    "key": "ref35/cit35",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ijheatmasstransfer.2019.04.018"
+   },
+   {
+    "key": "ref36/cit36",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/adma.201705869"
+   },
+   {
+    "key": "ref37/cit37",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cm3025445"
+   },
+   {
+    "key": "ref38/cit38",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3390/nano13162351"
+   },
+   {
+    "key": "ref39/cit39",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41598-024-62317-3"
+   },
+   {
+    "key": "ref40/cit40",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.jece.2024.112753"
+   },
+   {
+    "key": "ref41/cit41",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/admi.202300065"
+   },
+   {
+    "key": "ref42/cit42",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.micromeso.2017.02.020"
+   },
+   {
+    "key": "ref43/cit43",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/admi.202400628"
+   },
+   {
+    "key": "ref44/cit44",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acsmaterialsau.2c00052"
+   },
+   {
+    "key": "ref45/cit45",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1039/D2TA07392G"
+   },
+   {
+    "key": "ref46/cit46",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41598-020-58405-9"
+   },
+   {
+    "key": "ref47/cit47",
+    "doi-asserted-by": "crossref",
+    "DOI": "10.1201/b17118",
+    "volume-title": "CRC Handbook of Chemistry and Physics",
+    "author": "Haynes W. M.",
+    "year": "2014",
+    "edition": "95"
+   },
+   {
+    "key": "ref48/cit48",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/cr5002589"
+   },
+   {
+    "key": "ref49/cit49",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.langmuir.5b03272"
+   },
+   {
+    "key": "ref50/cit50",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.jpcc.4c01733"
+   },
+   {
+    "key": "ref51/cit51",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.jpcc.2c05603"
+   },
+   {
+    "key": "ref52/cit52",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1080/10962247.2021.2011477"
+   },
+   {
+    "key": "ref53/cit53",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acscentsci.0c00678"
+   },
+   {
+    "key": "ref54/cit54",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/dro2.32"
+   },
+   {
+    "key": "ref55/cit55",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1038/s41598-018-33704-4"
+   }
+  ],
+  "container-title": [
+   "Nano Letters"
+  ],
+  "original-title": [],
+  "language": "en",
+  "link": [
+   {
+    "URL": "https://pubs.acs.org/doi/pdf/10.1021/acs.nanolett.5c00343",
+    "content-type": "application/pdf",
+    "content-version": "vor",
+    "intended-application": "unspecified"
+   },
+   {
+    "URL": "https://pubs.acs.org/doi/pdf/10.1021/acs.nanolett.5c00343",
+    "content-type": "unspecified",
+    "content-version": "vor",
+    "intended-application": "similarity-checking"
+   }
+  ],
+  "deposited": {
+   "date-parts": [
+    [
+     2025,
+     4,
+     9
+    ]
+   ],
+   "date-time": "2025-04-09T08:24:13Z",
+   "timestamp": 1744187053000
+  },
+  "score": 1,
+  "resource": {
+   "primary": {
+    "URL": "https://pubs.acs.org/doi/10.1021/acs.nanolett.5c00343"
+   }
+  },
+  "subtitle": [],
+  "short-title": [],
+  "issued": {
+   "date-parts": [
+    [
+     2025,
+     3,
+     28
+    ]
+   ]
+  },
+  "references-count": 55,
+  "journal-issue": {
+   "issue": "14",
+   "published-print": {
+    "date-parts": [
+     [
+      2025,
+      4,
+      9
+     ]
+    ]
+   }
+  },
+  "alternative-id": [
+   "10.1021/acs.nanolett.5c00343"
+  ],
+  "URL": "https://doi.org/10.1021/acs.nanolett.5c00343",
+  "relation": {},
+  "ISSN": [
+   "1530-6984",
+   "1530-6992"
+  ],
+  "issn-type": [
+   {
+    "value": "1530-6984",
+    "type": "print"
+   },
+   {
+    "value": "1530-6992",
+    "type": "electronic"
+   }
+  ],
+  "subject": [],
+  "published": {
+   "date-parts": [
+    [
+     2025,
+     3,
+     28
+    ]
+   ]
+  }
+ },
+ "Frandsen2025Systematic": {
+  "indexed": {
+   "date-parts": [
+    [
+     2026,
+     10,
+     1
+    ]
+   ],
+   "date-time": "2026-10-01T16:09:08Z",
+   "timestamp": 1790870948676,
+   "version": "4.1.0"
+  },
+  "reference-count": 58,
+  "publisher": "Wiley",
+  "issue": "12",
+  "license": [
+   {
+    "start": {
+     "date-parts": [
+      [
+       2025,
+       9,
+       5
+      ]
+     ],
+     "date-time": "2025-09-05T00:00:00Z",
+     "timestamp": 1757030400000
+    },
+    "content-version": "vor",
+    "delay-in-days": 0,
+    "URL": "http://creativecommons.org/licenses/by/4.0/"
+   }
+  ],
+  "content-domain": {
+   "domain": [
+    "aiche.onlinelibrary.wiley.com"
+   ],
+   "crossmark-restriction": true
+  },
+  "short-container-title": [
+   "AIChE Journal"
+  ],
+  "published-print": {
+   "date-parts": [
+    [
+     2025,
+     12
+    ]
+   ]
+  },
+  "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>In this study, various adsorption models using neural networks were developed and integrated into a mechanistic chromatography transport model, resulting in hybrid models. A systematic screening of 10 different hybrid model structures was performed to find the optimal balance between mechanistic and data‐driven components in modeling adsorption for chromatography processes. The hybrid models were trained and tested on two different case studies of varying complexity and compared to a validated mechanistic model. The first case study investigated a nonreactive binary component system, whereas the second case study investigated a four‐component reactive system. Most hybrid models performed well in the first case study, showing performance comparable to that of the mechanistic model. However, in the second case study, fewer hybrid models demonstrated performance comparable to that of the mechanistic model. Through the two case studies, advantages and limitations of different hybrid model structures for modeling adsorption were explored.</jats:p>",
+  "DOI": "10.1002/aic.70045",
+  "type": "journal-article",
+  "created": {
+   "date-parts": [
+    [
+     2025,
+     9,
+     6
+    ]
+   ],
+   "date-time": "2025-09-06T04:37:10Z",
+   "timestamp": 1757133430000
+  },
+  "update-policy": "https://doi.org/10.1002/crossmark_policy",
+  "source": "Crossref",
+  "is-referenced-by-count": 5,
+  "title": [
+   "A systematic screening of neural network‐based hybrid models of adsorption in chromatography processes"
+  ],
+  "prefix": "10.1002",
+  "volume": "71",
+  "author": [
+   {
+    "ORCID": "https://orcid.org/0000-0003-1046-2295",
+    "authenticated-orcid": false,
+    "given": "Jesper",
+    "family": "Frandsen",
+    "sequence": "first",
+    "affiliation": [
+     {
+      "name": "Chemical and Biochemical Engineering Technical University of Denmark  Kongens Lyngby Denmark"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Vinicius V.",
+    "family": "Santana",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Engineering Norwegian University of Science and Technology  Trondheim Norway"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Peter",
+    "family": "Jul‐Rasmussen",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Chemical and Biochemical Engineering Technical University of Denmark  Kongens Lyngby Denmark"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Idelfonso B.R.",
+    "family": "Nogueira",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Department of Chemical Engineering Norwegian University of Science and Technology  Trondheim Norway"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Jakob K.",
+    "family": "Huusom",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Chemical and Biochemical Engineering Technical University of Denmark  Kongens Lyngby Denmark"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Krist V.",
+    "family": "Gernaey",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Chemical and Biochemical Engineering Technical University of Denmark  Kongens Lyngby Denmark"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   },
+   {
+    "given": "Jens",
+    "family": "Abildskov",
+    "sequence": "additional",
+    "affiliation": [
+     {
+      "name": "Chemical and Biochemical Engineering Technical University of Denmark  Kongens Lyngby Denmark"
+     }
+    ],
+    "role": [
+     {
+      "vocabulary": "crossref",
+      "role": "author"
+     }
+    ]
+   }
+  ],
+  "member": "311",
+  "published-online": {
+   "date-parts": [
+    [
+     2025,
+     9,
+     5
+    ]
+   ]
+  },
+  "reference": [
+   {
+    "key": "e_1_2_12_2_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.dche.2023.100136"
+   },
+   {
+    "key": "e_1_2_12_3_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3389/fceng.2024.1494244"
+   },
+   {
+    "key": "e_1_2_12_4_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1007/s00449‐019‐02181‐y"
+   },
+   {
+    "key": "e_1_2_12_5_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3390/pr12081635"
+   },
+   {
+    "key": "e_1_2_12_6_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/bit.27950"
+   },
+   {
+    "key": "e_1_2_12_7_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/bit.28670"
+   },
+   {
+    "key": "e_1_2_12_8_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.compchemeng.2024.108655"
+   },
+   {
+    "key": "e_1_2_12_9_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.dche.2024.100212"
+   },
+   {
+    "key": "e_1_2_12_10_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ces.2021.116864"
+   },
+   {
+    "key": "e_1_2_12_11_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.seppur.2020.117064"
+   },
+   {
+    "key": "e_1_2_12_12_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.compchemeng.2020.106916"
+   },
+   {
+    "key": "e_1_2_12_13_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.cherd.2023.11.032"
+   },
+   {
+    "key": "e_1_2_12_14_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.rineng.2024.103548"
+   },
+   {
+    "key": "e_1_2_12_15_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3390/fermentation9100922"
+   },
+   {
+    "key": "e_1_2_12_16_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3389/fbioe.2022.1009102"
+   },
+   {
+    "key": "e_1_2_12_17_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chroma.2023.464113"
+   },
+   {
+    "key": "e_1_2_12_18_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/btpr.3523"
+   },
+   {
+    "key": "e_1_2_12_19_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1007/s40710‐023‐00631‐0"
+   },
+   {
+    "key": "e_1_2_12_20_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1146/annurev‐chembioeng‐102419‐125430"
+   },
+   {
+    "key": "e_1_2_12_21_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/cjce.24495"
+   },
+   {
+    "key": "e_1_2_12_22_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3390/chemengineering6020021"
+   },
+   {
+    "key": "e_1_2_12_23_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.ces.2023.119223"
+   },
+   {
+    "key": "e_1_2_12_24_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chroma.2021.462248"
+   },
+   {
+    "key": "e_1_2_12_25_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3390/pr11041115"
+   },
+   {
+    "key": "e_1_2_12_26_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1021/acs.iecr.1c01317"
+   },
+   {
+    "key": "e_1_2_12_27_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.compchemeng.2019.06.010"
+   },
+   {
+    "key": "e_1_2_12_28_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/aic.14701"
+   },
+   {
+    "key": "e_1_2_12_29_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/0009‐2509(96)00041‐3"
+   },
+   {
+    "key": "e_1_2_12_30_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1080/10826070902956345"
+   },
+   {
+    "key": "e_1_2_12_31_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/9781119031116"
+   },
+   {
+    "key": "e_1_2_12_32_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3390/antib4030157"
+   },
+   {
+    "key": "e_1_2_12_33_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.chroma.2014.06.037"
+   },
+   {
+    "key": "e_1_2_12_34_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/biot.201400018"
+   },
+   {
+    "key": "e_1_2_12_35_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/biot.201800132"
+   },
+   {
+    "key": "e_1_2_12_36_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/9783527824045"
+   },
+   {
+    "key": "e_1_2_12_37_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.compchemeng.2018.09.020"
+   },
+   {
+    "key": "e_1_2_12_38_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.3390/separations9020043"
+   },
+   {
+    "key": "e_1_2_12_39_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/9783527816347"
+   },
+   {
+    "key": "e_1_2_12_40_1",
+    "volume-title": "Fundamentals of Preparative and Nonlinear Chromatography",
+    "author": "Guiochon G",
+    "year": "2006"
+   },
+   {
+    "key": "e_1_2_12_41_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/aic.690140124"
+   },
+   {
+    "issue": "1",
+    "key": "e_1_2_12_42_1",
+    "first-page": "273",
+    "article-title": "Esterification of propionic acid with n‐propanol catalytic and non‐catalytic kinetic study",
+    "volume": "27",
+    "author": "Duarte C",
+    "year": "2006",
+    "journal-title": "Chem Process Eng‐Inzynieria Chemiczna I Procesowa"
+   },
+   {
+    "key": "e_1_2_12_43_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.compchemeng.2012.01.004"
+   },
+   {
+    "key": "e_1_2_12_44_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1002/ceat.200800082"
+   },
+   {
+    "key": "e_1_2_12_45_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.compchemeng.2024.108913"
+   },
+   {
+    "key": "e_1_2_12_46_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.compchemeng.2023.108340"
+   },
+   {
+    "key": "e_1_2_12_47_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.compchemeng.2020.107012"
+   },
+   {
+    "key": "e_1_2_12_48_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/B978‐0‐443‐28824‐1.50555‐X"
+   },
+   {
+    "key": "e_1_2_12_49_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.5334/jors.151"
+   },
+   {
+    "key": "e_1_2_12_50_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1515/JNMA.2002.291"
+   },
+   {
+    "key": "e_1_2_12_51_1",
+    "unstructured": "PalA.On Efficient Training & Inference of Neural Differential Equations. Master's thesis. Massachusetts Institute of Technology. Department of Electrical Engineering and Computer Science.2023."
+   },
+   {
+    "key": "e_1_2_12_52_1",
+    "unstructured": "PalA.Lux: Explicit Parameterization of Deep Neural Networks in Julia.2023. doi:10.5281/zenodo.7808904v0.5.0."
+   },
+   {
+    "key": "e_1_2_12_53_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.21203/rs.3.rs‐55125/v1"
+   },
+   {
+    "key": "e_1_2_12_54_1",
+    "unstructured": "DixitVK RackauckasC.Optimization.jl: A Unified Optimization Package.2023. doi:10.5281/zenodo.7738525"
+   },
+   {
+    "key": "e_1_2_12_55_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1109/HPEC49654.2021.9622796"
+   },
+   {
+    "key": "e_1_2_12_56_1",
+    "volume-title": "3rd International Conference on Learning Representations, ICLR 2015‐Conference Track Proceedings",
+    "author": "Kingma DP",
+    "year": "2015"
+   },
+   {
+    "key": "e_1_2_12_57_1",
+    "doi-asserted-by": "crossref",
+    "unstructured": "FrandsenJ.Evaluation scripts.github.com/jespfra/Supplement‐code‐Neural‐Network‐Based‐Hybrid‐models‐of‐Adsorption‐in‐Chromatography‐Processes; Zenodo2025. doi:10.5281/zenodo.15024155",
+    "DOI": "10.1002/aic.70045"
+   },
+   {
+    "key": "e_1_2_12_58_1",
+    "unstructured": "DTU Computing Center.DTU Computing Center resources.2024. doi:10.48714/DTU.HPC.0001"
+   },
+   {
+    "key": "e_1_2_12_59_1",
+    "doi-asserted-by": "publisher",
+    "DOI": "10.1016/j.compchemeng.2013.08.008"
+   }
+  ],
+  "container-title": [
+   "AIChE Journal"
+  ],
+  "original-title": [],
+  "language": "en",
+  "link": [
+   {
+    "URL": "https://aiche.onlinelibrary.wiley.com/doi/pdf/10.1002/aic.70045",
+    "content-type": "unspecified",
+    "content-version": "vor",
+    "intended-application": "similarity-checking"
+   }
+  ],
+  "deposited": {
+   "date-parts": [
+    [
+     2025,
+     11,
+     5
+    ]
+   ],
+   "date-time": "2025-11-05T06:44:04Z",
+   "timestamp": 1762325044000
+  },
+  "score": 1,
+  "resource": {
+   "primary": {
+    "URL": "https://aiche.onlinelibrary.wiley.com/doi/10.1002/aic.70045"
+   }
+  },
+  "subtitle": [],
+  "short-title": [],
+  "issued": {
+   "date-parts": [
+    [
+     2025,
+     9,
+     5
+    ]
+   ]
+  },
+  "references-count": 58,
+  "journal-issue": {
+   "issue": "12",
+   "published-print": {
+    "date-parts": [
+     [
+      2025,
+      12
+     ]
+    ]
+   }
+  },
+  "alternative-id": [
+   "10.1002/aic.70045"
+  ],
+  "URL": "https://doi.org/10.1002/aic.70045",
+  "archive": [
+   "Portico"
+  ],
+  "relation": {},
+  "ISSN": [
+   "0001-1541",
+   "1547-5905"
+  ],
+  "issn-type": [
+   {
+    "value": "0001-1541",
+    "type": "print"
+   },
+   {
+    "value": "1547-5905",
+    "type": "electronic"
+   }
+  ],
+  "subject": [],
+  "published": {
+   "date-parts": [
+    [
+     2025,
+     9,
+     5
+    ]
+   ]
+  },
+  "assertion": [
+   {
+    "value": "2025-03-17",
+    "order": 0,
+    "name": "received",
+    "label": "Received",
+    "group": {
+     "name": "publication_history",
+     "label": "Publication History"
+    }
+   },
+   {
+    "value": "2025-08-06",
+    "order": 2,
+    "name": "accepted",
+    "label": "Accepted",
+    "group": {
+     "name": "publication_history",
+     "label": "Publication History"
+    }
+   },
+   {
+    "value": "2025-09-05",
+    "order": 3,
+    "name": "published",
+    "label": "Published",
+    "group": {
+     "name": "publication_history",
+     "label": "Publication History"
+    }
+   }
+  ],
+  "article-number": "e70045"
+ }
+}
