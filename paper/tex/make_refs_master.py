@@ -64,7 +64,9 @@ def initials(given):
 
 
 def tex_escape(s):
-    """Escape the TeX specials the Crossref strings can contain; leave ones the .bib already escaped."""
+    """Escape the TeX specials the Crossref strings can contain; leave ones the .bib already escaped. The Unicode
+    hyphen U+2010 of Wiley records is set as an ASCII hyphen, so that one hyphen glyph is used throughout."""
+    s = s.replace("‐", "-")
     for c in "&%_#":
         s = re.sub(r"(?<!\\)" + re.escape(c), lambda m: BS + m.group(0), s)
     return s
@@ -192,8 +194,59 @@ CORRECTIONS = {
 }
 
 
+# AMA sets article titles in sentence case (first word, the first word after a colon, proper nouns and acronyms
+# capitalized). Crossref gives the publisher's casing, often Title Case, so these titles are set by hand: the words
+# are those of the Crossref record (2026-11-10 / 2026-11-15), only the case and the dash in "metal-organic" change.
+# Checked one by one on 2026-11-16 so that no name, acronym or material loses its capitals.
+SENTENCE_CASE = {
+    "Hanikel2019Rapid": "Rapid cycling and exceptional yield in a metal–organic framework water harvester",
+    "LaPotin2019Adsorption": ("Adsorption-based atmospheric water harvesting: Impact of material and component "
+                              "properties on system-level performance"),
+    "Furukawa2014Water": "Water adsorption in porous metal–organic frameworks and related materials",
+    "Harriman2025Optimizing": ("Optimizing mixtures of metal–organic frameworks for robust and bespoke passive "
+                               "atmospheric water harvesting"),
+    "Zheng2023Shaping": "Shaping the water-harvesting behavior of metal–organic frameworks aided by fine-tuned GPT models",
+    "Zhang2022Matching": ("Integrated metal–organic framework (MOF) and pressure/vacuum swing adsorption process design: "
+                          "MOF matching"),
+    "Sircar2000Why": "Why does the linear driving force model for adsorption kinetics work?",
+    "Raymond2011Intraparticle": ("Intraparticle mass transfer in adsorption heat pumps: Limitations of the linear "
+                                 "driving force approximation"),
+    "Hossain2019Kinetics": "Kinetics of water adsorption in UiO-66 MOF",
+    "Guo2023Universal": "A universal strategy for efficient synthesis of Zr-based MOF nanoparticles for enhanced water adsorption",
+    "Solovyeva2023Water": ("Water adsorption dynamics on metal–organic framework MOF-801: Comparative study of loose and "
+                           "glued grains, and coatings"),
+    "Li2025Atmospheric": "Atmospheric water sorption kinetics in powder and monolithic metal–organic frameworks",
+    "Bezrukov2023Regeneration": "Metal–organic frameworks as regeneration optimized sorbents for atmospheric water harvesting",
+    "Eaby2025Ultramicroporous": "An ultramicroporous physisorbent sustained by a trifecta of directional supramolecular interactions",
+    "Shabangu2025One": ("One step further: A flexible metal–organic framework that functions as a dual-purpose water "
+                        "vapor sorbent"),
+    "Kong2026Regeneration": ("Regeneration-optimized chemisorbents: Evaluating hybrid coordination networks for "
+                             "atmospheric water harvesting"),
+    "AbuElMaaty2024Kinetics": ("Kinetics of water adsorption in metal–organic framework (MOF-303) for adsorption cooling "
+                               "application"),
+    "Ma2025Microscopic": "Microscopic kinetics of water adsorption in metal–organic frameworks",
+    "Xia2025Relationship": ("Relationship between water adsorption kinetics and structure property of metal–organic "
+                            "frameworks for adsorption cooling"),
+    "Rackauckas2020Universal": "Universal differential equations for scientific machine learning",
+    "Subraveti2022Physics": "Physics-based neural networks for simulation and synthesis of cyclic adsorption processes",
+    "Cook2006Validation": "Validation of software for Bayesian models using posterior quantiles",
+    "Talts2018Validating": "Validating Bayesian inference algorithms with simulation-based calibration",
+    "Modrak2025Simulation": ("Simulation-based calibration checking for Bayesian computation: The choice of test "
+                             "quantities shapes sensitivity"),
+    "StriethKalthoff2022Machine": "Machine learning for chemical reactivity: The importance of failed experiments",
+}
+
+
+def _words(t):
+    return re.sub(r"[^a-z0-9]+", " ", re.sub(r"</?scp>", "", t).lower().replace("æ", "ae")).split()
+
+
 def build():
     bib = parse_bib(open(BIB, encoding="utf-8").read())
+    for k, t in SENTENCE_CASE.items():
+        # the override may change only case and dashes: the words must be those of the Crossref title
+        assert _words(t) == _words(bib[k]["title"].strip("{}")), k
+        bib[k]["title"] = t
     for k, fix in CORRECTIONS.items():
         bib[k].update(fix)
         bib[k] = {f: v for f, v in bib[k].items() if v != ""}

@@ -7,7 +7,7 @@ reference strings kept in source style until the journal is chosen (REF_STYLE).
 
 Gates
   G1  numbers. Every number in the rendered text of main.tex and si.tex is written \\V{key}{value} (or \\W{key}{word}
-      for a count written as a word). manuscript/bindings.json maps each key to its source:
+      for a count written as a word). paper/tex/bindings.json maps each key to its source:
         {"expr": "<python expression over the files in 'files'>", "fmt": "<format>"}   results-file field
         {"doc": "<repository file>", "contains": "<exact phrase>"}                     frozen design constant
       The expression is evaluated, formatted (fmt below) and compared with the written value: MISMATCH fails. A doc
@@ -24,9 +24,11 @@ Gates
       no undefined reference or citation in the log and the .aux numbers equal the order of first citation.
   G3  rendered paragraphs (comments stripped, split on blank lines) must not start with a lowercase letter (prose
       joined onto a comment line); em dashes in main.tex (--- or U+2014) <= 5 (si.tex reported).
-  G4  no banned phrase of manuscript/terminology.md (table "Banned phrases") in main.tex or si.tex.
-  G5  word counts: abstract <= 200 (fails); main text (Introduction + Results + Discussion) target 4,500-5,500 and
+      Every SI table, figure and Supporting Note number printed in si.pdf equals the one in si.aux.
+  G4  no banned phrase of paper/tex/terminology.md (table "Banned phrases") in main.tex or si.tex.
+  G5  word counts: abstract <= 147 (fails; AIChE Journal's cap is 150); main text (Introduction + Results + Discussion) target 4,500-5,500 and
       Methods target about 2,500 (reported, flagged when outside).
+  G5b main.pdf must have fewer than 35 pages (AIChE Journal's limit; fails).
   G6  every \\includegraphics points into figures/out/, the file exists, and its .prov.json is clean
       (git_dirty_files empty) with script, style module and inputs unchanged since the build (LF-normalised sha256).
   G7  lists every \\pending{name}{...} block; with --final any pending block fails.
@@ -42,6 +44,7 @@ import json
 import math
 import os
 import re
+import shutil
 import statistics
 import subprocess
 import sys
@@ -49,7 +52,8 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 BS = chr(92)
-TECTONIC = os.environ.get("TECTONIC", r"C:\Users\abdulhamid batayhi\Desktop\ai-mof-cof-dynamics\tools\tectonic.exe")
+# the TeX engine: $TECTONIC if set, else tectonic on the PATH (https://tectonic-typesetting.github.io)
+TECTONIC = os.environ.get("TECTONIC") or shutil.which("tectonic") or "tectonic"
 DOCS = ("main.tex", "si.tex")
 FIGDIR = "figures/out/"
 SCHEMATIC_FIGURES = {"fig_workflow.pdf"}   # figures without numerical data (exempt from the data-file check)
@@ -656,7 +660,7 @@ def main():
             if compile_doc(d, fails):
                 gate_refs_compiled(d, HERE, fails)
         gate_si_numbers(HERE, fails, report)
-    res = {"gate": "manuscript/build_ms.py", "final": final, "status": "PASS" if not fails else "FAIL",
+    res = {"gate": "paper/tex/build_ms.py", "final": final, "status": "PASS" if not fails else "FAIL",
            "failures": fails, "report": {k: v for k, v in report.items() if k != "G1_rows"},
            "G1_bindings_checked": report.get("G1_rows", [])}
     with open(os.path.join(HERE, "build_ms_result.json"), "w", encoding="utf-8", newline="\n") as f:

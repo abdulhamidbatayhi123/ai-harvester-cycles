@@ -78,7 +78,9 @@ def main():
         with open(BIB, "a", encoding="utf-8", newline="\n") as f:
             f.write("\n" + "\n".join(add))
         with open(os.path.join(HERE, "add_refs_20261115.json"), "w", encoding="utf-8", newline="\n") as f:
-            json.dump(raw, f, indent=1, ensure_ascii=False)
+            # publishers' abstracts are not open metadata: the records are kept without them (2026-11-16)
+            json.dump({k: {f2: v2 for f2, v2 in v.items() if f2 != "abstract"} if isinstance(v, dict) else v
+                       for k, v in raw.items()}, f, indent=1, ensure_ascii=False)
 
 
 if __name__ == "__main__":

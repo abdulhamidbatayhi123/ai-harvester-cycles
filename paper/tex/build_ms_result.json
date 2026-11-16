@@ -1,5 +1,5 @@
 {
- "gate": "manuscript/build_ms.py",
+ "gate": "paper/tex/build_ms.py",
  "final": true,
  "status": "PASS",
  "failures": [],
@@ -13,8 +13,8 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 288,
-  "G1_n_keys": 245,
+  "G1_n_uses": 308,
+  "G1_n_keys": 256,
   "G2_main.tex_n_refs": 49,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 5,
@@ -23,10 +23,10 @@
   "G3_si.tex_em_dashes": 0,
   "G4_n_phrases": 44,
   "G5_words": {
-   "abstract": 139,
-   "main_text": 5775,
-   "methods": 2772,
-   "si": 2764
+   "abstract": 142,
+   "main_text": 5946,
+   "methods": 2809,
+   "si": 2809
   },
   "G5_targets": {
    "abstract": "<= 147 (cap 150)",
@@ -123,10 +123,38 @@
    "ok": true
   },
   {
-   "key": "res_ownk_med",
+   "key": "res_folds",
    "doc": "main.tex",
-   "text": "15",
-   "source": "15",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
+   "ok": true
+  },
+  {
+   "key": "res_folds",
+   "doc": "main.tex",
+   "text": "8",
+   "source": "8",
    "ok": true
   },
   {
@@ -141,6 +169,41 @@
    "doc": "main.tex",
    "text": "15",
    "source": "15",
+   "ok": true
+  },
+  {
+   "key": "res_ownk_med",
+   "doc": "main.tex",
+   "text": "15",
+   "source": "15",
+   "ok": true
+  },
+  {
+   "key": "flow",
+   "doc": "main.tex",
+   "text": "400",
+   "source": "PREREG_P4_draft.md: logged total flow of 400 sccm",
+   "ok": true
+  },
+  {
+   "key": "dm_lo",
+   "doc": "main.tex",
+   "text": "3.0",
+   "source": "3.0",
+   "ok": true
+  },
+  {
+   "key": "dm_hi",
+   "doc": "main.tex",
+   "text": "23",
+   "source": "23",
+   "ok": true
+  },
+  {
+   "key": "dm_med",
+   "doc": "main.tex",
+   "text": "9.2",
+   "source": "9.2",
    "ok": true
   },
   {
@@ -312,10 +375,24 @@
    "ok": true
   },
   {
+   "key": "kpT1",
+   "doc": "main.tex",
+   "text": "27",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
+   "ok": true
+  },
+  {
    "key": "kp60",
    "doc": "main.tex",
    "text": "1.2",
    "source": "1.2",
+   "ok": true
+  },
+  {
+   "key": "kpT2",
+   "doc": "main.tex",
+   "text": "60",
+   "source": "PREREG_P4_draft.md: all step-run files at 27 and 60 °C;",
    "ok": true
   },
   {
@@ -683,6 +760,13 @@
    "ok": true
   },
   {
+   "key": "t63_fm",
+   "doc": "main.tex",
+   "text": "16",
+   "source": "16",
+   "ok": true
+  },
+  {
    "key": "res_ncomp",
    "doc": "main.tex",
    "text": "8",
@@ -718,6 +802,20 @@
    "ok": true
   },
   {
+   "key": "res_rpool_37",
+   "doc": "main.tex",
+   "text": "0.3",
+   "source": "0.3",
+   "ok": true
+  },
+  {
+   "key": "res_rpool_39",
+   "doc": "main.tex",
+   "text": "-1.8",
+   "source": "-1.8",
+   "ok": true
+  },
+  {
    "key": "T_lo",
    "doc": "main.tex",
    "text": "27",
@@ -743,20 +841,6 @@
    "doc": "main.tex",
    "text": "27",
    "source": "PREREG_P4_draft.md: all 0↔30 % cycling files at 27 °C;",
-   "ok": true
-  },
-  {
-   "key": "res_rpool_37",
-   "doc": "main.tex",
-   "text": "0.3",
-   "source": "0.3",
-   "ok": true
-  },
-  {
-   "key": "res_rpool_39",
-   "doc": "main.tex",
-   "text": "-1.8",
-   "source": "-1.8",
    "ok": true
   },
   {
@@ -1495,10 +1579,31 @@
    "ok": true
   },
   {
-   "key": "dis2_t63",
+   "key": "cvm27a",
    "doc": "main.tex",
-   "text": "17",
-   "source": "17",
+   "text": "0.09",
+   "source": "0.09",
+   "ok": true
+  },
+  {
+   "key": "cvm27a",
+   "doc": "main.tex",
+   "text": "0.09",
+   "source": "0.09",
+   "ok": true
+  },
+  {
+   "key": "cvm60a",
+   "doc": "main.tex",
+   "text": "0.24",
+   "source": "0.24",
+   "ok": true
+  },
+  {
+   "key": "cvm60a",
+   "doc": "main.tex",
+   "text": "0.24",
+   "source": "0.24",
    "ok": true
   },
   {
@@ -1509,10 +1614,10 @@
    "ok": true
   },
   {
-   "key": "dis2_t63p",
+   "key": "dis2_t63",
    "doc": "main.tex",
-   "text": "63",
-   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "text": "17",
+   "source": "17",
    "ok": true
   },
   {
@@ -1527,6 +1632,27 @@
    "doc": "main.tex",
    "text": "63",
    "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "dis2_t63p",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
+   "ok": true
+  },
+  {
+   "key": "t63_slow",
+   "doc": "main.tex",
+   "text": "48",
+   "source": "48",
+   "ok": true
+  },
+  {
+   "key": "t63_p90",
+   "doc": "main.tex",
+   "text": "52",
+   "source": "52",
    "ok": true
   },
   {
@@ -1569,6 +1695,20 @@
    "doc": "main.tex",
    "text": "0.30",
    "source": "0.30",
+   "ok": true
+  },
+  {
+   "key": "cvm27d",
+   "doc": "main.tex",
+   "text": "0.10",
+   "source": "0.10",
+   "ok": true
+  },
+  {
+   "key": "cvm60d",
+   "doc": "main.tex",
+   "text": "0.26",
+   "source": "0.26",
    "ok": true
   },
   {

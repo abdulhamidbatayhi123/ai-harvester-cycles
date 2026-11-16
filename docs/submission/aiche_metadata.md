@@ -8,7 +8,7 @@
   Can a material's equilibrium water-uptake curve predict how fast it takes up and releases water? Testing eight
   sorbents with a protocol fixed in advance, we found no gain over assuming one shared rate for all of them.
 - Graphical abstract: figures/out/fig_toc.* (50 mm x 60 mm)
-- Data availability: https://github.com/abdulhamidbatayhi123/ai-harvester-cycles, archived at Zenodo (version 1.0.2,
-  doi:10.5281/zenodo.24260908); measurement data of Bezrukov et al. at Zenodo (doi:10.5281/zenodo.6631711, CC BY 4.0)
-- Suggested reviewers: private/suggested_reviewers.md (kept out of git; confidential to the journal)
+- Data availability: https://github.com/abdulhamidbatayhi123/ai-harvester-cycles, archived at Zenodo (version 1.0.3,
+  doi:10.5281/zenodo.24275720); measurement data of Bezrukov et al. at Zenodo (doi:10.5281/zenodo.6631711, CC BY 4.0)
+- Suggested reviewers: entered on the submission form.
 - Preprint: opt in to the Wiley "under review" service (Authorea) on the submission form (author's choice 2026-11-12).

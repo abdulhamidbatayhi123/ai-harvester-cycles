@@ -74,7 +74,6 @@
     ]
    ]
   },
-  "abstract": "<jats:p>\n                    When the model fitting of sorption kinetics data was performed using linearized pseudosecond‐order rate equations based on constant Q\n                    <jats:sub>e</jats:sub>\n                    corresponding to equilibrium sorption, the instantaneous driving force for sorption was underestimated, resulting in an erroneous overestimation of the rate constant. To resolve the issue, a rectification of the model fitting was proposed by accounting for the concentration dependence of Q\n                    <jats:sub>e</jats:sub>\n                    in the model equation based on the fact that Q\n                    <jats:sub>e</jats:sub>\n                    in the equation represents the sorption capacity at that instant as sorption proceeded with time. The rectified approach was validated with experimental data for various sorption systems reported in the literature. It was shown that the rectification yielded true sorption rate constant that characterizes the relationship between sorption rate and solute concentration, thereby resolving the issues associated with the original approach where the specific rate constant was found to depend on solute concentration and sorption time. © 2017 American Institute of Chemical Engineers\n                    <jats:italic>AIChE J</jats:italic>\n                    , 64: 1793–1805, 2018\n                  </jats:p>",
   "DOI": "10.1002/aic.16051",
   "type": "journal-article",
   "created": {
@@ -767,7 +766,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>ABSTRACT</jats:title>\n                  <jats:p>Hybrid modeling combines first‐principles equations with a data‐driven subcomponent. Training for the data‐driven part is sensitive to measurement noise when training targets are constructed using pointwise time derivatives. Beyond differentiation errors, hybrid models involve solving an inverse problem to estimate the data‐driven term, which may further amplify noise effects. This effect is pronounced when a model parameter is described by a data‐driven terms and becomes algebraically coupled with the first‐principles model, a configuration referred to as a series‐type hybrid model. To address this structural sensitivity to noise, we build upon recently developed system identification frameworks based on the weak (integral) reformulation of differential equations, thereby avoiding the explicit computation of time derivatives. Our framework is developed for series‐type hybrid models with a multiplicative parameter and implemented using dictionary‐based regression. A case study on a continuous stirred tank reactor demonstrates improved noise robustness compared with conventional pointwise training approaches.</jats:p>",
   "DOI": "10.1002/aic.70419",
   "type": "journal-article",
   "created": {
@@ -1373,7 +1371,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title><jats:p>A hybrid model integrates a first‐principles model with a data‐driven model which predicts certain unknown dynamics of the process, resulting in higher accuracy than first‐principles model. Additionally, a hybrid model has better extrapolation capabilities compared with a data‐based model, which is useful for process control and optimization purposes. Nonetheless, the domain of applicability (DA) of a hybrid model is finite and should be taken into account when developing a hybrid model‐based predictive controller in order to maximize its performance. To this end, a Control Lyapunov–Barrier Function‐based model predictive controller (CLBF‐based MPC) is developed which utilizes a deep hybrid model (DHM), that is, a deep neural network (DNN) combined with a first‐principles model. Additionally, theoretical guarantees are provided on stability as well as on system states to stay within the DA of the DHM. The efficacy of the proposed control framework is demonstrated on a continuous stirred tank reactor.</jats:p>",
   "DOI": "10.1002/aic.18012",
   "type": "journal-article",
   "created": {
@@ -1883,7 +1880,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>An integrated metal–organic framework (MOF) and pressure/vacuum swing adsorption (P/VSA) process design framework is presented for gas separation. It consists of two steps: adsorbent descriptor optimization, and MOF matching. In the first step, MOFs are represented as a large set of chemical and geometric descriptors from which the most influential ones are selected via a multistep screening method and treated as design variables. The valid design space of the selected descriptors is confined using a tailored classifier model and logic constraints. Based on collected adsorption isotherms of 471 different MOFs, data‐driven isotherm models are developed. Combining the design space, isotherms, and four‐step P/VSA process models, an integrated MOF and P/VSA process design problem is formulated. MOF descriptors and process operating conditions are optimized to maximize the process performance. The obtained optimal descriptors and isotherms can be used to guide the discovery of high‐performance MOFs in a subsequent MOF matching step. This article addresses the first descriptor optimization step exemplified by propene/propane separation.</jats:p>",
   "DOI": "10.1002/aic.17524",
   "type": "journal-article",
   "created": {
@@ -2486,7 +2482,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>A two‐step integrated metal‐organic framework (MOF) and pressure/vacuum swing adsorption (P/VSA) process design has been recently established for gas separation. In the first step, selected MOF descriptors and process operating conditions are simultaneously optimized to maximize the process performance. Based on the obtained results, the second step (i.e., MOF matching) is addressed and exemplified by propene/propane separation in this work. Computational MOF synthesis and screening are explicitly carried out to find new advanced material candidates for enhancing the separation process efficiency. First, model‐based property‐performance relationships are developed for fast MOF screening. Then, MOF building blocks are extracted from 471 MOFs contained in the Computation‐Ready Experimental (CoRE) MOF database. With these building blocks, 45,472 hypothetical MOFs are created. After model‐based and molecular simulation‐based screening, six candidates are left and sent to P/VSA process optimization. Finally, three candidates are found to meet the predefined separation specifications and one candidate shows a better process performance than the best out of the 471 CoRE MOFs.</jats:p>",
   "DOI": "10.1002/aic.17788",
   "type": "journal-article",
   "created": {
@@ -3088,7 +3083,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title><jats:p>In a simulated moving bed, the regeneration is accomplished by the introduction of a third species, the desorbent, which is later recovered by two downstream separations. As such, the choice of a proper adsorbent/desorbent pair is critical to ensure the effectiveness of the SMB process. While this can be done by comparing the separation region for each system, the computational effort required is extremely high. By developing a parameter that uses readily available literature data, the selection process is sped up and can be easily accomplished. In this work, an SMB performance indicator (<jats:italic>SPI</jats:italic>) is suggested. This indicator involves the trade‐off between the adsorption selectivity in the presence of the desorbent, the adsorption capacity of the most retained species, and the ratio of the most and less retained species' enthalpies. The developed metric can select the most suitable adsorbent/pair for a specific gas separation by SMB through simple calculations.</jats:p>",
   "DOI": "10.1002/aic.18074",
   "type": "journal-article",
   "created": {
@@ -3804,7 +3798,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title><jats:p>A new concentration‐swing frequency response system was developed to evaluate water kinetics in non‐binder containing zeolite Linde Type A (<jats:bold>LTA</jats:bold>) crystals with frequencies up to 1 Hz. For commercial micron‐sized 3A crystals, the mass transfer rate is too fast to be determined accurately due to reduced sensitivity near the system limits. Larger <jats:bold>LTA</jats:bold> crystals (~15 μm) were synthesized in house and ion exchanged to three potassium concentrations (0, 48, and 77 wt%) to aid in the accurate determination of mass transfer mechanism and rates. Micropore diffusion with parallel sites, not a surface barrier, described all the data well, consistent with the bimodal distribution of crystal sizes from scanning electron microscope images. The transport diffusivity for water in zeolite 3A crystals near saturated loadings at 25°C is about 1 × 10<jats:sup>−12</jats:sup> m<jats:sup>2</jats:sup>/s, 10 times slower than 4A crystals around 10<jats:sup>−11</jats:sup> m<jats:sup>2</jats:sup>/s, both supporting fast micropore diffusion time constants &gt;1 s<jats:sup>−1</jats:sup> for micron‐sized crystals.</jats:p>",
   "DOI": "10.1002/aic.17737",
   "type": "journal-article",
   "created": {
@@ -4396,7 +4389,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title><jats:p>Zr‐based metal‐organic framework (Zr‐MOF) nanoparticles (NPs) have attracted extensive research thanks to their outstanding thermal and chemical stability, but their efficient synthesis is still challenging. Here, high‐quality Zr‐MOF NPs with tunable and uniform particle sizes can be successfully fabricated within 30 min by high‐gravity technology with high yields. Significantly, the rapidly milder preparation of UiO‐66 NPs can also be achieved at 90 or 70°C. This strategy has been extended to the synthesis of other Zr‐MOF NPs. Furthermore, the water vapor adsorption properties of obtained UiO‐66 NPs display a size‐dependent effect. The 70 nm UiO‐66 NPs have the highest adsorption capacity of 625 mg g<jats:sup>−1</jats:sup> among unmodified UiO‐66 reported so far, and manifest 2.0–2.8 times faster water adsorption rate than the micron ones. This study provides a feasible method for the efficient and mild preparation of MOFs nanoparticles, which may promote the synthesis and applications of nano‐sized MOFs.</jats:p>",
   "DOI": "10.1002/aic.18181",
   "type": "journal-article",
   "created": {
@@ -5098,7 +5090,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>Artificial intelligence (AI) in chemical engineering has moved from promise to practice: physics‐aware (gray‐box) models are gaining traction, reinforcement learning complements model predictive control (MPC), and generative AI powers documentation, digitization, and safety workflows. Near‐term value arises where AI augments, rather than replaces, process system engineering (PSE) practice (e.g., through soft sensing and surrogate models), while autonomous operations, fully automated hazard and operability (HAZOP) analysis, and large‐scale mechanistic discovery remain largely at the research stage. The decisive bottleneck is reliable deployment: AI models must be treated like any other engineered system, with validation, monitoring, and governance aligned with emerging frameworks such as the EU AI Act and NIST risk management framework (RMF). With incubator labs, open benchmarks, and retooled education pipelines, AI can become a safe, reliable, and sustainable co‐worker in the process industries within years.</jats:p>",
   "DOI": "10.1002/aic.70358",
   "type": "journal-article",
   "created": {
@@ -6102,7 +6093,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title><jats:p>Error‐in‐variables model (EVM) methods are used for parameter estimation when independent variables are uncertain. During EVM parameter estimation, output measurement variances are required as weighting factors in the objective function. These variances can be estimated based on data from replicate experiments. However, conducting replicates is complicated when independent variables are uncertain. Instead, pseudo‐replicate runs may be performed where the target values of inputs for repeated runs are the same, but the true input values may be different. Here, we propose a method to estimate output‐measurement variances for use in multivariate EVM estimation problems, based on pseudo‐replicate data. We also propose a bootstrap technique for quantifying uncertainties in resulting parameter estimates and model predictions. The methods are illustrated using a case study involving n‐hexane hydroisomerization in a well‐mixed reactor. Case‐study results reveal that assumptions about input uncertainties can have important influences on parameter estimates, model predictions and their confidence intervals.</jats:p>",
   "DOI": "10.1002/aic.18058",
   "type": "journal-article",
   "created": {
@@ -6581,7 +6571,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>This study presents a broad perspective of hybrid process modeling combining the scientific knowledge and data analytics in bioprocessing and chemical engineering with a science‐guided machine learning (SGML) approach. We divide the approach into two major categories: ML complements science, and science complements ML. We review the literature relating to the hybrid SGML approach, and propose a systematic classification of hybrid SGML models. For applying ML to improve science‐based models, we present expositions of direct serial and parallel hybrid modeling and their combinations, inverse modeling, reduced‐order modeling, quantifying uncertainty in the process and even discovering governing equations of the process model. For applying scientific principles to improve ML models, we discuss the science‐guided design, learning and refinement. For each subcategory, we identify its requirements, strengths, and limitations, together with their published and potential applications. We also present several examples to illustrate different hybrid SGML methodologies for modeling chemical processes.</jats:p>",
   "DOI": "10.1002/aic.17609",
   "type": "journal-article",
   "created": {
@@ -7488,7 +7477,6 @@
     ]
    ]
   },
-  "abstract": "<jats:title>Abstract</jats:title><jats:p>Model building and parameter estimation are traditional concepts widely used in chemical, biological, metallurgical, and manufacturing industries. Early modeling methodologies focused on mathematically capturing the process knowledge and domain expertise of the modeler. The models thus developed are termed first principles models (or white‐box models). Over time, computational power became cheaper, and massive amounts of data became available for modeling. This led to the development of cutting edge machine learning models (black‐box models) and artificial intelligence (AI) techniques. Hybrid models (gray‐box models) are a combination of first principles and machine learning models. The development of hybrid models has captured the attention of researchers as this combines the best of both modeling paradigms. Recent attention to this field stems from the interest in explainable AI (XAI), a critical requirement as AI systems become more pervasive. This work aims at identifying and categorizing various hybrid models available in the literature that integrate machine‐learning models with different forms of domain knowledge. Benefits such as enhanced predictive power, extrapolation capabilities, and other advantages of combining the two approaches are summarized. The goal of this article is to consolidate the published corpus in the area of hybrid modeling and develop a comprehensive framework to understand the various techniques presented. This framework can further be used as the foundation to explore rational associations between several models.</jats:p>",
   "DOI": "10.1002/aic.17715",
   "type": "journal-article",
   "created": {

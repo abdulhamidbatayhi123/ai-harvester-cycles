@@ -43,7 +43,7 @@ DESC = ("<p>Archive of the repository github.com/abdulhamidbatayhi123/ai-harvest
         "to new commit hashes.</p>")
 
 
-VERSION = "v1.0.2"   # v1.0.0 = record 24148229 (2026-11-12); v1.0.1 = 24243541 (2026-11-15); v1.0.2 = final deep-read and verification round (2026-11-15)
+VERSION = "v1.0.3"   # v1.0.0 = record 24148229 (2026-11-12); v1.0.1 = 24243541 (2026-11-15); v1.0.2 = 24260908 (2026-11-16); v1.0.3 = the submitted files after the final-lens review (2026-11-16)
 KEYWORDS = ["metal-organic frameworks", "water sorption kinetics", "linear driving force", "dynamic vapour sorption",
             "atmospheric water harvesting", "held-out validation", "pre-registration", "grey-box machine learning"]
 

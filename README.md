@@ -12,7 +12,7 @@ by the other sorbents. The protocol was frozen before any confirmatory fit (git 
 84d8e8c; hashes in `FREEZE_MANIFEST.json`; the history was filtered once before publication, see below). Result:
 falsified under both dry-mass rules (`results/final_verdict.json`).
 
-Archived at Zenodo: version 1.0.2, [10.5281/zenodo.24260908](https://doi.org/10.5281/zenodo.24260908) (all versions:
+Archived at Zenodo: version 1.0.3, [10.5281/zenodo.24275720](https://doi.org/10.5281/zenodo.24275720) (all versions:
 [10.5281/zenodo.24148228](https://doi.org/10.5281/zenodo.24148228)). To cite the code and results, see `CITATION.cff`.
 
 ## Where things are
@@ -21,13 +21,14 @@ Archived at Zenodo: version 1.0.2, [10.5281/zenodo.24260908](https://doi.org/10.
 |---|---|
 | `PREREG_P4_draft.md` | the pre-registration, frozen at tag `prereg-p4-freeze`; section 13 lists every change before the freeze with its cause |
 | `AUDIT.md`, `DATA_SOURCES.md` | the data audit that preceded the study, and every downloaded file with its checksum |
-| `p4/` | the analysis package: data loading and dry-mass rules (`dataset.py`, `segments.py`), the physics models (`physics.py`), the learned models (`train.py`), the confirmatory runner (`run_study.py`), the decision rule (`decide.py`) and the final verdict (`final_verdict.py`), the figure style (`figstyle.py`) |
+| `p4/` | the analysis package: the data layer and pre-registered data rules (`data.py`), data loading and dry-mass rules (`dataset.py`, `segments.py`), the physics models (`physics.py`), the learned models L1 and L2 (`learned.py`) and their training (`train.py`), the confirmatory runner (`run_study.py`), the decision rule (`decide.py`) and the final verdict (`final_verdict.py`), the figure style (`figstyle.py`) |
 | `tests/` | unit tests of the decision rule, the verdict table and the data handling (`python -E -s -m pytest -q`) |
 | `audit/` | harnesses (`synthetic_harness.py` for the learned models, `harness_b2.py` for H4a'), pre-freeze checks, the independent re-implementation of the decision rule, the summaries used by the manuscript, and the exploratory analyses (file names start with `exploratory_`) |
 | `results/` | every output: harness rounds (`harness_round*/`, `harness_alfu/`, `harness_b2/`), pre-freeze checks (`prefreeze/`), the confirmatory runs (`confirm_R2/`, `confirm_R1/`, with logs), `final_verdict.json`, `confirm_summary.json`, secondary metrics and `exploratory/` |
 | `figures/` | one script per figure; outputs in `figures/out/` with a provenance file each (script, style and input hashes; uncommitted inputs refused) |
 | `paper/tex/` | `main.tex`, `si.tex`, the number bindings (`bindings.json`), generated tables (`make_tables.py`), generated references (`make_refs_master.py`) and the build with its gates (`build_ms.py`) |
-| `docs/` | literature base with live verification records, journal notes, submission metadata |
+| `paper/manuscript/` | pre-freeze drafts of the captions, introduction and methods (2026-11-10/11), kept as a record; superseded by `paper/tex/` |
+| `docs/` | literature base with live verification records (Crossref and DataCite records, stored without the publishers' abstracts), submission metadata and the journal compliance table |
 
 ## Reproduce
 
@@ -55,9 +56,12 @@ torch is pinned as `+cpu`, which only the PyTorch index provides).
 5. Secondary and exploratory analyses, then the summary: `audit/secondary_metrics.py` (R2, R1),
    `audit/exploratory_joint_oracle.py` (R2, R1), `audit/exploratory_rh50_vs_k.py`, and, from the last internal review,
    `audit/exploratory_oracle_r.py` (the oracle's r by the decision rule), `audit/exploratory_rh50_vs_k_R1.py` (the
-   rank correlation under R1, with RH50 recomputed under R1) and `audit/exploratory_k_spread.py`; then
-   `audit/summarise_confirm.py` last, because it collects their outputs (usage line at the top of each).
-Pre-freeze inputs (run before the freeze; their outputs were committed before the freeze and are unchanged since,
+   rank correlation under R1, with RH50 recomputed under R1), `audit/exploratory_k_spread.py` and, from the final
+   review, `audit/exploratory_review_20261116.py` (dry-mass range, scored-metric spread of the rate constants, signed
+   time-to-63 % error of B0); then `audit/summarise_confirm.py` last, because it collects their outputs (usage line at
+   the top of each).
+
+   Pre-freeze inputs (run before the freeze; their outputs were committed before the freeze and are unchanged since,
    see tag `prereg-p4-freeze`; `checks2.json` and `rh50.json` are also hashed in `FREEZE_MANIFEST.json`):
    `audit/prefreeze_checks.py` and `audit/prefreeze_checks2.py` (noise floors, clusters, drift; `checks2.json` holds the
    floors F the decision rule uses), `audit/reproduce_b0.py` (in-sample reproduction of B0, R2 and R1),
@@ -68,7 +72,8 @@ Pre-freeze inputs (run before the freeze; their outputs were committed before th
    `python -I paper/tex/package_aiche.py` packs them as `figure_data.zip` for the Supporting Information. Figures 2 and 3
    also read `data_derived/` (not redistributed; its combined hash is in `FREEZE_MANIFEST.json`), which their provenance
    files do not list. Manuscript: `python -I paper/tex/make_tables.py`, then `python -I paper/tex/build_ms.py` (needs the
-   `tectonic` TeX engine; set `TECTONIC` to its executable). The gates check every number written in digits against
+   `tectonic` TeX engine on the PATH, or `TECTONIC` set to its executable); `paper/tex/package_aiche.py` then writes
+   the journal package to `dist/aiche/`. The gates check every number written in digits against
    its source (a results file or the frozen protocol), that every reference and figure is current, and more; see the
    script's docstring.
 
@@ -78,6 +83,8 @@ Pre-freeze inputs (run before the freeze; their outputs were committed before th
   subset sums over all sign vectors; `p4/decide.py`, `signflip_p`); the name is historical.
 - `r_fold` is the relative improvement of the PREREG section 7 rule (median cluster gain over the comparator's median
   cluster error, the smaller value over the materials of a fold); table medians in the manuscript are over segments.
+- The `.bat` and `.ps1` files in `audit/` are the author's original launch scripts for the long runs, kept as a record;
+  they contain absolute Windows paths of the author's machine. The commands in "Reproduce" above are the portable form.
 - Learned-model code (`p4/train.py`) is kept because its harness record is reported; no learned model was fitted to
   the real data (H4a not tested).
 

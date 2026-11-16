@@ -60,7 +60,7 @@
    ]
   },
   "Batayhi2026Archive": {
-   "doi": "10.5281/zenodo.24260908",
+   "doi": "10.5281/zenodo.24275720",
    "creators": [
     {
      "family": "Batayhi",
@@ -71,10 +71,11 @@
    "title": "Code, results and pre-registration for: No detectable prediction of water-sorption rate constants from isotherm step position: a pre-registered held-out test",
    "publisher": "Zenodo",
    "year": 2026,
-   "version": "v1.0.2",
+   "version": "v1.0.3",
    "rights": [
     "mit"
-   ]
+   ],
+   "note": "DOI reserved on Zenodo 2026-11-16 for version v1.0.3 (same creator, title, publisher, year and license as the DataCite record of v1.0.2); re-read from DataCite with fetch_data_refs.py after publication"
   }
  }
 }

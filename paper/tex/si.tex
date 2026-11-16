@@ -16,16 +16,20 @@
 \newcommand{\RHb}{\mathrm{RH}_{\mathrm{bed}}}
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\theequation}{S\arabic{equation}}
 
 \title{Supporting Information for: No detectable prediction of water-sorption rate constants from isotherm step position: a pre-registered held-out test}
 \author{Abdulhamid Batayhi\\ Department of Mechatronics Engineering, Faculty of Mechanical Engineering,\\ Yildiz
 Technical University, \ID{34220} Istanbul, T\"urkiye}
 \date{}
 
+% reference list: no extra space between entries
+\makeatletter\let\p@oldbib\thebibliography
+\renewcommand\thebibliography[1]{\p@oldbib{#1}\setlength{\itemsep}{\z@}\setlength{\parsep}{\z@}}\makeatother
 \begin{document}
 \maketitle
 
-\section*{Supporting Note~\snote{1}: The learned models and their harness record}
+\section*{Supporting Note~\snote{1}: The learned models and their harness record}\pdfbookmark{Supporting Note S1: The learned models and their harness record}{sn1}
 
 \paragraph{Models.} The gray box L1 multiplies the rate of B0 by a bounded positive factor,
 \begin{equation}
@@ -99,7 +103,7 @@ seed.}\label{tab:harness}}
 \input{tab_harness_l1.tex}
 }
 
-\section*{Supporting Note~\snote{2}: The B2 harness}
+\section*{Supporting Note~\snote{2}: The B2 harness}\pdfbookmark{Supporting Note S2: The B2 harness}{sn2}
 
 \paragraph{Design.} The harness of H4a$'$ (version~\ID{2}, committed before its first run; an earlier version was
 revised after an independent AI-assisted review (Acknowledgments of the main text), and its only run was stopped before any result was read) uses the real forcing,
@@ -170,7 +174,7 @@ C3.}\label{tab:harnessb2}
 \input{tab_harness_b2.tex}
 \end{table}
 
-\section*{Supporting Note~\snote{3}: Whole families held out (H4c)}
+\section*{Supporting Note~\snote{3}: Whole families held out (H4c)}\pdfbookmark{Supporting Note S3: Whole families held out (H4c)}{sn3}
 
 Two of the four family folds differ from a single-sorbent fold: the aluminum carboxylate rods and the zinc triazolate
 fluorides. Table~\ref{tab:h4c} compares, for each of their materials, the median held-out error of B0 and B2 when the
@@ -186,7 +190,7 @@ the primary dry-mass rule.}\label{tab:h4c}
 \input{tab_h4c.tex}
 \end{table}
 
-\section*{Supporting Note~\snote{4}: Strata, secondary metrics, exploratory checks}
+\section*{Supporting Note~\snote{4}: Strata, secondary metrics, exploratory checks}\pdfbookmark{Supporting Note S4: Strata, secondary metrics, exploratory checks}{sn4}
 
 The protocol reports the temperature and direction strata separately, and among its secondary metrics are two
 error measures: the relative
@@ -226,7 +230,7 @@ Exploratory.}\label{fig:s1}
 \end{figure}
 
 \FloatBarrier
-\section*{Supporting Note~\snote{5}: Numerical data of the figures}
+\section*{Supporting Note~\snote{5}: Numerical data of the figures}\pdfbookmark{Supporting Note S5: Numerical data of the figures}{sn5}
 
 The file \texttt{figure\_data.zip} holds one comma-separated file per figure with data, written by the figure's script
 from the plotted artists when the figure is drawn, so the values are exactly those shown:
@@ -249,6 +253,6 @@ Horizontal reference lines appear as series named ``reference line'' with $x$ in
 schematic without numerical data. Tables~S\ID{1}--S\ID{4} are themselves the numerical data of the two harnesses, the family
 folds and the secondary metrics.
 
-\input{refs_si.tex}
+{\raggedright\input{refs_si.tex}}
 
 \end{document}

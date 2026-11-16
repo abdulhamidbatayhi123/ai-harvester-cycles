@@ -17,7 +17,8 @@
   "OR2": "results/exploratory/oracle_r_R2.json",
   "OR1": "results/exploratory/oracle_r_R1.json",
   "RK1": "results/exploratory/rh50_vs_k_R1.json",
-  "KS": "results/exploratory/k_spread.json"
+  "KS": "results/exploratory/k_spread.json",
+  "RV": "results/exploratory/review_20261116.json"
  },
  "bindings": {
   "n_sorbents": {
@@ -941,7 +942,7 @@
    "fmt": "f2"
   },
   "res_rho1_p": {
-   "expr": "RK1['summary']['p_min']",
+   "expr": "math.floor(100 * RK1['summary']['p_min']) / 100",
    "fmt": "f2"
   },
   "si2_sdm27": {
@@ -998,6 +999,50 @@
   },
   "abs_joint": {
    "expr": "round(100 * CS['exploratory_and_secondary']['joint_R2']['rel_reduction_median'])",
+   "fmt": "d"
+  },
+  "flow": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "logged total flow of 400 sccm"
+  },
+  "dm_lo": {
+   "expr": "RV['dry_mass']['min_mg']",
+   "fmt": "f1"
+  },
+  "dm_hi": {
+   "expr": "round(RV['dry_mass']['max_mg'])",
+   "fmt": "d"
+  },
+  "dm_med": {
+   "expr": "RV['dry_mass']['median_mg']",
+   "fmt": "f1"
+  },
+  "cvm27a": {
+   "expr": "RV['metric_cv']['27C|ads']",
+   "fmt": "f2"
+  },
+  "cvm27d": {
+   "expr": "RV['metric_cv']['27C|des']",
+   "fmt": "f2"
+  },
+  "cvm60a": {
+   "expr": "RV['metric_cv']['60C|ads']",
+   "fmt": "f2"
+  },
+  "cvm60d": {
+   "expr": "RV['metric_cv']['60C|des']",
+   "fmt": "f2"
+  },
+  "t63_slow": {
+   "expr": "round(100 * RV['t63_B0']['share_pred_slower'])",
+   "fmt": "d"
+  },
+  "t63_p90": {
+   "expr": "math.floor(100 * RV['t63_B0']['p90_abs'])",
+   "fmt": "d"
+  },
+  "t63_fm": {
+   "expr": "round(100 * RV['t63_B0']['median_over_folds_abs'])",
    "fmt": "d"
   }
  }

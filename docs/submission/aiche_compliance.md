@@ -16,10 +16,10 @@ submission. Sources:
 |---|---|---|---|
 | Fits a topical area; Separations excludes "purely modeling exercises ... with no attempt to compare to experimental data or to benchmark" | [P] | Separations: Materials, Devices and Processes; every test is on measured DVS data and benchmarks against the published model | PASS |
 | Rigor, novelty, innovation | [G] | rigor: frozen protocol, harnesses, two dry-mass rules; novelty framed as a validated negative answer to a screening question (cover letter) | PASS (risk noted) |
-| Title fewer than 120 letters and spaces | [G] | 112 characters | PASS |
-| Abstract at most 150 words, states objective and conclusions | [G] | 147 words (build gate fails above 147) | PASS |
+| Title fewer than 120 letters and spaces | [G] | 117 characters | PASS |
+| Abstract at most 150 words, states objective and conclusions | [G] | 142 words (build gate fails above 147) | PASS |
 | Topical heading and five key words | [G] | after the abstract | PASS |
-| 12 pt, double spaced, 1 inch margins; below 35 pages with figures inline | [G] | main.tex layout; 24 pages (build gate measures the PDF) | PASS |
+| 12 pt, double spaced, 1 inch margins; below 35 pages with figures inline | [G] | main.tex layout; 34 pages, one below the limit (build gate G5b fails at 35); new material goes to the SI unless pages are freed | PASS |
 | SI units for dimensional quantities | [G],[U] | min, mg and degrees C are accepted for use with SI; wt% and % RH dimensionless | PASS (check [U] list at submission) |
 | Notation section only if symbols are not all defined in the text | [G] | every symbol defined where introduced (Methods, Eq. 1-2) | PASS |
 | Plain Language Summary, at most 250 characters | [G] | 204 characters, docs/submission/aiche_metadata.md | PASS |
@@ -28,11 +28,11 @@ submission. Sources:
 | Appendices in Supplementary Material | [G] | SI Notes 1-4 | PASS |
 | Figures TIFF or EPS; color free | [G] | paper/tex/package_aiche.py writes every figure as 600 dpi TIFF (plus the vector PDF) into dist/aiche/ | PASS |
 | LaTeX: no directory structure for external files; PDF of the manuscript for review | [G] | package_aiche.py flattens every \includegraphics path and test-compiles the flat folder; main.pdf and si.pdf included | PASS |
-| Cover letter: short statement, readership, originality | [G] | docs/submission/ (private/cover_letter_aichej.md, kept out of git) | PASS |
+| Cover letter: short statement, readership, originality | [G] | private/cover_letter_aichej.md (kept out of git) | PASS |
 | 4-6 suggested reviewers, >= 2 with AIChE J papers in 10 years, justified, no colleagues | [G],[B] | private/suggested_reviewers.md: 3 with AIChE J papers, none on the board | PASS |
 | CRediT roles for authors | [G] | Author Contributions section | PASS |
-| Data Availability Statement with link and persistent identifier; scripts archived | [D] | GitHub + Zenodo 10.5281/zenodo.24260908 (v1.0.2; earlier versions 24243541 = v1.0.1 and 24148229 = v1.0.0, all in concept 10.5281/zenodo.24148228) | PASS |
-| Shared data cited in the reference list | [D] | own archive cited (Batayhi2026Archive, version 1.0.2; metadata read from DataCite after publication, 2026-11-15: creator, title, year, version and license as registered) | PASS |
+| Data Availability Statement with link and persistent identifier; scripts archived | [D] | GitHub + Zenodo 10.5281/zenodo.24275720 (v1.0.3, the submitted files; earlier versions 24260908 = v1.0.2, 24243541 = v1.0.1 and 24148229 = v1.0.0, all in concept 10.5281/zenodo.24148228) | PASS |
+| Shared data cited in the reference list | [D] | own archive cited (Batayhi2026Archive, version 1.0.3, DOI reserved 2026-11-16 and re-read from DataCite after publication; for v1.0.2: metadata read from DataCite after publication, 2026-11-15: creator, title, year, version and license as registered) | PASS |
 | AI disclosure: tool, purpose, whether it influenced key arguments or conclusions, how outputs were verified | [A] | author's wording plus model names and a verification sentence (author's choice 2026-11-12), in the Acknowledgments as in recent AIChE J papers | PASS |
 | Supplementary Material shares the numerical data of every figure with data (including SI figures); a primary file lists the contents and format of any other files | [E] | figure scripts write <figure>.data.csv from the plotted artists; package builds figure_data.zip with README; Supporting Note S5 lists the files; build gate G6 refuses a data figure without its file | PASS |
 | A section titled "Data Availability and Reproducibility Statement" before the Conclusion: which figure data are in the SI, and the steps taken for reliability and reproducibility (calibration, reproduction of earlier work, uncertainty estimation) | [E] | Section before the Conclusions: figure data; freeze; synthetic harnesses with known truth; in-sample reproduction of the published model; independent re-implementation of the decision rule (240/240); noise floor and exact cluster tests; two dry-mass rules; exact recomputation; build-checked numbers | PASS |

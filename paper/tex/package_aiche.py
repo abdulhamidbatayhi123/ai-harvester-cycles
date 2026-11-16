@@ -28,28 +28,32 @@ def main():
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     os.makedirs(OUT)
-    figs = set()
-    for doc in ("main.tex", "si.tex"):
+    figs = {}                                   # source path -> submission name (Figure1..., FigureS1...), in order
+    for doc, prefix in (("main.tex", "Figure"), ("si.tex", "FigureS")):
         tex = open(os.path.join(HERE, doc), encoding="utf-8").read()
+        n = [0]
 
         def flat(m):
             path = m.group(2)
-            figs.add(path)
-            return m.group(1) + "{" + os.path.basename(path) + "}"
+            n[0] += 1
+            figs.setdefault(path, f"{prefix}{n[0]}")
+            return m.group(1) + "{" + figs[path] + ".pdf}"
         tex = re.sub(r"(\\includegraphics(?:\[[^\]]*\])?)\{([^}]*)\}", flat, tex)
         assert "../" not in re.sub(r"%.*", "", tex), f"{doc}: a relative path is left"
         open(os.path.join(OUT, doc), "w", encoding="utf-8", newline="\n").write(tex)
     for f in os.listdir(HERE):
         if f in ("ms_macros.tex", "refs_main.tex", "refs_si.tex") or (f.startswith("tab_") and f.endswith(".tex")):
             shutil.copy2(os.path.join(HERE, f), OUT)
-    for p in sorted(figs):
+    # figures are named by their number in the article, so the uploaded files match the captions; the repository keeps
+    # the script names (the figure_data.zip README maps them). TIFFs are saved as RGB: the PNGs' alpha is opaque.
+    for p, name in figs.items():
         src = os.path.normpath(os.path.join(HERE, p))
-        shutil.copy2(src, OUT)                                        # vector PDF, used by the LaTeX source
+        shutil.copy2(src, os.path.join(OUT, name + ".pdf"))           # vector PDF, used by the LaTeX source
         png = os.path.splitext(src)[0] + ".png"
-        tif = os.path.join(OUT, os.path.splitext(os.path.basename(src))[0] + ".tif")
-        Image.open(png).save(tif, compression="tiff_lzw", dpi=(600, 600))
+        Image.open(png).convert("RGB").save(os.path.join(OUT, name + ".tif"), compression="tiff_lzw", dpi=(600, 600))
     toc = os.path.join(ROOT, "figures", "out", "fig_toc.png")
-    Image.open(toc).save(os.path.join(OUT, "graphical_abstract.tif"), compression="tiff_lzw", dpi=(600, 600))
+    Image.open(toc).convert("RGB").save(os.path.join(OUT, "graphical_abstract.tif"), compression="tiff_lzw",
+                                        dpi=(600, 600))
     # numerical data of every figure (AIChE J. editorial doi:10.1002/aic.18017), listed in Supporting Note S5
     import zipfile
     figout = os.path.join(ROOT, "figures", "out")
@@ -59,8 +63,9 @@ def main():
     assert need <= set(csvs), f"figure data missing: {sorted(need - set(csvs))}"
     readme = ("Numerical data of the figures (Supporting Note S5). One CSV per figure, written from the plotted artists.\n"
               "Columns: panel, series, x, y, x_label, y_label, x_tick_labels_if_categorical.\n"
-              "fig1_data = Figure 2; fig_trajectories = Figure 3; fig_harness_l1 = Figure 4; fig_results = Figure 5;\n"
-              "fig_s1 = Figure S1; fig_toc = graphical abstract. Figure 1 is a schematic without data.\n")
+              + "".join(f"{os.path.splitext(os.path.basename(p))[0]}.data.csv = {name.replace('Figure', 'Figure ')}\n"
+                        for p, name in figs.items() if "fig_workflow" not in p)
+              + "fig_toc.data.csv = graphical abstract. Figure 1 is a schematic without data.\n")
     with zipfile.ZipFile(os.path.join(OUT, "figure_data.zip"), "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("README.txt", readme)
         for f in sorted(need):
