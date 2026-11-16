@@ -39,7 +39,7 @@ def main():
     ax.set_xticks(range(len(ORDER)))
     ax.set_xticklabels([])
     ax.set_xlabel("8 held-out sorbents", fontsize=fs.SMALL_PT)
-    ax.set_ylabel("Gain r of B2 over shared k″ (%)", fontsize=fs.SMALL_PT)
+    ax.set_ylabel("Error reduction vs shared k″ (%)", fontsize=fs.SMALL_PT)
     lo = 5 * math.floor((min(ys) - 2) / 5)
     ax.set_ylim(lo, 16)
     ax.set_xlim(-0.6, len(ORDER) - 0.4)
@@ -47,7 +47,7 @@ def main():
     fig.text(0.5, 0.905, "a sorbent's rate constant?", fontsize=fs.BODY_PT, ha="center", va="top", fontweight="bold")
     beaten = max(d["H4a"]["B2"]["LOSO_beats"] for d in (d2, d1))      # from the decide outputs, not typed
     folds = d2["H4a"]["B2"]["LOSO_folds"]
-    fig.text(0.5, 0.80, f"Pre-registered test: {beaten} of {folds} beaten", fontsize=fs.SMALL_PT, ha="center", va="top")
+    fig.text(0.5, 0.80, f"Isotherm-predicted k″ beat shared k″: {beaten} of {folds}", fontsize=fs.SMALL_PT, ha="center", va="top")
     fig.text(0.5, 0.025, "circles, squares: two dry-mass rules", fontsize=fs.SMALL_PT, ha="center", va="bottom")
     fs.save(fig, stem, inputs=sys.argv[1:3])
 

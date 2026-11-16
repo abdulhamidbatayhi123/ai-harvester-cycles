@@ -1,0 +1,40 @@
+{
+ "about": "EXPLORATORY (post hoc; final review 2026-11-16): numbers asked for by the editor-level and statistics reviews,\ncomputed from frozen inputs with the stored confirmatory parameters (no refit, no new model):",
+ "rule": "R2",
+ "dry_mass": {
+  "n_runs": 64,
+  "min_mg": 3.0173,
+  "max_mg": 22.6124,
+  "median_mg": 9.187000000000001
+ },
+ "metric_cv": {
+  "27C|ads": 0.08658434037685832,
+  "27C|des": 0.10311085612703726,
+  "60C|ads": 0.2351720734619642,
+  "60C|des": 0.2606302877137315
+ },
+ "ls_cv": {
+  "27C|ads": 0.07012295111163933,
+  "27C|des": 0.10542848322157443,
+  "60C|ads": 0.4134904076401925,
+  "60C|des": 0.3021328217116339
+ },
+ "t63_B0": {
+  "n_segments": 1187,
+  "median_abs": 0.17283950617283955,
+  "median_signed": 0.0,
+  "share_pred_slower": 0.4818871103622578,
+  "p90_abs": 0.525910931174089,
+  "fold_medians_abs": {
+   "LOSO:ROS-037": 0.23466833541927418,
+   "LOSO:ROS-039": 0.20370370370370378,
+   "LOSO:ROS-040": 0.1356321839080461,
+   "LOSO:MOF-303": 0.13397346870360613,
+   "LOSO:MIL-160": 0.24695121951219506,
+   "LOSO:CAU-10": 0.18355898100467208,
+   "LOSO:Al-fumarate": 0.10909090909090903,
+   "LOSO:Syloid": 0.12116764514024789
+  },
+  "median_over_folds_abs": 0.15959558245635908
+ }
+}
