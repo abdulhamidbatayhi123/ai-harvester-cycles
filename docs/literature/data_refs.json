@@ -74,8 +74,7 @@
    "version": "v1.0.3",
    "rights": [
     "mit"
-   ],
-   "note": "DOI reserved on Zenodo 2026-11-16 for version v1.0.3 (same creator, title, publisher, year and license as the DataCite record of v1.0.2); re-read from DataCite with fetch_data_refs.py after publication"
+   ]
   }
  }
 }

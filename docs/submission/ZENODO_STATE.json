@@ -34,5 +34,11 @@
   },
   "published": "2026-11-16 02:32:37"
  },
- "doi": "10.5281/zenodo.24275720"
+ "doi": "10.5281/zenodo.24275720",
+ "file": {
+  "name": "ai-harvester-cycles-v1.0.3.zip",
+  "md5": "554f2f5272c7cccb636fc46349d63c68",
+  "bytes": 10944232
+ },
+ "published": "2026-11-16 12:48:30"
 }
