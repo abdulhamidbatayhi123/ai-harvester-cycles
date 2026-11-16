@@ -70,6 +70,16 @@ def main():
         z.writestr("README.txt", readme)
         for f in sorted(need):
             z.write(os.path.join(figout, f), f)
+    # documents for the submission form: metadata (public) and, when present on the author's machine, the cover letter
+    # and the suggested reviewers (private/, never in git); the cover letter's internal draft heading is dropped
+    shutil.copy2(os.path.join(ROOT, "docs", "submission", "aiche_metadata.md"), OUT)
+    for f in ("cover_letter_aichej.md", "suggested_reviewers.md"):
+        src = os.path.join(ROOT, "private", f)
+        if os.path.exists(src):
+            text = open(src, encoding="utf-8").read()
+            if f.startswith("cover_letter") and text.startswith("# "):
+                text = text.split("\n", 1)[1].lstrip("\n")
+            open(os.path.join(OUT, f), "w", encoding="utf-8", newline="\n").write(text)
     for doc in ("main.tex", "si.tex"):
         r = subprocess.run([TECTONIC, "-X", "compile", doc], cwd=OUT, capture_output=True, text=True,
                            encoding="utf-8", errors="replace")

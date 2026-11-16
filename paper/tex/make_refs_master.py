@@ -174,7 +174,10 @@ def ama_data(r):
             full = (c.get("name") or c["family"]).split()
             pairs.append((full[-1], " ".join(full[:-1])))
     ver = f" Version {r['version'].lstrip('v')}." if r.get("version") else ""
-    return f"{ama_names(pairs)} {title(r['title'])}{ver} {tex_escape(r['publisher'])}; {r['year']}. doi:{r['doi']}"
+    # same typography as the article entries (curly apostrophe, en dash in metal-organic); words unchanged
+    pairs = [(f.replace("'", "’"), g) for f, g in pairs]
+    t = title(r['title']).replace("Metal-organic", "Metal–organic").replace("metal-organic", "metal–organic")
+    return f"{ama_names(pairs)} {t}{ver} {tex_escape(r['publisher'])}; {r['year']}. doi:{r['doi']}"
 
 
 # Typesetting corrections of Crossref metadata errors, checked against the live Crossref records on 2026-11-15:

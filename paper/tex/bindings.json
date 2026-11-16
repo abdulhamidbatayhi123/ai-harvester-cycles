@@ -1044,6 +1044,10 @@
   "t63_fm": {
    "expr": "round(100 * RV['t63_B0']['median_over_folds_abs'])",
    "fmt": "d"
+  },
+  "t63c": {
+   "doc": "PREREG_P4_draft.md",
+   "contains": "The relative error in time-to-63 % per segment."
   }
  }
 }

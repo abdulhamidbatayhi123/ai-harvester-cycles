@@ -13,8 +13,8 @@
   ],
   "G1_main.tex_unbound": 0,
   "G1_si.tex_unbound": 0,
-  "G1_n_uses": 308,
-  "G1_n_keys": 256,
+  "G1_n_uses": 309,
+  "G1_n_keys": 257,
   "G2_main.tex_n_refs": 49,
   "G2_si.tex_n_refs": 0,
   "G2_si_notes": 5,
@@ -24,8 +24,8 @@
   "G4_n_phrases": 44,
   "G5_words": {
    "abstract": 142,
-   "main_text": 5946,
-   "methods": 2809,
+   "main_text": 5957,
+   "methods": 2832,
    "si": 2809
   },
   "G5_targets": {
@@ -624,6 +624,13 @@
    "doc": "main.tex",
    "text": "10",
    "source": "PREREG_P4_draft.md: is at least 10 % (practical significance)",
+   "ok": true
+  },
+  {
+   "key": "t63c",
+   "doc": "main.tex",
+   "text": "63",
+   "source": "PREREG_P4_draft.md: The relative error in time-to-63 % per segment.",
    "ok": true
   },
   {

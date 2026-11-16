@@ -212,7 +212,7 @@
   "Abdi2023Parameter": "Abdi K, Celse B, McAuley KB. Parameter estimation and prediction uncertainties for multi-response kinetic models with uncertain inputs. \\textit{AIChE Journal}. 2023;69(6):e18058. doi:10.1002/aic.18058",
   "Sharma2022Hybrid": "Sharma N, Liu YA. A hybrid science-guided machine learning approach for modeling chemical processes: A review. \\textit{AIChE Journal}. 2022;68(5):e17609. doi:10.1002/aic.17609",
   "Rajulapati2022Integration": "Rajulapati L, Chinta S, Shyamala B, Rengaswamy R. Integration of machine learning and first principles models. \\textit{AIChE Journal}. 2022;68(6):e17715. doi:10.1002/aic.17715",
-  "Bezrukov2023Data": "Bezrukov AA, O'Hearn DJ, Gascón-Pérez V, Darwish S, Kumar A, Sanda S, Kumar N, Francis K, Zaworotko MJ. Metal-organic frameworks as regeneration optimized sorbents for atmospheric water harvesting. Zenodo; 2023. doi:10.5281/zenodo.6631711",
+  "Bezrukov2023Data": "Bezrukov AA, O’Hearn DJ, Gascón-Pérez V, Darwish S, Kumar A, Sanda S, Kumar N, Francis K, Zaworotko MJ. Metal–organic frameworks as regeneration optimized sorbents for atmospheric water harvesting. Zenodo; 2023. doi:10.5281/zenodo.6631711",
   "Batayhi2026Archive": "Batayhi A. Code, results and pre-registration for: No detectable prediction of water-sorption rate constants from isotherm step position: a pre-registered held-out test. Version 1.0.3. Zenodo; 2026. doi:10.5281/zenodo.24275720"
  }
 }
